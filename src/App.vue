@@ -1,6 +1,6 @@
 <template>
 <div id="home">
-  cześć
+  
   <main-component></main-component>
 </div>
 </template>
