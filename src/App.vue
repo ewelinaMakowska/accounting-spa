@@ -1,23 +1,19 @@
 <template>
-<div id="home">
-  
-  <main-component></main-component>
-</div>
+ <main-component/>
 </template>
 
 <script>
-
-import MainComponent from '@/components/Main.vue'
+import MainComponent from '@/components/Main.vue';
 
 export default {
-  name: 'app',
+  name: 'App',
+
   components: {
     MainComponent
-  }
-}
+  },
+
+  data: () => ({
+    //
+  }),
+};
 </script>
-
-
-<style>
-
-</style>

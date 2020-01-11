@@ -5,9 +5,9 @@
 
 <v-container>
     <v-row>
-        <v-column>
+        <v-col>
             anyone
-        </v-column>
+        </v-col>
     </v-row>
 </v-container>
 
