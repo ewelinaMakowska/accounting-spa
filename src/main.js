@@ -3,7 +3,7 @@ import App from './App.vue'
 import Home from '@/components/Home.vue'
 import VueRouter from 'vue-router'
 import OfficePage from '@/views/OfficePage.vue' 
-import store from './store'
+import { store } from './store'
 import vuetify from './plugins/vuetify';
 
 Vue.use(VueRouter);

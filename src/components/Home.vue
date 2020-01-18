@@ -66,19 +66,17 @@ padding: 20px;
 import OfficeThumb from '@/components/OfficeThumb.vue';
 
 export default {
+    computed: {
+        offices () {
+            return this.$store.getters.loadedOffices;
+        }
+    },
     name: 'Home',
     components: {
     OfficeThumb
     },
-    data() {
-    return { offices : [
-      { id: 1, name: 'Ksiegowosc', price: 100 },
-      { id: 2, name: 'BMW', price: 80 },
-      { id: 3, name: 'Volkswagen', price: 75 },
-      { id: 4, name: 'Audi', price: 85 }
-    ]
-    }
-  },
+
+  
 
 }
 </script>
