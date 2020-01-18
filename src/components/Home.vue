@@ -34,6 +34,8 @@
                         
                      </div>
                      paginacja
+
+                   
                       </v-col>
 
             </v-row>
@@ -68,7 +70,7 @@ padding: 20px;
 import OfficeThumb from '@/components/OfficeThumb.vue';
 
 export default {
-    name: 'Main',
+    name: 'Home',
     components: {
     OfficeThumb
     },

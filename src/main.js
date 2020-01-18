@@ -1,9 +1,29 @@
 import Vue from 'vue'
 import App from './App.vue'
-/* import Main from '@/components/Main.vue' */
-import router from './router'
+import Home from '@/components/Home.vue'
+import VueRouter from 'vue-router'
+import OfficePage from '@/views/OfficePage.vue' 
 import store from './store'
 import vuetify from './plugins/vuetify';
+
+Vue.use(VueRouter);
+
+const routes = [
+  {
+    path: '/',
+     component: Home
+  },
+  {
+    path: '/office',
+    name: 'OfficePage',
+    component: OfficePage
+  }
+]
+
+const router = new VueRouter({
+  routes: routes,
+  mode: 'history'
+})
 
 Vue.config.productionTip = false
 

@@ -1,6 +1,7 @@
 <template>
 <div class="office-thumb">
     blablalba
+     <router-link to="/office">więcej</router-link>
 </div>
 </template>
 

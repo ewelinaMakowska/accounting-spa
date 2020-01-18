@@ -1,15 +1,17 @@
-import Vue from 'vue'
+/* import Vue from 'vue'
 import VueRouter from 'vue-router'
+import OfficePage from 'src/views/OfficePage.vue' 
 
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
-const routes = [
-  
+
+export default new Router({
+routes: [
+  {
+    path: '/office',
+    name: 'OfficePage',
+    component: OfficePage
+  }
 ]
-
-const router = new VueRouter({
-  routes
-})
-
-export default router
+}) */
