@@ -1,8 +1,8 @@
 <template>
 <div>
-   Witaj na stronie biura: 
-   Id biura to:
-   Cena za usługę to:
+   Witaj na stronie biura:  <br/>
+   Id biura to: {{  }}  <br/>
+   Cena za usługę to:  <br/>
    
     </div>
 </template>
@@ -17,6 +17,8 @@ export default {
         name: String,
         id: String,
         price: Number
-    }
+    },
+    
+   
 }
 </script>

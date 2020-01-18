@@ -14,9 +14,13 @@ const routes = [
      component: Home
   },
   {
-    path: '/office',
-    name: 'OfficePage',
+    path: '/office/:id',
+    name: 'office-page',
     component: OfficePage
+  },
+  {
+    path:'*',
+    redirect: '/'
   }
 ]
 

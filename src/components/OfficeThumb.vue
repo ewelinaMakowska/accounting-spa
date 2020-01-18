@@ -1,8 +1,9 @@
 <template>
 <div class="office-thumb">
     Biuro {{ name }} <br/>
-    ID:
-     <router-link to="/office">więcej</router-link>
+    ID: {{ id }} <br/>
+     <router-link to="/office/:id">więcej</router-link>
+    
 </div>
 </template>
 
@@ -21,5 +22,6 @@ export default {
         name: String,
         id: String
     }
+    
 }
 </script>

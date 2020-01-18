@@ -24,13 +24,8 @@
                           biura:
                      <div class="flex-thumbs-container">
 
-                      <office-thumb :name="office.name" v-for="(office, id) in offices" :key="id" :office="office" >
-                            </office-thumb> 
-
-
-                       <!--  <ul>
-                        <li v-for="(office, id) in offices" :key="id" :office="office"> {{ office }}</li>
-                        </ul> -->
+                      <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
+                            </office-thumb>
 
                         
                      </div>
