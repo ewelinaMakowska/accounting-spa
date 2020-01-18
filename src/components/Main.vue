@@ -23,10 +23,15 @@
                       <v-col lg="8">
                           biura:
                      <div class="flex-thumbs-container">
-                        <div class="office-thumb">sdfsfsfd</div>
-                        <div class="office-thumb">sdfsfsfd</div>
-                        <div class="office-thumb">sdfsfsfd</div>
-                        <div class="office-thumb">sdfsfsfd</div>
+
+                      <office-thumb v-for="(office, id) in offices" :key="id" :office="office" >  </office-thumb> 
+
+
+                       <!--  <ul>
+                        <li v-for="(office, id) in offices" :key="id" :office="office"> {{ office }}</li>
+                        </ul> -->
+
+                        
                      </div>
                      paginacja
                       </v-col>
@@ -55,17 +60,27 @@ flex-wrap: wrap;
 padding: 20px;
 }
 
-.office-thumb {
-background: gray;
-height: 300px;
-width: 250px;
-margin: 15px;
-}
+
 
 </style>
 
 <script>
+import OfficeThumb from '@/components/OfficeThumb.vue';
+
 export default {
-    
+    name: 'Main',
+    components: {
+    OfficeThumb
+    },
+    data() {
+    return { offices : [
+      { id: 1, name: 'Ksiegowosc', price: 100 },
+      { id: 2, name: 'BMW', price: 80 },
+      { id: 3, name: 'Volkswagen', price: 75 },
+      { id: 4, name: 'Audi', price: 85 }
+    ]
+    }
+  },
+
 }
 </script>
