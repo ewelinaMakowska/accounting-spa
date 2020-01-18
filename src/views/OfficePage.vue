@@ -1,6 +1,8 @@
 <template>
 <div>
-   blablalblalba
+   Witaj na stronie biura: 
+   Id biura to:
+   Cena za usługę to:
    
     </div>
 </template>
@@ -11,6 +13,10 @@
 
 <script>
 export default {
-    
+    props: {
+        name: String,
+        id: String,
+        price: Number
+    }
 }
 </script>

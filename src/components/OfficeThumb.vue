@@ -1,6 +1,7 @@
 <template>
 <div class="office-thumb">
-    blablalba
+    Biuro {{ name }} <br/>
+    ID:
      <router-link to="/office">więcej</router-link>
 </div>
 </template>
@@ -16,6 +17,9 @@ margin: 15px;
 
 <script>
 export default {
-    
+    props: {
+        name: String,
+        id: String
+    }
 }
 </script>
