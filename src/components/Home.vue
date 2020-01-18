@@ -25,7 +25,7 @@
                      <div class="flex-thumbs-container">
 
                       <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
-                            </office-thumb>
+                      </office-thumb>
 
                         
                      </div>
@@ -74,9 +74,7 @@ export default {
     name: 'Home',
     components: {
     OfficeThumb
-    },
+    }, //components
+    } //export default
 
-  
-
-}
 </script>

@@ -2,8 +2,8 @@
 <div class="office-thumb">
     Biuro {{ name }} <br/>
     ID: {{ id }} <br/>
-     <router-link to="/office/:id">więcej</router-link>
     
+     <router-link :to="'/office/' + office.id">więcej</router-link>
 </div>
 </template>
 
@@ -19,6 +19,7 @@ margin: 15px;
 <script>
 export default {
     props: {
+        office: Object,
         name: String,
         id: String
     }

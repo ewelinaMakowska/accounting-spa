@@ -1,8 +1,9 @@
 <template>
 <div>
-   Witaj na stronie biura:  <br/>
-   Id biura to: {{  }}  <br/>
-   Cena za usługę to:  <br/>
+    Obiekt {{ office }} <br/>
+   Witaj na stronie biura: {{ office.name }} <br/>
+   Id biura to:  {{ office.id }} <br/> 
+   Cena za usługę to: {{ office.price }} <br/>
    
     </div>
 </template>
@@ -14,11 +15,12 @@
 <script>
 export default {
     props: {
-        name: String,
-        id: String,
-        price: Number
+        id: String
     },
-    
-   
+    computed: {
+        office () {
+            return this.$store.getters.loadedOffice(this.id);
+        },
+    }  
 }
 </script>

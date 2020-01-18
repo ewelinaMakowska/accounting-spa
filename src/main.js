@@ -16,6 +16,7 @@ const routes = [
   {
     path: '/office/:id',
     name: 'office-page',
+    props: true,
     component: OfficePage
   },
   {
