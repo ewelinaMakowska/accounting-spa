@@ -2,7 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import Home from '@/components/Home.vue'
 import VueRouter from 'vue-router'
-import OfficePage from '@/views/OfficePage.vue' 
+import OfficePage from '@/views/OfficePage.vue'
+import AllCompanies from '@/views/AllCompanies.vue'  
 import { store } from './store'
 import vuetify from './plugins/vuetify';
 
@@ -14,6 +15,10 @@ const routes = [
      component: Home
   },
   {
+    path: '/companies',
+    component: AllCompanies
+  },
+  {
     path: '/office/:id',
     name: 'office-page',
     props: true,
@@ -23,6 +28,7 @@ const routes = [
     path:'*',
     redirect: '/'
   }
+  
 ]
 
 const router = new VueRouter({

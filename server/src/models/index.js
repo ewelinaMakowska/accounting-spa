@@ -18,6 +18,7 @@ sequelize
     console.log('Unable to connect to database ', err)
 })
 
+db['Company'] = sequelize.import('./company.js')
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 module.exports = db

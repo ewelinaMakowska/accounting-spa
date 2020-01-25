@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
 const { sequelize } = require('./models')
+const CompaniesController = require('./controller/CompaniesController')
 
 const app = express()
 const port = 3000
@@ -16,4 +17,5 @@ sequelize.sync().
     app.listen(port, () => console.log(`App is listening on port: ${port} `))
     })
 
-app.get('/', (req, res) =>  res.send("HELLO!") )  
+app.get('/', (req, res) =>  res.send("HELLO!"))  
+app.get('/companies', CompaniesController.get)
