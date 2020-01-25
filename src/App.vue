@@ -1,5 +1,23 @@
+<template>
+ 
+    <div>
+<router-view></router-view>
+</div>
+
+</template>
+
+<script>
 
 
-<style>
+export default {
+  name: 'App',
 
-</style>
+  components: {
+    
+  },
+
+  data: () => ({
+    //
+  }),
+};
+</script>
