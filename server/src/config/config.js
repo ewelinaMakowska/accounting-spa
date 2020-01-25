@@ -1,6 +1,6 @@
-const myqsl = require('mysql2');
+const mysql = require('mysql2');
 
-module.exports = {
+/* module.exports = {
     port: 3000,
     db: {
         database: process.env.DB_NAME || 'accounting_companies',
@@ -13,4 +13,14 @@ module.exports = {
             storage: './accounting_companies.sqlcd'
         }
     }
-}
+} */
+
+
+const pool = mysql.createPool({   
+    host: 'localhost',
+    user: 'root',
+    database: 'accounting_companies',
+    password: 'A5@@nbc'
+})
+
+module.exports = pool.promise();

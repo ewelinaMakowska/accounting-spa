@@ -4,6 +4,7 @@ const cors = require('cors')
 const morgan = require('morgan')
 const { sequelize } = require('./models')
 const CompaniesController = require('./controller/CompaniesController')
+const myqsl = require('mysql2');
 
 const app = express()
 const port = 3000

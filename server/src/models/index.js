@@ -1,13 +1,27 @@
 const Sequelize = require('sequelize')
-const config = require('../config/config')
+const mysql = require('mysql2');
+const config = require('../config/config') //pool
 const db = {}
 
-const sequelize = new Sequelize(
+/* const sequelize = new Sequelize(
     config.db.database,
     config.db.user,
     config.db.password,
-    config.db.options
-)
+) */
+
+const sequelize = new Sequelize('accounting_companies', 'accounting_app', 'A5@@nbd', {
+    host: 'localhost',
+    dialect: 'mysql',
+  
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    },
+    // http://docs.sequelizejs.com/manual/tutorial/querying.html#operators
+    operatorsAliases: false
+  });
 
 sequelize
 .authenticate()
@@ -21,4 +35,5 @@ sequelize
 db['Company'] = sequelize.import('./company.js')
 db.sequelize = sequelize
 db.Sequelize = Sequelize
+// config.execute('SELECT * FROM COMPANIES')
 module.exports = db
