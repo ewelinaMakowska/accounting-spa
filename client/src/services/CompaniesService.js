@@ -1,7 +1,7 @@
 import Api from '@/services/Api'
 
 export default {
-  GettAllSongs() {
+  getAllSongs() {
     return Api.get('companies')
   }
 }

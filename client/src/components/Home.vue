@@ -30,6 +30,7 @@
                         
                      </div>
                      paginacja
+                    <div> <p> Dane z bazy danych: {{ companiesFromDb }} </p></div>
 
                    
                       </v-col>
@@ -67,6 +68,11 @@ import OfficeThumb from '@/components/OfficeThumb.vue';
 import CompaniesService from '@/services/CompaniesService'
 
 export default {
+    data() {
+        return {
+            companiesFromDb : null
+        }
+    }, 
     computed: {
         offices () {
             return this.$store.getters.loadedOffices;
@@ -84,7 +90,10 @@ export default {
             catch (err) {
                 console.log('companies service error')
             }
-        }
+        },
+        async mounted() {
+            this.companiesFromDb = (await CompaniesService.getAllCompanies().data)
+        } 
     }
     } //export default
 

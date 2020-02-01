@@ -1,6 +1,7 @@
 const { Company } = require('../models')
 
 module.exports = {
+
   async get (req, res) {
     try {
       const companies = await Company.findAll({
