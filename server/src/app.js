@@ -12,6 +12,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.get('/', (req, res) => res.send('HEYEYEYEYA'))
+app.get('/companies')
 
 sequelize.sync()
 .then(() => {

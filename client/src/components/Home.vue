@@ -64,6 +64,7 @@ padding: 20px;
 
 <script>
 import OfficeThumb from '@/components/OfficeThumb.vue';
+import CompaniesService from '@/services/CompaniesService'
 
 export default {
     computed: {
@@ -75,6 +76,16 @@ export default {
     components: {
     OfficeThumb
     }, //components
+    methods: {
+        async getAll () {
+            try {
+                await CompaniesService.GetAllCompanies();
+            }
+            catch (err) {
+                console.log('companies service error')
+            }
+        }
+    }
     } //export default
 
 </script>
