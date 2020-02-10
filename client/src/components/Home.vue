@@ -31,7 +31,7 @@
                      </div>
                      paginacja
                     <div> <p> Dane z bazy danych: {{ companiesFromDb }} </p></div>
-
+                    <button @click="getAll()">pobierz dane</button>
                    
                       </v-col>
 
@@ -65,7 +65,7 @@ padding: 20px;
 
 <script>
 import OfficeThumb from '@/components/OfficeThumb.vue';
-import CompaniesService from '@/services/CompaniesService'
+import CompaniesService from '@/services/CompaniesService.js';
 
 export default {
     data() {
@@ -83,12 +83,14 @@ export default {
     OfficeThumb
     }, //components
     methods: {
-        async getAll () {
+        async getAll() {
             try {
-                await CompaniesService.GetAllCompanies();
+                await CompaniesService.getAllCompanies();
+                console.log('service started succesfully');
             }
             catch (err) {
-                console.log('companies service error')
+                console.log('companies component service error ')
+                console.log(err);
             }
         },
         async mounted() {

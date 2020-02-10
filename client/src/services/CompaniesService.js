@@ -1,7 +1,12 @@
 import Api from '@/services/Api'
 
 export default {
-  getAllSongs() {
-    return Api.get('companies')
+  getAllCompanies() {
+
+    return Api.get('companies');
+    //console.log("sent to server code");
+  
+ 
+
   }
 }

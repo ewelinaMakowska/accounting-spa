@@ -24,7 +24,7 @@ sequelize
     console.log('Unable to connect to database')
   })
 
-  db['Song'] = sequelize.import('company.js')
+  db['Company'] = sequelize.import('./Company.js')
   
   db.sequelize = sequelize
   db.Sequelize = Sequelize
