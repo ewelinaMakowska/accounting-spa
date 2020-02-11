@@ -48,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
     description: { type: DataTypes.TEXT }
     
   },  {
-    freezeTableName: true, // Model tableName will be the same as the model name
+    freezeTableName: false, // Model tableName will be the same as the model name
     timestamps: false,
     underscored: true
   })
