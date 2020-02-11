@@ -47,6 +47,10 @@ module.exports = (sequelize, DataTypes) => {
     logo: { type: DataTypes.STRING(45) },
     description: { type: DataTypes.TEXT }
     
+  },  {
+    freezeTableName: true, // Model tableName will be the same as the model name
+    timestamps: false,
+    underscored: true
   })
 
   return Company
