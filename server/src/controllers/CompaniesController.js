@@ -5,7 +5,7 @@ module.exports = {
   async get (req, res) {
     try {
       const companies = await Company.findAll({
-        limit: 2
+        limit: 4
       })
       res.send(companies)
     } catch (error) {

@@ -85,7 +85,7 @@ export default {
     methods: {
         async getAll() {
             try {
-                await CompaniesService.getAllCompanies();
+                 await CompaniesService.getAllCompanies();
                 console.log('service started succesfully');
             }
             catch (err) {
@@ -94,7 +94,7 @@ export default {
             }
         },
         async mounted() {
-            this.companiesFromDb = (await CompaniesService.getAllCompanies().data)
+            //this.companiesFromDb = (await CompaniesService.getAllCompanies()).data
         } 
     }
     } //export default
