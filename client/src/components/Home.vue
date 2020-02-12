@@ -65,7 +65,7 @@ padding: 20px;
 
 <script>
 import OfficeThumb from '@/components/OfficeThumb.vue';
-import CompaniesService from '@/services/CompaniesService.js';
+//import CompaniesService from '@/services/CompaniesService.js';
 
 export default {
     data() {
@@ -76,14 +76,18 @@ export default {
     computed: {
         offices () {
             return this.$store.getters.loadedOffices;
+        },
+        loadCompanies() {
+            return this.$store.dispatch('loadCompaniesAction');
         }
+
     },
     name: 'Home',
     components: {
     OfficeThumb
     }, //components
     methods: {
-        async getAll() {
+     /*   async getAll() {
             try {
                  await CompaniesService.getAllCompanies();
                 console.log('service started succesfully');
@@ -92,11 +96,24 @@ export default {
                 console.log('companies component service error ')
                 console.log(err);
             }
-        },
-        async mounted() {
-            //this.companiesFromDb = (await CompaniesService.getAllCompanies()).data
-        } 
+        }, */
+         
+        // async mounted() {
+        //     //this.companiesFromDb = (await CompaniesService.getAllCompanies()).data
+        //     this.loadCompanies();
+        //     console.log('companies loaded to the state');
+        //     this.offices();
+        //     console.log('state getter used');
+         },  
+
+        mounted: function() {
+            console.log("Mounted")
+             this.loadCompanies;
+             console.log('companies loaded to the state');
+             this.offices;
+             console.log('state getter used');
+        }
     }
-    } //export default
+     //export default
 
 </script>
