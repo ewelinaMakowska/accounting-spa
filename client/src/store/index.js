@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import CompaniesService from '@/services/CompaniesService.js' // eslint-disable-line no-unused-vars
+
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({

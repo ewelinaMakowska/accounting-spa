@@ -65,7 +65,8 @@ padding: 20px;
 
 <script>
 import OfficeThumb from '@/components/OfficeThumb.vue';
-//import CompaniesService from '@/services/CompaniesService.js';
+
+import CompaniesService from '@/services/CompaniesService.js' // eslint-disable-line no-unused-vars
 
 export default {
     data() {
@@ -87,7 +88,7 @@ export default {
     OfficeThumb
     }, //components
     methods: {
-     /*   async getAll() {
+        async getAll() {
             try {
                  await CompaniesService.getAllCompanies();
                 console.log('service started succesfully');
@@ -96,7 +97,7 @@ export default {
                 console.log('companies component service error ')
                 console.log(err);
             }
-        }, */
+        }, 
          
         // async mounted() {
         //     //this.companiesFromDb = (await CompaniesService.getAllCompanies()).data
