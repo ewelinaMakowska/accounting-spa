@@ -66,7 +66,7 @@ padding: 20px;
 <script>
 import OfficeThumb from '@/components/OfficeThumb.vue';
 
-import CompaniesService from '@/services/CompaniesService.js' // eslint-disable-line no-unused-vars
+import CompaniesService from '@/services/CompaniesService.js' 
 
 export default {
     data() {
