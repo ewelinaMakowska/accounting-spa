@@ -32,7 +32,7 @@ export const store = new Vuex.Store({
   },
 
   mutations: {
-    loadCompanies: state => {
+    loadCompanies: (state, data) => {
       // state.loadedOffices = [
       //       { id: '1', name: 'Ksiegowosc-test', price: 100 },
       //       { id: '2', name: 'BMW-test', price: 80 },
@@ -42,22 +42,27 @@ export const store = new Vuex.Store({
 
       //state.loadedOffices = 
 
-      try {
-        state.loadedOffices = CompaniesService.getAllCompanies();
-        const testCompanies = CompaniesService.getAllCompanies();
-        console.log(testCompanies);
-       console.log('loaded from db succesfully');
-   }
-   catch (err) {
-       console.log('store didnt manage to load companies from db ')
-       console.log(err)
-   }
-          console.log('mutation loadCompanies executed succesfully');
+  //     try {
+  //       state.loadedOffices = CompaniesService.getAllCompanies();
+  //       const testCompanies = CompaniesService.getAllCompanies();
+  //       console.log(testCompanies);
+  //      console.log('loaded from db succesfully');
+  //  }
+  //  catch (err) {
+  //      console.log('store didnt manage to load companies from db ')
+  //      console.log(err)
+  //  }
+  //         console.log('mutation loadCompanies executed succesfully');
+  //   }
+
+      state.loadedOffices = data;
     }
+
   },
   actions: {
-    loadCompaniesAction: ({ commit }) => {
-      commit('loadCompanies');
+    async loadCompaniesAction ({ commit })  {
+      const result = await CompaniesService.getAllCompanies();
+      commit('loadCompanies', result.data);
       console.log('action loadCompanies executed succesfully');
     
     }
@@ -85,4 +90,5 @@ export const store = new Vuex.Store({
 
   modules: {
   }, //modules
+
 }) //vue store

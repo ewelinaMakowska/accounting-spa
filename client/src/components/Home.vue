@@ -107,12 +107,16 @@ export default {
         //     console.log('state getter used');
          },  
 
-        mounted: function() {
+        async mounted () {
             console.log("Mounted")
-             this.loadCompanies;
+            try {
+             await this.loadCompanies;
              console.log('companies loaded to the state');
+            } catch (err) { console.log("fail")
+            } finally {
              this.offices;
              console.log('state getter used');
+             }
         }
     }
      //export default

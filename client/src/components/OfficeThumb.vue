@@ -21,7 +21,7 @@ export default {
     props: {
         office: Object,
         name: String,
-        id: String
+        id: Number
     }
     
 }
