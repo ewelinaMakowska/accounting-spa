@@ -30,9 +30,9 @@
                         
                      </div>
                      paginacja
-                     <pagination :pageCount="pageCount"/>
-                    <div> <p> Dane z bazy danych: {{ companiesFromDb }} </p></div>
-                    <button @click="getAll()">pobierz dane</button>
+                     <pagination :howManyPages="pageCount"/>
+                    <!-- <div> <p> Dane z bazy danych: {{ companiesFromDb }} </p></div>
+                    <button @click="getAll()">pobierz dane</button> -->
                    
                       </v-col>
 
@@ -71,11 +71,25 @@ import CompaniesService from '@/services/CompaniesService.js'
 
 export default {
     data() {
+        let pages = [];
+       // let counter = this.pageCount();
+      //const howManyPages = this.pageCount;
+      
+    //   while(counter > 0) {
+    //     pages.push(counter);
+    //     counter--;
+    //   }
+      pages = [ 1,2,3 ]
+
+      console.log(pages);
+      
         return {
-            companiesFromDb : null,
-            howManyButtons: 2,
-            buttonNumber: 1,
-            pageCountValue: this.pageCount
+            
+           // companiesFromDb : null,
+           // howManyButtons: 2,
+           // buttonNumber: 1,
+            //pageCountValue: this.pageCount,
+            pages : this.pages
             
         }
     }, 

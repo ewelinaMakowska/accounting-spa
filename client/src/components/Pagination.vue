@@ -3,7 +3,7 @@
    <!-- <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
                       </office-thumb> -->
 
-  <pagination-button v-for="(counter) in pages" :key="counter"  />
+  <pagination-button v-for="(counter) in howManyPages" :key="counter"  />
 
 </div>
 </template>
@@ -18,24 +18,24 @@ display: flex;
 import PaginationButton from '@/components/PaginationButton.vue'; 
 
 export default {
-      data() {
-      const pages = [];
-      //const howManyPages = this.pageCount;
+    //   data() {
+    //   const pages = [];
+    //   //const howManyPages = this.pageCount;
       
-      while(this.pageCount > 0) {
-        pages.push(this.pageCount);
-        this.pageCount--;
-      }
+    //   while(this.pageCount > 0) {
+    //     pages.push(this.pageCount);
+    //     this.pageCount--;
+    //   }
 
-      console.log(pages);
+    //   console.log(pages);
       
-      return { pages }
-    },
+    //   return { pages }
+    // },
       components: {
         PaginationButton
       },
       props: {
-       pageCount: Number
+       howManyPages: Number
     },
     computed: {
        

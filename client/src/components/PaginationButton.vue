@@ -1,6 +1,6 @@
 <template>
 <div>
-1 {{ number }}
+1 {{ pageNumber }}
 </div>
 </template>
 
@@ -13,7 +13,7 @@
 
 export default {
 props: {
-        number: Number
+        pageNumber: Number
     }
     
 }
