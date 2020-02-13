@@ -88,6 +88,10 @@ export const store = new Vuex.Store({
 
     }, //loadOffice
 
+    countValue (state) {
+      return state.count;
+    }
+
   }, //getters
 
   modules: {

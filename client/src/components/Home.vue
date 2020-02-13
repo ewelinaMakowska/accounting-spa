@@ -30,6 +30,7 @@
                         
                      </div>
                      paginacja
+                     <pagination/>
                     <div> <p> Dane z bazy danych: {{ companiesFromDb }} </p></div>
                     <button @click="getAll()">pobierz dane</button>
                    
@@ -65,7 +66,7 @@ padding: 20px;
 
 <script>
 import OfficeThumb from '@/components/OfficeThumb.vue';
-
+import Pagination from '@/components/Pagination.vue';  // eslint-disable-line no-unused-vars
 import CompaniesService from '@/services/CompaniesService.js' 
 
 export default {
@@ -85,7 +86,8 @@ export default {
     },
     name: 'Home',
     components: {
-    OfficeThumb
+    OfficeThumb,
+    Pagination
     }, //components
     methods: {
         async getAll() {
