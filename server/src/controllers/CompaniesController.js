@@ -16,6 +16,31 @@ module.exports = {
     }
   },
 
+  // async countAll (req, res) {
+  //   try {
+  //     const howManyRows = await Company.count();
+  //     res.send(howManyRows)
+  //   } catch (error) {
+  //     res.status(500).send({
+  //       error: 'Internal Server Error'
+  //     });
+  //   }
+  // },
+
+  // async getFirstLimited (req, res) {
+  //   try {
+  //     const companies = await Company.findAndCountAll({
+  //       offset: 0,
+  //       limit: 4
+  //     })
+  //     res.send(companies)
+  //   } catch (error) {
+  //     res.status(500).send({
+  //       error: 'Internal Server Error'
+  //     });
+  //   }
+  // },
+
   async getLimited (req, res) {
     try {
       const companies = await Company.findAndCountAll({

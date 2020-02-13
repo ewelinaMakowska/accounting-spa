@@ -16,6 +16,8 @@ app.get('/', (req, res) => res.send('HEYEYEYEYA'))
 
 app.get('/companies', CompaniesController.get)
 app.get('/companiesLimited', CompaniesController.getLimited)
+// app.get('/companiesFirst', CompaniesController.getFirstLimited)
+// app.get('/companiesCountAll', CompaniesController.countAll)
 
 sequelize.sync()
 .then(() => {
