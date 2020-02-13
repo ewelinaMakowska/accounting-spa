@@ -1,6 +1,9 @@
 const { Company } = require('../models')
+const ITEMS_PER_PAGE = 4;
 
 module.exports = {
+
+  
 
   async get (req, res) {
     try {
@@ -41,11 +44,13 @@ module.exports = {
   //   }
   // },
 
-  async getLimited (req, res) {
+  async getLimited (req, res, next) {
     try {
+      const page = req.query.page;
+
       const companies = await Company.findAndCountAll({
-        offset: 0,
-        limit: 4
+        offset: (page-1) * ITEMS_PER_PAGE,
+        limit: ITEMS_PER_PAGE
       })
       res.send(companies)
     } catch (error) {

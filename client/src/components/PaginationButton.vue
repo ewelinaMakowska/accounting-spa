@@ -1,7 +1,7 @@
 <template>
 <div class="button">
  <!-- {{ pageNumber }} -->
- <a href="/?page=1" @click="retrieveFourCompanies"> <slot>button</slot></a>
+ <a href="/?page=1" @click="retrieveFourCompanies"> <slot>button</slot></a> <!-- buttony -->
 </div>
 </template>
 
