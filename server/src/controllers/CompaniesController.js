@@ -16,7 +16,7 @@ module.exports = {
     }
   },
 
-  async get (req, res) {
+  async getFour (req, res) {
     try {
       const companies = await Company.findAndCountAll({
         offset: 0,
