@@ -30,7 +30,7 @@
                         
                      </div>
                      paginacja
-                     <pagination/>
+                     <pagination :pageCount="pageCount"/>
                     <div> <p> Dane z bazy danych: {{ companiesFromDb }} </p></div>
                     <button @click="getAll()">pobierz dane</button>
                    
@@ -72,7 +72,11 @@ import CompaniesService from '@/services/CompaniesService.js'
 export default {
     data() {
         return {
-            companiesFromDb : null
+            companiesFromDb : null,
+            howManyButtons: 2,
+            buttonNumber: 1,
+            pageCountValue: this.pageCount
+            
         }
     }, 
     computed: {
@@ -81,6 +85,9 @@ export default {
         },
         loadCompanies() {
             return this.$store.dispatch('loadCompaniesAction');
+        },
+        pageCount() {
+            return (this.$store.getters.countValue)/4;
         }
 
     },

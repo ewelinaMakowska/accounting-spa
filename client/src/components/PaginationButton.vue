@@ -1,6 +1,6 @@
 <template>
 <div>
-1111
+1 {{ number }}
 </div>
 </template>
 
@@ -12,7 +12,9 @@
 
 
 export default {
-
+props: {
+        number: Number
+    }
     
 }
 </script>
