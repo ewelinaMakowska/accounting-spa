@@ -1,6 +1,7 @@
 <template>
 <div>
-1 {{ pageNumber }}
+ <!-- {{ pageNumber }} -->
+ <slot>button</slot>
 </div>
 </template>
 
@@ -12,9 +13,9 @@
 
 
 export default {
-props: {
-        pageNumber: Number
-    }
+// props: {
+//         pageNumber: Number
+//     }
     
 }
 </script>
