@@ -7,7 +7,7 @@ export default {
     //console.log("sent to server code"); 
   },
 
-  getFourCompanies() {
+  getLimited() {
     return Api.get('companies');
   }
 }
