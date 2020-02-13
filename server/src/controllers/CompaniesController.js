@@ -4,8 +4,9 @@ module.exports = {
 
   async get (req, res) {
     try {
-      const companies = await Company.findAll({
-        limit: 4
+      const companies = await Company.findAndCountAll({
+        offset: 0,
+        limit: 150
       })
       res.send(companies)
     } catch (error) {

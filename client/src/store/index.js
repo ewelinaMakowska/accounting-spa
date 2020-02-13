@@ -25,6 +25,7 @@ export const store = new Vuex.Store({
   state: {
     loadedOffices: [
     ],
+    count: null,
     user: {
       id: '624',
       favouriteOffices: ['2', '3']
@@ -55,7 +56,8 @@ export const store = new Vuex.Store({
   //         console.log('mutation loadCompanies executed succesfully');
   //   }
 
-      state.loadedOffices = data;
+      state.loadedOffices = data.rows;
+      state.count = data.count;
     }
 
   },
