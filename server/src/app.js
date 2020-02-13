@@ -15,6 +15,7 @@ app.use(cors())
 app.get('/', (req, res) => res.send('HEYEYEYEYA'))
 
 app.get('/companies', CompaniesController.get)
+app.get('/fourCompanies', CompaniesController.get)
 
 sequelize.sync()
 .then(() => {

@@ -2,9 +2,9 @@
 <div class="pagination">
    <!-- <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
                       </office-thumb> -->
-
-  <pagination-button  v-for="(counter) in howManyPages" :key="counter" > {{ counter }} </pagination-button> 
-    
+<a href="" class="button">prev</a>
+  <pagination-button  v-for="(counter) in howManyPages" :key="counter" :pageNumber="counter" > {{ counter }} </pagination-button> 
+<a href="" class="button">next</a>    
      
 
 </div>
@@ -13,6 +13,10 @@
 <style scoped>
 .pagination {
 display: flex;
+}
+
+.button {
+  padding-right: 15px;
 }
 </style>
 

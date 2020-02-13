@@ -1,21 +1,29 @@
 <template>
-<div>
+<div class="button">
  <!-- {{ pageNumber }} -->
- <slot>button</slot>
+ <a href="/?page=1" @click="retrieveFourCompanies"> <slot>button</slot></a>
 </div>
 </template>
 
 <style scoped>
-
+.button {
+  padding-right: 15px;
+}
 </style>
 
 <script>
 
 
 export default {
-// props: {
-//         pageNumber: Number
-//     }
+ props: {
+         pageNumber: Number
+     },
+  methods: {
+    retrieveFourCompanies() {
+      
+      console.log("Retrieved!");
+    }
+  }
     
 }
 </script>
