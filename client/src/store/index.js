@@ -65,10 +65,13 @@ export const store = new Vuex.Store({
     async loadCompaniesAction ({ commit })  {
       const result = await CompaniesService.getAllCompanies();
       commit('loadCompanies', result.data);
-      console.log('action loadCompanies executed succesfully');
-    
-    }
-  },
+      console.log('action loadCompanies executed succesfully');   
+    },
+    async loadOnePageData ({ commit })  {
+      const result = await CompaniesService.getLimited();
+      commit('loadCompanies', result.data);
+      console.log('action loadOnePageData executed succesfully');  
+  }},
 
   getters: {
 

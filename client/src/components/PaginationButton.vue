@@ -1,7 +1,7 @@
 <template>
 <div class="button">
  <!-- {{ pageNumber }} -->
- <a :href="'/?page='+pageNumber" @click="retrieveFourCompanies"> <slot>button</slot></a> <!-- buttony -->
+ <a :href="'/?page='+pageNumber" @click="loadPage"> <slot>button</slot></a> <!-- buttony -->
 </div>
 </template>
 
@@ -16,13 +16,24 @@
 
 export default {
  props: {
-         pageNumber: Number
+    pageNumber: Number
      },
   methods: {
-    retrieveFourCompanies() {  
-      console.log("Retrieved!");
-    }
-  }
+     loadPage() {  
+    //event.preventDefault();
+          
+      console.log("Page data retrieved!");
+    
+  }},
+   computed: {
+        offices () {
+            return this.$store.getters.loadedOffices;
+        },
+        loadPageData() {
+            return this.$store.dispatch('loadOnePageData');
+        }
+
+    },
     
 }
 </script>

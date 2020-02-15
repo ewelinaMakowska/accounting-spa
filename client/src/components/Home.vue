@@ -139,9 +139,8 @@ export default {
             } finally {
              this.offices;
              console.log('state getter used');
-             }
-        }
-    }
-     //export default
+             } //trycatch
+        } //mounted
+    }//export default
 
 </script>

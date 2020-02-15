@@ -3,7 +3,7 @@
    <!-- <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
                       </office-thumb> -->
 <a href="" class="button">prev</a>
-  <pagination-button  v-for="(counter) in howManyPages" :key="counter" :pageNumber="counter" > {{ counter }} </pagination-button> 
+  <pagination-button  v-for="(counter) in howManyPages" :key="counter" :pageNumber="counter"> {{ counter }} </pagination-button> 
 <a href="" class="button">next</a>    
      
 
