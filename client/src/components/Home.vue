@@ -25,6 +25,9 @@
                           biura:
                      <div class="flex-thumbs-container">
 
+                      <!-- <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
+                      </office-thumb> -->
+
                       <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
                       </office-thumb>
 
@@ -140,6 +143,7 @@ export default {
             } finally {
              this.offices;
              console.log('state getter used');
+         
              } //trycatch
         } //mounted
     }//export default

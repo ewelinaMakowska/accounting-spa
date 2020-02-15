@@ -17,12 +17,30 @@ export default {
     props: {
         id: Number
     },
+ 
     computed: {
         office () {          
             return this.$store.getters.loadedOffice(this.id);
         },
-       
+        loadCompanies() {
+            return this.$store.dispatch('loadCompaniesAction');
         }
+       
+        }, //computed
+        
+ async created () {
+            console.log("Mounted")
+            try {
+             await this.loadCompanies;
+             console.log('companies loaded to the state');
+            } catch (err) { console.log("fail")
+            } finally {
+             this.office;
+             console.log('state getter used');
+                 console.log(this.id);
+             } //trycatch
+        } //mounted
+    
        
     
     }
