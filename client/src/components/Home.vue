@@ -21,6 +21,7 @@
                       </v-col>
 
                       <v-col lg="8">
+
                           biura:
                      <div class="flex-thumbs-container">
 
@@ -28,7 +29,7 @@
                       </office-thumb>
 
                         
-                     </div>
+                     </div> <!--flex-container-->
                      paginacja
                      <pagination :howManyPages="pageCount"/>
                     <!-- <div> <p> Dane z bazy danych: {{ companiesFromDb }} </p></div>
@@ -120,7 +121,7 @@ export default {
                 console.log('companies component service error ')
                 console.log(err);
             }
-        }, 
+        }, //getAll
          
         // async mounted() {
         //     //this.companiesFromDb = (await CompaniesService.getAllCompanies()).data
@@ -128,7 +129,7 @@ export default {
         //     console.log('companies loaded to the state');
         //     this.offices();
         //     console.log('state getter used');
-         },  
+         },  //methods
 
         async mounted () {
             console.log("Mounted")

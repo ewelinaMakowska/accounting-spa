@@ -8,6 +8,8 @@ import vuetify from './plugins/vuetify';
 
 Vue.use(VueRouter);
 
+
+
 const routes = [
   {
     path: '/', 
@@ -16,19 +18,24 @@ const routes = [
   {
     path: '/office/:id',
     name: 'office-page',
-    props: true,
+    props: castRouteParams,
     component: OfficePage
   },
   {
     path:'*',
     redirect: '/'
   }
+
+  
 ]
+
+
 
 const router = new VueRouter({
   routes: routes,
   mode: 'history'
 })
+
 
 Vue.config.productionTip = false
 
@@ -38,3 +45,8 @@ new Vue({
   vuetify,
   render: h => h(App)
 }).$mount('#app')
+
+function castRouteParams(route) {
+  return {
+    id: Number(route.params.id),
+  }}

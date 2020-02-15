@@ -15,12 +15,20 @@
 <script>
 export default {
     props: {
-        id: String
+        id: Number
     },
     computed: {
-        office () {
+        office () {          
             return this.$store.getters.loadedOffice(this.id);
         },
-    }  
-}
+       
+        }
+       
+    
+    }
+    
+
+    //przechować dane o id w cookie sesyjnym (?)
+    
+
 </script>

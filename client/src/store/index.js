@@ -84,7 +84,7 @@ export const store = new Vuex.Store({
       return (officeId) => {
 
         return state.loadedOffices.find((office) => {
-          return office.id == officeId //porównywanie stringa z numberem
+          return office.id === officeId 
         }) //return state.loaded...
     
       } //return officeId
