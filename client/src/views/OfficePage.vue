@@ -20,11 +20,11 @@ export default {
  
     computed: {
         office () {          
-            return this.$store.getters.loadedOffice(this.id);
+            return this.$store.getters.loadedOffice(this.id); //todo: return all 
         },
         loadCompanies() {
             return this.$store.dispatch('loadCompaniesAction');
-        }
+        } //todo: load only one company from db 
        
         }, //computed
         
