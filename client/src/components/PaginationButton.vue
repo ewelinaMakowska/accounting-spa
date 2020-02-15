@@ -1,7 +1,7 @@
 <template>
 <div class="button">
  <!-- {{ pageNumber }} -->
- <a href="/?page=1" @click="retrieveFourCompanies"> <slot>button</slot></a> <!-- buttony -->
+ <a :href="'/?page='+pageNumber" @click="retrieveFourCompanies"> <slot>button</slot></a> <!-- buttony -->
 </div>
 </template>
 
@@ -19,8 +19,7 @@ export default {
          pageNumber: Number
      },
   methods: {
-    retrieveFourCompanies() {
-      
+    retrieveFourCompanies() {  
       console.log("Retrieved!");
     }
   }
