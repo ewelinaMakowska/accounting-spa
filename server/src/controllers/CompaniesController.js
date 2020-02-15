@@ -30,23 +30,25 @@ module.exports = {
   //   }
   // },
 
-  // async getFirstLimited (req, res) {
-  //   try {
-  //     const companies = await Company.findAndCountAll({
-  //       offset: 0,
-  //       limit: 4
-  //     })
-  //     res.send(companies)
-  //   } catch (error) {
-  //     res.status(500).send({
-  //       error: 'Internal Server Error'
-  //     });
-  //   }
-  // },
+  async getFirstLimited (req, res) {
+    try {
+      const companies = await Company.findAndCountAll({
+        offset: 0,
+        limit: 4
+      })
+      res.send(companies)
+    } catch (error) {
+      res.status(500).send({
+        error: 'Internal Server Error'
+      });
+    }
+  },
 
+  
   async getLimited (req, res, next) {
     try {
-      const page = req.query.page;
+       const page = req.query.page;
+      // const page = 3;
 
       const companies = await Company.findAndCountAll({
         offset: (page-1) * ITEMS_PER_PAGE,
@@ -60,6 +62,19 @@ module.exports = {
     }
   }
 
-
+  // async getLimited (req, res, next) {
+  //   try {
+  
+  //     const companies = await Company.findAndCountAll({
+  //       offset: 4,
+  //       limit: 4
+  //     })
+  //     res.send(companies)
+  //   } catch (error) {
+  //     res.status(500).send({
+  //       error: 'Internal Server Error'
+  //     });
+  //   }
+  // }
  
 }

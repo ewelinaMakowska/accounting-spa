@@ -8,13 +8,15 @@ export default {
   },
 
   getLimited() {
-    return Api.get('companies');
-  }
+    return Api.get('companiesLimited');
+  },
+
+
   // },
 
-  // getFirstLimited() {
-  //   return Api.get('companies');
-  // },
+  getFirstLimited() {
+    return Api.get('companiesFirst');
+  }
 
   // countAll() {
   //   return Api.get('companies');
