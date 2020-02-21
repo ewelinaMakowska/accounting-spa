@@ -13,6 +13,8 @@
 </style>
 
 <script>
+//import CompaniesService from '@/services/CompaniesService'
+
 export default {
     props: {
         id: Number
@@ -24,15 +26,23 @@ export default {
         },
         loadCompanies() {
             return this.$store.dispatch('loadCompaniesAction');
-        } //todo: load only one company from db 
-       
+        }, 
+        // loadCompany() {
+        //     return this.$store.dispatch('loadCompany');
+        // }
         }, //computed
-        
- async created () {
-            console.log("Mounted")
+       methods: {
+          loadCompany() {
+            return this.$store.dispatch('loadCompany');
+        } 
+       },
+
+ async mounted () {
+            console.log("Mounted");
+            const id = this.$route.params.id; 
             try {
-             await this.loadCompanies;
-             console.log('companies loaded to the state');
+             await this.loadCompany(id);
+             console.log('company loaded to the state');
             } catch (err) { console.log("fail")
             } finally {
              this.office;
@@ -41,10 +51,22 @@ export default {
              } //trycatch
         } //mounted
     
-       
+//    async created () {
+//              console.log("Mounted");
+//              const id = this.$route.params.id; 
+//             try {
+//              await CompaniesService.getOne(id);
+//              console.log('company loaded to the state');
+//             } catch (err) { console.log("fail")
+//             } finally {
+//              this.office;
+//              console.log('state getter used');
+//                  console.log(this.id);
+//              } //trycatch
+//         } //mounted     
     
     }
-    
+   // eslint-disable-line no-unused-vars 
 
     //przechować dane o id w cookie sesyjnym (?)
     

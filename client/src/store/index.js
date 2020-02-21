@@ -58,6 +58,10 @@ export const store = new Vuex.Store({
 
       state.loadedOffices = data.rows;
       state.count = data.count;
+    },
+
+    loadCompany: (state, data) => {
+      state.loadedOffices = data.rows;    
     }
 
   },
@@ -78,7 +82,16 @@ export const store = new Vuex.Store({
     const result = await CompaniesService.getFirstLimited();
     commit('loadCompanies', result.data);
     console.log('action loadOnePageData executed succesfully');  
-}
+},
+
+async loadCompany ({ commit })  {
+  //const result = await CompaniesService.getOne(req.params.id);
+  const result = await CompaniesService.getOne();
+  commit('loadCompany', result.data);
+  console.log('action loadCompany executed succesfully');  
+},
+
+
 },
 
   getters: {

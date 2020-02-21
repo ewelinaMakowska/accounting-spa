@@ -16,6 +16,10 @@ export default {
 
   getFirstLimited() {
     return Api.get('companiesFirst');
+  },
+
+  getOne(id) {
+    return Api.get('companies', id);
   }
 
   // countAll() {

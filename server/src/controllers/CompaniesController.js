@@ -60,6 +60,17 @@ module.exports = {
         error: 'Internal Server Error'
       });
     }
+  },
+
+  async getOne (req, res, next) {
+    try {
+      const companies = await Company.findByPk(req.params.id)
+      res.send(companies)
+    } catch (error) {
+      res.status(500).send({
+        error: 'Internal Server Error'
+      });
+    }
   }
 
   // async getLimited (req, res, next) {
