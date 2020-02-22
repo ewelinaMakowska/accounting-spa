@@ -13,7 +13,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/', 
-     component: Home
+    component: Home
   },
   {
     path: '/office/:id',
@@ -25,7 +25,7 @@ const routes = [
     path:'*',
     redirect: '/'
   }
-
+  //{ path: '/search', component: SearchUser, props: (route) => ({ query: route.query.q }) }
   
 ]
 

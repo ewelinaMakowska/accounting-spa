@@ -7,8 +7,8 @@ export default {
     //console.log("sent to server code"); 
   },
 
-  getLimited(queryPage) {
-    return Api.get('companiesLimited', queryPage); //,page?
+  getLimited(page) {
+    return Api.get(`companiesLimited/?page=${2}`, page); //,page?
   },
 
 

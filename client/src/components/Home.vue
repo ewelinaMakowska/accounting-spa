@@ -86,14 +86,17 @@ export default {
       pages = [ 1,2,3 ]
 
       console.log(pages);
-      
+
+    //  let page = this.$route.query.page || 1; //eslint-disable-line no-unused-vars
+
         return {
             
            // companiesFromDb : null,
            // howManyButtons: 2,
            // buttonNumber: 1,
             //pageCountValue: this.pageCount,
-            pages : this.pages
+            pages : this.pages,
+       
             
         }
     },    
@@ -107,7 +110,6 @@ export default {
         pageCount() {
             return (this.$store.getters.countValue)/4;
         },
-        loadPage() {
         loadFirst() {
             return this.$store.dispatch('loadFirstPageData');
         }
@@ -119,8 +121,8 @@ export default {
     Pagination
     }, //components
     methods: {
-        loadPage() {
-            return this.$store.dispatch('loadOnePageData');
+        loadPage(page) {
+            return this.$store.dispatch('loadOnePageData', page);
         },
         async getAll() {
             try {
@@ -141,33 +143,53 @@ export default {
         //     console.log('state getter used');
          },  //methods
 
-        async mounted () {
-            console.log("Mounted");
+        // async created () {
+        //     console.log("Mounted");
+    
+        //     if(this.page){
+        //      try {
+        //     // await this.loadCompanies;
+        //     console.log(this.$route.query.page)
+            
+        //     await this.loadPage(this.page);
+        //      console.log('companies loaded to the state');
+        //     } catch (err) { console.log("fail")
+        //     } finally {
+        //      this.offices;
+        //      console.log('state getter used');         
+        //      } //trycatch
 
-            if(this.$route.query.page){
+        //     } else {
+        //          try {
+        //     // await this.loadCompanies;
+        //     await this.loadFirst();
+        //      console.log('companies loaded to the state');
+        //     } catch (err) { console.log("fail")
+        //     } finally {
+        //      this.offices;
+        //      console.log('state getter used');         
+        //      } //trycatch
+        //     }
+        // } //mounted
+
+
+
+         async created () {
+            console.log("Mounted");
+            const page = this.$route.query.id; 
+            
              try {
             // await this.loadCompanies;
-            console.log(this.$route.query.page)
-    
-            await this.loadPage();
+            //console.log(this.$route.query.page)
+            
+            await this.loadPage(page);
              console.log('companies loaded to the state');
             } catch (err) { console.log("fail")
             } finally {
              this.offices;
              console.log('state getter used');         
              } //trycatch
-
-            } else {
-                 try {
-            // await this.loadCompanies;
-            await this.loadFirst();
-             console.log('companies loaded to the state');
-            } catch (err) { console.log("fail")
-            } finally {
-             this.offices;
-             console.log('state getter used');         
-             } //trycatch
-            }
+         
         } //mounted
     }//export default
 

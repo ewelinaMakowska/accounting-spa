@@ -48,18 +48,22 @@ module.exports = {
   async getLimited (req, res, next) {
     try {
        const page = req.query.page;
-      // const page = 3;
-
+       //const page = '3';
+       //const page = 3;   
+     
       const companies = await Company.findAndCountAll({
         offset: (page-1) * ITEMS_PER_PAGE,
         limit: ITEMS_PER_PAGE
       })
-      res.send(companies)
+      res.send(companies);
+      //res.send(`ejerfhksjhf: ${req.query.page}`)
+   
     } catch (error) {
       res.status(500).send({
         error: 'Internal Server Error'
       });
     }
+ 
   },
 
   async getOne (req, res, next) {
