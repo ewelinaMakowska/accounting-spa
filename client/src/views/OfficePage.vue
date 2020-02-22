@@ -24,6 +24,9 @@ export default {
         office () {          
             return this.$store.getters.loadedOffice(this.id); //todo: return all 
         },
+        offices () {
+            return this.$store.getters.loadedOffices;
+        },
         loadCompanies() {
             return this.$store.dispatch('loadCompaniesAction');
         }, 
@@ -39,13 +42,13 @@ export default {
 
  async mounted () {
             console.log("Mounted");
-            const id = this.$route.params.id; 
+           // const id = this.$route.params.id; 
             try {
-             await this.loadCompany(id);
+             await this.loadCompany(); 
              console.log('company loaded to the state');
             } catch (err) { console.log("fail")
             } finally {
-             this.office;
+             this.offices;
              console.log('state getter used');
                  console.log(this.id);
              } //trycatch

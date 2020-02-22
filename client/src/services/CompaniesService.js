@@ -8,7 +8,13 @@ export default {
   },
 
   getLimited(page) {
-    return Api.get(`companiesLimited/?page=${2}`, page); //,page?
+    return Api.get(`companiesLimited/?page=${1}`, page); //,page?
+    // return Api.get('companiesLimited'), {
+    //   page : {
+    //     page : page
+    //   }
+    
+    // };
   },
 
 
@@ -18,8 +24,8 @@ export default {
     return Api.get('companiesFirst');
   },
 
-  getOne(id) {
-    return Api.get('companies', id);
+  getOne() { //id?
+    return Api.get('companies/'); //,id?
   }
 
   // countAll() {

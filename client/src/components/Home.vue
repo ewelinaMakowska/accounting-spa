@@ -176,8 +176,8 @@ export default {
 
          async created () {
             console.log("Mounted");
-            const page = this.$route.query.id; 
-            
+            var page = this.$route.query.page; 
+            console.log(page);
              try {
             // await this.loadCompanies;
             //console.log(this.$route.query.page)
