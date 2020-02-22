@@ -96,7 +96,7 @@ export default {
             pages : this.pages
             
         }
-    }, 
+    },    
     computed: {
         offices () {
             return this.$store.getters.loadedOffices;
@@ -108,8 +108,6 @@ export default {
             return (this.$store.getters.countValue)/4;
         },
         loadPage() {
-            return this.$store.dispatch('loadOnePageData');
-        },
         loadFirst() {
             return this.$store.dispatch('loadFirstPageData');
         }
@@ -121,6 +119,9 @@ export default {
     Pagination
     }, //components
     methods: {
+        loadPage() {
+            return this.$store.dispatch('loadOnePageData');
+        },
         async getAll() {
             try {
                  await CompaniesService.getAllCompanies();
@@ -146,6 +147,8 @@ export default {
             if(this.$route.query.page){
              try {
             // await this.loadCompanies;
+            console.log(this.$route.query.page)
+    
             await this.loadPage();
              console.log('companies loaded to the state');
             } catch (err) { console.log("fail")
