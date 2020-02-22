@@ -15,12 +15,14 @@ app.use(cors())
 app.get('/', (req, res) => res.send('HEYEYEYEYA'))
 
 app.get('/companies', CompaniesController.get)
-app.get('/companiesLimited/', CompaniesController.getLimited)
+app.get('/companiesLimited', CompaniesController.getLimited)
 //app.get('/companiesLimited/?page=:page', CompaniesController.getLimited)
 app.get('/companiesFirst', CompaniesController.getFirstLimited)
 // app.get('/companiesCountAll', CompaniesController.countAll)
-app.get('/companies/:id', CompaniesController.getOne)
+//app.get('/companies/:id', CompaniesController.getOne)
+app.get('/company/:id', CompaniesController.getOne)
 //app.get('/companies/:id', (req, res) => CompaniesController.getOne)
+//app.get('/companies/:id', CompaniesController.getOne)
 
 sequelize.sync()
 .then(() => {

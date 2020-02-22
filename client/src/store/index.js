@@ -58,6 +58,7 @@ export const store = new Vuex.Store({
 
       state.loadedOffices = data.rows;
       state.count = data.count;
+      console.log(state);
     },
 
     loadCompany: (state, data) => {

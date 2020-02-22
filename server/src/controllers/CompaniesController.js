@@ -69,6 +69,7 @@ module.exports = {
   async getOne (req, res, next) {
     try {
       const companies = await Company.findByPk(req.params.id)
+     
       res.send(companies)
     } catch (error) {
       res.status(500).send({
