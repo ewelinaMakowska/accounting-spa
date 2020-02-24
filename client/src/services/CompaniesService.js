@@ -26,8 +26,8 @@ export default {
     return Api.get('companiesFirst');
   },
 
-  getOne() { //id?
-    return Api.get('company/1'); //,id?
+  getOne(id) { //id?
+    return Api.get(`company/${id}`); //,id?
    
   }
 

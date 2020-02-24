@@ -19,7 +19,11 @@ export default {
     props: {
         id: Number
     },
- 
+    // data() {
+    //     return {
+    //      ID: this.id 
+    //     }
+    // },
     computed: {
         office () {          
             return this.$store.getters.loadedOffice(this.id); //todo: return all 
@@ -35,16 +39,16 @@ export default {
         // }
         }, //computed
        methods: {
-          loadCompany() {
-            return this.$store.dispatch('loadCompany');
+          loadCompany(id) {
+            return this.$store.dispatch('loadCompany', id);
         } 
        },
 
  async mounted () {
             console.log("Mounted");
-           // const id = this.$route.params.id; 
+            const id = this.$route.params.id; 
             try {
-             await this.loadCompany(); 
+             await this.loadCompany(id); 
              console.log('company loaded to the state');
             } catch (err) { console.log("fail")
             } finally {

@@ -85,9 +85,9 @@ export const store = new Vuex.Store({
     console.log('action loadOnePageData executed succesfully');  
 },
 
-async loadCompany ({ commit })  {
+async loadCompany ({ commit }, id)  {
   //const result = await CompaniesService.getOne(req.params.id);
-  const result = await CompaniesService.getOne();
+  const result = await CompaniesService.getOne(id);
   commit('loadCompany', result.data);
   console.log('action loadCompany executed succesfully');  
 },
