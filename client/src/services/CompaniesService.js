@@ -9,7 +9,7 @@ export default {
 
   getLimited(page) {
     //return Api.get('companiesLimited/');
-    return Api.get(`companiesLimited/?page=${1}`, page); //,page?
+    return Api.get(`companiesLimited/?page=${page}`, page); //,page?
 
     // return Api.get('companiesLimited'), {
     //   page : {

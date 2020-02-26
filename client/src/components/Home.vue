@@ -121,8 +121,8 @@ export default {
     Pagination
     }, //components
     methods: {
-        loadPage() {
-            return this.$store.dispatch('loadOnePageData');
+        loadPage(page) {
+            return this.$store.dispatch('loadOnePageData', page);
         },
         async getAll() {
             try {
@@ -176,13 +176,13 @@ export default {
 
          async created () {
             console.log("Mounted");
-            //var page = this.$route.query.page; 
+            var page = this.$route.query.page; 
             console.log();
              try {
             // await this.loadCompanies;
             //console.log(this.$route.query.page)
             
-            await this.loadPage();
+            await this.loadPage(page);
              console.log('companies loaded to the state');
             } catch (err) { console.log("fail")
             } finally {
