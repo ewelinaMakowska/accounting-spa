@@ -27,7 +27,7 @@ export default {
   },
 
   getOne(id) { //id?
-    return Api.get(`company/${id}`); //,id?
+    return Api.get(`company/${id}`, id); //,id?
    
   }
 

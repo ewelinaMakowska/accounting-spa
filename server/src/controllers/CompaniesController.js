@@ -67,9 +67,12 @@ module.exports = {
   },
 
   async getOne (req, res, next) {
+    //const id = req.params.id;
     try {
-      const companies = await Company.findByPk(req.params.id)
-     
+      const id = req.params.id
+      const companies = await Company.findByPk(id)
+      
+      //const companies = await Company.findByPk({ where: { id: id}});
       res.send(companies)
     } catch (error) {
       res.status(500).send({
@@ -77,6 +80,9 @@ module.exports = {
       });
     }
   }
+
+
+ 
 
   // async getLimited (req, res, next) {
   //   try {

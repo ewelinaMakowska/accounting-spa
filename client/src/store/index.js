@@ -61,9 +61,9 @@ export const store = new Vuex.Store({
       console.log(state);
     },
 
-    loadCompany: (state, data) => {
-      state.loadedOffices = data.rows;    
-    }
+    // loadCompany: (state, data) => {
+    //   state.loadedOffices = data.rows;    
+    // }
 
   },
   actions: {
@@ -103,18 +103,26 @@ async loadCompany ({ commit }, id)  {
 
 
 
-   /*  loadedOffice (state) {
+    // loadedOffice (state) {
 
-      return (officeId) => {
+    //   return (officeId) => {
 
-        return state.loadedOffices.find((office) => {
-          return office.id === officeId 
-        }) //return state.loaded...
+    //     return state.loadedOffices.find((office) => {
+    //       return office.id === officeId 
+    //     }) //return state.loaded...
     
-      } //return officeId
+    //   } //return officeId
 
+    // }, //loadOffice //getter szukający w stanie w załadowanych wszystkich biurach :|
+
+
+    oneCompany (state, id) {
+      console.log(state.loadedOffices)
+         let x = state.loadedOffices.find(office => {
+          office.id === id; });
+          return x;
     }, //loadOffice //getter szukający w stanie w załadowanych wszystkich biurach :|
- */
+
 
   /*   loadedOffice (state) {
 // ma zaciągnąc tylko jedno biuro

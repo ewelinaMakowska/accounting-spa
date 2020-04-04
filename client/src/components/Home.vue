@@ -71,7 +71,7 @@ padding: 20px;
 <script>
 import OfficeThumb from '@/components/OfficeThumb.vue';
 import Pagination from '@/components/Pagination.vue';  // eslint-disable-line no-unused-vars
-import CompaniesService from '@/services/CompaniesService.js' 
+//import CompaniesService from '@/services/CompaniesService.js' 
 
 export default {
     data() {
@@ -124,7 +124,7 @@ export default {
         loadPage(page) {
             return this.$store.dispatch('loadOnePageData', page);
         },
-        async getAll() {
+       /*  async getAll() {
             try {
                  await CompaniesService.getAllCompanies();
                 console.log('service started succesfully');
@@ -133,7 +133,7 @@ export default {
                 console.log('companies component service error ')
                 console.log(err);
             }
-        }, //getAll
+        }, //getAll */
          
         // async mounted() {
         //     //this.companiesFromDb = (await CompaniesService.getAllCompanies()).data
@@ -191,7 +191,7 @@ export default {
              console.log('companies loaded to the state');
             } catch (err) { console.log("fail")
             } finally {
-             this.offices;
+             //this.offices;
              console.log('state getter used');         
              } //trycatch
          

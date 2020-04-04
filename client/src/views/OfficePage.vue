@@ -1,9 +1,9 @@
 <template>
 <div>
-    Obiekt {{ company }} <br/>
-   Witaj na stronie biura: {{ name }} <br/>
-   Id biura to:  {{ id }} <br/> 
-   Cena za usługę to: {{ price }} <br/>
+   Obiekt {{ company }} <br/>
+   Witaj na stronie biura: {{ company.name }} <br/>
+   Id biura to:  {{ company.id }} <br/> 
+   Cena za usługę to: {{ company.price }} <br/>
    
     </div>
 </template>
@@ -16,11 +16,10 @@
 //import CompaniesService from '@/services/CompaniesService'
 
 export default {
-        props: {
-            company: Object,
-            name: String,
-            id: Number,
-            price: Number,
+        data() {
+        return {
+            company: null
+            }
     },
     // data() {
     //     return {
@@ -35,6 +34,9 @@ export default {
         offices () {
             return this.$store.getters.loadedOffices;
         },
+        singleCompany () {
+            return this.$store.getters.oneCompany;
+        },
         loadCompanies() {
             return this.$store.dispatch('loadCompaniesAction');
         }, 
@@ -42,27 +44,26 @@ export default {
         //     return this.$store.dispatch('loadCompany');
         // }
         }, //computed
-       methods: {
+        methods: {
           loadCompany(id) {
             return this.$store.dispatch('loadCompany', id);
-        } 
-       },
+        }  
+        },
+    
 
  async mounted () {
             console.log("Mounted");
-            const id = this.$route.params.id; 
+            let id = this.$route.params.id; 
             console.log(id);
             try {
              await this.loadCompany(id); 
              console.log('company loaded to the state');
             } catch (err) { console.log("fail")
             } finally {
-             this.offices;
-             console.log('state getter used');
-                 console.log(this.id);
-            this.company = 'obiekt';
-            this.name = 'firma'
-            this.price = 100;
+       
+            this.company = this.offices;
+            console.log(this.company)
+
 
                  
              } //trycatch
@@ -70,7 +71,7 @@ export default {
     
 //    async created () {
 //              console.log("Mounted");
-//              const id = this.$route.params.id; 
+//              const id = this.$route.params.this.id; 
 //             try {
 //              await CompaniesService.getOne(id);
 //              console.log('company loaded to the state');
@@ -78,7 +79,7 @@ export default {
 //             } finally {
 //              this.office;
 //              console.log('state getter used');
-//                  console.log(this.id);
+//                  console.log(this.this.id);
 //              } //trycatch
 //         } //mounted     
     
