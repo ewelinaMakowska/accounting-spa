@@ -88,7 +88,7 @@ export const store = new Vuex.Store({
 async loadCompany ({ commit }, id)  {
   //const result = await CompaniesService.getOne(req.params.id);
   const result = await CompaniesService.getOne(id);
-  commit('loadCompany', result.data);
+  commit('loadCompanies', result.data);
   console.log('action loadCompany executed succesfully');  
 },
 
@@ -101,7 +101,9 @@ async loadCompany ({ commit }, id)  {
       return state.loadedOffices;
     }, //loadoffices
 
-    loadedOffice (state) {
+
+
+   /*  loadedOffice (state) {
 
       return (officeId) => {
 
@@ -111,7 +113,14 @@ async loadCompany ({ commit }, id)  {
     
       } //return officeId
 
-    }, //loadOffice
+    }, //loadOffice //getter szukający w stanie w załadowanych wszystkich biurach :|
+ */
+
+  /*   loadedOffice (state) {
+// ma zaciągnąc tylko jedno biuro
+return state.loadedOffices; //?
+    },  */
+
 
     countValue (state) {
       return state.count;

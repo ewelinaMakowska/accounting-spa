@@ -1,9 +1,9 @@
 <template>
 <div>
-    Obiekt {{ office }} <br/>
-   Witaj na stronie biura: {{ office.name }} <br/>
-   Id biura to:  {{ office.id }} <br/> 
-   Cena za usługę to: {{ office.price }} <br/>
+    Obiekt {{ company }} <br/>
+   Witaj na stronie biura: {{ name }} <br/>
+   Id biura to:  {{ id }} <br/> 
+   Cena za usługę to: {{ price }} <br/>
    
     </div>
 </template>
@@ -16,8 +16,11 @@
 //import CompaniesService from '@/services/CompaniesService'
 
 export default {
-    props: {
-        id: Number
+        props: {
+            company: Object,
+            name: String,
+            id: Number,
+            price: Number,
     },
     // data() {
     //     return {
@@ -26,7 +29,8 @@ export default {
     // },
     computed: {
         office () {          
-            return this.$store.getters.loadedOffice(this.id); //todo: return all 
+            //return this.$store.getters.loadedOffice(this.id); //todo: return all 
+            return this.$store.getters.loadedOffices;
         },
         offices () {
             return this.$store.getters.loadedOffices;
@@ -47,6 +51,7 @@ export default {
  async mounted () {
             console.log("Mounted");
             const id = this.$route.params.id; 
+            console.log(id);
             try {
              await this.loadCompany(id); 
              console.log('company loaded to the state');
@@ -55,6 +60,11 @@ export default {
              this.offices;
              console.log('state getter used');
                  console.log(this.id);
+            this.company = 'obiekt';
+            this.name = 'firma'
+            this.price = 100;
+
+                 
              } //trycatch
         } //mounted
     
