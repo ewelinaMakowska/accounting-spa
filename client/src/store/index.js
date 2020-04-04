@@ -103,17 +103,17 @@ async loadCompany ({ commit }, id)  {
 
 
 
-    // loadedOffice (state) {
+    loadedOffice (state) {
 
-    //   return (officeId) => {
+      return (officeId) => {
 
-    //     return state.loadedOffices.find((office) => {
-    //       return office.id === officeId 
-    //     }) //return state.loaded...
+        return state.loadedOffices.find((office) => {
+          return office.id === officeId 
+        }) //return state.loaded...
     
-    //   } //return officeId
+      } //return officeId
 
-    // }, //loadOffice //getter szukający w stanie w załadowanych wszystkich biurach :|
+    }, //loadOffice //getter szukający w stanie w załadowanych wszystkich biurach :|
 
 
     oneCompany (state, id) {
