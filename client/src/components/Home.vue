@@ -175,8 +175,13 @@ export default {
 
 
          async created () {
-            console.log("Mounted");
+            console.log("Created");
+
+            if (this.$route.query.page) {
             var page = this.$route.query.page; 
+            } else {
+                page = 1;
+            }
             console.log();
              try {
             // await this.loadCompanies;
