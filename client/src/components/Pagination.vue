@@ -33,7 +33,7 @@ export default {
       },
       props: {
        howManyPages: Number,
-       currentPageNumber: Number
+       currentPageNumber: String
     },
     computed: {
        

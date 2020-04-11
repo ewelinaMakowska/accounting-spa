@@ -1,6 +1,6 @@
 <template>
 <div class="button">
-next
+<a :href="'/?page='+(this.currentPageNumber)" > next </a> <!-- buttony -->
 </div>
 </template>
 
@@ -14,17 +14,19 @@ next
 
 
 export default {
- props: {
-   
-     },
+ 
+ data() {
+   return {
+   currentPageNumber: parseInt(this.$route.query.page)+1 // eslint-disable-line no-unused-vars
+   }
+ },
   methods: {
-  
+
     
   },
-   computed: {
-       
+  
 
-    },
-    
 }
+
+
 </script>
