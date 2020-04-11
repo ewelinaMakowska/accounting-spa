@@ -183,7 +183,7 @@ export default {
             } else {
                 page = 1;
             }
-            console.log(`currentPageNumber: ${this.currentPageNumber}`);
+          
              try {
             // await this.loadCompanies;
             //console.log(this.$route.query.page)
