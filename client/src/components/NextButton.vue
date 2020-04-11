@@ -16,8 +16,15 @@
 export default {
  
  data() {
-   return {
-   currentPageNumber: parseInt(this.$route.query.page)+1 // eslint-disable-line no-unused-vars
+   if(this.$route.query.page < 3) {
+   return this.currentPageNumber =  parseInt(this.$route.query.page)+1 // eslint-disable-line no-unused-vars
+   
+   } 
+   else if(!this.$route.query.page) {
+     return this.currentPageNumber =  2;
+   }
+   else  {
+     return this.currentPageNumber = 3 // eslint-disable-line no-unused-vars
    }
  },
   methods: {
