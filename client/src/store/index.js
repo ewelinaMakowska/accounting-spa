@@ -25,6 +25,7 @@ export const store = new Vuex.Store({
   state: {
     loadedOffices: [
     ],
+    count: null,
     user: {
       id: '624',
       favouriteOffices: ['2', '3']
@@ -55,6 +56,12 @@ export const store = new Vuex.Store({
   //         console.log('mutation loadCompanies executed succesfully');
   //   }
 
+      state.loadedOffices = data.rows;
+      state.count = data.count;
+      console.log(state);
+    },
+
+    loadCompanyMutation: (state, data) => {
       state.loadedOffices = data;
     }
 
@@ -63,10 +70,30 @@ export const store = new Vuex.Store({
     async loadCompaniesAction ({ commit })  {
       const result = await CompaniesService.getAllCompanies();
       commit('loadCompanies', result.data);
-      console.log('action loadCompanies executed succesfully');
-    
-    }
+      console.log('action loadCompanies executed succesfully');   
+    },
+
+    async loadOnePageData ({ commit }, page)  {
+      const result = await CompaniesService.getLimited(page);
+      commit('loadCompanies', result.data);
+      console.log('action loadOnePageData executed succesfully');  
   },
+
+  async loadFirstPageData ({ commit })  {
+    const result = await CompaniesService.getFirstLimited();
+    commit('loadCompanies', result.data);
+    console.log('action loadOnePageData executed succesfully');  
+},
+
+async loadCompany ({ commit }, id)  {
+  //const result = await CompaniesService.getOne(req.params.id);
+  const result = await CompaniesService.getOne(id);
+  commit('loadCompanyMutation', result.data);
+  console.log('action loadCompany executed succesfully');  
+},
+
+
+},
 
   getters: {
 
@@ -74,17 +101,38 @@ export const store = new Vuex.Store({
       return state.loadedOffices;
     }, //loadoffices
 
+
+
     loadedOffice (state) {
 
       return (officeId) => {
 
         return state.loadedOffices.find((office) => {
-          return office.id == officeId //porównywanie stringa z numberem
+          return office.id === officeId 
         }) //return state.loaded...
     
       } //return officeId
 
-    }, //loadOffice
+    }, //loadOffice //getter szukający w stanie w załadowanych wszystkich biurach :|
+
+
+    // oneCompany (state, id) {
+    //   console.log(state.loadedOffices)
+    //      let x = state.loadedOffices.find(office => {
+    //       office.id === id; });
+    //       return x;
+    // }, //loadOffice //getter szukający w stanie w załadowanych wszystkich biurach :|
+
+
+  /*   loadedOffice (state) {
+// ma zaciągnąc tylko jedno biuro
+return state.loadedOffices; //?
+    },  */
+
+
+    countValue (state) {
+      return state.count;
+    }
 
   }, //getters
 

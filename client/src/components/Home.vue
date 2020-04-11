@@ -21,17 +21,22 @@
                       </v-col>
 
                       <v-col lg="8">
+
                           biura:
                      <div class="flex-thumbs-container">
+
+                      <!-- <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
+                      </office-thumb> -->
 
                       <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
                       </office-thumb>
 
                         
-                     </div>
+                     </div> <!--flex-container-->
                      paginacja
-                    <div> <p> Dane z bazy danych: {{ companiesFromDb }} </p></div>
-                    <button @click="getAll()">pobierz dane</button>
+                     <pagination :howManyPages="pageCount" :currentPageNumber="currentPageNumber"/>
+                    <!-- <div> <p> Dane z bazy danych: {{ companiesFromDb }} </p></div>
+                    <button @click="getAll()">pobierz dane</button> -->
                    
                       </v-col>
 
@@ -65,30 +70,62 @@ padding: 20px;
 
 <script>
 import OfficeThumb from '@/components/OfficeThumb.vue';
-
-import CompaniesService from '@/services/CompaniesService.js' 
+import Pagination from '@/components/Pagination.vue';  // eslint-disable-line no-unused-vars
+//import CompaniesService from '@/services/CompaniesService.js' 
 
 export default {
     data() {
+       
+        let pages = [];
+       // let counter = this.pageCount();
+      //const howManyPages = this.pageCount;
+      
+    //   while(counter > 0) {
+    //     pages.push(counter);
+    //     counter--;
+    //   }
+      pages = [ 1,2,3 ]
+
+      console.log(pages);
+
+    //  let page = this.$route.query.page || 1; //eslint-disable-line no-unused-vars
+
         return {
-            companiesFromDb : null
+            
+           // companiesFromDb : null,
+           // howManyButtons: 2,
+           // buttonNumber: 1,
+            //pageCountValue: this.pageCount,
+            pages : this.pages,
+       
+            
         }
-    }, 
+    },    
     computed: {
         offices () {
             return this.$store.getters.loadedOffices;
         },
         loadCompanies() {
             return this.$store.dispatch('loadCompaniesAction');
+        },
+        pageCount() {
+            return (this.$store.getters.countValue)/4;
+        },
+        loadFirst() {
+            return this.$store.dispatch('loadFirstPageData');
         }
 
     },
     name: 'Home',
     components: {
-    OfficeThumb
+    OfficeThumb,
+    Pagination
     }, //components
     methods: {
-        async getAll() {
+        loadPage(page) {
+            return this.$store.dispatch('loadOnePageData', page);
+        },
+       /*  async getAll() {
             try {
                  await CompaniesService.getAllCompanies();
                 console.log('service started succesfully');
@@ -97,7 +134,7 @@ export default {
                 console.log('companies component service error ')
                 console.log(err);
             }
-        }, 
+        }, //getAll */
          
         // async mounted() {
         //     //this.companiesFromDb = (await CompaniesService.getAllCompanies()).data
@@ -105,20 +142,61 @@ export default {
         //     console.log('companies loaded to the state');
         //     this.offices();
         //     console.log('state getter used');
-         },  
+         },  //methods
 
-        async mounted () {
-            console.log("Mounted")
-            try {
-             await this.loadCompanies;
+        // async created () {
+        //     console.log("Mounted");
+    
+        //     if(this.page){
+        //      try {
+        //     // await this.loadCompanies;
+        //     console.log(this.$route.query.page)
+            
+        //     await this.loadPage(this.page);
+        //      console.log('companies loaded to the state');
+        //     } catch (err) { console.log("fail")
+        //     } finally {
+        //      this.offices;
+        //      console.log('state getter used');         
+        //      } //trycatch
+
+        //     } else {
+        //          try {
+        //     // await this.loadCompanies;
+        //     await this.loadFirst();
+        //      console.log('companies loaded to the state');
+        //     } catch (err) { console.log("fail")
+        //     } finally {
+        //      this.offices;
+        //      console.log('state getter used');         
+        //      } //trycatch
+        //     }
+        // } //mounted
+
+
+
+         async created () {
+            console.log("Created");
+
+            if (this.$route.query.page) {
+            var page = this.$route.query.page; 
+            } else {
+                page = 1;
+            }
+          
+             try {
+            // await this.loadCompanies;
+            //console.log(this.$route.query.page)
+            
+            await this.loadPage(page);
              console.log('companies loaded to the state');
             } catch (err) { console.log("fail")
             } finally {
-             this.offices;
-             console.log('state getter used');
-             }
-        }
-    }
-     //export default
+             //this.offices;
+             console.log('state getter used');         
+             } //trycatch
+         
+        } //mounted
+    }//export default
 
 </script>
