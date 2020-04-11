@@ -32,7 +32,8 @@ export default {
         NextButton
       },
       props: {
-       howManyPages: Number
+       howManyPages: Number,
+       currentPageNumber: String
     },
     computed: {
        

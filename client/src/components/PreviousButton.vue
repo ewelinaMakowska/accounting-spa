@@ -1,6 +1,6 @@
 <template>
 <div class="button">
-prev
+<a :href="'/?page='+pageNumber" @click="loadPage"> <slot>prev</slot></a> <!-- buttony -->
 </div>
 </template>
 
