@@ -61,9 +61,9 @@ export const store = new Vuex.Store({
       console.log(state);
     },
 
-    // loadCompany: (state, data) => {
-    //   state.loadedOffices = data.rows;    
-    // }
+    loadCompanyMutation: (state, data) => {
+      state.loadedOffices = data;
+    }
 
   },
   actions: {
@@ -88,7 +88,7 @@ export const store = new Vuex.Store({
 async loadCompany ({ commit }, id)  {
   //const result = await CompaniesService.getOne(req.params.id);
   const result = await CompaniesService.getOne(id);
-  commit('loadCompanies', result.data);
+  commit('loadCompanyMutation', result.data);
   console.log('action loadCompany executed succesfully');  
 },
 
@@ -116,12 +116,12 @@ async loadCompany ({ commit }, id)  {
     }, //loadOffice //getter szukający w stanie w załadowanych wszystkich biurach :|
 
 
-    oneCompany (state, id) {
-      console.log(state.loadedOffices)
-         let x = state.loadedOffices.find(office => {
-          office.id === id; });
-          return x;
-    }, //loadOffice //getter szukający w stanie w załadowanych wszystkich biurach :|
+    // oneCompany (state, id) {
+    //   console.log(state.loadedOffices)
+    //      let x = state.loadedOffices.find(office => {
+    //       office.id === id; });
+    //       return x;
+    // }, //loadOffice //getter szukający w stanie w załadowanych wszystkich biurach :|
 
 
   /*   loadedOffice (state) {

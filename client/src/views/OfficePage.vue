@@ -50,11 +50,11 @@ export default {
          loadCompanies() {
             return this.$store.dispatch('loadCompaniesAction');
         }, 
-         office () {          
-            //return this.$store.getters.loadedOffice(this.id); //todo: return all 
-           // return this.$store.getters.oneCompany;
-            return this.$store.getters.loadedOffice;
-        },
+        //  office () {          
+        //     //return this.$store.getters.loadedOffice(this.id); //todo: return all 
+        //    // return this.$store.getters.oneCompany;
+        //     return this.$store.getters.loadedOffice;
+        // },
         },
     
 
@@ -64,12 +64,12 @@ export default {
             console.log(id);
             try {
             // await this.loadCompany(id); 
-            await this.loadCompanies(); 
+            await this.loadCompany(id); 
              console.log('company loaded to the state');
             } catch (err) { console.log("fail")
             } finally {
        
-            this.company = this.singleCompany;
+            this.company = this.offices;
             console.log(this.company)
 
 
