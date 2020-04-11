@@ -75,7 +75,7 @@ import Pagination from '@/components/Pagination.vue';  // eslint-disable-line no
 
 export default {
     data() {
-        let currentPageNumber = 1; // eslint-disable-line no-unused-vars
+       
         let pages = [];
        // let counter = this.pageCount();
       //const howManyPages = this.pageCount;
@@ -180,10 +180,8 @@ export default {
 
             if (this.$route.query.page) {
             var page = this.$route.query.page; 
-            this.currentPageNumber = page;
             } else {
                 page = 1;
-                this.currentPageNumber = 1;
             }
             console.log(`currentPageNumber: ${this.currentPageNumber}`);
              try {

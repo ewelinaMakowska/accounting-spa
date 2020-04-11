@@ -1,6 +1,6 @@
 <template>
 <div class="button">
-<a :href="'/?page='+(currentPageNumber-1)" > <slot>prev [ {{ currentPageNumber-1 }}]</slot></a> <!-- buttony -->
+<a :href="'/?page='+(this.currentPageNumber)" > prev </a> <!-- buttony -->
 </div>
 </template>
 
@@ -15,9 +15,11 @@
 
 export default {
  
- props: {
-   currentPageNumber: String
-     },
+ data() {
+   return {
+   currentPageNumber: parseInt(this.$route.query.page)-1 // eslint-disable-line no-unused-vars
+   }
+ },
   methods: {
 
     
