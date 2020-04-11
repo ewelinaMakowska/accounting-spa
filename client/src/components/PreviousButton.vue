@@ -1,0 +1,30 @@
+<template>
+<div class="button">
+prev
+</div>
+</template>
+
+<style scoped>
+.button {
+  padding-right: 15px;
+}
+</style>
+
+<script>
+
+
+export default {
+ props: {
+   
+     },
+  methods: {
+  
+    
+  },
+   computed: {
+       
+
+    },
+    
+}
+</script>
