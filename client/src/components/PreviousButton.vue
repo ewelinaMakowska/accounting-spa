@@ -1,6 +1,6 @@
 <template>
 <div class="button">
-<a :href="'/?page='+pageNumber" @click="loadPage"> <slot>prev</slot></a> <!-- buttony -->
+<a :href="'/?page='+(currentPageNumber-1)" > <slot>prev [ {{ currentPageNumber-1 }}]</slot></a> <!-- buttony -->
 </div>
 </template>
 
@@ -14,17 +14,17 @@
 
 
 export default {
+ 
  props: {
-   
+   currentPageNumber: Number
      },
   methods: {
-  
+
     
   },
-   computed: {
-       
+  
 
-    },
-    
 }
+
+
 </script>

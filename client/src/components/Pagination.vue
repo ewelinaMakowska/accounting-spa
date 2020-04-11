@@ -2,7 +2,7 @@
 <div class="pagination">
    <!-- <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
                       </office-thumb> -->
-  <previous-button></previous-button>
+  <previous-button :currentPageNumber="currentPageNumber"></previous-button>
   <pagination-button  v-for="(counter) in howManyPages" :key="counter" :pageNumber="counter"> {{ counter }} </pagination-button> 
   <next-button></next-button>  
 
@@ -25,7 +25,7 @@ import PreviousButton from '@/components/PreviousButton.vue';
 import NextButton from '@/components/NextButton.vue'; 
 //uruchomić z tego poziomu akcję kontrolera i przekazać informację o numerze strony ?? + getter ?
 export default {
-      
+    
       components: {
         PaginationButton,
         PreviousButton,
@@ -33,7 +33,7 @@ export default {
       },
       props: {
        howManyPages: Number,
-       currentPageNumber: String
+       currentPageNumber: Number
     },
     computed: {
        
