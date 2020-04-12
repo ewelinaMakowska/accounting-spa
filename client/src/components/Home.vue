@@ -21,7 +21,7 @@
 
                       <v-col lg="8">
 
-                          biura:
+                       
                      <div class="flex-thumbs-container">
 
                       <!-- <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
@@ -32,7 +32,7 @@
 
                         
                      </div> <!--flex-container-->
-                     paginacja
+            
                      <pagination :howManyPages="pageCount" :currentPageNumber="currentPageNumber"/>
                     <!-- <div> <p> Dane z bazy danych: {{ companiesFromDb }} </p></div>
                     <button @click="getAll()">pobierz dane</button> -->
