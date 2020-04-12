@@ -22,10 +22,6 @@ const routes = [
     component: OfficePage
   },
   {
-    path: '', 
-    name: 'city'
-  },
-  {
     path:'*',
     redirect: '/'
   }

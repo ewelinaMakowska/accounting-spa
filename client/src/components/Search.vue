@@ -22,15 +22,16 @@ data() {
 },
 watch: {
   search(value) {
-    console.log(value);
+    
     const route = {
-      name: 'city'
+      path: 'city'
     }
     if(this.search !== '') {
       route.query = {
-        city : this.search
+        search : this.search
       }
     }
+    console.log(value);
     this.$router.push(route);
 
   }
