@@ -5,6 +5,7 @@
    Obiekt {{ company }} <br/>
    Witaj na stronie biura: {{ company.name }} <br/>
    Id biura to:  {{ company.id }} <br/> 
+   Miejscowość:  {{ company.city }} <br/> 
    Cena za usługę to: {{ company.price }} <br/>
    
     </div>

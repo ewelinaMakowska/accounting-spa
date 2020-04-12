@@ -28,7 +28,7 @@
                       <!-- <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
                       </office-thumb> -->
 
-                      <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
+                      <office-thumb :name="office.name" :id="office.id " :city="office.city" v-for="(office, id) in offices" :key="id" :office="office" >
                       </office-thumb>
 
                         
