@@ -2,7 +2,7 @@
 <div>
 
 <!-- <label for="search">Wyszukaj:</label><br> -->
-  <input type="search" id="search" placeholder="Miasto"/>
+  <input type="search" id="search" placeholder="Miasto" v-model="search" />
 </div>
 </template>
 
@@ -15,7 +15,26 @@ input {
 
 <script>
 export default {
+data() {
+  return {
+    search: '',
+  }
+},
+watch: {
+  search(value) {
+    console.log(value);
+    const route = {
+      name: 'city'
+    }
+    if(this.search !== '') {
+      route.query = {
+        city : this.search
+      }
+    }
+    this.$router.push(route);
 
+  }
+}
     
 }
 </script>
