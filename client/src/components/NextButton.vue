@@ -14,10 +14,13 @@
 
 
 export default {
- 
+    props: {
+   howManyPages: Number
+ },
  data() {
-   if(this.$route.query.page < 3) {
+   if(this.$route.query.page < this.$props.howManyPages) {
     //  if(this.$route.query.page < 3) {
+      
    return this.currentPageNumber =  parseInt(this.$route.query.page)+1 // eslint-disable-line no-unused-vars
    
    } 
@@ -25,18 +28,20 @@ export default {
      return this.currentPageNumber =  2;
    }
    else  {
-     console.log(`countValue: ${this.$store.getters.countValue}`);
+     console.log(this.$props.howManyPages)
+      console.log(this.$route.query.page)
      return this.currentPageNumber = 3 // eslint-disable-line no-unused-vars
-     
    }
  },
-  methods: {
-
-    
-  },
-  
-
 }
+
+// data() {
+//   return {
+//     x : 1
+//   }
+// }
+
+// }
 
 
 </script>

@@ -2,12 +2,13 @@
 <div class="pagination">
    <!-- <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
                       </office-thumb> -->
-  <previous-button :currentPageNumber="currentPageNumber"></previous-button>
+  <previous-button ></previous-button>
   <pagination-button  v-for="(counter) in howManyPages" :key="counter" :pageNumber="counter"> {{ counter }} </pagination-button> 
-  <next-button></next-button>  
+  <!-- <next-button :howManyPages="this.$props.howManyPages"></next-button>  -->
+   <next-button v-if="this.$props.howManyPages>0" :howManyPages="this.$props.howManyPages"></next-button>  
 
 </div>
-</template>
+</template> -->
 
 <style scoped>
 .pagination {
@@ -32,10 +33,7 @@ export default {
         NextButton
       },
       props: {
-       howManyPages: Number,
-    },
-    computed: {
-       
+       howManyPages: Number
     },
     methods: {
       incrementPageNumber() {
