@@ -26,6 +26,7 @@ export const store = new Vuex.Store({
     loadedOffices: [
     ],
     allCompaniesCount: null,
+    count: 0,
     user: {
       id: '624',
       favouriteOffices: ['2', '3']
@@ -58,6 +59,7 @@ export const store = new Vuex.Store({
 
       state.loadedOffices = data.rows;
       state.allCompaniesCount = data.count;
+      state.count = data.rows.length;
       console.log(state);
     },
 
