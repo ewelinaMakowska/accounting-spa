@@ -13,7 +13,7 @@
 
     <v-row>
         <v-col lg="12">
-            lista biur księgowych 
+         
 
             <v-row>
                  <v-col lg="4">
