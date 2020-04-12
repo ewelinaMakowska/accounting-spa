@@ -17,7 +17,7 @@
 
             <v-row>
                  <v-col lg="4">
-                     wyszukiwarka
+                     <search></search>
                       </v-col>
 
                       <v-col lg="8">
@@ -72,6 +72,7 @@ padding: 20px;
 import OfficeThumb from '@/components/OfficeThumb.vue';
 import Pagination from '@/components/Pagination.vue';  // eslint-disable-line no-unused-vars
 //import CompaniesService from '@/services/CompaniesService.js' 
+import Search from '@/components/Search.vue'; 
 
 export default {
     data() {
@@ -119,7 +120,8 @@ export default {
     name: 'Home',
     components: {
     OfficeThumb,
-    Pagination
+    Pagination,
+    Search
     }, //components
     methods: {
         loadPage(page) {
