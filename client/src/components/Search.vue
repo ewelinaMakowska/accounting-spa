@@ -28,7 +28,7 @@ watch: {
     }
     if(this.search !== '') {
       route.query = {
-        search : this.search
+        city : this.search
       }
     }
     console.log(value);
