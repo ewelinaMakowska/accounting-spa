@@ -25,7 +25,7 @@ export const store = new Vuex.Store({
   state: {
     loadedOffices: [
     ],
-    count: null,
+    allCompaniesCount: null,
     user: {
       id: '624',
       favouriteOffices: ['2', '3']
@@ -57,7 +57,7 @@ export const store = new Vuex.Store({
   //   }
 
       state.loadedOffices = data.rows;
-      state.count = data.count;
+      state.allCompaniesCount = data.count;
       console.log(state);
     },
 
@@ -131,7 +131,7 @@ return state.loadedOffices; //?
 
 
     countValue (state) {
-      return state.count;
+      return state.allCompaniesCount;
     }
 
   }, //getters

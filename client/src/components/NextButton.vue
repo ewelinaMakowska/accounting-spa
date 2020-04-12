@@ -16,7 +16,8 @@
 export default {
  
  data() {
-   if(this.$route.query.page < this.$store.getters.countValue/4) {
+   if(this.$route.query.page < 3) {
+    //  if(this.$route.query.page < 3) {
    return this.currentPageNumber =  parseInt(this.$route.query.page)+1 // eslint-disable-line no-unused-vars
    
    } 
@@ -24,7 +25,9 @@ export default {
      return this.currentPageNumber =  2;
    }
    else  {
+     console.log(`countValue: ${this.$store.getters.countValue}`);
      return this.currentPageNumber = 3 // eslint-disable-line no-unused-vars
+     
    }
  },
   methods: {
