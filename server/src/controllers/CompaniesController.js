@@ -92,21 +92,21 @@ module.exports = {
       } 
     },
 
-    async getFilteredLimited(req, res, next) {
+
+
+     async getFilteredLimited(req, res, next) {
       try {
+       const page = req.query.page;
         const value = req.query.city;
-        console.log(`Przekazana wartość do kontrolera: ${value}`)
-         //const page = '3';
-         //const page = 3;   
-      
-            const companies = await Company.findAll({
-            where: {
-              [Op.or]: [
-                {city: {[Op.like]: `%${value}%`}}              
-              ] //op or
-            } // where
-         
-            }) //company find all
+
+       /*   console.log(`Przekazane wartość do kontrolera: ${value}, ${city}`); */
+
+        const companies = await Company.findAndCountAll({
+          offset: (page-1) * ITEMS_PER_PAGE,
+          limit: ITEMS_PER_PAGE,
+          where: {[Op.or]: [{city: {[Op.like]: `%${value}%`}}] //op or
+          }
+        })
           
         res.send(companies);
      
@@ -115,7 +115,7 @@ module.exports = {
           error: 'Internal Server Error'
         });
       } 
-    },
+    }, 
 
     /*   Song.findAll({
     where: {

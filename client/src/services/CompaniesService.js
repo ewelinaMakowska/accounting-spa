@@ -23,6 +23,10 @@ export default {
     return Api.get(`companiesFiltered/?city=${value}`, value);
   },
 
+  getFilteredLimited(value, page) {
+    return Api.get(`companiesFilteredLimited/?city=${value}&page=${page}`, value, page);
+  },
+
   // },
 
   getFirstLimited() {
