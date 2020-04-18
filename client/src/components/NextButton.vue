@@ -30,7 +30,7 @@ export default {
    else  {
      console.log(this.$props.howManyPages)
       console.log(this.$route.query.page)
-     return this.currentPageNumber = 3 // eslint-disable-line no-unused-vars
+     return this.currentPageNumber = 5 // eslint-disable-line no-unused-vars
    }
  },
 }

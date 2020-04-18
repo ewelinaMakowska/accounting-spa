@@ -92,6 +92,31 @@ module.exports = {
       } 
     },
 
+    async getFilteredLimited(req, res, next) {
+      try {
+        const value = req.query.city;
+        console.log(`Przekazana wartość do kontrolera: ${value}`)
+         //const page = '3';
+         //const page = 3;   
+      
+            const companies = await Company.findAll({
+            where: {
+              [Op.or]: [
+                {city: {[Op.like]: `%${value}%`}}              
+              ] //op or
+            } // where
+         
+            }) //company find all
+          
+        res.send(companies);
+     
+      } catch (error) {
+        res.status(500).send({
+          error: 'Internal Server Error'
+        });
+      } 
+    },
+
     /*   Song.findAll({
     where: {
     $or: [

@@ -109,7 +109,7 @@ export default {
             return this.$store.dispatch('loadCompaniesAction');
         },
         pageCount() {
-            return (this.$store.getters.countValue)/4;
+            return Math.round((this.$store.getters.countValue)/4);
         },
         loadFirst() {
             return this.$store.dispatch('loadFirstPageData');
@@ -142,7 +142,7 @@ export default {
     },
 
 
-  /*   async created () {
+    async created () {
     console.log("Created");
 
     if (this.$route.query.page) {
@@ -163,7 +163,7 @@ export default {
         console.log('state getter used');         
         } //trycatch
     
-} //mounted */
+} //mounted
 }//export default
 
 </script>
