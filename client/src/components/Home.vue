@@ -125,79 +125,40 @@ export default {
     methods: {
         loadPage(page) {
             return this.$store.dispatch('loadOnePageData', page);
-        },
-       /*  async getAll() {
-            try {
-                 await CompaniesService.getAllCompanies();
-                console.log('service started succesfully');
+        }
+         },
+    watch: {
+        '$route.query.city': {
+            immediate: true,
+            handler(value) {
+                console.log(`handler invoked: ${value}`)
             }
-            catch (err) {
-                console.log('companies component service error ')
-                console.log(err);
-            }
-        }, //getAll */
-         
-        // async mounted() {
-        //     //this.companiesFromDb = (await CompaniesService.getAllCompanies()).data
-        //     this.loadCompanies();
-        //     console.log('companies loaded to the state');
-        //     this.offices();
-        //     console.log('state getter used');
-         },  //methods
+        }
+    },
 
-        // async created () {
-        //     console.log("Mounted");
+
+    async created () {
+    console.log("Created");
+
+    if (this.$route.query.page) {
+    var page = this.$route.query.page; 
+    } else {
+        page = 1;
+    }
     
-        //     if(this.page){
-        //      try {
-        //     // await this.loadCompanies;
-        //     console.log(this.$route.query.page)
-            
-        //     await this.loadPage(this.page);
-        //      console.log('companies loaded to the state');
-        //     } catch (err) { console.log("fail")
-        //     } finally {
-        //      this.offices;
-        //      console.log('state getter used');         
-        //      } //trycatch
-
-        //     } else {
-        //          try {
-        //     // await this.loadCompanies;
-        //     await this.loadFirst();
-        //      console.log('companies loaded to the state');
-        //     } catch (err) { console.log("fail")
-        //     } finally {
-        //      this.offices;
-        //      console.log('state getter used');         
-        //      } //trycatch
-        //     }
-        // } //mounted
-
-
-
-         async created () {
-            console.log("Created");
-
-            if (this.$route.query.page) {
-            var page = this.$route.query.page; 
-            } else {
-                page = 1;
-            }
-          
-             try {
-            // await this.loadCompanies;
-            //console.log(this.$route.query.page)
-            
-            await this.loadPage(page);
-             console.log('companies loaded to the state');
-            } catch (err) { console.log("fail")
-            } finally {
-             //this.offices;
-             console.log('state getter used');         
-             } //trycatch
-         
-        } //mounted
-    }//export default
+        try {
+    // await this.loadCompanies;
+    //console.log(this.$route.query.page)
+    
+    await this.loadPage(page);
+        console.log('companies loaded to the state');
+    } catch (err) { console.log("fail")
+    } finally {
+        //this.offices;
+        console.log('state getter used');         
+        } //trycatch
+    
+} //mounted
+}//export default
 
 </script>
