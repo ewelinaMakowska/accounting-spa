@@ -33,7 +33,12 @@ watch: {
     }
     console.log(value);
     this.$router.push(route);
-
+  },
+  '$route.query.city': {
+    immediate:true,
+    handler (value) {
+      this.search = value
+    }
   }
 }
     
