@@ -125,19 +125,24 @@ export default {
     methods: {
         loadPage(page) {
             return this.$store.dispatch('loadOnePageData', page);
+        },
+        loadSearchResults(value) {
+             return this.$store.dispatch('loadSearchResults', value);
         }
          },
     watch: {
         '$route.query.city': {
             immediate: true,
-            handler(value) {
+            async handler(value) {   
+                await this.loadSearchResults(value);
                 console.log(`handler invoked: ${value}`)
             }
+            
         }
     },
 
 
-    async created () {
+  /*   async created () {
     console.log("Created");
 
     if (this.$route.query.page) {
@@ -158,7 +163,7 @@ export default {
         console.log('state getter used');         
         } //trycatch
     
-} //mounted
+} //mounted */
 }//export default
 
 </script>

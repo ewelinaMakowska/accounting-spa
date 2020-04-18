@@ -19,6 +19,9 @@ export default {
     // };
   },
 
+  getFiltered(value) {
+    return Api.get(`companiesFiltered/?city=${value}`, value);
+  },
 
   // },
 

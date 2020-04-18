@@ -81,6 +81,12 @@ export const store = new Vuex.Store({
       console.log('action loadOnePageData executed succesfully');  
   },
 
+  async loadSearchResults ({ commit }, value)  {
+    const result = await CompaniesService.getFiltered(value);
+    commit('loadCompanies', result.data);
+    console.log('action load Search Results executed succesfully');  
+},
+
   async loadFirstPageData ({ commit })  {
     const result = await CompaniesService.getFirstLimited();
     commit('loadCompanies', result.data);
