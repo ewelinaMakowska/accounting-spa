@@ -26,12 +26,21 @@ methods: {
 
  async searchByCity(search) {
 
+ /*   try {
+  this.$router.push({ page: 2 })
+  console.log('ok!')
+    } catch(err) {
+      console.log(`Router error: ${err}` );
+    }
+ */
     console.log(`search: ${search}`)
+   
     await this.$store.dispatch('loadSearchResults', search)
     .catch(function (error) {
           console.log(error);
       })
     console.log(this.$store.getters.state)
+    
   },
 
   computed: {
