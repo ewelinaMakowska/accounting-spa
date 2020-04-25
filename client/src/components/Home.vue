@@ -142,7 +142,7 @@ export default {
     
 
 
-    async created () {
+/*     async created () {
     console.log("Created");
 
     if (this.$route.query.page) {
@@ -163,7 +163,33 @@ export default {
         console.log('state getter used');         
         } //trycatch
     
-} //mounted
+} //created */
+
+created () {
+    console.log("Created");
+/* 
+    if (this.$route.query.page) {
+         var page = this.$route.query.page;
+         var city = this.$route.query.city;}
+    else {
+         page = 1;
+         city = null
+    } */
+
+    if (this.$route.query.page) { var page = this.$route.query.page } else { page = null }
+    if (this.$route.query.city) { var city = this.$route.query.city } else { city = null }
+
+
+  
+    
+
+
+    console.log(page)
+    console.log(city)
+
+
+} //created 
+
 }//export default
 
 </script>
