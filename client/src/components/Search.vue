@@ -56,11 +56,11 @@ methods: {
     //const page = this.currentPageNumber;
 
 
-    const searchParamters = {search: search, page: 1}
+    const searchParameters = {search: search, page: 1}
 
     console.log(`search page: ${this.searchParameters}`)
 
-    await this.$store.dispatch('loadSearchResultsLimited', searchParamters)
+    await this.$store.dispatch('loadSearchResultsLimited', searchParameters)
     .catch(function (error) {
           console.log(error);
       })
