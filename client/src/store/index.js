@@ -60,7 +60,7 @@ export const store = new Vuex.Store({
       state.loadedOffices = data.rows;
       state.allCompaniesCount = data.count;
       state.count = data.rows.length;
-      console.log(state);
+      //console.log(state);
     },
 
     loadCompanyMutation: (state, data) => {
@@ -77,13 +77,15 @@ export const store = new Vuex.Store({
 
     async loadOnePageData ({ commit }, page)  {
       const result = await CompaniesService.getLimited(page);
+      console.log(result)
       commit('loadCompanies', result.data);
       console.log('action loadOnePageData executed succesfully');  
   },
 
   async loadSearchResults ({ commit }, search)  {
-    const result = await CompaniesService.getFiltered(search);
-      commit('loadCompanies', result.data)
+    const result = await CompaniesService.getFiltered(search)
+    console.log(result)
+    commit('loadCompanyMutation', result.data)
     
     console.log('action load Search Results executed succesfully');  
 },
