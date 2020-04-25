@@ -1,7 +1,9 @@
 <template>
 <div class="button">
  <!-- {{ pageNumber }} -->
- <a :href="'/?page='+pageNumber" @click="loadPage"> <slot>button</slot></a> <!-- buttony -->
+ <!-- <a :href="'/?page='+pageNumber" @click="loadPage"> <slot>button</slot></a> button -->
+
+<button style="background: blueviolet" @click='changeUrl()'><slot>button</slot></button> <!-- button -->
 </div>
 </template>
 
@@ -24,7 +26,39 @@ export default {
           
       console.log("Page data retrieved!");
     
-  }},
+  },
+
+ /*   search(value) {
+    
+    const route = {
+      path: 'city'
+    }
+    if(this.search !== '') {
+      route.query = {
+        city : this.search
+      }
+    }
+
+    console.log(value);
+    this.$router.push(route);
+  },
+  '$route.query.city': {
+    immediate:true,
+    handler (value) {
+      this.search = value */
+
+  changeUrl() {
+      console.log('click!')
+    const route = {
+        path: 'page'
+    }
+    route.query = {
+        page : this.pageNumber
+      }
+    this.$router.push(route);
+
+  }
+  }, //methods
    computed: {
         offices () {
             return this.$store.getters.loadedOffices;

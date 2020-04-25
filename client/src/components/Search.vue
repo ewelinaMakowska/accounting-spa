@@ -40,6 +40,7 @@ methods: {
           console.log(error);
       })
     console.log(this.$store.getters.state)
+    //this.$route.query.page = 1; potrzebne dodanie do urla /?page=1
     
   },
 
