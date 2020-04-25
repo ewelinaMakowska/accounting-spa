@@ -2,7 +2,8 @@
 <div>
 
 <!-- <label for="search">Wyszukaj:</label><br> -->
-  <input type="search" id="search" placeholder="Miasto" v-model="search" />
+  <input type="search" id="search" placeholder="Miasto" v-model="search" /><br/>
+  <button @click="searchByCity(search)">Wyszukaj</button>
 </div>
 </template>
 
@@ -20,6 +21,18 @@ data() {
     search: '',
   }
 },
+methods: {
+
+ async searchByCity(search) {
+
+    console.log(`search: ${search}`)
+    await this.$store.dispatch('loadSearchResults', search)
+    .catch(function (error) {
+          console.log(error);
+      })
+   
+  }
+},
 watch: {
   search(value) {
     
@@ -31,6 +44,7 @@ watch: {
         city : this.search
       }
     }
+
     console.log(value);
     this.$router.push(route);
   },

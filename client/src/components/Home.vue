@@ -33,7 +33,7 @@
                         
                      </div> <!--flex-container-->
             
-                     <pagination :howManyPages="pageCount" :currentPageNumber="currentPageNumber"/>
+                      <pagination :howManyPages="pageCount" :currentPageNumber="currentPageNumber"/> 
                     <!-- <div> <p> Dane z bazy danych: {{ companiesFromDb }} </p></div>
                     <button @click="getAll()">pobierz dane</button> -->
                    
@@ -130,7 +130,7 @@ export default {
              return this.$store.dispatch('loadSearchResults', value);
         }
          },
-    watch: {
+ /*    watch: {
         '$route.query.city': {
             immediate: true,
             async handler(value) {   
@@ -138,8 +138,8 @@ export default {
                 console.log(`handler invoked: ${value}`)
             }
             
-        }
-    },
+        } */
+    
 
 
     async created () {
