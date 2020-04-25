@@ -3,7 +3,7 @@
 
 <!-- <label for="search">Wyszukaj:</label><br> -->
   <input type="search" id="search" placeholder="Miasto" v-model="search" /><br/>
-  <button @click="searchResults(search)">Wyszukaj</button>
+  <button v-if="search" @click="searchResults(search)">Wyszukaj</button>
 </div>
 </template>
 
