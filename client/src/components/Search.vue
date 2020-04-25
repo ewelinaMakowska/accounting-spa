@@ -3,7 +3,7 @@
 
 <!-- <label for="search">Wyszukaj:</label><br> -->
   <input type="search" id="search" placeholder="Miasto" v-model="search" /><br/>
-  <button @click="searchByCity(search)">Wyszukaj</button>
+  <button @click="searchResults(search)">Wyszukaj</button>
 </div>
 </template>
 
@@ -19,6 +19,7 @@ export default {
 data() {
   return {
     search: '',
+    page: 1
   }
 },
 methods: {
@@ -27,6 +28,30 @@ methods: {
 
     console.log(`search: ${search}`)
     await this.$store.dispatch('loadSearchResults', search)
+    .catch(function (error) {
+          console.log(error);
+      })
+    console.log(this.$store.getters.state)
+  },
+
+  computed: {
+    currentPageNumber() {
+      //return this.$router.query.page;
+      return 1;
+    }
+  },
+   async searchResults(search) {
+    //  const page = this.$router.page;
+    console.log(`search: ${search}`)
+
+    //const page = this.currentPageNumber;
+
+
+    const searchParamters = {search: search, page: 1}
+
+    console.log(`search page: ${this.searchParameters}`)
+
+    await this.$store.dispatch('loadSearchResultsLimited', searchParamters)
     .catch(function (error) {
           console.log(error);
       })
