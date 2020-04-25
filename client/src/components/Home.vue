@@ -183,7 +183,7 @@ async created () {
     }
 
     if (this.$route.query.page) {  value.page = this.$route.query.page } else { value.page = 1 }
-    if (this.$route.query.city) { value.city = this.$route.query.city } else { value.city = 'Warszawa' }
+    if (this.$route.query.city) { value.city = this.$route.query.city } else { value.city = '' }
 
   
 
