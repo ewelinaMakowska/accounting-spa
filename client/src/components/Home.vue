@@ -127,7 +127,7 @@ export default {
             return this.$store.dispatch('loadOnePageData', page);
         },
         loadSearchResults(value) {
-             return this.$store.dispatch('loadSearchResults', value);
+             return this.$store.dispatch('loadSearchResultsLimited', value);
         }
          },
  /*    watch: {
@@ -165,7 +165,7 @@ export default {
     
 } //created */
 
-created () {
+async created () {
     console.log("Created");
 /* 
     if (this.$route.query.page) {
@@ -176,16 +176,32 @@ created () {
          city = null
     } */
 
-    if (this.$route.query.page) { var page = this.$route.query.page } else { page = null }
-    if (this.$route.query.city) { var city = this.$route.query.city } else { city = null }
+      const value = {
+        
+        page: null,
+        city: null
+    }
 
+    if (this.$route.query.page) {  value.page = this.$route.query.page } else { value.page = 1 }
+    if (this.$route.query.city) { value.city = this.$route.query.city } else { value.city = 'Warszawa' }
 
   
+
+
+    console.log(value.page)
+    console.log(value.city)
+
+       try {
+    // await this.loadCompanies;
+    //console.log(this.$route.query.page)
     
-
-
-    console.log(page)
-    console.log(city)
+    await this.loadSearchResults(value);
+        console.log('companies loaded to the state');
+    } catch (err) { console.log("fail")
+    } finally {
+        //this.offices;
+        console.log('state getter used');         
+        } //trycatch
 
 
 } //created 
