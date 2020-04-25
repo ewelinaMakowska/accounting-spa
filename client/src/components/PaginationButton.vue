@@ -1,9 +1,9 @@
 <template>
 <div class="button">
  <!-- {{ pageNumber }} -->
- <!-- <a :href="'/?page='+pageNumber" @click="loadPage"> <slot>button</slot></a> button -->
+ <a :href="'/?page='+pageNumber" @click="loadPage"> <slot>button</slot></a>
 
-<button style="background: blueviolet" @click='changeUrl()'><slot>button</slot></button> <!-- button -->
+
 </div>
 </template>
 
