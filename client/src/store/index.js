@@ -65,6 +65,7 @@ export const store = new Vuex.Store({
 
     loadCompanyMutation: (state, data) => {
       state.loadedOffices = data;
+      state.count = data.length;
     }
 
   },
@@ -113,6 +114,10 @@ async loadCompany ({ commit }, id)  {
 },
 
   getters: {
+
+    state (state) {
+      return state;
+    },
 
     loadedOffices (state) {
       return state.loadedOffices;
