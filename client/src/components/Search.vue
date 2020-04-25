@@ -3,7 +3,7 @@
 
 <!-- <label for="search">Wyszukaj:</label><br> -->
   <input type="search" id="search" placeholder="Miasto" v-model="search" /><br/>
-  <button v-if="search" @click="searchResults(search)">Wyszukaj</button>
+  <button v-if="search" @click="searchByCity(search)">Wyszukaj</button>
 </div>
 </template>
 
@@ -57,7 +57,7 @@ methods: {
     //const page = this.currentPageNumber;
 
 
-    const searchParameters = {search: search, page: 1}
+    const searchParameters = {city: search, page: 1}
 
     console.log(`search page: ${this.searchParameters}`)
 
