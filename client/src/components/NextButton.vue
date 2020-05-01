@@ -1,6 +1,6 @@
 <template>
 <div class="button">
-<a :href="'/?page='+(this.currentPageNumber)" > next </a> <!-- buttony -->
+<a :href="'/?page='+(this.currentPageNumber)+'&city='+this.$props.city" > next </a> <!-- buttony -->
 </div>
 </template>
 
@@ -15,7 +15,8 @@
 
 export default {
     props: {
-   howManyPages: Number
+   howManyPages: Number,
+   city: String
  },
  data() {
    if(this.$route.query.page < this.$props.howManyPages) {

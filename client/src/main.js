@@ -24,7 +24,7 @@ const routes = [
   {
     path:'*',
     redirect: '/'
-  }
+  } 
   //{ path: '/search', component: SearchUser, props: (route) => ({ query: route.query.q }) }
   
 ]
