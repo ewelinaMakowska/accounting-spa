@@ -2,10 +2,10 @@
 <div class="pagination">
    <!-- <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
                       </office-thumb> -->
-  <previous-button ></previous-button>
+  <previous-button :city="$props.city"></previous-button>
   <pagination-button   v-for="(counter) in howManyPages" :key="counter" :pageNumber="counter" :city="$props.city" > {{ counter }} </pagination-button> 
   <!-- <next-button :howManyPages="this.$props.howManyPages"></next-button>  -->
-   <next-button v-if="this.$props.howManyPages>0" :howManyPages="this.$props.howManyPages"></next-button>  
+   <next-button v-if="this.$props.howManyPages>0" :howManyPages="this.$props.howManyPages" :city="$props.city"></next-button>  
 
 </div>
 </template> -->
