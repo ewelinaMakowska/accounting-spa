@@ -34,7 +34,7 @@
                      </div> <!--flex-container-->
 
                     
-                      <pagination :howManyPages="pageCount" :currentPageNumber="currentPageNumber"/> 
+                      <pagination :howManyPages="pageCount" :currentPageNumber="currentPageNumber" :city="this.$route.query.city"/> 
                     <!-- <div> <p> Dane z bazy danych: {{ companiesFromDb }} </p></div>
                     <button @click="getAll()">pobierz dane</button> -->
                    
@@ -99,9 +99,7 @@ export default {
            // buttonNumber: 1,
             //pageCountValue: this.pageCount,
             pages : this.pages,
-            city: 'Kraków' //this.$route.query.city
-       
-            
+            city: 'Warszawa' //this.$route.query.city
         }
     },    
     computed: {

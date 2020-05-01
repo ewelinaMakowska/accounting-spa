@@ -3,7 +3,7 @@
  <!-- {{ pageNumber }} -->
  <!-- <a :href="'/?page='+pageNumber" @click="loadPage"> <slot>button</slot></a> -->
 <!--- dodać do hrefa + city = albo nic -->
-<a :href="'/?page='+pageNumber+'&city='+this.place" @click="loadPage"> <slot>button</slot></a>
+<a :href="'/?page='+pageNumber+'&city='+this.$props.city" @click="loadPage"> <slot>button</slot></a>
 
 </div>
 </template>
