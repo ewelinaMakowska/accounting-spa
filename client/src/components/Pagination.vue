@@ -40,7 +40,10 @@ export default {
          type: String,
          default: 'Warszawa'
        } */
-       city: String
+       city: {
+         type: String,
+         default: ""
+       }
 
        
     },
