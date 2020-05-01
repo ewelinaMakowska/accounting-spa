@@ -84,7 +84,7 @@ watch: {
     this.$router.push(route);
   },
   '$route.query.city': {
-    immediate:true,
+    //immediate:true,
     handler (value) {
       this.search = value
     }
