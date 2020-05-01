@@ -32,7 +32,8 @@
 
                         
                      </div> <!--flex-container-->
-            
+
+                    
                       <pagination :howManyPages="pageCount" :currentPageNumber="currentPageNumber"/> 
                     <!-- <div> <p> Dane z bazy danych: {{ companiesFromDb }} </p></div>
                     <button @click="getAll()">pobierz dane</button> -->
@@ -88,6 +89,7 @@ export default {
 
       console.log(pages);
 
+
     //  let page = this.$route.query.page || 1; //eslint-disable-line no-unused-vars
 
         return {
@@ -97,6 +99,7 @@ export default {
            // buttonNumber: 1,
             //pageCountValue: this.pageCount,
             pages : this.pages,
+            city: 'Kraków' //this.$route.query.city
        
             
         }

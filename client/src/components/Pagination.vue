@@ -33,7 +33,8 @@ export default {
         NextButton
       },
       props: {
-       howManyPages: Number
+       howManyPages: Number,
+       city: String
     },
     methods: {
       incrementPageNumber() {
