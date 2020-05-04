@@ -1,6 +1,6 @@
 <template>
 <div class="button">
-<a :href="'/?page='+(this.currentPageNumber)" > next </a> <!-- buttony -->
+<a :href="'/?page='+(this.currentPageNumber)+'&city='+this.$props.city" > next </a> <!-- buttony -->
 </div>
 </template>
 
@@ -14,9 +14,14 @@
 
 
 export default {
- 
+    props: {
+   howManyPages: Number,
+   city: String
+ },
  data() {
-   if(this.$route.query.page < this.$store.getters.countValue/4) {
+   if(this.$route.query.page < this.$props.howManyPages) {
+    //  if(this.$route.query.page < 3) {
+      
    return this.currentPageNumber =  parseInt(this.$route.query.page)+1 // eslint-disable-line no-unused-vars
    
    } 
@@ -24,16 +29,20 @@ export default {
      return this.currentPageNumber =  2;
    }
    else  {
-     return this.currentPageNumber = 3 // eslint-disable-line no-unused-vars
+     console.log(this.$props.howManyPages)
+      console.log(this.$route.query.page)
+     return this.currentPageNumber = this.$props.howManyPages // eslint-disable-line no-unused-vars
    }
  },
-  methods: {
-
-    
-  },
-  
-
 }
+
+// data() {
+//   return {
+//     x : 1
+//   }
+// }
+
+// }
 
 
 </script>

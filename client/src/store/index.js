@@ -25,7 +25,8 @@ export const store = new Vuex.Store({
   state: {
     loadedOffices: [
     ],
-    count: null,
+    allCompaniesCount: 0,
+    count: 0,
     user: {
       id: '624',
       favouriteOffices: ['2', '3']
@@ -57,12 +58,15 @@ export const store = new Vuex.Store({
   //   }
 
       state.loadedOffices = data.rows;
-      state.count = data.count;
-      console.log(state);
+      state.allCompaniesCount = data.count;
+      state.count = data.rows.length;
+      //console.log(state);
     },
 
     loadCompanyMutation: (state, data) => {
       state.loadedOffices = data;
+      //state.count = data.length;
+      state.allCompaniesCount = data.length;
     }
 
   },
@@ -75,9 +79,24 @@ export const store = new Vuex.Store({
 
     async loadOnePageData ({ commit }, page)  {
       const result = await CompaniesService.getLimited(page);
+      console.log(result)
       commit('loadCompanies', result.data);
       console.log('action loadOnePageData executed succesfully');  
   },
+
+  async loadSearchResults ({ commit }, search)  {
+    const result = await CompaniesService.getFiltered(search)
+    console.log(result)
+    commit('loadCompanyMutation', result.data)
+    
+    console.log('action load Search Results executed succesfully');  
+},
+
+async loadSearchResultsLimited ({ commit }, searchParameters)  {
+  const result = await CompaniesService.getFilteredLimited(searchParameters.city, searchParameters.page);
+  commit('loadCompanies', result.data);
+  console.log('action load Search Results Limited executed succesfully');  
+},
 
   async loadFirstPageData ({ commit })  {
     const result = await CompaniesService.getFirstLimited();
@@ -96,6 +115,10 @@ async loadCompany ({ commit }, id)  {
 },
 
   getters: {
+
+    state (state) {
+      return state;
+    },
 
     loadedOffices (state) {
       return state.loadedOffices;
@@ -131,7 +154,7 @@ return state.loadedOffices; //?
 
 
     countValue (state) {
-      return state.count;
+      return state.allCompaniesCount;
     }
 
   }, //getters

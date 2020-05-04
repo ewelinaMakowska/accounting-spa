@@ -2,12 +2,13 @@
 <div class="pagination">
    <!-- <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
                       </office-thumb> -->
-  <previous-button :currentPageNumber="currentPageNumber"></previous-button>
-  <pagination-button  v-for="(counter) in howManyPages" :key="counter" :pageNumber="counter"> {{ counter }} </pagination-button> 
-  <next-button></next-button>  
+  <previous-button :city="$props.city"></previous-button>
+  <pagination-button   v-for="(counter) in howManyPages" :key="counter" :pageNumber="counter" :city="$props.city" > {{ counter }} </pagination-button> 
+  <!-- <next-button :howManyPages="this.$props.howManyPages"></next-button>  -->
+   <next-button v-if="this.$props.howManyPages>0" :howManyPages="this.$props.howManyPages" :city="$props.city"></next-button>  
 
 </div>
-</template>
+</template> -->
 
 <style scoped>
 .pagination {
@@ -25,6 +26,8 @@ import PreviousButton from '@/components/PreviousButton.vue';
 import NextButton from '@/components/NextButton.vue'; 
 //uruchomić z tego poziomu akcję kontrolera i przekazać informację o numerze strony ?? + getter ?
 export default {
+
+
     
       components: {
         PaginationButton,
@@ -33,8 +36,15 @@ export default {
       },
       props: {
        howManyPages: Number,
-    },
-    computed: {
+       /* city: {
+         type: String,
+         default: 'Warszawa'
+       } */
+       city: {
+         type: String,
+         default: ""
+       }
+
        
     },
     methods: {

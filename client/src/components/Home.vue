@@ -1,5 +1,4 @@
 
-
 <template>
 
 
@@ -13,28 +12,29 @@
 
     <v-row>
         <v-col lg="12">
-            lista biur księgowych 
+         
 
             <v-row>
                  <v-col lg="4">
-                     wyszukiwarka
+                     <search></search>
                       </v-col>
 
                       <v-col lg="8">
 
-                          biura:
+                       
                      <div class="flex-thumbs-container">
 
                       <!-- <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
                       </office-thumb> -->
 
-                      <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
+                      <office-thumb :name="office.name" :id="office.id " :city="office.city" v-for="(office, id) in offices" :key="id" :office="office" >
                       </office-thumb>
 
                         
                      </div> <!--flex-container-->
-                     paginacja
-                     <pagination :howManyPages="pageCount" :currentPageNumber="currentPageNumber"/>
+
+                    
+                      <pagination :howManyPages="pageCount" :currentPageNumber="currentPageNumber" :city="this.$route.query.city"/> 
                     <!-- <div> <p> Dane z bazy danych: {{ companiesFromDb }} </p></div>
                     <button @click="getAll()">pobierz dane</button> -->
                    
@@ -72,6 +72,7 @@ padding: 20px;
 import OfficeThumb from '@/components/OfficeThumb.vue';
 import Pagination from '@/components/Pagination.vue';  // eslint-disable-line no-unused-vars
 //import CompaniesService from '@/services/CompaniesService.js' 
+import Search from '@/components/Search.vue'; 
 
 export default {
     data() {
@@ -88,6 +89,7 @@ export default {
 
       console.log(pages);
 
+
     //  let page = this.$route.query.page || 1; //eslint-disable-line no-unused-vars
 
         return {
@@ -97,8 +99,7 @@ export default {
            // buttonNumber: 1,
             //pageCountValue: this.pageCount,
             pages : this.pages,
-       
-            
+            city: 'Warszawa' //this.$route.query.city
         }
     },    
     computed: {
@@ -109,7 +110,7 @@ export default {
             return this.$store.dispatch('loadCompaniesAction');
         },
         pageCount() {
-            return (this.$store.getters.countValue)/4;
+            return Math.round((this.$store.getters.countValue)/4);
         },
         loadFirst() {
             return this.$store.dispatch('loadFirstPageData');
@@ -119,84 +120,93 @@ export default {
     name: 'Home',
     components: {
     OfficeThumb,
-    Pagination
+    Pagination,
+    Search
     }, //components
     methods: {
         loadPage(page) {
             return this.$store.dispatch('loadOnePageData', page);
         },
-       /*  async getAll() {
-            try {
-                 await CompaniesService.getAllCompanies();
-                console.log('service started succesfully');
+        loadSearchResults(value) {
+             return this.$store.dispatch('loadSearchResultsLimited', value);
+        }
+         },
+ /*    watch: {
+        '$route.query.city': {
+            immediate: true,
+            async handler(value) {   
+                await this.loadSearchResults(value);
+                console.log(`handler invoked: ${value}`)
             }
-            catch (err) {
-                console.log('companies component service error ')
-                console.log(err);
-            }
-        }, //getAll */
-         
-        // async mounted() {
-        //     //this.companiesFromDb = (await CompaniesService.getAllCompanies()).data
-        //     this.loadCompanies();
-        //     console.log('companies loaded to the state');
-        //     this.offices();
-        //     console.log('state getter used');
-         },  //methods
-
-        // async created () {
-        //     console.log("Mounted");
+            
+        } */
     
-        //     if(this.page){
-        //      try {
-        //     // await this.loadCompanies;
-        //     console.log(this.$route.query.page)
-            
-        //     await this.loadPage(this.page);
-        //      console.log('companies loaded to the state');
-        //     } catch (err) { console.log("fail")
-        //     } finally {
-        //      this.offices;
-        //      console.log('state getter used');         
-        //      } //trycatch
-
-        //     } else {
-        //          try {
-        //     // await this.loadCompanies;
-        //     await this.loadFirst();
-        //      console.log('companies loaded to the state');
-        //     } catch (err) { console.log("fail")
-        //     } finally {
-        //      this.offices;
-        //      console.log('state getter used');         
-        //      } //trycatch
-        //     }
-        // } //mounted
 
 
+/*     async created () {
+    console.log("Created");
 
-         async created () {
-            console.log("Created");
+    if (this.$route.query.page) {
+    var page = this.$route.query.page; 
+    } else {
+        page = 1;
+    }
+    
+        try {
+    // await this.loadCompanies;
+    //console.log(this.$route.query.page)
+    
+    await this.loadPage(page);
+        console.log('companies loaded to the state');
+    } catch (err) { console.log("fail")
+    } finally {
+        //this.offices;
+        console.log('state getter used');         
+        } //trycatch
+    
+} //created */
 
-            if (this.$route.query.page) {
-            var page = this.$route.query.page; 
-            } else {
-                page = 1;
-            }
-          
-             try {
-            // await this.loadCompanies;
-            //console.log(this.$route.query.page)
-            
-            await this.loadPage(page);
-             console.log('companies loaded to the state');
-            } catch (err) { console.log("fail")
-            } finally {
-             //this.offices;
-             console.log('state getter used');         
-             } //trycatch
-         
-        } //mounted
-    }//export default
+async created () {
+    console.log("Created");
+/* 
+    if (this.$route.query.page) {
+         var page = this.$route.query.page;
+         var city = this.$route.query.city;}
+    else {
+         page = 1;
+         city = null
+    } */
+
+      const value = {
+        
+        page: null,
+        city: null
+    }
+
+    if (this.$route.query.page) {  value.page = this.$route.query.page } else { value.page = 1 }
+    if (this.$route.query.city) { value.city = this.$route.query.city } else { value.city = '' }
+
+  
+
+
+    console.log(value.page)
+    console.log(value.city)
+
+       try {
+    // await this.loadCompanies;
+    //console.log(this.$route.query.page)
+    
+    await this.loadSearchResults(value);
+        console.log('companies loaded to the state');
+    } catch (err) { console.log("fail")
+    } finally {
+        //this.offices;
+        console.log('state getter used');         
+        } //trycatch
+
+
+} //created 
+
+}//export default
 
 </script>

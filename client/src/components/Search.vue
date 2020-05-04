@@ -1,0 +1,95 @@
+<template>
+<div>
+
+<!-- <label for="search">Wyszukaj:</label><br> -->
+  <input type="search" id="search" placeholder="Miasto" v-model="search" /><br/>
+  <button v-if="search" @click="searchResults(search)">Wyszukaj</button>
+</div>
+</template>
+
+<style scoped>
+input {
+    border: 1px solid #e0e0e0;
+    padding: 5px 10px;
+}
+</style>
+
+<script>
+export default {
+data() {
+  return {
+    search: '',
+    page: 1
+  }
+},
+methods: {
+
+ async searchByCity(search) {
+
+ /*   try {
+  this.$router.push({ page: 2 })
+  console.log('ok!')
+    } catch(err) {
+      console.log(`Router error: ${err}` );
+    }
+ */
+    console.log(`search: ${search}`)
+   
+    await this.$store.dispatch('loadSearchResults', search)
+    .catch(function (error) {
+          console.log(error);
+      })
+    console.log(this.$store.getters.state)
+    //this.$route.query.page = 1; potrzebne dodanie do urla /?page=1
+    
+  },
+
+  computed: {
+    currentPageNumber() {
+      //return this.$router.query.page;
+      return 1;
+    }
+  },
+   async searchResults(search) {
+    //  const page = this.$router.page;
+    console.log(`search: ${search}`)
+
+    //const page = this.currentPageNumber;
+
+
+    const searchParameters = {city: search, page: 1}
+
+    console.log(`search page: ${this.searchParameters}`)
+
+    await this.$store.dispatch('loadSearchResultsLimited', searchParameters)
+    .catch(function (error) {
+          console.log(error);
+      })
+    console.log(this.$store.getters.state)
+  }
+},
+watch: {
+  search(value) {
+    
+    const route = {
+      path: 'city'
+    }
+    if(this.search !== '') {
+      route.query = {
+        city : this.search
+      }
+    }
+
+    console.log(value);
+    this.$router.push(route);
+  },
+  '$route.query.city': {
+    //immediate:true,
+    handler (value) {
+      this.search = value
+    }
+  }
+}
+    
+}
+</script>

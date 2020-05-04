@@ -43,6 +43,7 @@ module.exports = (sequelize, DataTypes) => {
   const Company = sequelize.define('Company', {
     id: { type: DataTypes.INTEGER(10), primaryKey : true, allowNull : false, unique : true, unsigned: true, autoIncrement: true },
     name: { type: DataTypes.STRING(45), allowNull : false, },
+    city: { type: DataTypes.STRING(45), allowNull : false, },
     price: { type: DataTypes.DOUBLE(5,2),  allowNull : false },
     logo: { type: DataTypes.STRING(45) },
     description: { type: DataTypes.TEXT }

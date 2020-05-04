@@ -1,6 +1,7 @@
 <template>
 <div class="button">
-<a :href="'/?page='+(this.currentPageNumber)" > prev </a> <!-- buttony -->
+<!-- <a :href="'/?page='+(this.currentPageNumber)" > prev </a>  -->
+<a :href="'/?page='+(this.currentPageNumber)+'&city='+this.$props.city" > prev </a>
 </div>
 </template>
 
@@ -14,7 +15,9 @@
 
 
 export default {
- 
+  props: {
+   city: String
+ },
  data() {
    if(this.$route.query.page >= 2) {
    return this.currentPageNumber =  parseInt(this.$route.query.page)-1 // eslint-disable-line no-unused-vars
@@ -22,12 +25,9 @@ export default {
    } else  {
      return this.currentPageNumber = 1 // eslint-disable-line no-unused-vars
    }
- },
-  methods: {
+ }
 
-    
-  },
-  
+
 
 }
 

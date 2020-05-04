@@ -19,6 +19,13 @@ export default {
     // };
   },
 
+  getFiltered(search) {
+    return Api.get(`companiesFiltered/?city=${search}`, search);
+  },
+
+  getFilteredLimited(value, page) {
+    return Api.get(`companiesFilteredLimited/?city=${value}&page=${page}`, value, page);
+  },
 
   // },
 

@@ -2,6 +2,7 @@
 <div class="office-thumb">
     Biuro {{ name }} <br/>
     ID: {{ id }} <br/>
+    City: {{ city }} <br/>
     
      <router-link :to="'/office/' + office.id">więcej</router-link>
 </div>
@@ -21,6 +22,7 @@ export default {
     props: {
         office: Object,
         name: String,
+        city: String,
         id: Number
     }
     
