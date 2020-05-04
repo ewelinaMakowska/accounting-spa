@@ -1,7 +1,7 @@
 <template>
 <div class="button">
 <!-- <a :href="'/?page='+(this.currentPageNumber)" > prev </a>  -->
-<a :href="'/?page='+(this.currentPageNumber)+'&city='+this.$props.city" > prev </a>
+<a :href="'/search/?page='+(this.currentPageNumber)+'&city='+this.$props.city" > prev </a>
 </div>
 </template>
 

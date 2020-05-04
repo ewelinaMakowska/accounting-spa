@@ -1,6 +1,6 @@
 <template>
 <div class="button">
-<a :href="'/?page='+(this.currentPageNumber)+'&city='+this.$props.city" > next </a> <!-- buttony -->
+<a :href="'/search/?page='+(this.currentPageNumber)+'&city='+this.$props.city" > next </a> <!-- buttony -->
 </div>
 </template>
 

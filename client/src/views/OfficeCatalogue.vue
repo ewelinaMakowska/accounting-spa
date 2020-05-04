@@ -117,7 +117,7 @@ export default {
         }
 
     },
-    name: 'Home',
+    name: 'OfficeCatalogue',
     components: {
     OfficeThumb,
     Pagination,

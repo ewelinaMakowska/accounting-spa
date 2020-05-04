@@ -78,10 +78,15 @@ watch: {
       route.query = {
         city : this.search
       }
+      route.path = 'search'
+      
+   
     }
 
     console.log(value);
+    //this.route.query = route
     this.$router.push(route);
+    //this.$router.push(route);
   },
   '$route.query.city': {
     //immediate:true,

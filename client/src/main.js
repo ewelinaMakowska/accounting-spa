@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Home from '@/components/Home.vue'
 import VueRouter from 'vue-router'
+import Home from '@/views/Home.vue'
 import OfficePage from '@/views/OfficePage.vue' 
+import OfficeCatalogue from '@/views/OfficeCatalogue.vue' 
 import { store } from './store'
 import vuetify from './plugins/vuetify';
 
@@ -14,6 +15,12 @@ const routes = [
   {
     path: '/', 
     component: Home
+  },
+  {
+    path: '/search',
+    name: 'office-catalogue',
+  /*  props: castRouteParams, */
+    component: OfficeCatalogue
   },
   {
     path: '/office/:id',
