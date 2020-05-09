@@ -1,14 +1,31 @@
 <template>
-<div>
+<div class="search">
 
 <!-- <label for="search">Wyszukaj:</label><br> -->
-  <input type="search" id="search" placeholder="Miasto" v-model="search" /><br/>
-  <button v-if="search" @click="searchResults(search)">Wyszukaj</button>
-  <autocomplete></autocomplete>
+  <div class="search__input-wrapper">
+  <input class="search__input" type="search" id="search" placeholder="Miasto" v-model="search" />
+  <button class="search__button" v-if="search" @click="searchResults(search)">Wyszukaj</button>
+  </div>
+  <autocomplete v-if="search"></autocomplete>
 </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+
+.search {
+  div {
+    //position: relative;
+
+  }
+  
+  &__button,
+  &__input {
+    //position: absolute;
+    display: inline-block;
+  }
+
+
+}
 input {
     border: 1px solid #e0e0e0;
     padding: 5px 10px;
@@ -29,7 +46,8 @@ data() {
   
   return {
     search: '',
-    page: 1
+    page: 1,
+    writing: false
     
   }
 },
@@ -87,10 +105,13 @@ watch: {
     }
 
     if(this.search !== '') {
+
       route.query = {
+       
         city : this.search
       }
       route.path = 'search'
+
     } else {
       /*  route.query = {
         city : ""
