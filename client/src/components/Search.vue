@@ -74,13 +74,17 @@ watch: {
     const route = {
       path: 'city'
     }
+
     if(this.search !== '') {
       route.query = {
         city : this.search
       }
       route.path = 'search'
-      
-   
+    } else {
+      /*  route.query = {
+        city : ""
+      } */
+      route.path = 'search'
     }
 
     console.log(value);
