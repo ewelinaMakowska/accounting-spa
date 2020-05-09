@@ -4,6 +4,7 @@
 <!-- <label for="search">Wyszukaj:</label><br> -->
   <input type="search" id="search" placeholder="Miasto" v-model="search" /><br/>
   <button v-if="search" @click="searchResults(search)">Wyszukaj</button>
+  <autocomplete></autocomplete>
 </div>
 </template>
 
@@ -14,12 +15,21 @@ input {
 }
 </style>
 
+
 <script>
+
+import Autocomplete from '@/components/Autocomplete.vue';
+
 export default {
+  components: {
+    Autocomplete
+    }, //components
 data() {
+  
   return {
     search: '',
     page: 1
+    
   }
 },
 methods: {
