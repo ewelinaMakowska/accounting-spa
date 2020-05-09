@@ -3,10 +3,20 @@
 
 <!-- <label for="search">Wyszukaj:</label><br> -->
   <div class="search__input-wrapper">
-  <input class="search__input" type="search" id="search" placeholder="Miasto" v-model="search" />
-  <button class="search__button" v-if="search" @click="searchResults(search)">Wyszukaj</button>
+
+    <input 
+    autocomplete="off" 
+    class="search__input" 
+    type="search" 
+    id="search" 
+    placeholder="Miasto" 
+    v-model="search" />
+
+    <button class="search__button" @click="searchResults()">Wyszukaj</button>
   </div>
-  <autocomplete v-if="search"></autocomplete>
+
+  <autocomplete v-if="searching>0"></autocomplete>
+  
 </div>
 </template>
 
@@ -15,7 +25,8 @@
 .search {
   div {
     //position: relative;
-
+  //width: 60%;
+  //background:blue;
   }
   
   &__button,
@@ -39,6 +50,7 @@ input {
 import Autocomplete from '@/components/Autocomplete.vue';
 
 export default {
+
   components: {
     Autocomplete
     }, //components
@@ -46,12 +58,21 @@ data() {
   
   return {
     search: '',
+    searching: 0,
     page: 1,
-    writing: false
     
   }
 },
 methods: {
+
+  setSearching() {
+    //event.preventDefault(e);
+    this.searching = 1;  
+  },
+
+  setSearchingFalse() {
+    this.searching = 0; 
+  },
 
  async searchByCity(search) {
 
@@ -105,7 +126,7 @@ watch: {
     }
 
     if(this.search !== '') {
-
+      this.searching = 1;
       route.query = {
        
         city : this.search

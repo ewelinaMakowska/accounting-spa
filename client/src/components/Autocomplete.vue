@@ -1,11 +1,13 @@
 <template>
-  <div class="autocomplete">
-    <ul class="cities-list">
-      <li class="cities-list__item">Warszawa, mazowieckie</li>
-      <li class="cities-list__item">Kraków, małopolskie</li>
-      <li class="cities-list__item">Gdańsk, pomorskie</li>
-    </ul>
-  </div>
+ <!-- <div class="autocomplete__wrapper" > -->
+    <div class="autocomplete">
+      <ul class="cities-list">
+        <li class="cities-list__item">Warszawa, mazowieckie</li>
+        <li class="cities-list__item">Kraków, małopolskie</li>
+        <li class="cities-list__item">Gdańsk, pomorskie</li>
+      </ul>
+    </div>
+ <!--  </div> -->
 </template>
 
 
@@ -13,6 +15,10 @@
 
 
 export default {
+    /*  props: {
+      searching: Number
+    } */
+
   
 }
 </script>
@@ -26,6 +32,11 @@ export default {
   border-left: 1px solid grey;
   border-right: 1px solid grey;
   border-bottom: 1px solid grey;
+
+  &__wrapper {
+    height: 100vh;
+    width: 100vw;
+  }
 }
 
 .cities-list {

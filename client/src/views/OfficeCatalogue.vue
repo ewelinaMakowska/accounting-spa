@@ -2,7 +2,7 @@
 <template>
 
 
-<v-container class="main-container">
+<v-container class="main-container" id="main-container" >
     <v-row>
         <v-col lg="12">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -77,7 +77,7 @@ import Search from '@/components/Search.vue';
 export default {
     data() {
        
-        let pages = [];
+       // let pages = [];
        // let counter = this.pageCount();
       //const howManyPages = this.pageCount;
       
@@ -85,9 +85,11 @@ export default {
     //     pages.push(counter);
     //     counter--;
     //   }
-      pages = [ 1,2,3 ]
+     // pages = [ 1,2,3 ]
 
-      console.log(pages);
+    
+
+      //console.log(pages);
 
 
     //  let page = this.$route.query.page || 1; //eslint-disable-line no-unused-vars
@@ -99,7 +101,8 @@ export default {
            // buttonNumber: 1,
             //pageCountValue: this.pageCount,
             pages : this.pages,
-            city: 'Warszawa' //this.$route.query.city
+            city: 'Warszawa', //this.$route.query.city
+            value: 0
         }
     },    
     computed: {
