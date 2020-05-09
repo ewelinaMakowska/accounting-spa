@@ -15,7 +15,7 @@
     <button class="search__button" @click="searchResults()">Wyszukaj</button>
   </div>
 
-  <autocomplete v-if="searching>0"></autocomplete>
+  <autocomplete v-show="searching>0"></autocomplete>
   
 </div>
 </template>
@@ -29,7 +29,11 @@
   //background:blue;
   }
   
-  &__button,
+  &__button {
+    display: inline-block;
+    margin-left: 10px;
+  }
+
   &__input {
     //position: absolute;
     display: inline-block;
