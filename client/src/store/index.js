@@ -75,7 +75,7 @@ export const store = new Vuex.Store({
     },
 
     loadCitiesMutation: (state, data) => {
-      state.cities = data;
+      state.cities.citiesList = data.rows;
       //state.allCitiesCount = data.length;
     }
 
@@ -89,7 +89,7 @@ export const store = new Vuex.Store({
 
     async loadCities ({ commit })  {
       const result = await CitiesService.getAllCities();
-      commit('loadCities', result.data);
+      commit('loadCitiesMutation', result.data);
       console.log('action loadCities executed succesfully');   
     },
 

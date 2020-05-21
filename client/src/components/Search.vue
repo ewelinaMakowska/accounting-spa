@@ -32,6 +32,8 @@
      <div class="outside" @click="setSearchingFalse()"></div>
   </div> <!--div autocomplete -->
   </div> <!--div v-shwo -->
+       <button @click="getCities()" >Get Cities</button>
+
 </div> <!--search-->
 </template>
 
@@ -143,6 +145,14 @@ methods: {
 
   setSearchingFalse() {
     this.searching = 0; 
+  },
+
+  async getCities() {
+     await this.$store.dispatch('loadCities')
+    .catch(function (error) {
+          console.log(error);
+      })
+    console.log(this.$store.getters.state.cities.citiesList)
   },
 
 
