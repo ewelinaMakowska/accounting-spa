@@ -1,12 +1,16 @@
 <template>
  <!-- <div class="autocomplete__wrapper" > -->
+   <div>
     <div class="autocomplete">
       <ul class="cities-list">
         <li class="cities-list__item">Warszawa, mazowieckie</li>
         <li class="cities-list__item">Kraków, małopolskie</li>
         <li class="cities-list__item">Gdańsk, pomorskie</li>
       </ul>
+     
     </div>
+     <div class="outside"></div>
+     </div>
  <!--  </div> -->
 </template>
 
@@ -25,6 +29,16 @@ export default {
 
 <style lang="scss" scoped>
 
+.outside {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -9;
+}
+
 .autocomplete {
   height: auto;
   background: #ffffff;
@@ -41,6 +55,8 @@ export default {
 
 .cities-list {
   list-style: none;
+  z-index: 5;
+
   &__item {
     padding: 10px;
     transition: 0.3s;

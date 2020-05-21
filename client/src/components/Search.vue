@@ -2,7 +2,7 @@
 <div class="search">
 
 <!-- <label for="search">Wyszukaj:</label><br> -->
-  <div class="search__input-wrapper">
+  <div class="search__input-wrapper" style="z-index:5">
 
     <input 
     autocomplete="off" 
@@ -10,7 +10,8 @@
     type="search" 
     id="search" 
     placeholder="Miasto" 
-    v-model="search" />
+    v-model="search"
+    style="background:white" />
 
     <button class="search__button" @click="searchResults()">Wyszukaj</button>
   </div>
