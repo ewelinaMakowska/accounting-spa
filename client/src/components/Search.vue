@@ -15,6 +15,8 @@
     <button class="search__button" @click="searchResults()">Wyszukaj</button>
   </div>
 
+  <!-- https://stackoverflow.com/questions/55306489/is-there-a-way-to-close-a-vue-component-by-clicking-outside-of-it -->
+
   <autocomplete v-show="searching>0"></autocomplete>
   
 </div>
@@ -78,6 +80,7 @@ methods: {
     this.searching = 0; 
   },
 
+
  async searchByCity(search) {
 
  /*   try {
@@ -111,8 +114,7 @@ methods: {
     //const page = this.currentPageNumber;
 
 
-    const searchParameters = {city: search, page: 1}
-
+    const searchParameters = {city: this.$route.query.city, page: '1'}
     console.log(`search page: ${this.searchParameters}`)
 
     await this.$store.dispatch('loadSearchResultsLimited', searchParameters)
