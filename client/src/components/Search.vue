@@ -11,7 +11,7 @@
     id="search" 
     placeholder="Miasto" 
     v-model="search"
-    style="background:white" />
+    style="width:220px" />
 
     <button class="search__button" @click="searchResults()">Wyszukaj</button>
   </div>
@@ -22,16 +22,17 @@
 <div v-show="this.searching">
 
   <div class="autocomplete">
-      <ul class="cities-list" style="z-index:1">
+      <ul class="cities-list">
         <li class="cities-list__item">Warszawa, mazowieckie</li>
         <li class="cities-list__item">Kraków, małopolskie</li>
         <li class="cities-list__item">Gdańsk, pomorskie</li>
       </ul>
      
     
-     <div class="outside" style="z-index: -1" @click="setSearchingFalse()"></div>
-  </div></div>
-</div>
+     <div class="outside" @click="setSearchingFalse()"></div>
+  </div> <!--div autocomplete -->
+  </div> <!--div v-shwo -->
+</div> <!--search-->
 </template>
 
 <style lang="scss" scoped>
@@ -79,7 +80,7 @@ input {
 .autocomplete {
   height: auto;
   background: #ffffff;
-  width: 60%;
+  width: 220px;
   border-left: 1px solid grey;
   border-right: 1px solid grey;
   border-bottom: 1px solid grey;
@@ -91,8 +92,15 @@ input {
 }
 
 .cities-list {
-  list-style: none;
-  z-index: 5;
+    list-style: none;
+    z-index: 1;
+    width: 220px;
+    display: block;
+    position: absolute;
+    background: white;
+    border-bottom: 1px solid grey;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
 
   &__item {
     padding: 10px;
