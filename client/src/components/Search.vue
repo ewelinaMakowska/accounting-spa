@@ -135,14 +135,17 @@ watch: {
       this.searching = 1;
       route.query = {
        
-        city : this.search
+        city : this.search,
+        page: '1'
       }
       route.path = 'search'
+     
 
     } else {
-      /*  route.query = {
-        city : ""
-      } */
+       route.query = {
+        city : "",
+        page: '1'
+      } 
       route.path = 'search'
     }
 
