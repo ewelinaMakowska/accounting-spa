@@ -20,16 +20,17 @@
 
  <!-- <autocomplete v-show="searching>0"></autocomplete> -->
 <div v-show="this.searching">
+
   <div class="autocomplete">
-      <ul class="cities-list">
+      <ul class="cities-list" style="z-index:1">
         <li class="cities-list__item">Warszawa, mazowieckie</li>
         <li class="cities-list__item">Kraków, małopolskie</li>
         <li class="cities-list__item">Gdańsk, pomorskie</li>
       </ul>
      
-    </div>
-     <div class="outside" @click="setSearchingFalse()"></div>
-</div>
+    
+     <div class="outside" style="z-index: -1" @click="setSearchingFalse()"></div>
+  </div></div>
 </div>
 </template>
 
