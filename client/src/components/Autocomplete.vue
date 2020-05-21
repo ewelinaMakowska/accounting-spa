@@ -9,7 +9,7 @@
       </ul>
      
     </div>
-     <div class="outside"></div>
+     <div class="outside" @click="hideAutocomplete()"></div>
      </div>
  <!--  </div> -->
 </template>
@@ -22,6 +22,7 @@ export default {
     /*  props: {
       searching: Number
     } */
+   
 
   
 }
@@ -29,6 +30,9 @@ export default {
 
 <style lang="scss" scoped>
 
+.hidden {
+  display: none;
+}
 .outside {
   width: 100vw;
   height: 100vh;

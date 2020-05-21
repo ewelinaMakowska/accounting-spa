@@ -18,8 +18,18 @@
 
   <!-- https://stackoverflow.com/questions/55306489/is-there-a-way-to-close-a-vue-component-by-clicking-outside-of-it -->
 
-  <autocomplete v-show="searching>0"></autocomplete>
-  
+ <!-- <autocomplete v-show="searching>0"></autocomplete> -->
+<div v-show="this.searching">
+  <div class="autocomplete">
+      <ul class="cities-list">
+        <li class="cities-list__item">Warszawa, mazowieckie</li>
+        <li class="cities-list__item">Kraków, małopolskie</li>
+        <li class="cities-list__item">Gdańsk, pomorskie</li>
+      </ul>
+     
+    </div>
+     <div class="outside" @click="setSearchingFalse()"></div>
+</div>
 </div>
 </template>
 
@@ -49,18 +59,63 @@ input {
     padding: 5px 10px;
     width: 60%;
 }
+
+
+
+.hidden {
+  display: none;
+}
+.outside {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 0;
+  cursor: pointer;
+}
+
+.autocomplete {
+  height: auto;
+  background: #ffffff;
+  width: 60%;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  border-bottom: 1px solid grey;
+
+  &__wrapper {
+    height: 100vh;
+    width: 100vw;
+  }
+}
+
+.cities-list {
+  list-style: none;
+  z-index: 5;
+
+  &__item {
+    padding: 10px;
+    transition: 0.3s;
+
+    &:hover {
+      background: lightblue;
+      cursor: pointer;
+    }
+  }
+}
+
 </style>
 
 
 <script>
 
-import Autocomplete from '@/components/Autocomplete.vue';
+//import Autocomplete from '@/components/Autocomplete.vue';
 
 export default {
 
-  components: {
+/*   components: {
     Autocomplete
-    }, //components
+    }, //components */
 data() {
   
   return {
@@ -80,6 +135,9 @@ methods: {
   setSearchingFalse() {
     this.searching = 0; 
   },
+
+
+    
 
 
  async searchByCity(search) {
