@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import CompaniesService from '@/services/CompaniesService.js' // eslint-disable-line no-unused-vars
+import CitiesService from '@/services/CitiesService.js'
 
 Vue.use(Vuex)
 
@@ -30,6 +31,10 @@ export const store = new Vuex.Store({
     user: {
       id: '624',
       favouriteOffices: ['2', '3']
+    },
+    cities: {
+      count: null,
+      citiesList: null
     }
   },
 
@@ -67,6 +72,11 @@ export const store = new Vuex.Store({
       state.loadedOffices = data;
       //state.count = data.length;
       state.allCompaniesCount = data.length;
+    },
+
+    loadCitiesMutation: (state, data) => {
+      state.cities = data;
+      //state.allCitiesCount = data.length;
     }
 
   },
@@ -75,6 +85,12 @@ export const store = new Vuex.Store({
       const result = await CompaniesService.getAllCompanies();
       commit('loadCompanies', result.data);
       console.log('action loadCompanies executed succesfully');   
+    },
+
+    async loadCities ({ commit })  {
+      const result = await CitiesService.getAllCities();
+      commit('loadCities', result.data);
+      console.log('action loadCities executed succesfully');   
     },
 
     async loadOnePageData ({ commit }, page)  {
@@ -123,6 +139,10 @@ async loadCompany ({ commit }, id)  {
     loadedOffices (state) {
       return state.loadedOffices;
     }, //loadoffices
+
+    loadedCities (state) {
+      return state.cities.citiesList;
+    },
 
 
 

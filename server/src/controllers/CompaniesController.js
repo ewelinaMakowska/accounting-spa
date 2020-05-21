@@ -1,4 +1,4 @@
-const { Company } = require('../models')
+const { Company } = require('../models/')
 const ITEMS_PER_PAGE = 4;
 const { Op } = require('sequelize');
 
@@ -19,6 +19,8 @@ module.exports = {
       });
     }
   },
+
+
 
   // async countAll (req, res) {
   //   try {

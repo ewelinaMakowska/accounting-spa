@@ -25,6 +25,8 @@ sequelize
   })
 
   db['Company'] = sequelize.import('./Company.js')
+  db['City'] = sequelize.import('./City.js')
+
   
   db.sequelize = sequelize
   db.Sequelize = Sequelize
