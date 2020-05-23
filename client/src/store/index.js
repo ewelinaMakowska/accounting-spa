@@ -93,6 +93,12 @@ export const store = new Vuex.Store({
       console.log('action loadCities executed succesfully');   
     },
 
+    async loadCitiesFilteredLimited ({ commit }, value)  {
+      const result = await CitiesService.getFilteredLimited(value);
+      commit('loadCitiesMutation', result.data);
+      console.log('action loadCitiesFilteredLimited executed succesfully');   
+    },
+
     async loadOnePageData ({ commit }, page)  {
       const result = await CompaniesService.getLimited(page);
       console.log(result)

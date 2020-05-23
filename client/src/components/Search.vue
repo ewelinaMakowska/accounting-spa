@@ -12,7 +12,7 @@
     placeholder="Miasto" 
     v-model="search"
     style="width:220px"
-    v-on:keyup="loadCities()"
+    v-on:keyup="loadCitiesFilteredLimited()"
     @click="setSearching()" />
 
     <button class="search__button" @click="searchResults()">Wyszukaj</button>
@@ -166,6 +166,23 @@ methods: {
           console.log(error);
       })
     console.log(this.$store.getters.state.cities.citiesList)
+  },
+  
+
+
+  async loadCitiesFilteredLimited() {
+
+    const name = this.$route.query.city;
+   // const name ='W';
+    console.log(`name: ${name}`)
+
+    await this.$store.dispatch('loadCitiesFilteredLimited', name)
+    .catch(function (error) {
+          console.log(error);
+      })
+    //console.log(this.$store.getters.state)
+
+
   },
 
  async searchByCity(search) {
