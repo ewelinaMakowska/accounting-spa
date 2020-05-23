@@ -29,14 +29,20 @@
 
      <!--  {{ this.$store.getters.state.cities.citiesList }} -->
 
-     <li v-for="(city, id) in cities" :key='id' class="cities-list__item">{{ city.name }}, {{ city.region }}</li>
+     <!-- <li v-for="(city, id) in cities" :key='id' class="cities-list__item">{{ city.name }}, {{ city.region }}</li> -->
+
+      <li v-for="(city, id) in cities" :key='id' >
+        <button class="cities-list__item autocomplete_button" @click="autcompleteInput($event)" >
+          {{ city.name }}, {{ city.region }}
+        </button>
+      </li>
       </ul>
      
     
      <div class="outside" @click="setSearchingFalse()"></div>
   </div> <!--div autocomplete -->
   </div> <!--div v-shwo -->
-       <button @click="loadCities()" >Get Cities</button>
+      <!-- <button @click="loadCities()" >Get Cities</button> -->
 
 </div> <!--search-->
 </template>
@@ -166,6 +172,13 @@ methods: {
           console.log(error);
       })
     console.log(this.$store.getters.state.cities.citiesList)
+  },
+
+  autcompleteInput($event) {
+    const text = $event.target.innerText;
+    const searchInput = document.getElementById('search');
+
+    searchInput.value = text;
   },
   
 
