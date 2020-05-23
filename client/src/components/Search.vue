@@ -12,7 +12,8 @@
     placeholder="Miasto" 
     v-model="search"
     style="width:220px"
-    v-on:keyup="loadCities()" />
+    v-on:keyup="loadCities()"
+    @click="setSearching()" />
 
     <button class="search__button" @click="searchResults()">Wyszukaj</button>
   </div>
