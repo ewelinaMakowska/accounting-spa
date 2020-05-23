@@ -37,7 +37,7 @@
      <!-- <li v-for="(city, id) in cities" :key='id' class="cities-list__item">{{ city.name }}, {{ city.region }}</li> -->
 
       <li v-for="(city, id) in cities" :key='id' >
-        <button class="cities-list__item autocomplete_button" @click="autcompleteInput($event)" >
+        <button class="cities-list__item autocomplete_button" @click="autocompleteInput($event)" >
           {{ city.name }}, {{ city.region }}
         </button>
       </li>
@@ -123,6 +123,7 @@ input {
   &__item {
     padding: 10px;
     transition: 0.3s;
+    width: 100%;
 
     &:hover {
       background: lightblue;
@@ -182,7 +183,7 @@ methods: {
     console.log(this.$store.getters.state.cities.citiesList)
   },
 
-  autcompleteInput($event) {
+  autocompleteInput($event) {
     const text = $event.target.innerText;
     const searchInput = document.getElementById('search');
 
