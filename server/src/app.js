@@ -28,6 +28,7 @@ app.get('/company/:id', CompaniesController.getOne)
 //app.get('/companies/:id', (req, res) => CompaniesController.getOne)
 //app.get('/companies/:id', CompaniesController.getOne)
 app.get('/cities', CitiesController.getCities)
+app.get('/citiesFilteredLimited', CitiesController.getCitiesFilteredLimited)
 
 sequelize.sync()
 .then(() => {
