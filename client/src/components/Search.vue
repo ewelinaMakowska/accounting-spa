@@ -36,6 +36,7 @@
           {{ city.name }}, {{ city.region }}
         </button>
       </li>
+      
       </ul>
      
     
@@ -157,13 +158,15 @@ computed: {
   },
 methods: {
 
-  setSearching() {
-    //event.preventDefault(e);
-    this.searching = 1;  
+  setSearching() {   //event.preventDefault(e);
+   // this.searching = 1;  
+    document.getElementsByClassName('autocomplete')[0].classList.remove('hidden');
   },
 
   setSearchingFalse() {
-    this.searching = 0; 
+   // this.searching = 0; 
+   document.getElementsByClassName('autocomplete')[0].classList.add('hidden');
+  
   },
 
   async loadCities() {
@@ -179,6 +182,11 @@ methods: {
     const searchInput = document.getElementById('search');
 
     searchInput.value = text;
+    //document.getElementsByClassName('outside')[0].classList.add('hidden');
+    //this.setSearchingFalse();
+   document.getElementsByClassName('autocomplete')[0].classList.add('hidden')
+
+  
   },
   
 
@@ -275,3 +283,8 @@ watch: {
     
 }
 </script>
+
+<style>
+.hidden {display: none;}
+.show {display: block;}
+</style>
