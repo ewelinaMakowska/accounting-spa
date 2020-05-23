@@ -11,28 +11,31 @@
     id="search" 
     placeholder="Miasto" 
     v-model="search"
-    style="width:220px" />
+    style="width:220px"
+    v-on:keyup="loadCities()" />
 
     <button class="search__button" @click="searchResults()">Wyszukaj</button>
   </div>
 
-  <!-- https://stackoverflow.com/questions/55306489/is-there-a-way-to-close-a-vue-component-by-clicking-outside-of-it -->
-
  <!-- <autocomplete v-show="searching>0"></autocomplete> -->
-<div v-show="this.searching">
+<div v-show="(this.searching && this.search !=='')">
 
   <div class="autocomplete">
       <ul class="cities-list">
-        <li class="cities-list__item">Warszawa, mazowieckie</li>
+       <!--  <li class="cities-list__item">Warszawa, mazowieckie</li>
         <li class="cities-list__item">Kraków, małopolskie</li>
-        <li class="cities-list__item">Gdańsk, pomorskie</li>
+        <li class="cities-list__item">Gdańsk, pomorskie</li> -->
+
+     <!--  {{ this.$store.getters.state.cities.citiesList }} -->
+
+     <li v-for="(city, id) in cities" :key='id' class="cities-list__item">{{ city.name }}, {{ city.region }}</li>
       </ul>
      
     
      <div class="outside" @click="setSearchingFalse()"></div>
   </div> <!--div autocomplete -->
   </div> <!--div v-shwo -->
-       <button @click="getCities()" >Get Cities</button>
+       <button @click="loadCities()" >Get Cities</button>
 
 </div> <!--search-->
 </template>
@@ -136,6 +139,15 @@ data() {
     
   }
 },
+computed: {
+    currentPageNumber() {
+      //return this.$router.query.page;
+      return 1;
+    },
+     cities () {
+      return this.$store.getters.loadedCities;
+      }    
+  },
 methods: {
 
   setSearching() {
@@ -147,17 +159,13 @@ methods: {
     this.searching = 0; 
   },
 
-  async getCities() {
+  async loadCities() {
      await this.$store.dispatch('loadCities')
     .catch(function (error) {
           console.log(error);
       })
     console.log(this.$store.getters.state.cities.citiesList)
   },
-
-
-    
-
 
  async searchByCity(search) {
 
@@ -179,12 +187,6 @@ methods: {
     
   },
 
-  computed: {
-    currentPageNumber() {
-      //return this.$router.query.page;
-      return 1;
-    }
-  },
    async searchResults(search) {
     //  const page = this.$router.page;
     console.log(`search: ${search}`)
