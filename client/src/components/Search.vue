@@ -188,10 +188,17 @@ methods: {
     const searchInput = document.getElementById('search');
 
     searchInput.value = text;
+
+    const city = text.split(',')[0];
+   // const region = text.split(',')[2]
+
+       this.search = city;
+
     //document.getElementsByClassName('outside')[0].classList.add('hidden');
     //this.setSearchingFalse();
    document.getElementsByClassName('autocomplete')[0].classList.add('hidden')
-
+   //this.$route.query.city = text;
+  this.searchResults();
   
   },
   
