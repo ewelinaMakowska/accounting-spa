@@ -183,7 +183,7 @@ methods: {
     console.log(this.$store.getters.state.cities.citiesList)
   },
 
-  autocompleteInput($event) {
+  async autocompleteInput($event) {
     const text = $event.target.innerText;
     const searchInput = document.getElementById('search');
 
@@ -193,12 +193,12 @@ methods: {
    // const region = text.split(',')[2]
 
        this.search = city;
-
+await this.searchResults(); 
     //document.getElementsByClassName('outside')[0].classList.add('hidden');
     //this.setSearchingFalse();
    document.getElementsByClassName('autocomplete')[0].classList.add('hidden')
    //this.$route.query.city = text;
-  this.searchResults();
+  
   
   },
   
@@ -246,7 +246,8 @@ methods: {
     //const page = this.currentPageNumber;
 
 
-    const searchParameters = {city: this.$route.query.city, page: '1'}
+   // const searchParameters = {city: this.$route.query.city, page: '1'}
+   const searchParameters = {city: this.search, page: '1'}
     console.log(`search page: ${this.searchParameters}`)
 
     await this.$store.dispatch('loadSearchResultsLimited', searchParameters)
