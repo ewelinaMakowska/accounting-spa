@@ -3,9 +3,9 @@
    <div>
     <div class="autocomplete">
       <ul class="cities-list">
-        <li class="cities-list__item">Warszawa, mazowieckie</li>
+      <!--   <li class="cities-list__item">Warszawa, mazowieckie</li>
         <li class="cities-list__item">Kraków, małopolskie</li>
-        <li class="cities-list__item">Gdańsk, pomorskie</li>
+        <li class="cities-list__item">Gdańsk, pomorskie</li> -->
       </ul>
      
     </div>

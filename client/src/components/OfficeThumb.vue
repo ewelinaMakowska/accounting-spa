@@ -2,7 +2,8 @@
 <div class="office-thumb">
     Biuro {{ name }} <br/>
     ID: {{ id }} <br/>
-    City: {{ city }} <br/>
+    Miasto: {{ city }} <br/>
+    Cena: {{ price }} <br/>
     
      <router-link :to="'/office/' + office.id">więcej</router-link>
 </div>
@@ -10,10 +11,10 @@
 
 <style scoped>
 .office-thumb {
-background: gray;
-height: 300px;
-width: 250px;
-margin: 15px;
+    background: gray;
+    height: 300px;
+    width: 250px;
+    margin: 15px;
 }
 </style>
 
@@ -23,7 +24,8 @@ export default {
         office: Object,
         name: String,
         city: String,
-        id: Number
+        id: Number,
+        price: Number
     }
     
 }
