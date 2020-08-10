@@ -105,6 +105,7 @@ module.exports = {
 
         const companies = await Company.findAndCountAll({
           offset: (page-1) * ITEMS_PER_PAGE,
+          order: [['price','asc']],
           limit: ITEMS_PER_PAGE,
           where: {[Op.or]: [{city: {[Op.like]: `%${value}%`}}] //op or
           }
