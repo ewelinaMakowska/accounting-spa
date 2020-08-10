@@ -2,10 +2,12 @@
 <div class="pagination">
    <!-- <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
                       </office-thumb> -->
-  <previous-button :city="$props.city"></previous-button>
+
+  <previous-button :city="$props.city" v-if="this.$route.query.page>1"></previous-button> <!-- renderowany gdy parametr większy 1 -->
   <pagination-button   v-for="(counter) in howManyPages" :key="counter" :pageNumber="counter" :city="$props.city" > {{ counter }} </pagination-button> 
   <!-- <next-button :howManyPages="this.$props.howManyPages"></next-button>  -->
-   <next-button v-if="this.$props.howManyPages>0" :howManyPages="this.$props.howManyPages" :city="$props.city"></next-button>  
+   <next-button v-if="this.$props.howManyPages>0 && this.$route.query.page<howManyPages" :howManyPages="this.$props.howManyPages" :city="$props.city"></next-button>  
+   <!-- renderowany gdy parametr mniejszy niż max -->
 
 </div>
 </template> -->
