@@ -10,15 +10,15 @@
   <div class="search__input-wrapper" style="z-index:5; margin-top: -31px; background: white; position:absolute;">
 
     <input 
-    autocomplete="off" 
-    class="search__input" 
-    type="search" 
-    id="search" 
-    placeholder="Miasto" 
-    v-model="search"
-    style="width:220px"
-    v-on:keyup="loadCitiesFilteredLimited()"
-    @click="setSearching()" />
+      autocomplete="off" 
+      class="search__input" 
+      type="search" 
+      id="search" 
+      placeholder="Miasto" 
+      v-model="search"
+      style="width:220px"
+      v-on:keyup="loadCitiesFilteredLimited()"
+      @click="setSearching()" />
 
   <!--  <button class="search__button" @click="searchResults()">Wyszukaj</button> -->
   </div>
@@ -49,8 +49,9 @@
   </div> <!--div autocomplete -->
   </div> <!--div v-shwo -->
       <!-- <button @click="loadCities()" >Get Cities</button> -->
-
+<!-- sortowanie -->
 </div> <!--search-->
+
 </template>
 
 <style lang="scss" scoped>

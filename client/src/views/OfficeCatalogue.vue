@@ -12,26 +12,28 @@
 
     <v-row>
         <v-col lg="12">
+
          
 
             <v-row>
                  <v-col lg="4">
                      <search></search>
+                     <filters></filters>
                       </v-col>
 
                       <v-col lg="8">
 
-                       
-                     <div class="flex-thumbs-container">
-
-                      <!-- <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
-                      </office-thumb> -->
-
-                      <office-thumb :name="office.name" :id="office.id " :city="office.city" v-for="(office, id) in offices" :key="id" :office="office" :price="office.price" >
-                      </office-thumb>
-
                         
-                     </div> <!--flex-container-->
+                        <div class="flex-thumbs-container">
+
+                        <!-- <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
+                        </office-thumb> -->
+
+                        <office-thumb :name="office.name" :id="office.id " :city="office.city" v-for="(office, id) in offices" :key="id" :office="office" :price="office.price" >
+                        </office-thumb>
+
+                            
+                        </div> <!--flex-container-->
 
                     
                       <pagination :howManyPages="pageCount" :currentPageNumber="currentPageNumber" :city="this.$route.query.city"/> 
@@ -73,6 +75,8 @@ import OfficeThumb from '@/components/OfficeThumb.vue';
 import Pagination from '@/components/Pagination.vue';  // eslint-disable-line no-unused-vars
 //import CompaniesService from '@/services/CompaniesService.js' 
 import Search from '@/components/Search.vue'; 
+import Filters from '@/components/Filters.vue';
+
 
 export default {
     data() {
@@ -124,7 +128,8 @@ export default {
     components: {
     OfficeThumb,
     Pagination,
-    Search
+    Search,
+    Filters
     }, //components
     methods: {
         loadPage(page) {
