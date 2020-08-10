@@ -33,6 +33,14 @@ export default {
 
     sortPriceAscending() {
       console.log('sort asc!');
+      let currentUrl = window.location.href;
+      console.log(currentUrl);
+      let updatedUrl = currentUrl + '&sort=price_asc';
+      window.location.href = updatedUrl;
+      //dodaje &sort=price_asc
+      //przy paginacji zachować parametry
+      //endopint z sortby
+ 
     }
   }
 }

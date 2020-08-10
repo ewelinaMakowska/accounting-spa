@@ -25,8 +25,9 @@ export const store = new Vuex.Store({
 
   state: {
     loadedOffices: [
-    ],
-    allCompaniesCount: 0,
+    ], //simple offices on page
+    allCompaniesCount: 0, //number of companies by city
+    companiesByCity: [],
     count: 0,
     user: {
       id: '624',

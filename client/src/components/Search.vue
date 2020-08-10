@@ -193,12 +193,12 @@ methods: {
     const city = text.split(',')[0];
    // const region = text.split(',')[2]
 
-       this.search = city;
-await this.searchResults(); 
+    this.search = city;
+    await this.searchResults(); 
     //document.getElementsByClassName('outside')[0].classList.add('hidden');
     //this.setSearchingFalse();
-   document.getElementsByClassName('autocomplete')[0].classList.add('hidden')
-   //this.$route.query.city = text;
+    document.getElementsByClassName('autocomplete')[0].classList.add('hidden')
+    //this.$route.query.city = text;
   
   
   },
