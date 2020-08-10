@@ -1,6 +1,12 @@
 <template>
 <div class="button">
-<a :href="'/search/?page='+(this.currentPageNumber)+'&city='+this.$props.city" > next </a> <!-- buttony -->
+
+<!-- <a :href="'/search/?page='+(this.currentPageNumber)+'&city='+this.$props.city" > next </a> -->
+
+<a :href="'/search?city='+this.$props.city+'&page='+(this.currentPageNumber)" > next </a>
+<!-- 
+<a :href="'/search?city='+this.$props.city+'&page='+pageNumber"> <slot>button</slot></a> -->
+
 </div>
 </template>
 
