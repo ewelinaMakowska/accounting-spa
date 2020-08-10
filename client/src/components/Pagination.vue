@@ -10,7 +10,7 @@
    <!-- renderowany gdy parametr mniejszy niż max -->
 
 </div>
-</template> -->
+</template> 
 
 <style scoped>
 .pagination {
