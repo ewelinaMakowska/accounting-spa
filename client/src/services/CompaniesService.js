@@ -23,8 +23,8 @@ export default {
     return Api.get(`companiesFiltered/?city=${search}`, search);
   },
 
-  getFilteredLimited(value, page) {
-    return Api.get(`companiesFilteredLimited/?city=${value}&page=${page}`, value, page);
+  getFilteredLimited(value, page, sort) {
+    return Api.get(`companiesFilteredLimited/?city=${value}&page=${page}&sort=${sort}`, value, page, sort);
   },
 
   // },

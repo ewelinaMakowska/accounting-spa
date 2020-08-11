@@ -188,17 +188,21 @@ async created () {
       const value = {
         
         page: null,
-        city: null
+        city: null,
+        sort: null
     }
 
     if (this.$route.query.page) {  value.page = this.$route.query.page } else { value.page = 1 }
     if (this.$route.query.city) { value.city = this.$route.query.city } else { value.city = '' }
+    if (this.$route.query.sort) { value.sort = this.$route.query.sort } else { value.city = '' }
+
 
   
 
 
     console.log(value.page)
     console.log(value.city)
+    console.log(value.sort)
 
        try {
     // await this.loadCompanies;

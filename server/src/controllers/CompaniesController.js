@@ -97,13 +97,26 @@ module.exports = {
 
 
      async getFilteredLimited(req, res, next) {
+       console.log(req.query);
       try {
        const page = req.query.page;
        const value = req.query.city;
        const sort = req.query.sort;
-       let order = [['price', 'asc']];
+       let order;
+       let companies;
+
+        //sort = 'price_asc'
+
+       if(sort == null) {
+        order = [['id', 'asc']]
+       } else if(sort == 'price_asc') {
+        order = [['price', 'asc']];
+       } else if(sort == 'price_desc') {
+        order = [['price', 'desc']];
+       }
        
-        const companies = await Company.findAndCountAll({
+       
+        companies = await Company.findAndCountAll({
           offset: (page-1) * ITEMS_PER_PAGE,
           //order: [['price','asc']],
           order: order,
