@@ -99,13 +99,14 @@ module.exports = {
      async getFilteredLimited(req, res, next) {
       try {
        const page = req.query.page;
-        const value = req.query.city;
-
-       /*   console.log(`Przekazane wartość do kontrolera: ${value}, ${city}`); */
-
+       const value = req.query.city;
+       const sort = req.query.sort;
+       let order = [['price', 'asc']];
+       
         const companies = await Company.findAndCountAll({
           offset: (page-1) * ITEMS_PER_PAGE,
-          order: [['price','asc']],
+          //order: [['price','asc']],
+          order: order,
           limit: ITEMS_PER_PAGE,
           where: {[Op.or]: [{city: {[Op.like]: `%${value}%`}}] //op or
           }
