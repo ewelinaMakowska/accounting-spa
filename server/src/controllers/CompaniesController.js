@@ -99,17 +99,36 @@ module.exports = {
      async getFilteredLimited(req, res, next) {
       try {
        const page = req.query.page;
-        const value = req.query.city;
+       const value = req.query.city;
+       const sort = req.query.sort;
+       let order = "[['id','asc']]";
+
+       if(sort == 'price_asc') {
+         order = "[['price','asc']]";
+       } else if(sort == 'price_desc') {
+        order = "[['price','desc']]";
+       }
+       
 
        /*   console.log(`Przekazane wartość do kontrolera: ${value}, ${city}`); */
+      
+          companies = await Company.findAndCountAll({
+            offset: (page-1) * ITEMS_PER_PAGE,
+            [order]: 'order',
+            limit: ITEMS_PER_PAGE,
+            where: {[Op.or]: [{city: {[Op.like]: `%${value}%`}}] //op or
+          }
+        }) 
 
-        const companies = await Company.findAndCountAll({
+
+
+      /*   companies = await Company.findAndCountAll({
           offset: (page-1) * ITEMS_PER_PAGE,
           order: [['price','asc']],
           limit: ITEMS_PER_PAGE,
           where: {[Op.or]: [{city: {[Op.like]: `%${value}%`}}] //op or
-          }
-        })
+        }
+      })  */
           
         res.send(companies);
      
