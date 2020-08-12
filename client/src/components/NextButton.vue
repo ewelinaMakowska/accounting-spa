@@ -3,7 +3,7 @@
 
 <!-- <a :href="'/search/?page='+(this.currentPageNumber)+'&city='+this.$props.city" > next </a> -->
 
-<a :href="'/search?city='+this.$props.city+'&page='+(this.currentPageNumber)" > next </a>
+<a :href="'/search?city='+this.$props.city+'&sort='+this.$route.query.sort+'&page='+(this.currentPageNumber)" > next </a>
 <!-- 
 <a :href="'/search?city='+this.$props.city+'&page='+pageNumber"> <slot>button</slot></a> -->
 
