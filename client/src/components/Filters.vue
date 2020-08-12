@@ -5,7 +5,7 @@
       <li >Cena
         <ul class="price__options">
           <li><button @click="sortPriceAscending()">Najtańsze</button></li>
-          <li>Najdroższe</li>
+          <li><button @click="sortPriceDescending()">Najdroższe</button></li>
         </ul>
       </li> <!-- price -->
       <li>Nazwa
@@ -38,9 +38,17 @@ export default {
       console.log(currentParams);
       console.log(window.location.href);
 
-     /*  if(!this.$route.query.sort) {}      
-      } */
       this.$router.push({path: this.$route.path, query: {city: this.$route.query.city, sort: 'price_asc', page: '1', }})
+      window.location.reload();
+    },
+    sortPriceDescending() {
+      console.log('sort desc!');
+
+      let currentParams = this.$route.query;
+      console.log(currentParams);
+      console.log(window.location.href);
+
+      this.$router.push({path: this.$route.path, query: {city: this.$route.query.city, sort: 'price_desc', page: '1', }})
       window.location.reload();
     }
   }
