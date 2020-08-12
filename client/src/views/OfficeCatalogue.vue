@@ -139,40 +139,7 @@ export default {
              return this.$store.dispatch('loadSearchResultsLimited', value);
         }
          },
- /*    watch: {
-        '$route.query.city': {
-            immediate: true,
-            async handler(value) {   
-                await this.loadSearchResults(value);
-                console.log(`handler invoked: ${value}`)
-            }
-            
-        } */
-    
 
-
-/*     async created () {
-    console.log("Created");
-
-    if (this.$route.query.page) {
-    var page = this.$route.query.page; 
-    } else {
-        page = 1;
-    }
-    
-        try {
-    // await this.loadCompanies;
-    //console.log(this.$route.query.page)
-    
-    await this.loadPage(page);
-        console.log('companies loaded to the state');
-    } catch (err) { console.log("fail")
-    } finally {
-        //this.offices;
-        console.log('state getter used');         
-        } //trycatch
-    
-} //created */
 
 async created () {
     console.log("Created");
@@ -192,7 +159,7 @@ async created () {
         sort: null
     }
 
-    if (this.$route.query.page) {  value.page = this.$route.query.page } else { value.page = 1 }
+    if (this.$route.query.page) { value.page = this.$route.query.page } else { value.page = 1 }
     if (this.$route.query.city) { value.city = this.$route.query.city } else { value.city = '' }
     if (this.$route.query.sort) { value.sort = this.$route.query.sort } else { value.city = '' }
 
