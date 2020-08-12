@@ -4,7 +4,7 @@
                       </office-thumb> -->
 
   <previous-button :city="$props.city" v-if="this.$route.query.page>1"></previous-button> <!-- renderowany gdy parametr większy 1 -->
-  <pagination-button   v-for="(counter) in howManyPages" :key="counter" :pageNumber="counter" :city="$props.city" > {{ counter }} </pagination-button> 
+  <pagination-button   v-for="(counter) in howManyPages" :key="counter" :pageNumber="counter" :city="$props.city" :sort="$props.sort" > {{ counter }} </pagination-button> 
   <!-- <next-button :howManyPages="this.$props.howManyPages"></next-button>  -->
    <next-button v-if="this.$props.howManyPages>0 && this.$route.query.page<howManyPages" :howManyPages="this.$props.howManyPages" :city="$props.city"></next-button>  
    <!-- renderowany gdy parametr mniejszy niż max -->
@@ -38,10 +38,10 @@ export default {
       },
       props: {
        howManyPages: Number,
-       /* city: {
+        sort: {
          type: String,
-         default: 'Warszawa'
-       } */
+         default: ""
+       },
        city: {
          type: String,
          default: ""

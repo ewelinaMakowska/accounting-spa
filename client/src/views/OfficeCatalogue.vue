@@ -161,7 +161,7 @@ async created () {
 
     if (this.$route.query.page) { value.page = this.$route.query.page } else { value.page = 1 }
     if (this.$route.query.city) { value.city = this.$route.query.city } else { value.city = '' }
-    if (this.$route.query.sort) { value.sort = this.$route.query.sort } else { value.city = '' }
+    if (this.$route.query.sort) { value.sort = this.$route.query.sort } else { value.sort = '' }
 
 
   
