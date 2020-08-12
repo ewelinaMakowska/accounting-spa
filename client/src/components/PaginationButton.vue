@@ -4,7 +4,14 @@
  <!-- <a :href="'/?page='+pageNumber" @click="loadPage"> <slot>button</slot></a> -->
 <!--- dodać do hrefa + city = albo nic -->
 <!--<a :href="'/search/?page='+pageNumber+'&city='+this.$props.city"> <slot>button</slot></a>-->
-<a :href="'/search?city='+this.$props.city+'&sort='+sort+'&page='+pageNumber"> <slot>button</slot></a>
+
+<!-- <a :href="'/search?city='+this.$props.city+'&sort='+this.$props.sort+'&page='+this.$props.pageNumber">
+ <slot>button</slot>
+</a> -->
+
+<a :href="'/search?city='+this.$route.query.city+'&sort='+this.$route.query.sort+'&page='+this.$props.pageNumber">
+ <slot>button</slot>
+</a>
 
 
 </div>

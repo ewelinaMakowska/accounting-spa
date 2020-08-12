@@ -37,10 +37,10 @@ export default {
       let currentParams = this.$route.query;
       console.log(currentParams);
       console.log(window.location.href);
-      
+
      /*  if(!this.$route.query.sort) {}      
       } */
-      this.$router.push({path: this.$route.path, query: {city: this.$route.query.city, page: '1', sort: 'price_asc'}})
+      this.$router.push({path: this.$route.path, query: {city: this.$route.query.city, sort: 'price_asc', page: '1', }})
       window.location.reload();
     }
   }
