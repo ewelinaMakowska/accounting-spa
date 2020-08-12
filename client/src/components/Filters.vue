@@ -33,14 +33,15 @@ export default {
 
     sortPriceAscending() {
       console.log('sort asc!');
-      let currentUrl = window.location.href;
-      console.log(currentUrl);
-      let updatedUrl = currentUrl + '&sort=price_asc';
-      window.location.href = updatedUrl;
-      //dodaje &sort=price_asc
-      //przy paginacji zachować parametry
-      //endopint z sortby
- 
+
+      let currentParams = this.$route.query;
+      console.log(currentParams);
+      console.log(window.location.href);
+      
+     /*  if(!this.$route.query.sort) {}      
+      } */
+      this.$router.push({path: this.$route.path, query: {city: this.$route.query.city, page: '1', sort: 'price_asc'}})
+      window.location.reload();
     }
   }
 }
