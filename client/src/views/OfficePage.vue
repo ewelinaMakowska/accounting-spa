@@ -23,6 +23,7 @@
                         <br/>
                         <form>
                             <label for="form__id">Your Name:</label><input id="form__id" type="text"/><br/>
+                            <label for="form__email">Your E-mail:</label><input id="form__email" type="email"/><br/>
                             <label for="form__id">Your Message:</label><br/>
                             <textarea id="form__message"/><br/>
                             <input type="submit" value="Send" />
@@ -37,7 +38,8 @@
 
 <style scoped>
 
-    input[type="text"] {
+    input[type="text"],
+    input[type="email"] {
         border: 1px solid #333;
         margin-left: 20px;
     }
