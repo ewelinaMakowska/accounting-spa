@@ -1,16 +1,50 @@
 <template>
-<div>
-   Obiekt {{ company }} <br/>
-   Witaj na stronie biura: {{ company.name }} <br/>
-   Id biura to:  {{ company.id }} <br/> 
-   Miejscowość:  {{ company.city }} <br/> 
-   Cena za usługę to: {{ company.price }} <br/>
-   Adres mailowy biura {{ company.email }}
-   
+    <div>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Obiekt {{ company }} <br/>
+                        Witaj na stronie biura: {{ company.name }} <br/>
+                        Id biura to:  {{ company.id }} <br/> 
+                        Miejscowość:  {{ company.city }} <br/> 
+                        Cena za usługę to: {{ company.price }} <br/>
+                        Adres mailowy biura {{ company.email }}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <section id="form">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Contact us!</p>
+                        <br/>
+                        <form>
+                            <label for="form__id">Your Name:</label><input id="form__id" type="text"/><br/>
+                            <label for="form__id">Your Message:</label><br/>
+                            <textarea id="form__message"/><br/>
+                            <input type="submit" value="Send" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
 </template>
 
 <style scoped>
+
+    input[type="text"] {
+        border: 1px solid #333;
+        margin-left: 20px;
+    }
+
+    textarea {
+        border: 1px solid #333;
+    }
 
 </style>
 
