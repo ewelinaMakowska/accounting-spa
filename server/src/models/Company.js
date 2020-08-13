@@ -47,8 +47,8 @@ module.exports = (sequelize, DataTypes) => {
     cityid: { type: DataTypes.INTEGER(10), allowNull : false, },
     price: { type: DataTypes.DOUBLE(5,2),  allowNull : false },
     logo: { type: DataTypes.STRING(45) },
-    description: { type: DataTypes.TEXT }
-    
+    description: { type: DataTypes.TEXT },
+    email: { type: DataTypes.STRING(45) }  
   },  {
     freezeTableName: false, // Model tableName will be the same as the model name
     timestamps: false,

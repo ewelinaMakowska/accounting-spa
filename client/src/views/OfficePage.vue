@@ -1,5 +1,3 @@
-<!--  TODO: albo napisać porządne pobieranie z bazy firmy po id (jest) + getter, żeby pobrać tu wszystkie firmy (czyli jedną)
-            albo pobrać tutaj wszystkie firmy i napisać porządny getter do zwracania tylko jednej firmy ze stanu po id -->
 <template>
 <div>
    Obiekt {{ company }} <br/>
@@ -7,6 +5,7 @@
    Id biura to:  {{ company.id }} <br/> 
    Miejscowość:  {{ company.city }} <br/> 
    Cena za usługę to: {{ company.price }} <br/>
+   Adres mailowy biura {{ company.email }}
    
     </div>
 </template>
