@@ -1,4 +1,4 @@
-# accounting-spa
+# companies-catalogue
 
 ## Project setup
 ```
