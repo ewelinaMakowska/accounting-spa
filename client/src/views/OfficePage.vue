@@ -21,12 +21,12 @@
                     <div class="col-lg-12">
                         <p>Contact us!</p>
                         <br/>
-                        <form>
-                            <label for="form__id">Your Name:</label><input id="form__id" type="text"/><br/>
+                        <form @submit="submitForm($event)">
+                            <label for="form__name">Your Name:</label><input id="form__name" type="text"/><br/>
                             <label for="form__email">Your E-mail:</label><input id="form__email" type="email"/><br/>
-                            <label for="form__id">Your Message:</label><br/>
+                            <label for="form__message">Your Message:</label><br/>
                             <textarea id="form__message"/><br/>
-                            <input type="submit" value="Send" @click="submitForm()" />
+                            <input type="submit" value="Send" />
                         </form>
                     </div>
                 </div>
@@ -74,8 +74,15 @@ export default {
          loadCompanies() {
             return this.$store.dispatch('loadCompaniesAction');
         }, 
-				sendForm() {
-					console.log('Form sent!');
+				submitForm(e) {
+					e.preventDefault();
+					const name = document.getElementById('form__name').value;
+					const email= document.getElementById('form__email').value;
+					const message = document.getElementById('form__message').value;
+					console.log('Form submitted!');
+					console.log(`Name: ${name}`);
+					console.log(`Mail: ${email}`);
+					console.log(`Message: ${message}`);
 				}
         },
     
