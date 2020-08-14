@@ -22,13 +22,22 @@ export default {
    city: String
  },
  data() {
-   if(this.$route.query.page >= 2) {
-   return this.currentPageNumber =  parseInt(this.$route.query.page)-1 // eslint-disable-line no-unused-vars
-   
-   } else  {
-     return this.currentPageNumber = 1 // eslint-disable-line no-unused-vars
+   return {
+     currentPageNumber: null
    }
- }
+ },
+ methods: {
+   findPreviousPageNumber() {
+    if(this.$route.query.page >= 2) {
+    return this.currentPageNumber =  parseInt(this.$route.query.page)-1 
+    } else  {
+    return this.currentPageNumber = 1 
+    }
+   }
+ },
+   mounted() {
+    this.findPreviousPageNumber();
+  } //mounted
 
 
 
