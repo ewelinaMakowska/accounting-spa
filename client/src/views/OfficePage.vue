@@ -15,7 +15,7 @@
             </div>
         </section>
 
-         <section id="form">
+         <section v-if="company.email" id="form">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
