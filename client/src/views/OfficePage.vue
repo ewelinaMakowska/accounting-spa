@@ -26,7 +26,7 @@
                             <label for="form__email">Your E-mail:</label><input id="form__email" type="email"/><br/>
                             <label for="form__id">Your Message:</label><br/>
                             <textarea id="form__message"/><br/>
-                            <input type="submit" value="Send" />
+                            <input type="submit" value="Send" @click="submitForm()" />
                         </form>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
 export default {
         data() {
         return {
-            company: null
+            company: {}
             }
     },
     // data() {
@@ -64,20 +64,13 @@ export default {
     //      ID: this.id 
     //     }
     // },
-    computed: {
-       
+    computed: {   
         offices () {
             return this.$store.getters.loadedOffices;
         },
         singleCompany () {
             return this.$store.getters.loadedOffice;
         },
-        // loadCompanies() {
-        //     return this.$store.dispatch('loadCompaniesAction');
-        // }, 
-        // loadCompany() {
-        //     return this.$store.dispatch('loadCompany');
-        // }
         }, //computed
         methods: {
           loadCompany(id) {
@@ -86,15 +79,13 @@ export default {
          loadCompanies() {
             return this.$store.dispatch('loadCompaniesAction');
         }, 
-        //  office () {          
-        //     //return this.$store.getters.loadedOffice(this.id); //todo: return all 
-        //    // return this.$store.getters.oneCompany;
-        //     return this.$store.getters.loadedOffice;
-        // },
+				sendForm() {
+					console.log('Form sent!');
+				}
         },
     
 
- async mounted () {
+				async mounted() {
             console.log("Mounted");
             let id = this.$route.params.id; 
             console.log(id);
@@ -103,13 +94,9 @@ export default {
             await this.loadCompany(id); 
              console.log('company loaded to the state');
             } catch (err) { console.log("fail")
-            } finally {
-       
+            } finally {     
             this.company = this.offices;
             console.log(this.company)
-
-
-                 
              } //trycatch
         } //mounted
     

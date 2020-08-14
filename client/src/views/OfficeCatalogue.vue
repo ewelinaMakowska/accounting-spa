@@ -80,33 +80,11 @@ import Filters from '@/components/Filters.vue';
 
 export default {
     data() {
-       
-       // let pages = [];
-       // let counter = this.pageCount();
-      //const howManyPages = this.pageCount;
-      
-    //   while(counter > 0) {
-    //     pages.push(counter);
-    //     counter--;
-    //   }
-     // pages = [ 1,2,3 ]
-
-    
-
-      //console.log(pages);
-
-
-    //  let page = this.$route.query.page || 1; //eslint-disable-line no-unused-vars
-
-        return {
-            
-           // companiesFromDb : null,
-           // howManyButtons: 2,
-           // buttonNumber: 1,
-            //pageCountValue: this.pageCount,
+        return {          
             pages : this.pages,
             city: 'Warszawa', //this.$route.query.city
-            value: 0
+            value: 0,
+            currentPageNumber: null
         }
     },    
     computed: {
@@ -143,43 +121,27 @@ export default {
 
 async created () {
     console.log("Created");
-/* 
-    if (this.$route.query.page) {
-         var page = this.$route.query.page;
-         var city = this.$route.query.city;}
-    else {
-         page = 1;
-         city = null
-    } */
-
-      const value = {
-        
-        page: null,
-        city: null,
-        sort: null
+    const value = {      
+    page: null,
+    city: null,
+    sort: null
     }
+
 
     if (this.$route.query.page) { value.page = this.$route.query.page } else { value.page = 1 }
     if (this.$route.query.city) { value.city = this.$route.query.city } else { value.city = '' }
     if (this.$route.query.sort) { value.sort = this.$route.query.sort } else { value.sort = '' }
-
-
-  
-
 
     console.log(value.page)
     console.log(value.city)
     console.log(value.sort)
 
        try {
-    // await this.loadCompanies;
-    //console.log(this.$route.query.page)
-    
+ 
     await this.loadSearchResults(value);
         console.log('companies loaded to the state');
     } catch (err) { console.log("fail")
     } finally {
-        //this.offices;
         console.log('state getter used');         
         } //trycatch
 
