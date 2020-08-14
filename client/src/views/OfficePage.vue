@@ -59,11 +59,6 @@ export default {
             company: {}
             }
     },
-    // data() {
-    //     return {
-    //      ID: this.id 
-    //     }
-    // },
     computed: {   
         offices () {
             return this.$store.getters.loadedOffices;
@@ -99,25 +94,9 @@ export default {
             console.log(this.company)
              } //trycatch
         } //mounted
-    
-//    async created () {
-//              console.log("Mounted");
-//              const id = this.$route.params.this.id; 
-//             try {
-//              await CompaniesService.getOne(id);
-//              console.log('company loaded to the state');
-//             } catch (err) { console.log("fail")
-//             } finally {
-//              this.office;
-//              console.log('state getter used');
-//                  console.log(this.this.id);
-//              } //trycatch
-//         } //mounted     
+     
     
     }
-   // eslint-disable-line no-unused-vars 
-
-    //przechować dane o id w cookie sesyjnym (?)
     
 
 </script>

@@ -1,4 +1,3 @@
-
 <template>
 
 
@@ -25,20 +24,13 @@
 
                         
                         <div class="flex-thumbs-container">
-
-                        <!-- <office-thumb :name="office.name" :id="office.id " v-for="(office, id) in offices" :key="id" :office="office" >
-                        </office-thumb> -->
-
                         <office-thumb :name="office.name" :id="office.id " :city="office.city" v-for="(office, id) in offices" :key="id" :office="office" :price="office.price" >
-                        </office-thumb>
-
-                            
+                        </office-thumb>                          
                         </div> <!--flex-container-->
 
                     
                       <pagination :howManyPages="pageCount" :currentPageNumber="currentPageNumber" :city="this.$route.query.city"/> 
-                    <!-- <div> <p> Dane z bazy danych: {{ companiesFromDb }} </p></div>
-                    <button @click="getAll()">pobierz dane</button> -->
+
                    
                       </v-col>
 
@@ -73,18 +65,18 @@ padding: 20px;
 <script>
 import OfficeThumb from '@/components/OfficeThumb.vue';
 import Pagination from '@/components/Pagination.vue';  // eslint-disable-line no-unused-vars
-//import CompaniesService from '@/services/CompaniesService.js' 
 import Search from '@/components/Search.vue'; 
 import Filters from '@/components/Filters.vue';
 
 
 export default {
     data() {
-        return {          
+        return {   
+            office: {},     
             pages : this.pages,
             city: 'Warszawa', //this.$route.query.city
             value: 0,
-            currentPageNumber: null
+            currentPageNumber: null,
         }
     },    
     computed: {
@@ -122,9 +114,9 @@ export default {
 async created () {
     console.log("Created");
     const value = {      
-    page: null,
-    city: null,
-    sort: null
+        page: null,
+        city: null,
+        sort: null
     }
 
 
