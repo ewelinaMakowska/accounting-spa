@@ -4,7 +4,8 @@ const cors = require('cors')
 const morgan = require('morgan')
 const { sequelize } = require('./models')
 const CompaniesController = require('./controllers/CompaniesController')
-const CitiesController = require('./controllers/CitiesController')
+const CitiesController = require('./controllers/CitiesController');
+const ContactController = require('./controllers/ContactController');
 
 
 const app = express()
@@ -30,11 +31,8 @@ app.get('/company/:id', CompaniesController.getOne)
 app.get('/cities', CitiesController.getCities)
 app.get('/citiesFilteredLimited', CitiesController.getCitiesFilteredLimited)
 
-app.post('/email', (req, res) => {
-  //TODO
-  //send email here
-  res.json({ message: 'Message received!'});
-})
+app.post('/email', ContactController.mailCompany)
+
 
 sequelize.sync()
 .then(() => {

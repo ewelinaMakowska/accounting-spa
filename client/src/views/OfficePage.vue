@@ -50,9 +50,12 @@
 
 </style>
 
+
+
 <script>
 //import CompaniesService from '@/services/CompaniesService'
 import ContactService from '@/services/ContactService'
+
 
 export default {
         data() {
@@ -78,7 +81,7 @@ export default {
         async submitForm(e) {
             e.preventDefault();
 
-            const emailData = {
+            const eMailData = {
                 name: document.getElementById('form__name').value,
                 email: document.getElementById('form__email').value,
                 message: document.getElementById('form__message').value,
@@ -86,16 +89,16 @@ export default {
 
 
             console.log('Form submitted!');
-            console.log(`Name: ${emailData.name}`);
-            console.log(`Mail: ${emailData.email}`);
-            console.log(`Message: ${emailData.message}`);
+            console.log(`Name: ${eMailData.name}`);
+            console.log(`Mail: ${eMailData.email}`);
+            console.log(`Message: ${eMailData.message}`);
 
-            try {
-                await ContactService.mailCompany(emailData);
+             try {
+                await ContactService.mailCompany(eMailData);
             } catch(err) {
                 console.log(err);
             }
-            
+
             
         }
 
