@@ -30,6 +30,12 @@ app.get('/company/:id', CompaniesController.getOne)
 app.get('/cities', CitiesController.getCities)
 app.get('/citiesFilteredLimited', CitiesController.getCitiesFilteredLimited)
 
+app.post('/email', (req, res) => {
+  //TODO
+  //send email here
+  res.json({ message: 'Message received!'});
+})
+
 sequelize.sync()
 .then(() => {
   app.listen(port, () => console.log(`Your app is listening on port: ${port}`));

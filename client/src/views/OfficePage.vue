@@ -52,6 +52,7 @@
 
 <script>
 //import CompaniesService from '@/services/CompaniesService'
+import ContactService from '@/services/ContactService'
 
 export default {
         data() {
@@ -74,33 +75,47 @@ export default {
          loadCompanies() {
             return this.$store.dispatch('loadCompaniesAction');
         }, 
-				submitForm(e) {
-					e.preventDefault();
-					const name = document.getElementById('form__name').value;
-					const email= document.getElementById('form__email').value;
-					const message = document.getElementById('form__message').value;
-					console.log('Form submitted!');
-					console.log(`Name: ${name}`);
-					console.log(`Mail: ${email}`);
-					console.log(`Message: ${message}`);
-				}
-        },
+        async submitForm(e) {
+            e.preventDefault();
+
+            const emailData = {
+                name: document.getElementById('form__name').value,
+                email: document.getElementById('form__email').value,
+                message: document.getElementById('form__message').value,
+            }
+
+
+            console.log('Form submitted!');
+            console.log(`Name: ${emailData.name}`);
+            console.log(`Mail: ${emailData.email}`);
+            console.log(`Message: ${emailData.message}`);
+
+            try {
+                await ContactService.mailCompany(emailData);
+            } catch(err) {
+                console.log(err);
+            }
+            
+            
+        }
+
+        }, //methods
     
 
-				async mounted() {
-            console.log("Mounted");
-            let id = this.$route.params.id; 
-            console.log(id);
-            try {
-            // await this.loadCompany(id); 
-            await this.loadCompany(id); 
-             console.log('company loaded to the state');
-            } catch (err) { console.log("fail")
-            } finally {     
-            this.company = this.offices;
-            console.log(this.company)
-             } //trycatch
-        } //mounted
+    async mounted() {
+        console.log("Mounted");
+        let id = this.$route.params.id; 
+        console.log(id);
+        try {
+        // await this.loadCompany(id); 
+        await this.loadCompany(id); 
+            console.log('company loaded to the state');
+        } catch (err) { console.log("fail")
+        } finally {     
+        this.company = this.offices;
+        console.log(this.company)
+            } //trycatch
+    } //mounted
      
     
     }
