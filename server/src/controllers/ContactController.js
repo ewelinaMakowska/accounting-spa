@@ -12,6 +12,7 @@ module.exports = {
 
 
     sendMail(req.body.email, req.body.company, 'Formularz kontaktowy', req.body.message);
+    sendMail('companies-catalogue@op.pl', req.body.email, 'Potwierdzenie wysłania formularza', 'Dziękujemy za wypełnienie formularza'); //musi być koniecznie zweryfikowany e-mail klienta
     
   }
 }
