@@ -10,17 +10,24 @@ const auth = {
 
 const transporter = nodemailer.createTransport(mailGun(auth)); 
 
-const mailOptions = {
-  from: 'klient0@op.pl', 
-  to: 'capp_first@interia.pl',
-  subject: 'test',
-  text: 'elo'
+
+
+const sendMail = (sender, recipient, subject, text) => { 
+  const mailOptions = {
+    from: sender, 
+    to: recipient,
+    subject: subject,
+    text: text
+  }
+
+  transporter.sendMail(mailOptions, function(err, data) { //callback?
+    if(err) {
+      console.log(`Sending e-mail error:${err}`)
+    } else {
+      console.log('e-mail sent')
+    }
+  })
 }
 
-transporter.sendMail(mailOptions, function(err, data) {
-  if(err) {
-    console.log(`Sending e-mail error:${err}`)
-  } else {
-    console.log('e-mail sent')
-  }
-})
+module.exports = sendMail;
+

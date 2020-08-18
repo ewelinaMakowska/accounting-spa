@@ -85,6 +85,7 @@ export default {
                 name: document.getElementById('form__name').value,
                 email: document.getElementById('form__email').value,
                 message: document.getElementById('form__message').value,
+                company: this.company.email
             }
 
 
@@ -92,6 +93,7 @@ export default {
             console.log(`Name: ${eMailData.name}`);
             console.log(`Mail: ${eMailData.email}`);
             console.log(`Message: ${eMailData.message}`);
+            console.log(`Company e-mail: ${eMailData.company}`);
 
              try {
                 await ContactService.mailCompany(eMailData);
@@ -116,7 +118,6 @@ export default {
         } catch (err) { console.log("fail")
         } finally {     
         this.company = this.offices;
-        console.log(this.company)
             } //trycatch
     } //mounted
      
