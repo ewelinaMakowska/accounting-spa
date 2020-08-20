@@ -21,9 +21,9 @@
                     <div class="col-lg-12">
                         <p>Contact us!</p>
                         <br/>
-                        <form @submit="submitForm($event)">
-                            <label for="form__name">Your Name:</label><input id="form__name" type="text"/><br/>
-                            <label for="form__email">Your E-mail:</label><input id="form__email" type="email"/><br/>
+                        <form @submit="submitForm($event)" novalidate>
+                            <label for="form__name">Your Name:</label><input id="form__name" name="name" type="text"/><br/>
+                            <label for="form__email">Your E-mail:</label><input id="form__email" name="email" type="email"/><br/>
                             <label for="form__message">Your Message:</label><br/>
                             <textarea id="form__message"/><br/>
                             <input type="submit" value="Send" />

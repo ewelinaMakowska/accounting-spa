@@ -41,6 +41,7 @@ module.exports = {
 
 
 const sendMail = require('../mail')
+const { validationResult } = require('express-validator/check')
 
 module.exports = {
 
@@ -51,27 +52,36 @@ module.exports = {
     console.log(`Message ${req.body.message}`);
     console.log(`To ${req.body.company}`);
 
+    const errors = validationResult(req);
 
-    sendMail(req.body.email,
-       req.body.company, 
-       'Formularz kontaktowy',
-        req.body.message, 
-        function(err, data) {
-          if(err) {
-            res.sendStatus(500).json({ message: 'Internal error'});
-          } else {
-            sendMail('companies-catalogue@op.pl', 
-            req.body.email, 
-            'Potwierdzenie wysłania formularza', 
-            'Dziękujemy za wypełnienie formularza', 
-            function(err, data) {
-              if(err) {
-                res.status(500).json({ message: 'Failed to send confirmation e-mail.'});
-              } else {
-                res.status(200).json({ message: 'E-mails sent!'});
-              }
-            });
-          }
-      });    
-  }
-}
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ message: 'Validation failed' });
+    } else {
+      sendMail(req.body.email,
+        req.body.company, 
+        'Formularz kontaktowy',
+         req.body.message, 
+         function(err, data) {
+           if(err) {
+             res.sendStatus(500).json({ message: 'Internal error'});
+           } else {
+             sendMail('companies-catalogue@op.pl', 
+             req.body.email, 
+             'Potwierdzenie wysłania formularza', 
+             'Dziękujemy za wypełnienie formularza', 
+             function(err, data) {
+               if(err) {
+                 res.status(500).json({ message: 'Failed to send confirmation e-mail.'});
+               } else {
+                 res.status(200).json({ message: 'E-mails sent!'});
+               }
+             }); //sendMail end
+           } // else block end
+       });  // send Mail end  
+    }
+   
+
+
+  } //mail company end
+
+} //module exports end

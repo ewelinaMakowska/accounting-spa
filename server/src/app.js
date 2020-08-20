@@ -6,6 +6,7 @@ const { sequelize } = require('./models')
 const CompaniesController = require('./controllers/CompaniesController')
 const CitiesController = require('./controllers/CitiesController');
 const ContactController = require('./controllers/ContactController');
+const { check } = require('express-validator/check')
 
 
 const app = express()
@@ -31,7 +32,7 @@ app.get('/company/:id', CompaniesController.getOne)
 app.get('/cities', CitiesController.getCities)
 app.get('/citiesFilteredLimited', CitiesController.getCitiesFilteredLimited)
 
-app.post('/email', ContactController.mailCompany)
+app.post('/email', check('email').isEmail(), ContactController.mailCompany)
 
 
 sequelize.sync()
