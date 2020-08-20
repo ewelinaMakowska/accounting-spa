@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 const mailGun = require('nodemailer-mailgun-transport');
+const { callbackPromise } = require('nodemailer/lib/shared');
 
 const auth = {
   auth: {
@@ -12,7 +13,7 @@ const transporter = nodemailer.createTransport(mailGun(auth));
 
 
 
-const sendMail = (sender, recipient, subject, text) => { 
+const sendMail = (sender, recipient, subject, text, callback) => { 
   const mailOptions = {
     from: sender, 
     to: recipient,
@@ -20,11 +21,11 @@ const sendMail = (sender, recipient, subject, text) => {
     text: text
   }
 
-  transporter.sendMail(mailOptions, function(err, data) { //callback?
+  transporter.sendMail(mailOptions, function(err, data) { 
     if(err) {
-      console.log(`Sending e-mail error:${err}`)
+      callback(err, null);
     } else {
-      console.log('e-mail sent')
+      callback(null, data);
     }
   })
 }
