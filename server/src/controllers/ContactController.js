@@ -58,7 +58,7 @@ module.exports = {
         req.body.message, 
         function(err, data) {
           if(err) {
-            res.sendStatus(500);
+            res.sendStatus(500).json({ message: 'Internal error'});
           } else {
             sendMail('companies-catalogue@op.pl', 
             req.body.email, 
@@ -66,18 +66,12 @@ module.exports = {
             'Dziękujemy za wypełnienie formularza', 
             function(err, data) {
               if(err) {
-                res.sendStatus(500);
+                res.status(500).json({ message: 'Failed to send confirmation e-mail.'});
               } else {
-                res.sendStatus(200);
+                res.status(200).json({ message: 'E-mails sent!'});
               }
             });
           }
-      });
-
-    /* sendMail('companies-catalogue@op.pl', 
-    req.body.email, 
-    'Potwierdzenie wysłania formularza', 
-    'Dziękujemy za wypełnienie formularza');  */
-    
+      });    
   }
 }
