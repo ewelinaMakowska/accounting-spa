@@ -37,19 +37,22 @@ app.post('/email',
     body('email')
       .isEmail()
       .withMessage('Please enter a valid e-mail')
-      .custom((value, { req }) => {  /*custom validator to check if mail is verified */
-        if ((value !== 'client_first@interia.pl') && (value !== 'client_second@interia.pl')) {
+      .custom((value, { req }) => {  /* custom validator to check if mail is verified */
+        if ((value.toLowerCase() !== 'client_first@interia.pl') && (value.toLowerCase() !== 'client_second@interia.pl')) {
           throw new Error("This e-mail address is not verified by MailGun");
         }
         return true;
       })
-      .withMessage('Message'),
+      .withMessage('Message')
+      .normalizeEmail(), 
     body('name', 'Please enter a valid name')
-    .isAlphanumeric()
-    .isLength({min: 2, max: 25}),
+      //.isAlphanumeric()
+      //.isLength({min: 2, max: 25})
+      .trim(),
     body('message', 'Please enter a valid message')
-    .isAlphanumeric()
-    .isLength({min: 3, max: 400}),
+      //.isAlphanumeric()
+      //.isLength({min: 3, max: 400})
+      .trim(),
   ],
   ContactController.mailCompany)
 
