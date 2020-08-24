@@ -6,7 +6,7 @@ const { sequelize } = require('./models')
 const CompaniesController = require('./controllers/CompaniesController')
 const CitiesController = require('./controllers/CitiesController');
 const ContactController = require('./controllers/ContactController');
-const { check } = require('express-validator/check')
+const { check, body } = require('express-validator/check')
 
 
 const app = express()
@@ -32,18 +32,26 @@ app.get('/company/:id', CompaniesController.getOne)
 app.get('/cities', CitiesController.getCities)
 app.get('/citiesFilteredLimited', CitiesController.getCitiesFilteredLimited)
 
-app.post('/email', check('email')
-                  .isEmail()
-                  .withMessage('Please enter a valid e-mail')
-                  .custom((value, { req }) => {
-                    if ((value !== 'client_first@interia.pl') && (value !== 'client_second@interia.pl')) {
-                      throw new Error("This e-mail address is not verified by MailGun");
-                    }
-                    return true;})
-                  .withMessage('Message'),  /*custom validator to check if mail is verified */
-                  
-                  
-                  ContactController.mailCompany)
+app.post('/email', 
+  [
+    body('email')
+      .isEmail()
+      .withMessage('Please enter a valid e-mail')
+      .custom((value, { req }) => {  /*custom validator to check if mail is verified */
+        if ((value !== 'client_first@interia.pl') && (value !== 'client_second@interia.pl')) {
+          throw new Error("This e-mail address is not verified by MailGun");
+        }
+        return true;
+      })
+      .withMessage('Message'),
+    body('name', 'Please enter a valid name')
+    .isAlphanumeric()
+    .isLength({min: 2, max: 25}),
+    body('message', 'Please enter a valid message')
+    .isAlphanumeric()
+    .isLength({min: 3, max: 400}),
+  ],
+  ContactController.mailCompany)
 
 
 sequelize.sync()
