@@ -44,10 +44,10 @@ app.post('/email',
         return true;
       })
       .withMessage('Message')
-      .normalizeEmail(), 
+      .normalizeEmail(), //partially 'blocked' by custom validator
     body('name', 'Please enter a valid name')
-      //.isAlphanumeric()
-      //.isLength({min: 2, max: 25})
+      .isAlphanumeric()
+      .isLength({min: 2, max: 25})
       .trim(),
     body('message', 'Please enter a valid message')
       //.isAlphanumeric()
