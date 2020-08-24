@@ -50,7 +50,6 @@ app.post('/email',
       .isLength({min: 2, max: 25})
       .trim(),
     body('message', 'Please enter a valid message')
-      //.isAlphanumeric()
       .isLength({min: 3, max: 400})
       .trim(),
   ],
