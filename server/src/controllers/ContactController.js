@@ -55,7 +55,7 @@ module.exports = {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({ message: 'Validation failed' });
+      return res.status(422).json({ error: `Validation failed: ${errors.array()[0].msg}` });
     } else {
       sendMail(req.body.email,
         req.body.company, 
@@ -63,7 +63,7 @@ module.exports = {
          req.body.message, 
          function(err, data) {
            if(err) {
-             res.sendStatus(500).json({ message: 'Internal error'});
+             res.sendStatus(500).json({ error: 'Internal error'});
            } else {
              sendMail('companies-catalogue@op.pl', 
              req.body.email, 
@@ -71,7 +71,7 @@ module.exports = {
              'Dziękujemy za wypełnienie formularza', 
              function(err, data) {
                if(err) {
-                 res.status(500).json({ message: 'Failed to send confirmation e-mail.'});
+                 res.status(500).json({ error: 'Failed to send confirmation e-mail.'});
                } else {
                  res.status(200).json({ message: 'E-mails sent!'});
                }

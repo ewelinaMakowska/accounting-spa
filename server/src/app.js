@@ -32,7 +32,7 @@ app.get('/company/:id', CompaniesController.getOne)
 app.get('/cities', CitiesController.getCities)
 app.get('/citiesFilteredLimited', CitiesController.getCitiesFilteredLimited)
 
-app.post('/email', check('email').isEmail(), ContactController.mailCompany)
+app.post('/email', check('email').isEmail().withMessage('Please enter a valid e-mail'), ContactController.mailCompany)
 
 
 sequelize.sync()
