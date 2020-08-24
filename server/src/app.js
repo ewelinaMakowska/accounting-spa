@@ -32,7 +32,18 @@ app.get('/company/:id', CompaniesController.getOne)
 app.get('/cities', CitiesController.getCities)
 app.get('/citiesFilteredLimited', CitiesController.getCitiesFilteredLimited)
 
-app.post('/email', check('email').isEmail().withMessage('Please enter a valid e-mail'), ContactController.mailCompany)
+app.post('/email', check('email')
+                  .isEmail()
+                  .withMessage('Please enter a valid e-mail')
+                  .custom((value, { req }) => {
+                    if ((value !== 'client_first@interia.pl') && (value !== 'client_second@interia.pl')) {
+                      throw new Error("This e-mail address is not verified by MailGun");
+                    }
+                    return true;})
+                  .withMessage('Message'),  /*custom validator to check if mail is verified */
+                  
+                  
+                  ContactController.mailCompany)
 
 
 sequelize.sync()
