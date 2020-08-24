@@ -51,7 +51,7 @@ app.post('/email',
       .trim(),
     body('message', 'Please enter a valid message')
       //.isAlphanumeric()
-      //.isLength({min: 3, max: 400})
+      .isLength({min: 3, max: 400})
       .trim(),
   ],
   ContactController.mailCompany)
