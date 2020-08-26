@@ -71,7 +71,7 @@ export default {
             return this.$store.getters.loadedOffice;
         },
         }, //computed
-        methods: {
+    methods: {
           loadCompany(id) {
             return this.$store.dispatch('loadCompany', id);
         } ,
