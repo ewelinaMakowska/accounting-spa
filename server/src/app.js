@@ -6,6 +6,7 @@ const { sequelize } = require('./models')
 const CompaniesController = require('./controllers/CompaniesController')
 const CitiesController = require('./controllers/CitiesController');
 const ContactController = require('./controllers/ContactController');
+const AuthController = require('./controllers/AuthController');
 const { check, body } = require('express-validator/check')
 
 
@@ -54,6 +55,11 @@ app.post('/email',
       .trim(),
   ],
   ContactController.mailCompany)
+
+
+app.post('/register', AuthController.registerUser)
+
+
 
 
 sequelize.sync()
