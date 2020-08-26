@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                      <b>Registration</b><br/><br/>
+                      <b>Registration</b><br/><br/><br/>
                         <form @submit="submitForm($event)" novalidate > <!-- method="post" -->
                             <label for="form__name">First Name:</label>
 														<input id="form__first-name" name="firstName" type="text" v-model.trim="userData.firstName"/><br/><br/>
@@ -31,6 +31,9 @@
 </template>
 
 <script>
+
+import AuthService from '@/services/AuthService'
+
 export default {
 	data() {
 		return {
@@ -44,7 +47,8 @@ export default {
 		}
 	}, //data
 	methods: {
-		submitForm(e) {
+
+		async submitForm(e) {
 			e.preventDefault();
 			//yield data
 			const userData = this.userData;
@@ -56,6 +60,11 @@ export default {
 			console.log(`Confirm Password: ${userData.confirmPassword}`)
 
 			//send request to the backend
+			try {
+					await AuthService.registerUser(userData);
+				} catch(err) {
+					console.log(err);
+			}
 		}
 	}
 } //export default
