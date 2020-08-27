@@ -1,5 +1,5 @@
 
-module.exports = {
+module.exports = { //todo: add env variables
   port: 3306,
   db: {
     database: 'accounting_companies',
@@ -10,5 +10,9 @@ module.exports = {
       host: 'localhost',
       operatorsAliases: false
     }
+  },
+  authentication: {
+    jwtSecret: 'secret'
   }
 }
+//process.env.JWT_SECRET ||
