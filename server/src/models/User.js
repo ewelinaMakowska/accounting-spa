@@ -16,12 +16,12 @@ module.exports = (sequelize, DataTypes) => {
     email: { 
       type: DataTypes.STRING(45), 
       unique: true,
-      acceptNull: false 
+      allowNull: false 
     },
 
     password: { 
       type: DataTypes.STRING(90),
-      acceptNull: false 
+      allowNull: false 
     },
 /*
     type: { 
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       unique : true, 
       unsigned: true, 
       autoIncrement: true,
-      acceptNull: false 
+      allowNull: false 
     }
   },  
   {

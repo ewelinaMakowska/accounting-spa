@@ -45,6 +45,8 @@ module.exports = {
       const createdUser = await User.create(user);
       const userJson = createdUser.toJSON();
 
+      //todo: update user data (?) https://sequelize.org/master/manual/model-instances.html
+
       res.send({
         user : userJson,
         token: jwtRegUser(userJson)
