@@ -23,11 +23,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(90),
       allowNull: false 
     },
-/*
+
     type: { 
       type: DataTypes.STRING(45), 
       defaultValue: 'user' 
-    }, */
+    }, 
 
     id: { 
       type: DataTypes.INTEGER(10), 

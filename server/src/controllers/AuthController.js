@@ -39,7 +39,9 @@ module.exports = {
 
       const user = {
         email: req.body.eMail,
-        password: req.body.password
+        password: req.body.password,
+        firstname: req.body.firstName,
+        lastname: req.body.lastName
       }
 
       const createdUser = await User.create(user);
