@@ -13,7 +13,8 @@ function jwtRegUser(user) {
 
 module.exports = {
 
-   async registerUser(req, res) { 
+   async registerUser(req, res) {
+   
     try  {
 
       const user = {
