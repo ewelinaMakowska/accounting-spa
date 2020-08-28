@@ -1,5 +1,12 @@
 
-const Sequelize = require('sequelize')
+const Sequelize = require('sequelize');
+const bcrypt = require('bcryptjs');
+
+async function HashPassword(user) {
+  const SALT_ROUNDS = 10;
+  const SALT = await bcrypt.genSalt(SALT_ROUNDS); 
+  user.password = await bcrypt.hash(user.password, SALT);
+}
 
 module.exports = (sequelize, DataTypes) => {
 
@@ -41,7 +48,12 @@ module.exports = (sequelize, DataTypes) => {
   {
     freezeTableName: false, // Model tableName will be the same as the model name
     timestamps: false,
-    underscored: true
+    underscored: true,
+    hooks: {
+      beforeCreate: HashPassword,
+      beforeUpdate: HashPassword,
+      beforeSave: HashPassword
+    }
   })
 
   return User
