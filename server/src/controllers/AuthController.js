@@ -17,26 +17,6 @@ module.exports = {
    
     try  {
 
-      console.log('AUTHCONTROLLER - data on server:')
-      console.log(`First Name ${req.body.firstName}`);
-      console.log(`Last Name ${req.body.lastName}`);
-      console.log(`E-mail ${req.body.eMail}`);
-      console.log(`Password ${req.body.password}`);
-
-    /*   const createdUser = await User.create({
-        firstName: 'Jan',
-        lastName: 'Kowalski',
-        eMail: 'test@on.pl',
-        password:'admin1'
-      }); */
-/* 
-      const user = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        eMail: req.body.eMail,
-        password: req.body.password
-      } */
-
       const user = {
         email: req.body.eMail,
         password: req.body.password,
@@ -46,8 +26,6 @@ module.exports = {
 
       const createdUser = await User.create(user);
       const userJson = createdUser.toJSON();
-
-      //todo: update user data (?) https://sequelize.org/master/manual/model-instances.html
 
       res.send({
         user : userJson,
