@@ -3,7 +3,8 @@
 
 const { User } = require('../models')
 const jwt = require('jsonwebtoken')
-const config = require('../config/config')
+const config = require('../config/config');
+const { validationResult } = require('express-validator');
 //const { Op } = require('sequelize');
 
 function jwtRegUser(user) {
@@ -14,29 +15,38 @@ function jwtRegUser(user) {
 module.exports = {
 
    async registerUser(req, res) {
-   
-    try  {
 
-      const user = {
-        email: req.body.eMail,
-        password: req.body.password,
-        firstname: req.body.firstName,
-        lastname: req.body.lastName
+   const errors = validationResult(req);
+   
+    if(errors.isEmpty()) {
+      try  {
+
+        const user = {
+          email: req.body.eMail,
+          password: req.body.password,
+          firstname: req.body.firstName,
+          lastname: req.body.lastName
+        }
+
+        const createdUser = await User.create(user);
+        const userJson = createdUser.toJSON();
+
+        res.send({
+          user : userJson,
+          token: jwtRegUser(userJson)
+        }) 
+    
+      } catch (err) {
+        res.status(400).send({
+          error: err
+        })
       }
-
-      const createdUser = await User.create(user);
-      const userJson = createdUser.toJSON();
-
-      res.send({
-        user : userJson,
-        token: jwtRegUser(userJson)
-      }) 
-   
-    } catch (err) {
-      res.status(400).send({
-        error: err
+    } else {
+      res.status(422).send({
+        error: errors
       })
     }
+   
   }  //registerUser end
 
  

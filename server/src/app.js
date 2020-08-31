@@ -57,7 +57,13 @@ app.post('/email',
   ContactController.mailCompany)
 
 
-app.post('/register', AuthController.registerUser)
+app.post('/register', [
+  body('eMail')
+    .isEmail()
+    .withMessage('Please enter a valid e-mail')
+    .normalizeEmail()
+
+], AuthController.registerUser)
 
 
 
