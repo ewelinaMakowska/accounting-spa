@@ -7,7 +7,7 @@ const CompaniesController = require('./controllers/CompaniesController')
 const CitiesController = require('./controllers/CitiesController');
 const ContactController = require('./controllers/ContactController');
 const AuthController = require('./controllers/AuthController');
-const { check, body } = require('express-validator/check')
+const { check, checkSchema, body } = require('express-validator/check')
 
 
 const app = express()
@@ -56,6 +56,15 @@ app.post('/email',
   ],
   ContactController.mailCompany)
 
+const Password = {
+    "password": {
+      in: 'body',
+      matches: {
+        options: [/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/, "i"],
+        errorMessage: "Invalid password!!!"
+      }
+    }
+  }
 
 app.post('/register', [
   body('eMail')
@@ -69,8 +78,11 @@ app.post('/register', [
   body('lastName', 'Please enter a valid last name')
     .isAlpha()
     .isLength({min:2, max: 25})
-    .trim()
+    .trim(),
+  checkSchema(Password)
+  //body('password')
 
+  
 ], AuthController.registerUser)
 
 
