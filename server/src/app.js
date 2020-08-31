@@ -61,7 +61,15 @@ app.post('/register', [
   body('eMail')
     .isEmail()
     .withMessage('Please enter a valid e-mail')
-    .normalizeEmail()
+    .normalizeEmail(),
+  body('firstName', 'Please enter a valid name')
+    .isAlpha()
+    .isLength({min:2, max: 25})
+    .trim(),
+  body('lastName', 'Please enter a valid last name')
+    .isAlpha()
+    .isLength({min:2, max: 25})
+    .trim()
 
 ], AuthController.registerUser)
 
