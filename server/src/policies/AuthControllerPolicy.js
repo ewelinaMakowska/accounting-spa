@@ -14,9 +14,9 @@ module.exports = {
 
   registerUser : [
     body('eMail')
-    .isEmail()
-    .withMessage('Please enter a valid e-mail')
-    .normalizeEmail(),
+      .isEmail()
+      .withMessage('Please enter a valid e-mail')
+      .normalizeEmail(),
     body('firstName', 'Please enter a valid name')
       .isAlpha()
       .isLength({min:2, max: 25})
