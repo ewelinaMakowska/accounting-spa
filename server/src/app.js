@@ -60,8 +60,8 @@ const Password = {
     "password": {
       in: 'body',
       matches: {
-        options: [/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/, "i"],
-        errorMessage: "Invalid password!!!"
+        options: [/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,30}$/, "i"],
+        errorMessage: "Please enter a valid password - at least 8 characters etc."
       }
     }
   }
@@ -80,7 +80,7 @@ app.post('/register', [
     .isLength({min:2, max: 25})
     .trim(),
   checkSchema(Password)
-  //body('password')
+  
 
   
 ], AuthController.registerUser)
