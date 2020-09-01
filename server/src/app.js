@@ -79,8 +79,14 @@ app.post('/register', [
     .isAlpha()
     .isLength({min:2, max: 25})
     .trim(),
-  checkSchema(Password)
-  
+  checkSchema(Password),
+  body('confirmPassword').custom((value, { req }) => {
+    if (value !== req.body.password) {
+      throw new Error('Passwords have to match')
+    } else {
+      return true;
+    }
+  })
 
   
 ], AuthController.registerUser)
