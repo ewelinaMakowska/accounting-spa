@@ -7,8 +7,9 @@ const CompaniesController = require('./controllers/CompaniesController')
 const CitiesController = require('./controllers/CitiesController');
 const ContactController = require('./controllers/ContactController');
 const AuthController = require('./controllers/AuthController');
-const { check, checkSchema, body } = require('express-validator/check')
+const { check, checkSchema, body } = require('express-validator');
 
+const AuthControllerPolicy = require('./policies/AuthControllerPolicy');
 
 const app = express()
 const port = 3306
@@ -56,17 +57,9 @@ app.post('/email',
   ],
   ContactController.mailCompany)
 
-const Password = {
-    "password": {
-      in: 'body',
-      matches: {
-        options: [/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,30}$/, "i"],
-        errorMessage: "Please enter a valid password - at least 8 characters etc."
-      }
-    }
-  }
 
-app.post('/register', [
+
+/* app.post('/register', [
   body('eMail')
     .isEmail()
     .withMessage('Please enter a valid e-mail')
@@ -87,9 +80,10 @@ app.post('/register', [
       return true;
     }
   })
+], AuthController.registerUser) */
 
-  
-], AuthController.registerUser)
+
+app.post('/register', AuthControllerPolicy.registerUser, AuthController.registerUser)
 
 
 
