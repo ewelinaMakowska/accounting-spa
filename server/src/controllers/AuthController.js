@@ -5,6 +5,7 @@ const { User } = require('../models')
 const jwt = require('jsonwebtoken')
 const config = require('../config/config');
 const { validationResult } = require('express-validator');
+const { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } = require('constants');
 //const { Op } = require('sequelize');
 
 function jwtRegUser(user) {
@@ -47,7 +48,14 @@ module.exports = {
       })
     }
    
-  }  //registerUser end
+  },  //registerUser end
+
+
+  async login(req, res) {
+    res.status(200).send( {
+      message: 'hello'
+    })
+  }
 
  
 

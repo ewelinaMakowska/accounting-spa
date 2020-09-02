@@ -8,10 +8,10 @@
                         <form @submit="submitForm($event)" novalidate > <!-- method="post" -->
     
                             <label for="form__email">E-mail:</label>
-                            <input id="form__email" name="email" type="email" v-model.trim="userData.email"/><br/><br/>
+                            <input id="form__email" name="email" type="email" v-model.trim="creds.email"/><br/><br/>
 
                             <label for="form__email">Password:</label>
-                            <input id="form__password" name="password" type="password" v-model="userData.password"/><br/><br/>
+                            <input id="form__password" name="password" type="password" v-model="creds.password"/><br/><br/>
                             
                             <input type="submit" value="Send" />
                         </form>
@@ -26,34 +26,36 @@
 </template>
 
 <script>
-export default {
-	data() {
-		return {
-			userData: {
-			email: null,
-			password: null
-		}
-		}
-	}, //data
-	methods: {
+	import AuthService from '@/services/AuthService'
 
-		async submitForm(e) {
-			e.preventDefault();
-			const userData = this.userData;
+	export default {
+		data() {
+			return {
+				creds: {
+				email: null,
+				password: null
+			}
+			}
+		}, //data
+		methods: {
 
-			console.log(`E-mail: ${userData.email}`)
-			console.log(`Password: ${userData.password}`)
+			async submitForm(e) {
+				e.preventDefault();
+				const creds = this.creds;
 
-			//send request to the backend
-			console.log('Login!');
-	/* 		try {
-					await AuthService.logIn(userData);
+				console.log(`E-mail: ${creds.email}`)
+				console.log(`Password: ${creds.password}`)
+
+				//send request to the backend
+				console.log('Login!');
+				try {
+					await AuthService.login(creds);
 				} catch(err) {
 					console.log(err);
-			} */
+				} 
+			}
 		}
 	}
-}
 </script>
 
 <style scoped>

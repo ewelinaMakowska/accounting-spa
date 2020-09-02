@@ -37,6 +37,7 @@ app.get('/citiesFilteredLimited', CitiesController.getCitiesFilteredLimited)
 
 app.post('/email', ContactControllerPolicy.email, ContactController.mailCompany)
 app.post('/register', AuthControllerPolicy.registerUser, AuthController.registerUser)
+app.post('/login', AuthController.login)
 
 sequelize.sync()
 .then(() => {
