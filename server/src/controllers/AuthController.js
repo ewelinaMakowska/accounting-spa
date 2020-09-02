@@ -8,14 +8,14 @@ const { validationResult } = require('express-validator');
 const { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } = require('constants');
 //const { Op } = require('sequelize');
 
+/* function generateJWT(user) {
+  const tokenData = { username: user.username, id: user.id };
+  return jwt.sign({ user: tokenData }, config.authentication.jwtSecret) //todo: change to process.env.jwt
+} */
+
 function jwtRegUser(user) {
   const ONE_WEEK = 60 * 60 * 24 * 7;
   return jwt.sign(user, config.authentication.jwtSecret, { expiresIn: ONE_WEEK }) //todo: change to process.env.jwt
-}
-
-function generateJWT(user) {
-  const tokenData = { username: user.username, id: user.id };
-  return jwt.sign({ user: tokenData }, config.authentication.jwtSecret) //todo: change to process.env.jwt
 }
 
 module.exports = {
