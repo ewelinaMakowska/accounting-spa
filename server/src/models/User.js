@@ -2,8 +2,13 @@
 const Sequelize = require('sequelize');
 const bcrypt = require('bcryptjs');
 
-async function HashPassword(user) {
+ async function HashPassword(user) {
   const SALT_ROUNDS = 10;
+
+  if(!user.changed('password')) {
+    return;
+  }
+
   const SALT = await bcrypt.genSalt(SALT_ROUNDS); 
   user.password = await bcrypt.hash(user.password, SALT);
 }
@@ -55,6 +60,10 @@ module.exports = (sequelize, DataTypes) => {
       beforeSave: HashPassword
     }
   })
+
+  /* User.prototype.comparePassword = function(password) {
+    return bcrypt.compareAsync(password, this.password)
+  } */
 
   return User
 }

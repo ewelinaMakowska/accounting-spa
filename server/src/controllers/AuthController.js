@@ -7,6 +7,7 @@ const config = require('../config/config');
 const { validationResult } = require('express-validator');
 const { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } = require('constants');
 //const { Op } = require('sequelize');
+const bcrypt = require('bcryptjs');
 
 /* function generateJWT(user) {
   const tokenData = { username: user.username, id: user.id };
@@ -15,7 +16,15 @@ const { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } = require('constants');
 
 function jwtRegUser(user) {
   const ONE_WEEK = 60 * 60 * 24 * 7;
-  return jwt.sign(user, config.authentication.jwtSecret, { expiresIn: ONE_WEEK }) //todo: change to process.env.jwt
+  return jwt.sign(user, config.authentication.jwtSecret, { expiresIn: ONE_WEEK }) 
+  //todo: change to process.env.jwt
+}
+
+async function HashPassword(password) {
+  const SALT_ROUNDS = 10;
+  const SALT = await bcrypt.genSalt(SALT_ROUNDS); 
+  hashedPassword = await bcrypt.hash(password, SALT);
+  return hashedPassword;
 }
 
 module.exports = {
@@ -70,8 +79,9 @@ module.exports = {
           error: 'Invalid login information'
         })
       } 
-  
-      const isPasswordValid = password === user.password;
+
+      const isPasswordValid = bcrypt.compare(password, user.password);
+
       if (!isPasswordValid) {
         return res.status(403).send({
           error: 'Invalid login information'
@@ -79,14 +89,14 @@ module.exports = {
       }
 
       const userJson = user.toJSON();
-      res.send({
+      return res.status(200).send({
         user: userJson,
         token: jwtRegUser(userJson)
       })
     
     } catch(err) {
       res.status(500).send({
-        error: 'Internal server error'
+        error: err
       })
     }
   }
