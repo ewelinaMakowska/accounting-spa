@@ -80,7 +80,8 @@ module.exports = {
 
       const userJson = user.toJSON();
       res.send({
-        user: userJson
+        user: userJson,
+        token: jwtRegUser(userJson)
       })
     
     } catch(err) {

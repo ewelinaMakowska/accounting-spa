@@ -13,7 +13,7 @@ module.exports = { //todo: add env variables
     }
   },
   authentication: {
-    jwtSecret: 'my-development-secret'
+    jwtSecret: 'myDevelopmentSuperSecret'
   }
 }
 
