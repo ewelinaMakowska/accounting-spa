@@ -57,9 +57,37 @@ module.exports = {
 
 
   async login(req, res) {
-    res.status(200).send( {
-      message: 'hello'
-    })
+    try {
+      const { email, password } = req.body;
+      const user = await User.findOne({
+        where: {
+          email: email
+        }
+      })
+
+      if(!user) {
+        return res.status(403).send({
+          error: 'Invalid login information'
+        })
+      } 
+  
+      const isPasswordValid = password === user.password;
+      if (!isPasswordValid) {
+        return res.status(403).send({
+          error: 'Invalid login information'
+        })
+      }
+
+      const userJson = user.toJSON();
+      res.send({
+        user: userJson
+      })
+    
+    } catch(err) {
+      res.status(500).send({
+        error: 'Internal server error'
+      })
+    }
   }
 
  
