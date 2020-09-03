@@ -46,10 +46,10 @@
 				console.log(`E-mail: ${creds.email}`)
 				console.log(`Password: ${creds.password}`)
 
-				//send request to the backend
-				console.log('Login!');
 				try {
-					await AuthService.login(creds);
+                    const response = await AuthService.login(creds);
+                    //console.log(response.data.token)
+                    this.$store.dispatch('setTokenAction', response.data.token) //to do set state: token and user
 				} catch(err) {
 					console.log(err);
 				} 

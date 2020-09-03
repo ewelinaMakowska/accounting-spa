@@ -36,7 +36,8 @@ export const store = new Vuex.Store({
     cities: {
       count: null,
       citiesList: null
-    }
+    },
+    token: null
   },
 
   mutations: {
@@ -78,6 +79,10 @@ export const store = new Vuex.Store({
     loadCitiesMutation: (state, data) => {
       state.cities.citiesList = data.rows;
       //state.allCitiesCount = data.length;
+    },
+
+    setToken(state, token) {
+      state.token = token
     }
 
   },
@@ -133,6 +138,10 @@ async loadCompany ({ commit }, id)  {
   commit('loadCompanyMutation', result.data);
   console.log('action loadCompany executed succesfully');  
 },
+
+setTokenAction({commit}, token) {
+  commit('setToken', token)
+}
 
 
 },
