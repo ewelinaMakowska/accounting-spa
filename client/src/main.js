@@ -10,9 +10,12 @@ import UserProfile from '@/views/UserProfile.vue'
 import EditContentPage from '@/views/EditContentPage.vue' 
 import { store } from './store'
 import vuetify from './plugins/vuetify';
+import { sync } from 'vuex-router-sync'
 
-Vue.use(VueRouter);
 
+/* if (window.__INITIAL_STATE__) {
+  store.replaceState(window.__INITIAL_STATE__)
+} */
 
 
 const routes = [
@@ -66,6 +69,10 @@ const router = new VueRouter({
   routes: routes,
   mode: 'history'
 })
+
+Vue.use(VueRouter);
+sync(store, router)
+
 
 
 Vue.config.productionTip = false
