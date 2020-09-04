@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <b>LogIn</b><br/><br/><br/>
-                        <form @submit="submitForm($event)" novalidate > <!-- method="post" -->
+                        <form @submit="login($event)" novalidate > <!-- method="post" -->
     
                             <label for="form__email">E-mail:</label>
                             <input id="form__email" name="email" type="email" v-model.trim="creds.email"/><br/><br/>
@@ -39,7 +39,7 @@
 		}, //data
 		methods: {
 
-			async submitForm(e) {
+			async login(e) {
 				e.preventDefault();
 				const creds = this.creds;
 
@@ -49,7 +49,8 @@
 				try {
                     const response = await AuthService.login(creds);
                     //console.log(response.data.token)
-                    this.$store.dispatch('setTokenAction', response.data.token) //to do set state: token and user
+                    this.$store.dispatch('setTokenAction', response.data.token); 
+                    this.$store.dispatch('setUserAction', response.data.user)
 				} catch(err) {
 					console.log(err);
 				} 

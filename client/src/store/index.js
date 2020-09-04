@@ -8,62 +8,23 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   
-  // state: {
-  //   loadedOffices: [
-  //     { id: '1', name: 'Ksiegowosc', price: 100 },
-  //     { id: '2', name: 'BMW', price: 80 },
-  //     { id: '3', name: 'Volkswagen', price: 75 },
-  //     { id: '4', name: 'Audi', price: 85 }
-  //   ],
-  //   user: {
-  //     id: '624',
-  //     favouriteOffices: ['2', '3']
-  //   }
-      
-    
-  // },
-
   state: {
     loadedOffices: [
     ], //simple offices on page
     allCompaniesCount: 0, //number of companies by city
     companiesByCity: [],
     count: 0,
-    user: {
-      id: '624',
-      favouriteOffices: ['2', '3']
-    },
     cities: {
       count: null,
       citiesList: null
     },
-    token: null
+    token: null,
+    user: null
   },
 
   mutations: {
+
     loadCompanies: (state, data) => {
-      // state.loadedOffices = [
-      //       { id: '1', name: 'Ksiegowosc-test', price: 100 },
-      //       { id: '2', name: 'BMW-test', price: 80 },
-      //       { id: '3', name: 'Volkswagen-test', price: 75 },
-      //       { id: '4', name: 'Audi-test', price: 85 }
-      //     ];
-
-      //state.loadedOffices = 
-
-  //     try {
-  //       state.loadedOffices = CompaniesService.getAllCompanies();
-  //       const testCompanies = CompaniesService.getAllCompanies();
-  //       console.log(testCompanies);
-  //      console.log('loaded from db succesfully');
-  //  }
-  //  catch (err) {
-  //      console.log('store didnt manage to load companies from db ')
-  //      console.log(err)
-  //  }
-  //         console.log('mutation loadCompanies executed succesfully');
-  //   }
-
       state.loadedOffices = data.rows;
       state.allCompaniesCount = data.count;
       state.count = data.rows.length;
@@ -83,6 +44,10 @@ export const store = new Vuex.Store({
 
     setToken(state, token) {
       state.token = token
+    },
+
+    setUser(state, user) {
+      state.user = user
     }
 
   },
@@ -141,6 +106,10 @@ async loadCompany ({ commit }, id)  {
 
 setTokenAction({commit}, token) {
   commit('setToken', token)
+},
+
+setUserAction({ commit }, user) {
+  commit('setUser', user)
 }
 
 
