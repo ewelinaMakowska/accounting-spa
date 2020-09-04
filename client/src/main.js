@@ -7,6 +7,7 @@ import OfficeCatalogue from '@/views/OfficeCatalogue.vue'
 import LoginPage from '@/views/LoginPage.vue' 
 import RegistrationPage from '@/views/RegistrationPage.vue' 
 import UserProfile from '@/views/UserProfile.vue' 
+import EditContentPage from '@/views/EditContentPage.vue' 
 import { store } from './store'
 import vuetify from './plugins/vuetify';
 
@@ -45,6 +46,11 @@ const routes = [
     path: '/user',
     name: 'user-page',
     component: UserProfile
+  },
+  {
+    path: '/edit-content',
+    name: 'edit-content-page',
+    component: EditContentPage
   },
   {
     path:'*',
