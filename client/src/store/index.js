@@ -19,7 +19,8 @@ export const store = new Vuex.Store({
       citiesList: null
     },
     token: null,
-    user: null
+    user: null,
+    isUserLoggedIn: false
   },
 
   mutations: {
@@ -43,7 +44,12 @@ export const store = new Vuex.Store({
     },
 
     setToken(state, token) {
-      state.token = token
+      state.token = token;
+      if(token) {
+        state.isUserLoggedIn = true;
+      } else {
+        state.isUserLoggedIn = false;
+      }
     },
 
     setUser(state, user) {
