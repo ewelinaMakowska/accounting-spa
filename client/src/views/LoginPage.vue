@@ -48,12 +48,12 @@
 
 				try {
                     const response = await AuthService.login(creds);
-                    //console.log(response.data.token)
                     this.$store.dispatch('setTokenAction', response.data.token); 
                     this.$store.dispatch('setUserAction', response.data.user)
 				} catch(err) {
 					console.log(err);
-				} 
+                } 
+                
 			}
 		}
 	}

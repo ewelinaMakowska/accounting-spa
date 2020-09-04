@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                       <b>Registration</b><br/><br/><br/>
-                        <form @submit="submitForm($event)" novalidate > <!-- method="post" -->
+                        <form @submit="register($event)" novalidate > <!-- method="post" -->
                             <label for="form__name">First Name:</label>
 														<input id="form__first-name" name="firstName" type="text" v-model.trim="userData.firstName"/><br/><br/>
 
@@ -48,9 +48,8 @@ export default {
 	}, //data
 	methods: {
 
-		async submitForm(e) {
+		async register(e) {
 			e.preventDefault();
-			//yield data
 			const userData = this.userData;
 
 			console.log(`First Name: ${userData.firstName}`)
@@ -59,12 +58,15 @@ export default {
 			console.log(`Password: ${userData.password}`)
 			console.log(`Confirm Password: ${userData.confirmPassword}`)
 
-			//send request to the backend
 			try {
-					await AuthService.registerUser(userData);
+					const response = await AuthService.registerUser(userData);
+					this.$store.dispatch('setTokenAction', response.data.token); 
+					this.$store.dispatch('setUserAction', response.data.user);
 				} catch(err) {
 					console.log(err);
 			}
+
+
 		}
 	}
 } //export default
