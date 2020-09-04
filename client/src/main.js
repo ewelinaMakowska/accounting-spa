@@ -73,8 +73,6 @@ const router = new VueRouter({
 Vue.use(VueRouter);
 sync(store, router)
 
-
-
 Vue.config.productionTip = false
 
 new Vue({

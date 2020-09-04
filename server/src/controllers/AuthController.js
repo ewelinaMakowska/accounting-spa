@@ -89,6 +89,9 @@ module.exports = {
       }
 
       const userJson = user.toJSON();
+
+      //store jwt in a httponly cookie
+      
       return res.status(200).send({
         user: userJson,
         token: jwtRegUser(userJson)
