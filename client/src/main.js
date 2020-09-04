@@ -6,6 +6,7 @@ import OfficePage from '@/views/OfficePage.vue'
 import OfficeCatalogue from '@/views/OfficeCatalogue.vue' 
 import LoginPage from '@/views/LoginPage.vue' 
 import RegistrationPage from '@/views/RegistrationPage.vue' 
+import UserProfile from '@/views/UserProfile.vue' 
 import { store } from './store'
 import vuetify from './plugins/vuetify';
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/register',
     name: 'registration-page',
     component: RegistrationPage
+  },
+  {
+    path: '/user',
+    name: 'user-page',
+    component: UserProfile
   },
   {
     path:'*',
