@@ -7,6 +7,9 @@
                 <div class="row">
                     <div class="col-sm-12">
                      <button @click="sendTestRequest($event)">Send Test Request</button>
+                     <br/>
+                     E-mail: {{ this.$props.email }} <br/>
+                     Token: {{ this.$props.token }}
                     </div>
                 </div>
             </div>
@@ -23,11 +26,17 @@
 		data() {
 			return {
         creds : {
-          email: 'eressea@op.pl'
+          email: this.$props.email,
+          token: this.$props.token
         }
 			}
 			
-		}, //data
+    }, //data
+     props: {
+       email: String,
+       token: String
+     },
+ 
     methods: {
       async sendTestRequest(e) {
         e.preventDefault();
