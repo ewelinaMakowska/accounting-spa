@@ -91,11 +91,21 @@ module.exports = {
       const userJson = user.toJSON();
 
       //store jwt in a httponly cookie
-      
-      return res.status(200).send({
-        user: userJson,
-        token: jwtRegUser(userJson)
-      })
+      let cookieOptions = {
+        //expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000 ),
+        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000 ),
+        httpOnly: true,
+    }; 
+
+      return res
+        .cookie('jwt', jwtRegUser(userJson), cookieOptions)
+        .status(200).send({
+          user: userJson,
+          token: jwtRegUser(userJson)
+        })
+        .json({
+            msg: 'Successfully logged in',
+        });
     
     } catch(err) {
       res.status(500).send({
