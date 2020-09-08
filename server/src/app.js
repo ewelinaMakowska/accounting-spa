@@ -57,7 +57,7 @@ app.get('/citiesFilteredLimited', CitiesController.getCitiesFilteredLimited)
   })
 } */
 
-//app.get('/userProfile', authenticateToken, AuthController.getUserData)
+app.get('/userProfile', AuthController.getUserData)
 
 app.post('/email', ContactControllerPolicy.email, ContactController.mailCompany)
 app.post('/register', AuthControllerPolicy.registerUser, AuthController.registerUser)
