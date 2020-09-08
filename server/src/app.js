@@ -12,6 +12,8 @@ const { check, checkSchema, body } = require('express-validator');
 const AuthControllerPolicy = require('./policies/AuthControllerPolicy');
 const ContactControllerPolicy = require('./policies/ContactControllerPolicy');
 
+const isAuth = require('./middleware/is-auth')
+
 const app = express()
 const port = 3306
 
@@ -43,21 +45,7 @@ app.get('/company/:id', CompaniesController.getOne)
 //app.get('/companies/:id', CompaniesController.getOne)
 app.get('/cities', CitiesController.getCities)
 app.get('/citiesFilteredLimited', CitiesController.getCitiesFilteredLimited)
-
-
-/* function authenticateToken(req, res, next) {
-  const authHeader = req.header['authorization'];
-  const token = authHeader && authHeader.split(' ')[1]
-  if(token == null) return res.sendStatus(401)
-
-  jwt.verify(token, accessToken, (err, user) => {
-    if(err) return res.sendStatus(403);
-    req.user = user;
-    next();
-  })
-} */
-
-app.get('/userProfile', AuthController.getUserData)
+app.get('/userProfile', isAuth, AuthController.getUserData)
 
 app.post('/email', ContactControllerPolicy.email, ContactController.mailCompany)
 app.post('/register', AuthControllerPolicy.registerUser, AuthController.registerUser)
