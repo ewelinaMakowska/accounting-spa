@@ -61,8 +61,9 @@ module.exports = {
         error: errors
       })
     }
-   
+   //or res.redirect('/login')
   },  //registerUser end
+
 
 
   async login(req, res) {
@@ -102,8 +103,22 @@ module.exports = {
         error: err
       })
     }
-  }
+  },
 
+
+
+  async getUserData(req, res) {
+    try {
+      return res.status(200).send({
+        message: 'User data!'
+      })
+    } catch(err) {
+      return res.status(500).send( {
+        error: err
+      })
+    }
+
+  }
  
 
 } //module exports end
