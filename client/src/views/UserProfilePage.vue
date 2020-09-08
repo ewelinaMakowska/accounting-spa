@@ -41,7 +41,7 @@
       async sendTestRequest(e) {
         e.preventDefault();
         try {
-          const response = await UserService.getUserData(this.creds);
+          const response = await UserService.getUserData(this.creds.token);
           console.log(response)
 				} catch(err) {
 					console.log(err);
