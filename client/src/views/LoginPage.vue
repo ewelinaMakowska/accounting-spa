@@ -21,7 +21,8 @@
 
                         
 
-                        <user-profile-page :email='creds.email' :token='userToken'></user-profile-page>
+                        <!-- <user-profile-page :email='creds.email' :token='userToken'>
+                        </user-profile-page> -->
 
                     </div>
                 </div>
@@ -32,7 +33,7 @@
 
 <script>
 	import AuthService from '@/services/AuthService'
-    import UserProfilePage from '@/views/UserProfilePage.vue'
+    //import UserProfilePage from '@/views/UserProfilePage.vue'
 
 	export default {
 		data() {
@@ -44,9 +45,9 @@
 					userToken: null
 			}
         }, //data
-        components: {
+      /*   components: {
 					UserProfilePage
-        },
+        }, */
 		methods: {
 
 			async login(e) {
@@ -61,7 +62,6 @@
 					this.$store.dispatch('setTokenAction', response.data.token); 
 					this.$store.dispatch('setUserAction', response.data.user)
                     this.userToken = response.data.token;
-                    //localStorage.setItem('user', JSON.stringify(response.data.token));
                     location.reload()
 				} catch(err) {
 					console.log(err);
