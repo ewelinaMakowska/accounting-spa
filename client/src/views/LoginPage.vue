@@ -62,6 +62,7 @@
 					this.$store.dispatch('setUserAction', response.data.user)
                     this.userToken = response.data.token;
                     //localStorage.setItem('user', JSON.stringify(response.data.token));
+                    location.reload()
 				} catch(err) {
 					console.log(err);
                 } 
