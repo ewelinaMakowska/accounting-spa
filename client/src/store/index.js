@@ -20,7 +20,7 @@ export const store = new Vuex.Store({
     },
     token: localStorage.getItem('token') || null,
     user: localStorage.getItem('user') || null,
-    isUserLoggedIn: null
+    isUserLoggedIn: localStorage.getItem('isUserLoggedIn') || null,
   },
 
   mutations: {
@@ -47,8 +47,9 @@ export const store = new Vuex.Store({
       state.token = token;
       if(token) {
         state.isUserLoggedIn = true;
+        localStorage.setItem('isUserLoggedIn', true);
       } else {
-        state.isUserLoggedIn = false;
+        localStorage.setItem('isUserLoggedIn', true);
       }
     },
 
