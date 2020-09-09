@@ -4,7 +4,7 @@ export default {
 
   getUserData(token) {
     return Api.get('userProfile', { headers: {
-      Authorization: 'Bearer' + token
+      Authorization: 'Bearer' + ' ' + token
     }}, token);
   }
 
