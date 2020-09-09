@@ -15,4 +15,5 @@ module.exports = (req, res, next) => {
     throw error;
   }
   req.email = decodedToken.email;
+  next();
 }

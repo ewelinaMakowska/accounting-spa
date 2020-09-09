@@ -27,7 +27,8 @@
 			return {
         creds : {
           email: this.$props.email,
-          token: this.$props.token
+          //token: this.$props.token
+          token: localStorage.getItem('token') || null
         }
 			}
 			
