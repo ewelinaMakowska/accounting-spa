@@ -19,7 +19,7 @@ export const store = new Vuex.Store({
       citiesList: null
     },
     token: localStorage.getItem('token') || null,
-    user: null,
+    user: localStorage.getItem('user') || null,
     isUserLoggedIn: null
   },
 
@@ -117,7 +117,8 @@ setTokenAction({commit}, token) {
 },
 
 setUserAction({ commit }, user) {
-  commit('setUser', user)
+  commit('setUser', user);
+  localStorage.setItem('user', JSON.stringify(user));
 }
 
 
