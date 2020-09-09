@@ -1,5 +1,6 @@
+const bodyParser = require("body-parser");
 
-module.exports = {
+module.exports = { //todo: add env variables
   port: 3306,
   db: {
     database: 'accounting_companies',
@@ -10,5 +11,18 @@ module.exports = {
       host: 'localhost',
       operatorsAliases: false
     }
+  },
+  authentication: {
+    jwtSecret: 'myDevelopmentSuperSecret'
   }
 }
+
+
+/* function setDevEnv(app) {
+  process.env.NODE_ENV = 'development';
+  process.env.DB_URL = '';
+  process.env.JWT_SECRET = 'my-secret';
+  app.use(bodyParser.json());
+  app.use(morgan('dev'));
+  app.use(cors());
+} */

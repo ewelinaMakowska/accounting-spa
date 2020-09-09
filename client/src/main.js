@@ -4,11 +4,18 @@ import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
 import OfficePage from '@/views/OfficePage.vue' 
 import OfficeCatalogue from '@/views/OfficeCatalogue.vue' 
+import LoginPage from '@/views/LoginPage.vue' 
+import RegistrationPage from '@/views/RegistrationPage.vue' 
+import EditContentPage from '@/views/EditContentPage.vue' 
+import UserProfilePage from '@/views/UserProfilePage.vue' 
 import { store } from './store'
 import vuetify from './plugins/vuetify';
+import { sync } from 'vuex-router-sync'
 
-Vue.use(VueRouter);
 
+/* if (window.__INITIAL_STATE__) {
+  store.replaceState(window.__INITIAL_STATE__)
+} */
 
 
 const routes = [
@@ -29,6 +36,26 @@ const routes = [
     component: OfficePage
   },
   {
+    path: '/login',
+    name: 'login-page',
+    component: LoginPage
+  },
+  {
+    path: '/register',
+    name: 'registration-page',
+    component: RegistrationPage
+  },
+  {
+    path: '/user',
+    name: 'user-page',
+    component: UserProfilePage
+  },
+  {
+    path: '/edit-content',
+    name: 'edit-content-page',
+    component: EditContentPage
+  },
+  {
     path:'*',
     redirect: '/'
   } 
@@ -43,6 +70,8 @@ const router = new VueRouter({
   mode: 'history'
 })
 
+Vue.use(VueRouter);
+sync(store, router)
 
 Vue.config.productionTip = false
 
