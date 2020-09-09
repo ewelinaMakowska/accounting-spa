@@ -1,18 +1,19 @@
 <template>
 
     <div>
-
-        <section>
+          <section>
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                     blabla
+                        <b>Dodaj firmę:</b><br/><br/><br/>
+                        form
                     </div>
                 </div>
             </div>
         </section>
 
       </div>
+
 </template>
 
 <script>
