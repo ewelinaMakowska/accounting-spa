@@ -18,9 +18,9 @@ export const store = new Vuex.Store({
       count: null,
       citiesList: null
     },
-    token: null,
+    token: localStorage.getItem('token') || null,
     user: null,
-    isUserLoggedIn: false
+    isUserLoggedIn: null
   },
 
   mutations: {
@@ -111,7 +111,9 @@ async loadCompany ({ commit }, id)  {
 },
 
 setTokenAction({commit}, token) {
-  commit('setToken', token)
+  commit('setToken', token);
+  //localStorage.setItem('token', token);
+  localStorage.setItem('token', JSON.stringify(token));
 },
 
 setUserAction({ commit }, user) {

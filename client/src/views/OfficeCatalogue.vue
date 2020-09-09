@@ -116,7 +116,7 @@ export default {
             this.$store.dispatch('setTokenAction', null);
             this.$store.dispatch('setUserAction', null);
 
-            //todo: send request to backend to clear the cookie
+            //todo: remove token from local storage
         }
          },
 
