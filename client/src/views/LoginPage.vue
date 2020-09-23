@@ -32,7 +32,7 @@
 </template>
 
 <script>
-	import AuthService from '@/services/AuthService'
+	import AuthService from '../services/AuthService'
     //import UserProfilePage from '@/views/UserProfilePage.vue'
 
 	export default {

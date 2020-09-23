@@ -54,7 +54,7 @@
 
 <script>
 //import CompaniesService from '@/services/CompaniesService'
-import ContactService from '@/services/ContactService'
+import ContactService from '../services/ContactService'
 
 
 export default {

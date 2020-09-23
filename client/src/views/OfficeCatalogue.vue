@@ -67,10 +67,10 @@ padding: 20px;
 </style>
 
 <script>
-import OfficeThumb from '@/components/OfficeThumb.vue';
-import Pagination from '@/components/Pagination.vue';  // eslint-disable-line no-unused-vars
-import Search from '@/components/Search.vue'; 
-import Filters from '@/components/Filters.vue';
+import OfficeThumb from '../components/OfficeThumb.vue';
+import Pagination from '../components/Pagination.vue';  // eslint-disable-line no-unused-vars
+import Search from '../components/Search.vue'; 
+import Filters from '../components/Filters.vue';
 
 
 export default {

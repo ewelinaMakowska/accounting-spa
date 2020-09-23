@@ -9,7 +9,6 @@ import RegistrationPage from './views/RegistrationPage.vue'
 import EditContentPage from './views/EditContentPage.vue' 
 import UserProfilePage from './views/UserProfilePage.vue' 
 import { store } from './store'
-import vuetify from './plugins/vuetify';
 import { sync } from 'vuex-router-sync'
 
 
@@ -78,7 +77,6 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
-  vuetify,
   render: h => h(App)
 }).$mount('#app')
 

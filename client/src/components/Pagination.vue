@@ -23,9 +23,9 @@ display: flex;
 </style>
 
 <script>
-import PaginationButton from '@/components/PaginationButton.vue'; 
-import PreviousButton from '@/components/PreviousButton.vue'; 
-import NextButton from '@/components/NextButton.vue'; 
+import PaginationButton from './PaginationButton.vue'; 
+import PreviousButton from './PreviousButton.vue'; 
+import NextButton from './NextButton.vue'; 
 //uruchomić z tego poziomu akcję kontrolera i przekazać informację o numerze strony ?? + getter ?
 export default {
 
