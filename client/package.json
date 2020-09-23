@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "webpack --config build/webpack.config.dev.js",
+    "dev": "webpack-dev-server --config build/webpack.config.dev.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -26,12 +27,14 @@
     "css-loader": "^4.3.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "html-webpack-plugin": "^4.5.0",
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
     "vue-loader": "^15.9.3",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.12",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }
