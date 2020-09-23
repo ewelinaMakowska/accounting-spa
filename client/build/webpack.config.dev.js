@@ -1,6 +1,7 @@
 'use strict'
 
 var webpack = require('webpack');
+var HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -24,12 +25,16 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     //contentBase: '',
     compress: true,
-    port: 9010
+    port: 9010,
+    historyApiFallback: true
   },
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new VueLoaderPlugin(),
+    new HtmlWebpackHarddiskPlugin({
+      alwaysWriteToDisk: true
+    }),
     new HtmlWebpackPlugin({
       context: '',
       filename: './public/index.html',
