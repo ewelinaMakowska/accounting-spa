@@ -18,9 +18,9 @@
   </div>
 </template>
 
-<style lang="scss">
+<!--<style lang="scss">
  .hidden { display: none; }
-</style>
+</style> -->
 
 <script>
 export default {

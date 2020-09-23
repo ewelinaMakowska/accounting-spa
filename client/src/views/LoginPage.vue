@@ -72,7 +72,7 @@
 	}
 </script>
 
-<style scoped>
+<!-- <style scoped>
 
     input[type="text"],
     input[type="email"],
@@ -85,4 +85,4 @@
         background: lightblue;
     }
 
-</style>
+</style> -->

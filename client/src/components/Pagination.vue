@@ -12,7 +12,7 @@
 </div>
 </template> 
 
-<style scoped>
+<!-- <style scoped>
 .pagination {
 display: flex;
 }
@@ -20,7 +20,7 @@ display: flex;
 .button {
   padding-right: 15px;
 }
-</style>
+</style> -->
 
 <script>
 import PaginationButton from './PaginationButton.vue'; 

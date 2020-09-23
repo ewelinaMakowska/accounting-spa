@@ -54,7 +54,7 @@
 
 </template>
 
-<style lang="scss" scoped>
+<!-- <style lang="scss" scoped>
 
 .search {
   div {
@@ -133,7 +133,7 @@ input {
   }
 }
 
-</style>
+</style> -->
 
 
 <script>

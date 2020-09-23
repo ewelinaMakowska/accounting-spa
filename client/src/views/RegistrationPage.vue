@@ -73,7 +73,7 @@ export default {
 
 </script>
 
-<style scoped>
+<!-- <style scoped>
 
     input[type="text"],
     input[type="email"],
@@ -86,4 +86,4 @@ export default {
         background: lightblue;
     }
 
-</style>
+</style> -->
