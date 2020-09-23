@@ -11,6 +11,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   mode: 'development',
   //context: __dirname + '/src',
+
   context: '',
   entry: './src/main.js',
   module: {
@@ -22,10 +23,12 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    //contentBase: path.join(__dirname, 'dist'),
+    contentBase: './public',
     compress: true,
     port: 9010,
-    historyApiFallback: true
+    historyApiFallback: true,
+    writeToDisk: true,
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -42,8 +45,8 @@ module.exports = {
     })
   ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/'
+    path: __dirname + "/dist",
+    //filename: 'bundle.js',
+    publicPath: __dirname + "/dist"
   },
 }
