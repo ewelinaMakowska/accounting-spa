@@ -3,12 +3,13 @@
 var webpack = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: [
-    './src/main.js'
-  ],
+  //context: __dirname + '/src',
+  context: '',
+  entry: './src/main.js',
   module: {
     rules: [
       {
@@ -21,8 +22,9 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'index.html',
+      context: '',
+      filename: './public/index.html',
+      template: './public/index.html',
       inject: true
     })
   ]
