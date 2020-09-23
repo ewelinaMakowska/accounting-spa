@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import CompaniesService from '@/services/CompaniesService.js' // eslint-disable-line no-unused-vars
-import CitiesService from '@/services/CitiesService.js'
+import CompaniesService from '../services/CompaniesService.js' // eslint-disable-line no-unused-vars
+import CitiesService from '../services/CitiesService.js'
 
 Vue.use(Vuex)
 
