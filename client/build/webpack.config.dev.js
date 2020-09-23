@@ -1,9 +1,11 @@
 'use strict'
 
 var webpack = require('webpack');
+const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 
 module.exports = {
   mode: 'development',
@@ -25,6 +27,7 @@ module.exports = {
     port: 9010
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
