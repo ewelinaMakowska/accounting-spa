@@ -36,5 +36,10 @@ module.exports = {
       template: './public/index.html',
       inject: true
     })
-  ]
+  ],
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/'
+  },
 }
