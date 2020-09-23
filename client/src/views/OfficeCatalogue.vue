@@ -47,7 +47,7 @@
 
 </template>
 
-<style>
+<!-- <style>
 * {
     font-family: 'Roboto', sans-serif;
 }
@@ -64,7 +64,7 @@ padding: 20px;
 
 
 
-</style>
+</style> -->
 
 <script>
 import OfficeThumb from '../components/OfficeThumb.vue';

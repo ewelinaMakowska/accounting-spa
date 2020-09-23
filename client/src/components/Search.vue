@@ -299,7 +299,7 @@ watch: {
 }
 </script>
 
-<style>
+<!-- <style>
 .hidden {display: none;}
 .show {display: block;}
-</style>
+</style> -->

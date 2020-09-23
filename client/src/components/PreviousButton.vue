@@ -8,11 +8,11 @@
 </div>
 </template>
 
-<style scoped>
+<!-- <style scoped>
 .button {
   padding-right: 15px;
 }
-</style>
+</style> -->
 
 <script>
 

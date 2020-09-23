@@ -36,7 +36,7 @@
     </div>
 </template>
 
-<style scoped>
+<!-- <style scoped>
 
     input[type="text"],
     input[type="email"] {
@@ -48,7 +48,7 @@
         border: 1px solid #333;
     }
 
-</style>
+</style> -->
 
 
 
