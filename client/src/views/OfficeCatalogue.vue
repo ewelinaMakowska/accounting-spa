@@ -1,30 +1,30 @@
 <template>
 
 
-<v-container class="main-container" id="main-container" >
-    <v-row>
-        <v-col lg="12">
+<div class="main-container container" id="main-container" >
+    <div class="row">
+        <div class="col-lg-12" lg="12">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
             <br/>
             <br/>
             <button v-if="$store.state.isUserLoggedIn" @click="logout()">Log Out</button>
 
-        </v-col>
-    </v-row>
+        </div>
+    </div>
 
 
-    <v-row>
-        <v-col lg="12">
+    <div class="row">
+        <div class="col-lg-12">
 
          
 
-            <v-row>
-                 <v-col lg="4">
+            <div class="row">
+                 <div class="col-lg-4">
                      <search></search>
                      <filters></filters>
-                      </v-col>
+                      </div>
 
-                      <v-col lg="8">
+                       <div class="col-lg-8">
 
                         
                         <div class="flex-thumbs-container">
@@ -36,13 +36,13 @@
                       <pagination :howManyPages="pageCount" :currentPageNumber="currentPageNumber" :city="this.$route.query.city"/> 
 
                    
-                      </v-col>
+                      </div>
 
-            </v-row>
+            </div>
 
-        </v-col>
-    </v-row>
-</v-container>
+        </div>
+    </div>
+</div>
 
 
 </template>
