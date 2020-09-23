@@ -1,5 +1,9 @@
 'use strict'
-const { VueLoaderPlugin } = require('vue-loader')
+
+var webpack = require('webpack');
+const { VueLoaderPlugin } = require('vue-loader');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   mode: 'development',
   entry: [
@@ -14,6 +18,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
