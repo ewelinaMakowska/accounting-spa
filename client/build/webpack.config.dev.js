@@ -1,4 +1,6 @@
 'use strict'
+
+const webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -7,6 +9,12 @@ module.exports = {
   entry: [
     './src/main.js'
   ],
+  devServer: {
+    hot: true,
+    watchOptions: {
+      poll: true
+    }
+  },
   module: {
     rules: [
       {
