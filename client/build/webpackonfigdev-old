@@ -1,4 +1,4 @@
-'use strict'
+/* 'use strict'
 
 var webpack = require('webpack');
 //var HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
@@ -49,4 +49,4 @@ module.exports = {
     //filename: 'bundle.js',
     publicPath: __dirname + "/dist"
   },
-}
+} */
