@@ -1,6 +1,8 @@
-import Vue from 'vue'
-import App from './App.vue'
-import VueRouter from 'vue-router'
+//import Vue from 'vue'
+var Vue = require('vue').default;
+
+//import App from './App.vue'
+
 import Home from './views/Home.vue'
 import OfficePage from './views/OfficePage.vue' 
 import OfficeCatalogue from './views/OfficeCatalogue.vue' 
@@ -8,9 +10,15 @@ import LoginPage from './views/LoginPage.vue'
 import RegistrationPage from './views/RegistrationPage.vue' 
 import EditContentPage from './views/EditContentPage.vue' 
 import UserProfilePage from './views/UserProfilePage.vue' 
-import { store } from './store'
-import { sync } from 'vuex-router-sync'
 
+//import VueRouter from 'vue-router'
+import { store } from './store'
+
+var VueRouter = require('vue-router').default;
+//import { sync } from 'vuex-router-sync'
+var sync = require('vuex-router-sync').sync;
+
+//import '../assets/scss/app'
 
 /* if (window.__INITIAL_STATE__) {
   store.replaceState(window.__INITIAL_STATE__)

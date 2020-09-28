@@ -8,6 +8,7 @@
 
 <script>
 
+import '../assets/scss/app.scss'
 
 export default {
   name: 'App',
@@ -21,3 +22,8 @@ export default {
   }),
 };
 </script>
+
+<style lang="scss">
+  .office-thumb { color: blue; }
+</style>  
+

@@ -157,3 +157,9 @@ async created () {
 }//export default
 
 </script>
+
+<style lang="scss">
+    .office-thumb {
+        background: blue;
+    }
+</style>
