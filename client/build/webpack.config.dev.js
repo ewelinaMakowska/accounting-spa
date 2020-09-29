@@ -3,12 +3,17 @@
 const webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+require("babel-polyfill");
+
 
 module.exports = {
   mode: 'development',
-  entry: [
+ /*  entry: [
     './src/main.js'
-  ],
+  ],  */
+  entry: [
+    "babel-polyfill", './src/main.js'
+  ], 
   devServer: {
     hot: true,
     watchOptions: {
@@ -22,13 +27,6 @@ module.exports = {
         test: /\.vue$/,
         use: 'vue-loader'
       },
-     /*  {
-        test: /\.css$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-        ],
-      }, */
       {
         test: /\.scss$/,
         use: [
@@ -36,6 +34,10 @@ module.exports = {
           'css-loader',
           'sass-loader'
         ]
+      },
+      {
+        test: /\.js$/,
+        use: 'babel-loader'
       }
     ]
   },
@@ -48,3 +50,4 @@ module.exports = {
     })
   ]
 }
+
