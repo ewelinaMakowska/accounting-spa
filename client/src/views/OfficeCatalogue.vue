@@ -71,6 +71,9 @@ padding: 20px;
         color: #ffffff; 
         background: black;
         }
+
+    @import '../../assets/scss/app.scss';
+
         
 </style>
 

@@ -32,6 +32,7 @@
     "html-webpack-plugin": "^4.5.0",
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
+    "style-loader": "^1.2.1",
     "vue-loader": "^15.9.3",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.12",
