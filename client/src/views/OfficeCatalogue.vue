@@ -66,6 +66,14 @@ padding: 20px;
 
 </style> -->
 
+<style lang="scss">
+    .office-thumb { 
+        color: #ffffff; 
+        background: black;
+        }
+        
+</style>
+
 <script>
 import OfficeThumb from '../components/OfficeThumb.vue';
 import Pagination from '../components/Pagination.vue';  // eslint-disable-line no-unused-vars

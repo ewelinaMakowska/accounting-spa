@@ -11,6 +11,7 @@ import UserProfilePage from './views/UserProfilePage.vue'
 import { store } from './store'
 import { sync } from 'vuex-router-sync'
 
+import "../assets/scss/app.scss"
 
 /* if (window.__INITIAL_STATE__) {
   store.replaceState(window.__INITIAL_STATE__)
