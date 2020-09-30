@@ -9,5 +9,12 @@
   ],
   "plugins": [
     "transform-regenerator"
-  ]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        ["@babel/preset-env", { "targets": { "node": "current" }}]
+      ]
+    }
+  }
 }
