@@ -38,7 +38,12 @@ module.exports = {
       {
         test: /\.js$/,
         use: 'babel-loader'
-      }
+      }/* ,
+      {
+        test: /\.(js|vue)$/,
+        use: 'eslint-loader',
+        enforce: 'pre'
+      } */
     ]
   },
   plugins: [
