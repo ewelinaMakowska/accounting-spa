@@ -1,12 +1,14 @@
 <template>
-<div class="office-thumb">
-    Biuro {{ name }} <br/>
-    ID: {{ id }} <br/>
-    Miasto: {{ city }} <br/>
-    Cena: {{ price }} <br/>
-    
-     <router-link :to="'/office/' + office.id">więcej</router-link>
-</div>
+  <div class="office-thumb">
+    Biuro {{ name }} <br>
+    ID: {{ id }} <br>
+    Miasto: {{ city }} <br>
+    Cena: {{ price }} <br>
+
+    <router-link :to="'/office/' + office.id">
+      więcej
+    </router-link>
+  </div>
 </template>
 
  <style lang="scss">
@@ -18,17 +20,15 @@
     }
  </style>
 
- 
-
 <script>
 export default {
-    props: {
-        office: Object,
-        name: String,
-        city: String,
-        id: Number,
-        price: Number
-    }
-    
+  props: {
+    office: Object,
+    name: String,
+    city: String,
+    id: Number,
+    price: Number
+  }
+
 }
 </script>

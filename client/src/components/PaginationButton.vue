@@ -1,20 +1,18 @@
 <template>
-<div class="button">
- <!-- {{ pageNumber }} -->
- <!-- <a :href="'/?page='+pageNumber" @click="loadPage"> <slot>button</slot></a> -->
-<!--- dodać do hrefa + city = albo nic -->
-<!--<a :href="'/search/?page='+pageNumber+'&city='+this.$props.city"> <slot>button</slot></a>-->
+  <div class="button">
+    <!-- {{ pageNumber }} -->
+    <!-- <a :href="'/?page='+pageNumber" @click="loadPage"> <slot>button</slot></a> -->
+    <!--- dodać do hrefa + city = albo nic -->
+    <!--<a :href="'/search/?page='+pageNumber+'&city='+this.$props.city"> <slot>button</slot></a>-->
 
-<!-- <a :href="'/search?city='+this.$props.city+'&sort='+this.$props.sort+'&page='+this.$props.pageNumber">
+    <!-- <a :href="'/search?city='+this.$props.city+'&sort='+this.$props.sort+'&page='+this.$props.pageNumber">
  <slot>button</slot>
 </a> -->
 
-<a :href="'/search?city='+this.$route.query.city+'&sort='+this.$route.query.sort+'&page='+this.$props.pageNumber">
- <slot>button</slot>
-</a>
-
-
-</div>
+    <a :href="'/search?city='+this.$route.query.city+'&sort='+this.$route.query.sort+'&page='+this.$props.pageNumber">
+      <slot>button</slot>
+    </a>
+  </div>
 </template>
 
 <!-- <style scoped>
@@ -25,48 +23,44 @@
 
 <script>
 
-
 export default {
-
-  data() {
-    return {
-      place: 'Warszawa'
-    }
-  },
- props: {
+  props: {
     pageNumber: Number,
     city: String,
     sort: String
-     },
-  methods: {
-     loadPage() {  
-    //event.preventDefault();        
-      console.log("Page data retrieved!");   
-    },
+  },
 
-
-
-  changeUrl() {
-      console.log('click!')
-    const route = {
-        path: 'page'
+  data () {
+    return {
+      place: 'Warszawa'
     }
-    route.query = {
-        page : this.pageNumber
-      }
-    this.$router.push(route);
-
-  }
-  }, //methods
-   computed: {
-        offices () {
-            return this.$store.getters.loadedOffices;
-        },
-        loadPageData() {
-            return this.$store.dispatch('loadOnePageData');
-        }
-
+  }, // methods
+  computed: {
+    offices () {
+      return this.$store.getters.loadedOffices
     },
-    
+    loadPageData () {
+      return this.$store.dispatch('loadOnePageData')
+    }
+
+  },
+  methods: {
+    loadPage () {
+    // event.preventDefault();
+      console.log('Page data retrieved!')
+    },
+
+    changeUrl () {
+      console.log('click!')
+      const route = {
+        path: 'page'
+      }
+      route.query = {
+        page: this.pageNumber
+      }
+      this.$router.push(route)
+    }
+  }
+
 }
 </script>
