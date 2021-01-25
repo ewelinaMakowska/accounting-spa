@@ -1,60 +1,66 @@
 <template>
+  <div class="search">
+    <br>
+    <br>
+    <br>
+    <!-- <label for="search">Wyszukaj:</label><br> -->
 
-<div class="search">
-<br>
-<br>
-<br>
-<!-- <label for="search">Wyszukaj:</label><br> -->
+    <div
+      class="search__input-wrapper"
+      style="z-index:5; margin-top: -31px; background: white; position:absolute;"
+    >
+      <input
+        id="search"
+        v-model="search"
+        autocomplete="off"
+        class="search__input"
+        type="search"
+        placeholder="Miasto"
+        style="width:220px"
+        @keyup="loadCitiesFilteredLimited()"
+        @click="setSearching()"
+      >
 
+      <!--  <button class="search__button" @click="searchResults()">Wyszukaj</button> -->
+    </div>
 
-  <div class="search__input-wrapper" style="z-index:5; margin-top: -31px; background: white; position:absolute;">
-
-    <input 
-      autocomplete="off" 
-      class="search__input" 
-      type="search" 
-      id="search" 
-      placeholder="Miasto" 
-      v-model="search"
-      style="width:220px"
-      v-on:keyup="loadCitiesFilteredLimited()"
-      @click="setSearching()" />
-
-  <!--  <button class="search__button" @click="searchResults()">Wyszukaj</button> -->
-  </div>
-
- <!-- <autocomplete v-show="searching>0"></autocomplete> -->
-<div v-show="(this.searching && this.search !=='')">
-
-  <div class="autocomplete">
-      <ul class="cities-list">
-       <!--  <li class="cities-list__item">Warszawa, mazowieckie</li>
+    <!-- <autocomplete v-show="searching>0"></autocomplete> -->
+    <div v-show="(this.searching && this.search !=='')">
+      <div class="autocomplete">
+        <ul class="cities-list">
+          <!--  <li class="cities-list__item">Warszawa, mazowieckie</li>
         <li class="cities-list__item">Kraków, małopolskie</li>
         <li class="cities-list__item">Gdańsk, pomorskie</li> -->
 
-     <!--  {{ this.$store.getters.state.cities.citiesList }} -->
+          <!--  {{ this.$store.getters.state.cities.citiesList }} -->
 
-     <!-- <li v-for="(city, id) in cities" :key='id' class="cities-list__item">{{ city.name }}, {{ city.region }}</li> -->
+          <!-- <li v-for="(city, id) in cities" :key='id' class="cities-list__item">{{ city.name }}, {{ city.region }}</li> -->
 
-      <li v-for="(city, id) in cities" :key='id' >
-        <button class="cities-list__item autocomplete_button" @click="autocompleteInput($event)" >
-          {{ city.name }}, {{ city.region }}
-        </button>
-      </li>
-      
-      </ul>
-     
-    
-     <div class="outside" @click="setSearchingFalse()"></div>
-  </div> <!--div autocomplete -->
-  </div> <!--div v-shwo -->
-      <!-- <button @click="loadCities()" >Get Cities</button> -->
-<!-- sortowanie -->
-</div> <!--search-->
+          <li
+            v-for="(city, id) in cities"
+            :key="id"
+          >
+            <button
+              class="cities-list__item autocomplete_button"
+              @click="autocompleteInput($event)"
+            >
+              {{ city.name }}, {{ city.region }}
+            </button>
+          </li>
+        </ul>
 
+        <div
+          class="outside"
+          @click="setSearchingFalse()"
+        />
+      </div> <!--div autocomplete -->
+    </div> <!--div v-shwo -->
+    <!-- <button @click="loadCities()" >Get Cities</button> -->
+    <!-- sortowanie -->
+  </div> <!--search-->
 </template>
 
-<style lang="scss" scoped>
+<!-- <style lang="scss" scoped>
 
 .search {
   div {
@@ -62,7 +68,7 @@
   //width: 60%;
   //background:blue;
   }
-  
+
   &__button {
     display: inline-block;
     margin-left: 10px;
@@ -73,15 +79,12 @@
     display: inline-block;
   }
 
-
 }
 input {
     border: 1px solid #e0e0e0;
     padding: 5px 10px;
     width: 60%;
 }
-
-
 
 .hidden {
   display: none;
@@ -133,173 +136,157 @@ input {
   }
 }
 
-</style>
-
+</style> -->
 
 <script>
 
-//import Autocomplete from '@/components/Autocomplete.vue';
+// import Autocomplete from '@/components/Autocomplete.vue';
 
 export default {
 
-/*   components: {
+  /*   components: {
     Autocomplete
     }, //components */
-data() {
-  
-  return {
-    search: '',
-    searching: 0,
-    page: 1,
-    
-  }
-},
-computed: {
-    currentPageNumber() {
-      //return this.$router.query.page;
-      return 1;
+  data () {
+    return {
+      search: '',
+      searching: 0,
+      page: 1
+
+    }
+  },
+  computed: {
+    currentPageNumber () {
+      // return this.$router.query.page;
+      return 1
     },
-     cities () {
-      return this.$store.getters.loadedCities;
-      }    
+    cities () {
+      return this.$store.getters.loadedCities
+    }
   },
-methods: {
+  watch: {
+    search (value) {
+      const route = {
+        path: 'city'
+      }
 
-  setSearching() {   //event.preventDefault(e);
-   // this.searching = 1;  
-    document.getElementsByClassName('autocomplete')[0].classList.remove('hidden');
+      if (this.search !== '') {
+        this.searching = 1
+        route.query = {
+
+          city: this.search,
+          page: '1'
+        }
+        route.path = 'search'
+      } else {
+        route.query = {
+          city: '',
+          page: '1'
+        }
+        route.path = 'search'
+      }
+
+      console.log(value)
+      // this.route.query = route
+      this.$router.push(route)
+    // this.$router.push(route);
+    },
+    '$route.query.city': {
+    // immediate:true,
+      handler (value) {
+        this.search = value
+      }
+    }
   },
+  methods: {
 
-  setSearchingFalse() {
-   // this.searching = 0; 
-   document.getElementsByClassName('autocomplete')[0].classList.add('hidden');
-  
-  },
+    setSearching () { // event.preventDefault(e);
+      // this.searching = 1;
+      document.getElementsByClassName('autocomplete')[0].classList.remove('hidden')
+    },
 
-  async loadCities() {
-     await this.$store.dispatch('loadCities')
-    .catch(function (error) {
-          console.log(error);
-      })
-    console.log(this.$store.getters.state.cities.citiesList)
-  },
+    setSearchingFalse () {
+      // this.searching = 0;
+      document.getElementsByClassName('autocomplete')[0].classList.add('hidden')
+    },
 
-  async autocompleteInput($event) {
-    const text = $event.target.innerText;
-    const searchInput = document.getElementById('search');
+    async loadCities () {
+      await this.$store.dispatch('loadCities')
+        .catch(function (error) {
+          console.log(error)
+        })
+      console.log(this.$store.getters.state.cities.citiesList)
+    },
 
-    searchInput.value = text;
+    async autocompleteInput ($event) {
+      const text = $event.target.innerText
+      const searchInput = document.getElementById('search')
 
-    const city = text.split(',')[0];
-   // const region = text.split(',')[2]
+      searchInput.value = text
 
-    this.search = city;
-    await this.searchResults(); 
-    //document.getElementsByClassName('outside')[0].classList.add('hidden');
-    //this.setSearchingFalse();
-    document.getElementsByClassName('autocomplete')[0].classList.add('hidden')
-    //this.$route.query.city = text;
-  
-  
-  },
-  
+      const city = text.split(',')[0]
+      // const region = text.split(',')[2]
 
+      this.search = city
+      await this.searchResults()
+      // document.getElementsByClassName('outside')[0].classList.add('hidden');
+      // this.setSearchingFalse();
+      document.getElementsByClassName('autocomplete')[0].classList.add('hidden')
+      // this.$route.query.city = text;
+    },
 
-  async loadCitiesFilteredLimited() {
+    async loadCitiesFilteredLimited () {
+      const name = this.$route.query.city
+      // const name ='W';
+      console.log(`name: ${name}`)
 
-    const name = this.$route.query.city;
-   // const name ='W';
-    console.log(`name: ${name}`)
+      await this.$store.dispatch('loadCitiesFilteredLimited', name)
+        .catch(function (error) {
+          console.log(error)
+        })
+      // console.log(this.$store.getters.state)
+    },
 
-    await this.$store.dispatch('loadCitiesFilteredLimited', name)
-    .catch(function (error) {
-          console.log(error);
-      })
-    //console.log(this.$store.getters.state)
-
-
-  },
-
- async searchByCity(search) {
-
- /*   try {
+    async searchByCity (search) {
+      /*   try {
   this.$router.push({ page: 2 })
   console.log('ok!')
     } catch(err) {
       console.log(`Router error: ${err}` );
     }
  */
-    console.log(`search: ${search}`)
-   
-    await this.$store.dispatch('loadSearchResults', search)
-    .catch(function (error) {
-          console.log(error);
-      })
-    console.log(this.$store.getters.state)
-    //this.$route.query.page = 1; potrzebne dodanie do urla /?page=1
-    
-  },
+      console.log(`search: ${search}`)
 
-   async searchResults(search) {
+      await this.$store.dispatch('loadSearchResults', search)
+        .catch(function (error) {
+          console.log(error)
+        })
+      console.log(this.$store.getters.state)
+      // this.$route.query.page = 1; potrzebne dodanie do urla /?page=1
+    },
+
+    async searchResults (search) {
     //  const page = this.$router.page;
-    console.log(`search: ${search}`)
+      console.log(`search: ${search}`)
 
-    //const page = this.currentPageNumber;
+      // const page = this.currentPageNumber;
 
+      // const searchParameters = {city: this.$route.query.city, page: '1'}
+      const searchParameters = { city: this.search, page: '1' }
+      console.log(`search page: ${this.searchParameters}`)
 
-   // const searchParameters = {city: this.$route.query.city, page: '1'}
-   const searchParameters = {city: this.search, page: '1'}
-    console.log(`search page: ${this.searchParameters}`)
-
-    await this.$store.dispatch('loadSearchResultsLimited', searchParameters)
-    .catch(function (error) {
-          console.log(error);
-      })
-    console.log(this.$store.getters.state)
-  }
-},
-watch: {
-  search(value) {
-    
-    const route = {
-      path: 'city'
-    }
-
-    if(this.search !== '') {
-      this.searching = 1;
-      route.query = {
-       
-        city : this.search,
-        page: '1'
-      }
-      route.path = 'search'
-     
-
-    } else {
-       route.query = {
-        city : "",
-        page: '1'
-      } 
-      route.path = 'search'
-    }
-
-    console.log(value);
-    //this.route.query = route
-    this.$router.push(route);
-    //this.$router.push(route);
-  },
-  '$route.query.city': {
-    //immediate:true,
-    handler (value) {
-      this.search = value
+      await this.$store.dispatch('loadSearchResultsLimited', searchParameters)
+        .catch(function (error) {
+          console.log(error)
+        })
+      console.log(this.$store.getters.state)
     }
   }
-}
-    
+
 }
 </script>
 
-<style>
+<!-- <style>
 .hidden {display: none;}
 .show {display: block;}
-</style>
+</style> -->

@@ -1,15 +1,13 @@
-import Api from '@/services/Api'
+import Api from './Api'
 
 export default {
 
-  getAllCities() {
-    return Api.get('cities');
-    //console.log("sent to server code"); 
+  getAllCities () {
+    return Api.get('cities')
+    // console.log("sent to server code");
   },
-  getFilteredLimited(value) {
-    return Api.get(`citiesFilteredLimited/?name=${value}`, value);
+  getFilteredLimited (value) {
+    return Api.get(`citiesFilteredLimited/?name=${value}`, value)
   }
-
-
 
 }

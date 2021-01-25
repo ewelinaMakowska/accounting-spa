@@ -1,9 +1,9 @@
-import Api from '@/services/Api'
+import Api from './Api'
 
 export default {
 
-  mailCompany(emailData) {
-    return Api.post('email', emailData);
+  mailCompany (emailData) {
+    return Api.post('email', emailData)
   }
 
 }

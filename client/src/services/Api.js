@@ -8,8 +8,8 @@
 
 import axios from 'axios'
 
-const instance = 
+const instance =
   axios.create({
-        baseURL: `http://localhost:3306`
-    })
+    baseURL: 'http://localhost:3306'
+  })
 export default instance

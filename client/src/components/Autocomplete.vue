@@ -1,34 +1,32 @@
 <template>
- <!-- <div class="autocomplete__wrapper" > -->
-   <div>
+  <!-- <div class="autocomplete__wrapper" > -->
+  <div>
     <div class="autocomplete">
       <ul class="cities-list">
       <!--   <li class="cities-list__item">Warszawa, mazowieckie</li>
         <li class="cities-list__item">Kraków, małopolskie</li>
         <li class="cities-list__item">Gdańsk, pomorskie</li> -->
       </ul>
-     
     </div>
-     <div class="outside" @click="hideAutocomplete()"></div>
-     </div>
- <!--  </div> -->
+    <div
+      class="outside"
+      @click="hideAutocomplete()"
+    />
+  </div>
+  <!--  </div> -->
 </template>
-
 
 <script>
 
-
 export default {
-    /*  props: {
+  /*  props: {
       searching: Number
     } */
-   
 
-  
 }
 </script>
 
-<style lang="scss" scoped>
+<!-- <style lang="scss" scoped>
 
 .hidden {
   display: none;
@@ -71,4 +69,4 @@ export default {
     }
   }
 }
-</style>
+</style> -->
