@@ -121,8 +121,8 @@ module.exports = {
           //order: [['price','asc']],
           order: order,
           limit: ITEMS_PER_PAGE,
-          where: {[Op.or]: [{city: {[Op.like]: `%${value}%`}}] //op or
-          }
+          //where: {[Op.or]: [{city: {[Op.like]: `%${value}%`}}] }//op or for searching by cityname
+          where: {cityId : value}
         })
           
         res.send(companies);

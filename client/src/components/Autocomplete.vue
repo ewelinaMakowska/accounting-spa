@@ -1,11 +1,8 @@
 <template>
-  <!-- <div class="autocomplete__wrapper" > -->
-  <div>
+  <div id="autocomplete__wrapper">
     <div class="autocomplete">
       <ul class="cities-list">
-      <!--   <li class="cities-list__item">Warszawa, mazowieckie</li>
-        <li class="cities-list__item">Kraków, małopolskie</li>
-        <li class="cities-list__item">Gdańsk, pomorskie</li> -->
+     
       </ul>
     </div>
     <div
