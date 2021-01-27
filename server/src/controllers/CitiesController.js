@@ -21,11 +21,9 @@ async getCities (req, res) {
 
 async getCitiesFilteredLimited(req, res, next) {
   try {
-  // const limit = req.query.limit;
     const value = req.query.name;
 
     const cities = await City.findAndCountAll({
-      //limit: CITIES_ON_AUTOCOMPLETE,
       offset: 0,
       limit: CITIES_ON_AUTOCOMPLETE,
       where: {[Op.or]: [{name: {[Op.like]: `${value}%`}}] //op or
@@ -39,7 +37,7 @@ async getCitiesFilteredLimited(req, res, next) {
       error: 'Internal Server Error'
     });
   } 
-}
+} 
 
 
 }

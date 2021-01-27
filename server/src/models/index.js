@@ -3,6 +3,7 @@ const config = require('../config/config')
 const db = {}
 
 
+
 const sequelize = new Sequelize (
   config.db.database,
   config.db.user,
@@ -28,7 +29,10 @@ sequelize
   db['City'] = sequelize.import('./City.js')
   db['User'] = sequelize.import('./User.js')
 
+
+  
   
   db.sequelize = sequelize
   db.Sequelize = Sequelize
   module.exports = db
+

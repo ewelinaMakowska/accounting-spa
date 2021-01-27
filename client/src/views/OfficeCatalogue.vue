@@ -146,10 +146,10 @@ export default {
     } // trycatch
   }, // components
   methods: {
-    loadPage (page) {
+    loadPage(page) {
       return this.$store.dispatch('loadOnePageData', page)
     },
-    loadSearchResults (value) {
+    loadSearchResults(value) {
       return this.$store.dispatch('loadSearchResultsLimited', value)
     },
     logout () {
