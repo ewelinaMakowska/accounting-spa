@@ -1,5 +1,6 @@
 
 const Sequelize = require('sequelize')
+//const Company = require('./Company')
 const Company = require('./Company')
 
 
@@ -27,10 +28,11 @@ module.exports = (sequelize, DataTypes) => {
     City.hasMany(Company)
   } */
 
-  /* City.associate = models => {
-    models.Company.belongsTo(models.City, {foreignKey: 'id', sourceKey: 'cityid'});
-    models.City.hasMany(models.Company, {foreignKey: 'cityid', sourceKey: 'id'});
-  }  */
+   City.associate = (models) => {
+    City.hasMany(models.Company, {
+      as: 'Companies'
+    });
+  }  
 
   return City
 }

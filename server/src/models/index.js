@@ -29,7 +29,11 @@ sequelize
   db['City'] = sequelize.import('./City.js')
   db['User'] = sequelize.import('./User.js')
 
-
+  Object.keys(db).forEach(modelName => {
+    if (db[modelName].associate) {
+        db[modelName].associate(db);
+    }
+});
   
   
   db.sequelize = sequelize

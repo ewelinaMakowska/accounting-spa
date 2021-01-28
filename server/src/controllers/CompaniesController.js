@@ -1,5 +1,6 @@
-const { Company, sequelize } = require('../models/')
-const { City } = require('../models/')
+const { Company, City, sequelize } = require('../models/')
+//const { City } = require('../models/')
+
 const ITEMS_PER_PAGE = 4;
 const { Op } = require('sequelize');
 
@@ -130,11 +131,8 @@ module.exports = {
       } 
     }, */
 
-
-  /*   
-
-    EAGER LOADING
-  
+/* 
+   //EAGER LOADING
     async getFilteredLimited(req, res, next) {
       console.log(req.query);
      try {
@@ -159,7 +157,7 @@ module.exports = {
          offset: (page-1) * ITEMS_PER_PAGE,
          order: order,
          limit: ITEMS_PER_PAGE,
-         where: {cityId: value},
+         //where: {cityId: value},
          include:[
           { model: City, 
             attributes: ['name'],
@@ -178,9 +176,11 @@ module.exports = {
        });
        
      } 
-   },  */
+   },   */
 
 
+  /* 
+  RAW QUERY
   async getFilteredLimited(req, res, next) {
     console.log(req.query);
    try {
@@ -212,13 +212,62 @@ module.exports = {
        error: 'Internal Server Error'
      });
    } 
- }, 
+ },  */
+
+
+
+  //EAGER LOADING
+  async getFilteredLimited(req, res, next) {
+    console.log(req.query);
+   try {
+    const page = req.query.page;
+    const value = req.query.city;
+    const sort = req.query.sort;
+    let order;
+    let companies;
+    //let cities;
+
+    if(sort == null) {
+     order = [['id', 'asc']]
+    } else if(sort == 'price_asc') {
+     order = [['price', 'asc']];
+    } else if(sort == 'price_desc') {
+     order = [['price', 'desc']];
+    }
+    
+     companies = await Company.findAndCountAll(
+       { 
+      attributes: ['name'],
+       offset: (page-1) * ITEMS_PER_PAGE,
+       order: order,
+       limit: ITEMS_PER_PAGE,
+       where: {cityId: value},
+       include:[
+        { model: City, 
+          as: 'City',
+          attributes: ['name'],
+          //where: { id: value },   
+          required: false //left join
+          }
+        ] 
+     })
+       
+     res.send(companies);
+  
+   } catch (error) {
+    console.log(error);
+     res.status(500).send({
+       error: 'Internal Server Error'
+     });
+     
+   } 
+ },   
 
 
 
 
 
-        
+  
  
 
 

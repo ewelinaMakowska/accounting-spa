@@ -1,5 +1,8 @@
 const Sequelize = require('sequelize')
+//const City = require('./City')
 const City = require('./City')
+
+
 
 
 module.exports = (sequelize, DataTypes) => {
@@ -18,11 +21,14 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true
   })
 
-  Company.associate = models => {
-    models.Company.belongsTo(models.City, {foreignKey: 'id', sourceKey: 'cityid'});
-    models.City.hasMany(models.Company, {foreignKey: 'cityid', sourceKey: 'id'});
-  } 
-
+  Company.associate = (models) => {
+    Company.belongsTo(models.City, {
+      foreignKey: 'cityid',
+      targetKey: 'id',
+      as: 'City'
+    })
+  };
+  
   return Company
 }
 
