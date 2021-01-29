@@ -122,7 +122,13 @@ export default {
 
   async created () {
     console.log('Created')
-    const value = {
+
+    //check if officepage
+    let url = window.location.href.split('/');
+    console.log(url)
+
+    if(url[3] !== 'office' ){
+      const value = {
       page: null,
       city: null,
       sort: null
@@ -143,7 +149,10 @@ export default {
       console.log('fail')
     } finally {
       console.log('state getter used')
-    } // trycatch
+    } // trycatch 
+    } 
+  
+  
   }, // components
   methods: {
     loadPage(page) {

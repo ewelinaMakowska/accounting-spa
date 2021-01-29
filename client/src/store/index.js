@@ -114,7 +114,6 @@ export const store = new Vuex.Store({
     },
 
     async loadCompany ({ commit }, id) {
-      // const result = await CompaniesService.getOne(req.params.id);
       const result = await CompaniesService.getOne(id)
       commit('loadCompanyMutation', result.data)
       console.log('action loadCompany executed succesfully')

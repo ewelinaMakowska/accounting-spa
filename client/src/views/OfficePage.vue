@@ -1,5 +1,6 @@
 <template>
-  <div>
+<div> elo </div>
+  <!-- <div>
     <section>
       <div class="container">
         <div class="row">
@@ -49,64 +50,47 @@
         </div>
       </div>
     </section>
-  </div>
+  </div> -->
 </template>
 
-<!-- <style scoped>
 
-    input[type="text"],
-    input[type="email"] {
-        border: 1px solid #333;
-        margin-left: 20px;
-    }
-
-    textarea {
-        border: 1px solid #333;
-    }
-
-</style> -->
 
 <script>
-// import CompaniesService from '@/services/CompaniesService'
+import CompaniesService from '../services/CompaniesService'
 import ContactService from '../services/ContactService'
 
 export default {
-  data () {
+  data() {
     return {
-      company: {}
+      company : {}
     }
   },
   computed: {
-    offices () {
-      return this.$store.getters.loadedOffices
-    },
-    singleCompany () {
-      return this.$store.getters.loadedOffice
-    }
+    
   }, // methods
 
-  async mounted () {
+  async mounted() {
     console.log('Mounted')
-    const id = this.$route.params.id
-    console.log(id)
-    try {
-      // await this.loadCompany(id);
-      await this.loadCompany(id)
+    console.log(this.$route.params)
+    this.id = this.$route.params.id
+    console.log(this.id)
+     try {
+      await this.loadCompany(this.id)
       console.log('company loaded to the state')
     } catch (err) {
       console.log('fail')
+      console.log(err)
     } finally {
       this.company = this.offices
-    } // trycatch
+    } // trycatch */
   }, // computed
   methods: {
-    loadCompany (id) {
-      return this.$store.dispatch('loadCompany', id)
-    },
-    loadCompanies () {
-      return this.$store.dispatch('loadCompaniesAction')
-    },
-    async submitForm (e) {
+      loadCompany(id) {
+        return this.$store.dispatch('loadCompany', id)
+      },
+ 
+   
+    async submitForm(e) {
       e.preventDefault()
 
       const eMailData = {

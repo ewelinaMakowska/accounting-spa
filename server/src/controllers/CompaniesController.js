@@ -133,7 +133,6 @@ module.exports = {
 
      console.log(companies)  
 
-       
      res.send(companies);
   
    } catch (error) {
