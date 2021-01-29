@@ -26,7 +26,16 @@ export const store = new Vuex.Store({
   mutations: {
 
     loadCompanies: (state, data) => {
-      state.loadedOffices = data.rows
+      let dataRows;
+      dataRows = data.rows
+      console.log(dataRows.length)
+   
+      for(let i = 0; i < dataRows.length; i++) {
+        console.log(dataRows[i].City.name)
+        dataRows[i].City = dataRows[i].City.name;
+      }
+
+      state.loadedOffices = dataRows;
       state.allCompaniesCount = data.count
       state.count = data.rows.length
       // console.log(state);

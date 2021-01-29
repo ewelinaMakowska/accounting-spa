@@ -237,7 +237,7 @@ module.exports = {
     
      companies = await Company.findAndCountAll(
        { 
-      attributes: ['name'],
+      attributes: ['name', 'id', 'price'],
        offset: (page-1) * ITEMS_PER_PAGE,
        order: order,
        limit: ITEMS_PER_PAGE,
@@ -251,6 +251,9 @@ module.exports = {
           }
         ] 
      })
+
+     console.log(companies)  
+
        
      res.send(companies);
   

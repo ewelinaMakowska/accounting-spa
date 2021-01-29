@@ -36,7 +36,7 @@
                 :id="office.id "
                 :key="id"
                 :name="office.name"
-                :city="office.city"
+                :city="office.City"
                 :office="office"
                 :price="office.price"
               />
