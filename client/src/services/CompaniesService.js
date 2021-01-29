@@ -33,7 +33,7 @@ export default {
     return Api.get('companiesFirst')
   },
 
-  getOne (id) { // id?
+  getOne(id) { // id?
     return Api.get(`company/${id}`, id) //, id?
   }
 

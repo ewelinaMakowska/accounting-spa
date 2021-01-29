@@ -72,10 +72,10 @@ export default {
   async mounted() {
     console.log('Mounted')
     console.log(this.$route.params)
-    this.id = this.$route.params.id
+    let id = this.$route.params.id
     console.log(this.id)
      try {
-      await this.loadCompany(this.id)
+      await this.loadCompany(id)
       console.log('company loaded to the state')
     } catch (err) {
       console.log('fail')

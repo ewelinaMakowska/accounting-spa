@@ -153,14 +153,25 @@ module.exports = {
 
 
   async getOne (req, res, next) {
-    //const id = req.params.id;
     try {
       const id = req.params.id
-      const companies = await Company.findByPk(id)
+      const companies = await Company.findOne({
+        attributes: ['name', 'description', 'id'],
+        where: {id: id},
+        include : [{
+          attributes: ['name', 'region', 'id'],
+          model: City,
+          as: 'City',
+          attributes: ['name'],
+          required: false //left join
+        }
+        ]
+      })
       
       //const companies = await Company.findByPk({ where: { id: id}});
       res.send(companies)
     } catch (error) {
+      console.log(error)
       res.status(500).send({
         error: 'Internal Server Error'
       });
