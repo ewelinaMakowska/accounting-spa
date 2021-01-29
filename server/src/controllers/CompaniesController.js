@@ -96,126 +96,6 @@ module.exports = {
       } 
     },
 
-
-
-    /* async getFilteredLimited(req, res, next) {
-       console.log(req.query);
-      try {
-       const page = req.query.page;
-       const value = req.query.city;
-       const sort = req.query.sort;
-       let order;
-       let companies;
-
-       if(sort == null) {
-        order = [['id', 'asc']]
-       } else if(sort == 'price_asc') {
-        order = [['price', 'asc']];
-       } else if(sort == 'price_desc') {
-        order = [['price', 'desc']];
-       }
-       
-        companies = await Company.findAndCountAll({
-          offset: (page-1) * ITEMS_PER_PAGE,
-          order: order,
-          limit: ITEMS_PER_PAGE,
-          where: {cityId : value}
-        })
-          
-        res.send(companies);
-     
-      } catch (error) {
-        res.status(500).send({
-          error: 'Internal Server Error'
-        });
-      } 
-    }, */
-
-/* 
-   //EAGER LOADING
-    async getFilteredLimited(req, res, next) {
-      console.log(req.query);
-     try {
-      const page = req.query.page;
-      const value = req.query.city;
-      const sort = req.query.sort;
-      let order;
-      let companies;
-      //let cities;
-
-      if(sort == null) {
-       order = [['id', 'asc']]
-      } else if(sort == 'price_asc') {
-       order = [['price', 'asc']];
-      } else if(sort == 'price_desc') {
-       order = [['price', 'desc']];
-      }
-      
-       companies = await Company.findAndCountAll(
-         { 
-        attributes: ['name'],
-         offset: (page-1) * ITEMS_PER_PAGE,
-         order: order,
-         limit: ITEMS_PER_PAGE,
-         //where: {cityId: value},
-         include:[
-          { model: City, 
-            attributes: ['name'],
-            where: { id: value },   
-            required: false //left join
-            }
-          ]
-       })
-         
-       res.send(companies);
-    
-     } catch (error) {
-      console.log(error);
-       res.status(500).send({
-         error: 'Internal Server Error'
-       });
-       
-     } 
-   },   */
-
-
-  /* 
-  RAW QUERY
-  async getFilteredLimited(req, res, next) {
-    console.log(req.query);
-   try {
-    const page = req.query.page;
-    const value = req.query.city;
-    const sort = req.query.sort;
-    let order;
-    let companies;
-
-    if(sort == null) {
-     order = [['id', 'asc']]
-    } else if(sort == 'price_asc') {
-     order = [['price', 'asc']];
-    } else if(sort == 'price_desc') {
-     order = [['price', 'desc']];
-    }
-    
-     companies = await sequelize.query('select companies.id, companies.name, companies.description, companies.logo, companies.price, companies.email, cities.name from companies left join cities on cities.id = companies.cityid where companies.cityid = '+value+' limit '+ITEMS_PER_PAGE+' offset '+page, {
-      model: Company,
-      mapToModel: true // pass true here if you have any mapped fields
-    },
-   )
-       
-     res.send(companies);
-  
-   } catch (error) {
-     console.log(error)
-     res.status(500).send({
-       error: 'Internal Server Error'
-     });
-   } 
- },  */
-
-
-
   //EAGER LOADING
   async getFilteredLimited(req, res, next) {
     console.log(req.query);
@@ -225,7 +105,6 @@ module.exports = {
     const sort = req.query.sort;
     let order;
     let companies;
-    //let cities;
 
     if(sort == null) {
      order = [['id', 'asc']]
