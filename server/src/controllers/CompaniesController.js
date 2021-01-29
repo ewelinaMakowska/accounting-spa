@@ -124,7 +124,7 @@ module.exports = {
        include:[
         { model: City, 
           as: 'City',
-          attributes: ['name'],
+          attributes: ['name', 'region'],
           //where: { id: value },   
           required: false //left join
           }
@@ -156,13 +156,12 @@ module.exports = {
     try {
       const id = req.params.id
       const companies = await Company.findOne({
-        attributes: ['name', 'description', 'id'],
+        attributes: ['name', 'description', 'price', 'email', 'logo'],
         where: {id: id},
         include : [{
-          attributes: ['name', 'region', 'id'],
+          attributes: ['name', 'region'],
           model: City,
           as: 'City',
-          attributes: ['name'],
           required: false //left join
         }
         ]

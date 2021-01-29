@@ -1,16 +1,14 @@
 <template>
-<div> elo </div>
-  <!-- <div>
+  <div>
     <section>
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            Obiekt {{ company }} <br>
+           <!-- Obiekt {{ company }} <br> -->
             Witaj na stronie biura: {{ company.name }} <br>
-            Id biura to:  {{ company.id }} <br>
             Miejscowość:  {{ company.city }} <br>
             Cena za usługę to: {{ company.price }} <br>
-            Adres mailowy biura {{ company.email }}
+            Adres mailowy biura {{ company.email }} 
           </div>
         </div>
       </div>
@@ -50,7 +48,7 @@
         </div>
       </div>
     </section>
-  </div> -->
+  </div> 
 </template>
 
 

@@ -32,7 +32,7 @@ export const store = new Vuex.Store({
    
       for(let i = 0; i < dataRows.length; i++) {
         console.log(dataRows[i].City.name)
-        dataRows[i].City = dataRows[i].City.name;
+        dataRows[i].City = `${dataRows[i].City.name}, ${dataRows[i].City.region}`
       }
 
       state.loadedOffices = dataRows;
