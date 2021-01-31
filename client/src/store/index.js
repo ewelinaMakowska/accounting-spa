@@ -43,7 +43,6 @@ export const store = new Vuex.Store({
 
     loadCompanyMutation: (state, data) => {
       state.loadedOffices = data
-      // state.count = data.length;
       state.allCompaniesCount = data.length
     },
 
