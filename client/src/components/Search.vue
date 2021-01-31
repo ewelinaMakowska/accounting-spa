@@ -30,13 +30,11 @@
             v-for="(city, id) in cities"
             :key="id"
           >
-          <!--   <button
-              class="cities-list__item autocomplete_button"
-              @click="autocompleteInput($event)"
-            > -->
             <button
               class="cities-list__item autocomplete_button"
-            >
+              @click="autocompleteInput($event)"
+            > 
+            
               {{ city.name }}, {{ city.region }}
               <span class="cityid" style="display:none;">{{city.id}}</span>
             </button>
