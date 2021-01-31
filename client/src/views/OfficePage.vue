@@ -3,7 +3,7 @@
     <section>
       <div class="container">
         <div class="row">
-          <div class="col-lg-12">
+          <div class="col-lg-12" v-if="loading">
             Witaj na stronie biura: {{ office.name }} <br>
             Miejscowość:  {{ office.City.name }}, {{ office.City.region }} <br>
             Cena za usługę to: {{ office.price }} <br>
@@ -58,6 +58,11 @@ import CompaniesService from '../services/CompaniesService'
 import ContactService from '../services/ContactService'
 
 export default {
+  data() {
+    return {
+      loading: false
+    }
+  },
   computed: {
     office() {
       return this.$store.getters.loadedOffices
@@ -91,9 +96,15 @@ export default {
         return id;
       },
       async loadCompany(id) {
+         
+
         await this.$store.dispatch('loadCompany', id)
+        .then(() => {
+           this.loading = true;
+        })
         .catch(function (error) {
-          console.log(error)
+          console.log(error);
+          this.loading = false;
         })
       },
 
