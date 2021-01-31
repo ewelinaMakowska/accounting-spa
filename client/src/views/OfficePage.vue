@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-lg-12">
             Witaj na stronie biura: {{ office.name }} <br>
-            Miejscowość:  {{ office.city }} <br>
+            Miejscowość:  {{ office.City.name }}, {{ office.City.region }} <br>
             Cena za usługę to: {{ office.price }} <br>
             Adres mailowy biura {{ office.email }}  
             
