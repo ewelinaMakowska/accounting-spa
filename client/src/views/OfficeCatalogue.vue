@@ -48,7 +48,7 @@
               :city="this.$route.query.city"
             /> -->
 
-            <pagination :searchParams="this.searchParams"/>
+            <pagination v-if="loaded" :number-of-pages="pageCount" />
           </div>
         </div>
       </div>
@@ -115,7 +115,7 @@ export default {
     loadCompanies () {
     //  return this.$store.dispatch('loadCompaniesAction')
     },
-    pageCount () {
+    pageCount() {
       return Math.round((this.$store.getters.countValue) / 2)
     },
     loadFirst () {
