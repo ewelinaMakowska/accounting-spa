@@ -3,23 +3,13 @@
 
     <ul class="pagination">
       <li class="pagination__button" v-for="(page) in pages" :key="page">
-        <a href="#">{{page}}</a>
+        <button @click="shiftUrl()">{{page}}</button>
       </li>
 
       
       </ul> 
 
-   <!--  <div>
-      Page {{ this.$props.searchParams.page }} <br/>
-      Number of pages: {{ this.$props.pageCount }} <br/>
-      Current page: {{ $props.currentPage}} <br/>
-      Search params: {{ searchParams }}
-    </div> -->
-
-    ddd
-
-    
-    params {{searchParams}}
+   
     
   </div>
 </template>
@@ -55,6 +45,7 @@ export default {
       }  */
       console.log(this.searchParams)
       let currentPage = this.searchParams.page;
+      if (!currentPage) {currentPage = 1}
       let oneBefore 
       let twoBefore 
       let oneAfter 
@@ -95,18 +86,25 @@ export default {
         this.pages.pop();
       } 
 
-
-     
-
+      //construct url
       
       //console.log(pages) 
     },
- /*    generateBasicNumbers(currentPage) {
-      let oneBefore = currentPage-1
-      let twoBefore = currentPage-1
-      let oneAfter = currentPage+1
-      let twoAfter = currentPage+2
-    } */
+ 
+    shiftUrl() {
+      let url = window.location.href.split('/');
+      console.log(url);
+      let path = url[url.length-1].split('?')
+      console.log(path)
+      let params = path[path.length-1].split('&')
+      console.log(params)
+      console.log(this.searchParams)
+      this.searchParams.page = 6;
+
+
+      let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
+      console.log(newUrl)
+    }
   }, 
 
   computed: {
