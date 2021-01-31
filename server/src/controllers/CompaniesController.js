@@ -1,4 +1,4 @@
-const { Company } = require('../models/')
+const { Company, City, sequelize } = require('../models/')
 const ITEMS_PER_PAGE = 4;
 const { Op } = require('sequelize');
 
@@ -51,17 +51,36 @@ module.exports = {
   async getLimited (req, res, next) {
     try {
        const page = req.query.page;
-       //const page = '3';
-       //const page = 3;   
+       const sort = req.query.sort;
+       let order;
+       let companies;
+
+       if(sort == null) {
+        order = [['id', 'asc']]
+       } else if(sort == 'price_asc') {
+        order = [['price', 'asc']];
+       } else if(sort == 'price_desc') {
+        order = [['price', 'desc']];
+       }
      
-      const companies = await Company.findAndCountAll({
+      companies = await Company.findAndCountAll({
+        attributes: ['name', 'price', 'id'],
+        order: order,
         offset: (page-1) * ITEMS_PER_PAGE,
-        limit: ITEMS_PER_PAGE
+        limit: ITEMS_PER_PAGE,
+        include:[
+          { model: City, 
+            as: 'City',
+            attributes: ['name', 'region'],
+            required: false //left join
+            }
+          ]
+      
       })
       res.send(companies);
-      //res.send(`ejerfhksjhf: ${req.query.page}`)
    
     } catch (error) {
+      console.log(error)
       res.status(500).send({
         error: 'Internal Server Error'
       });
@@ -94,96 +113,74 @@ module.exports = {
       } 
     },
 
+  //EAGER LOADING
+  async getFilteredLimited(req, res, next) {
+    console.log(req.query);
+   try {
+    const page = req.query.page;
+    const value = req.query.city;
+    const sort = req.query.sort;
+    let order;
+    let companies;
 
-
-     async getFilteredLimited(req, res, next) {
-       console.log(req.query);
-      try {
-       const page = req.query.page;
-       const value = req.query.city;
-       const sort = req.query.sort;
-       let order;
-       let companies;
-
-        //sort = 'price_asc'
-
-       if(sort == null) {
-        order = [['id', 'asc']]
-       } else if(sort == 'price_asc') {
-        order = [['price', 'asc']];
-       } else if(sort == 'price_desc') {
-        order = [['price', 'desc']];
-       }
-       
-       
-        companies = await Company.findAndCountAll({
-          offset: (page-1) * ITEMS_PER_PAGE,
-          //order: [['price','asc']],
-          order: order,
-          limit: ITEMS_PER_PAGE,
-          where: {[Op.or]: [{city: {[Op.like]: `%${value}%`}}] //op or
-          }
-        })
-          
-        res.send(companies);
-     
-      } catch (error) {
-        res.status(500).send({
-          error: 'Internal Server Error'
-        });
-      } 
-    }, 
-
-    /*   Song.findAll({
-    where: {
-    $or: [
-    {title: {$like: `%${search}%`}},
-    {artist: {$like: `%${search}%`}},
-    ...etc.]
-    }}) */
-
-
-/*   async getFiltered(req, res, next) {
-    try {
-      const value = req.query.city;
-       //const page = '3';
-       //const page = 3;   
-        if (value) {
-          const companies = await Company.findAll({
-            where: {
-              [Op.or]: [
-                'city', 'name'
-              ].map(key => ({
-                [key]: {
-                  [Op.like]: '%${value}%'
-                }
-               
-              }))
-            }
-          })
-        }
-      res.send(companies);
-      //res.send(`ejerfhksjhf: ${req.query.page}`)
-   
-    } catch (error) {
-      res.status(500).send({
-        error: 'Internal Server Error'
-      });
+    if(sort == null) {
+     order = [['id', 'asc']]
+    } else if(sort == 'price_asc') {
+     order = [['price', 'asc']];
+    } else if(sort == 'price_desc') {
+     order = [['price', 'desc']];
     }
- 
-  }, */
+    
+     companies = await Company.findAndCountAll(
+       { 
+      attributes: ['name', 'id', 'price'],
+       offset: (page-1) * ITEMS_PER_PAGE,
+       order: order,
+       limit: ITEMS_PER_PAGE,
+       where: {cityId: value},
+       include:[
+        { model: City, 
+          as: 'City',
+          attributes: ['name', 'region'],
+          //where: { id: value },   
+          required: false //left join
+          }
+        ] 
+     })
 
+     console.log(companies)  
+
+     res.send(companies);
+  
+   } catch (error) {
+    console.log(error);
+     res.status(500).send({
+       error: 'Internal Server Error'
+     });
+     
+   } 
+ },   
 
 
   async getOne (req, res, next) {
-    //const id = req.params.id;
     try {
       const id = req.params.id
-      const companies = await Company.findByPk(id)
+      const companies = await Company.findOne({
+        attributes: ['name', 'description', 'price', 'email', 'logo'],
+        where: {id: id},
+        include : [{
+          attributes: ['name', 'region'],
+          model: City,
+          as: 'City',
+          required: false //left join
+        }
+        ]
+      })
       
       //const companies = await Company.findByPk({ where: { id: id}});
       res.send(companies)
     } catch (error) {
+      console.log(error)
       res.status(500).send({
         error: 'Internal Server Error'
       });

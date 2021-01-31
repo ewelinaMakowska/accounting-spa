@@ -5,9 +5,9 @@
     Miasto: {{ city }} <br>
     Cena: {{ price }} <br>
 
-    <router-link :to="'/office/' + office.id">
+   <router-link :to="'/office/' + office.id">
       więcej
-    </router-link>
+    </router-link> 
   </div>
 </template>
 

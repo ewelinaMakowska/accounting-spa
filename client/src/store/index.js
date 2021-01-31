@@ -26,7 +26,16 @@ export const store = new Vuex.Store({
   mutations: {
 
     loadCompanies: (state, data) => {
-      state.loadedOffices = data.rows
+      let dataRows;
+      dataRows = data.rows
+      console.log(dataRows.length)
+   
+      for(let i = 0; i < dataRows.length; i++) {
+        console.log(dataRows[i].City.name)
+        dataRows[i].City = `${dataRows[i].City.name}, ${dataRows[i].City.region}`
+      }
+
+      state.loadedOffices = dataRows;
       state.allCompaniesCount = data.count
       state.count = data.rows.length
       // console.log(state);
@@ -34,7 +43,6 @@ export const store = new Vuex.Store({
 
     loadCompanyMutation: (state, data) => {
       state.loadedOffices = data
-      // state.count = data.length;
       state.allCompaniesCount = data.length
     },
 
@@ -105,7 +113,6 @@ export const store = new Vuex.Store({
     },
 
     async loadCompany ({ commit }, id) {
-      // const result = await CompaniesService.getOne(req.params.id);
       const result = await CompaniesService.getOne(id)
       commit('loadCompanyMutation', result.data)
       console.log('action loadCompany executed succesfully')

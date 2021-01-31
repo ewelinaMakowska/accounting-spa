@@ -3,20 +3,19 @@
     <section>
       <div class="container">
         <div class="row">
-          <div class="col-lg-12">
-            Obiekt {{ company }} <br>
-            Witaj na stronie biura: {{ company.name }} <br>
-            Id biura to:  {{ company.id }} <br>
-            Miejscowość:  {{ company.city }} <br>
-            Cena za usługę to: {{ company.price }} <br>
-            Adres mailowy biura {{ company.email }}
+          <div class="col-lg-12" v-if="loading">
+            Witaj na stronie biura: {{ office.name }} <br>
+            Miejscowość:  {{ office.City.name }}, {{ office.City.region }} <br>
+            Cena za usługę to: {{ office.price }} <br>
+            Adres mailowy biura {{ office.email }}  
+            
           </div>
         </div>
       </div>
     </section>
 
-    <section
-      v-if="company.email"
+     <section
+      v-if="office.email"
       id="form"
     >
       <div class="container">
@@ -48,65 +47,65 @@
           </div>
         </div>
       </div>
-    </section>
-  </div>
+    </section> 
+  </div> 
 </template>
 
-<!-- <style scoped>
 
-    input[type="text"],
-    input[type="email"] {
-        border: 1px solid #333;
-        margin-left: 20px;
-    }
-
-    textarea {
-        border: 1px solid #333;
-    }
-
-</style> -->
 
 <script>
-// import CompaniesService from '@/services/CompaniesService'
+import CompaniesService from '../services/CompaniesService'
 import ContactService from '../services/ContactService'
 
 export default {
-  data () {
+  data() {
     return {
-      company: {}
+      loading: false
     }
   },
   computed: {
-    offices () {
+    office() {
       return this.$store.getters.loadedOffices
     },
-    singleCompany () {
-      return this.$store.getters.loadedOffice
-    }
+    company() {
+      return this.$store.getters.loadedOffices
+    } 
   }, // methods
 
-  async mounted () {
+  async mounted() {
     console.log('Mounted')
-    const id = this.$route.params.id
-    console.log(id)
-    try {
-      // await this.loadCompany(id);
+    let id = this.rememberId();
+ 
+     try {
       await this.loadCompany(id)
       console.log('company loaded to the state')
     } catch (err) {
       console.log('fail')
+      console.log(err)
     } finally {
-      this.company = this.offices
-    } // trycatch
+      console.log('company loaded')
+} // trycatch */
   }, // computed
   methods: {
-    loadCompany (id) {
-      return this.$store.dispatch('loadCompany', id)
-    },
-    loadCompanies () {
-      return this.$store.dispatch('loadCompaniesAction')
-    },
-    async submitForm (e) {
+      rememberId() {
+        let url = window.location.href;
+        let params = url.split('/');
+        let id = params[params.length-1];
+        console.log(params);
+        console.log(id);
+        return id;
+      },
+      async loadCompany(id) {
+        await this.$store.dispatch('loadCompany', id)
+        .then(() => {
+           this.loading = true;
+        })
+        .catch(function (error) {
+          console.log(error);
+          this.loading = false;
+        })
+      },
+    async submitForm(e) {
       e.preventDefault()
 
       const eMailData = {
@@ -131,6 +130,6 @@ export default {
 
   } // mounted
 
-}
+  }
 
 </script>

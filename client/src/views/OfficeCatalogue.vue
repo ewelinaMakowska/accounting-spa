@@ -30,23 +30,23 @@
           </div>
 
           <div class="col-lg-8">
-            <div class="flex-thumbs-container">
+            <div class="flex-thumbs-container" v-if="loaded">
               <office-thumb
                 v-for="(office, id) in offices"
                 :id="office.id "
                 :key="id"
                 :name="office.name"
-                :city="office.city"
+                :city="office.City"
                 :office="office"
                 :price="office.price"
               />
             </div> <!--flex-container-->
 
-            <pagination
+      <!--       <pagination
               :how-many-pages="pageCount"
               :current-page-number="currentPageNumber"
               :city="this.$route.query.city"
-            />
+            /> -->
           </div>
         </div>
       </div>
@@ -101,7 +101,8 @@ export default {
       pages: this.pages,
       city: 'Warszawa', // this.$route.query.city
       value: 0,
-      currentPageNumber: null
+      currentPageNumber: null,
+      loaded: false
     }
   },
   computed: {
@@ -109,47 +110,71 @@ export default {
       return this.$store.getters.loadedOffices
     },
     loadCompanies () {
-      return this.$store.dispatch('loadCompaniesAction')
+    //  return this.$store.dispatch('loadCompaniesAction')
     },
     pageCount () {
       return Math.round((this.$store.getters.countValue) / 4)
     },
     loadFirst () {
-      return this.$store.dispatch('loadFirstPageData')
+      //return this.$store.dispatch('loadFirstPageData')
     }
 
   },
 
   async created () {
     console.log('Created')
-    const value = {
-      page: null,
-      city: null,
-      sort: null
+
+    //check if officepage
+    let url = window.location.href.split('/');
+    console.log(url)
+
+    if(url[3] !== 'office' ){
+      let searchParams = {
+        page: null,
+        city: null,
+        sort: null
     }
+    if (this.$route.query.page) { searchParams.page = this.$route.query.page } else { searchParams.page = 1 }
+    if (this.$route.query.city) { searchParams.city = this.$route.query.city } else { searchParams.city = '' }
+    if (this.$route.query.sort) { searchParams.sort = this.$route.query.sort } else { searchParams.sort = '' }
 
-    if (this.$route.query.page) { value.page = this.$route.query.page } else { value.page = 1 }
-    if (this.$route.query.city) { value.city = this.$route.query.city } else { value.city = '' }
-    if (this.$route.query.sort) { value.sort = this.$route.query.sort } else { value.sort = '' }
+    console.log(searchParams.page)
+    console.log(searchParams.city)
+    console.log(searchParams.sort)
 
-    console.log(value.page)
-    console.log(value.city)
-    console.log(value.sort)
-
+  if(searchParams.city) {
     try {
-      await this.loadSearchResults(value)
-      console.log('companies loaded to the state')
+      await this.loadSearchResults(searchParams).then(() => {
+        console.log('companies loaded to the state');
+        this.loaded = true;
+      })
     } catch (err) {
       console.log('fail')
     } finally {
       console.log('state getter used')
-    } // trycatch
+    } // trycatch 
+
+    } else {
+      //load only first 4 citites
+      try {
+        await this.loadPage(searchParams).then(() => {
+        console.log('companies loaded to the state');
+        this.loaded = true;
+      })
+      } catch (err) {
+        console.log('fail')
+      } finally {
+        console.log('state getter used')
+      } // trycatch
+    }
+    }
+  
   }, // components
   methods: {
-    loadPage (page) {
+    loadPage(page) {
       return this.$store.dispatch('loadOnePageData', page)
     },
-    loadSearchResults (value) {
+    loadSearchResults(value) {
       return this.$store.dispatch('loadSearchResultsLimited', value)
     },
     logout () {

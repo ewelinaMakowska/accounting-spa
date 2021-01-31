@@ -29,7 +29,7 @@ const routes = [
     /*  props: castRouteParams, */
     component: OfficeCatalogue
   },
-  {
+   {
     path: '/office/:id',
     name: 'office-page',
     props: castRouteParams,
