@@ -1,6 +1,4 @@
 const { Company, City, sequelize } = require('../models/')
-//const { City } = require('../models/')
-
 const ITEMS_PER_PAGE = 4;
 const { Op } = require('sequelize');
 
@@ -53,17 +51,36 @@ module.exports = {
   async getLimited (req, res, next) {
     try {
        const page = req.query.page;
-       //const page = '3';
-       //const page = 3;   
+       const sort = req.query.sort;
+       let order;
+       let companies;
+
+       if(sort == null) {
+        order = [['id', 'asc']]
+       } else if(sort == 'price_asc') {
+        order = [['price', 'asc']];
+       } else if(sort == 'price_desc') {
+        order = [['price', 'desc']];
+       }
      
-      const companies = await Company.findAndCountAll({
+      companies = await Company.findAndCountAll({
+        attributes: ['name', 'price', 'id'],
+        order: order,
         offset: (page-1) * ITEMS_PER_PAGE,
-        limit: ITEMS_PER_PAGE
+        limit: ITEMS_PER_PAGE,
+        include:[
+          { model: City, 
+            as: 'City',
+            attributes: ['name', 'region'],
+            required: false //left join
+            }
+          ]
+      
       })
       res.send(companies);
-      //res.send(`ejerfhksjhf: ${req.query.page}`)
    
     } catch (error) {
+      console.log(error)
       res.status(500).send({
         error: 'Internal Server Error'
       });
@@ -143,13 +160,6 @@ module.exports = {
      
    } 
  },   
-
-
-
-
-
-  
- 
 
 
   async getOne (req, res, next) {

@@ -7,9 +7,9 @@ export default {
     // console.log("sent to server code");
   },
 
-  getLimited (page) {
+  getLimited (searchParams) {
     // return Api.get('companiesLimited/');
-    return Api.get(`companiesLimited/?page=${page}`, page) //, page?
+    return Api.get(`companiesLimited/?page=${searchParams.page}&sort=${searchParams.sort}`, searchParams) //, page?
 
     // return Api.get('companiesLimited'), {
     //   page : {

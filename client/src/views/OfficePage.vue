@@ -96,8 +96,6 @@ export default {
         return id;
       },
       async loadCompany(id) {
-         
-
         await this.$store.dispatch('loadCompany', id)
         .then(() => {
            this.loading = true;
@@ -107,10 +105,6 @@ export default {
           this.loading = false;
         })
       },
-
- 
- 
-   
     async submitForm(e) {
       e.preventDefault()
 

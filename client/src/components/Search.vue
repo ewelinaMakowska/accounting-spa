@@ -30,9 +30,12 @@
             v-for="(city, id) in cities"
             :key="id"
           >
-            <button
+          <!--   <button
               class="cities-list__item autocomplete_button"
               @click="autocompleteInput($event)"
+            > -->
+            <button
+              class="cities-list__item autocomplete_button"
             >
               {{ city.name }}, {{ city.region }}
               <span class="cityid" style="display:none;">{{city.id}}</span>
@@ -227,7 +230,7 @@ export default {
       this.$router.push({ path: 'search', query: { city: cityID, page: 1}})
       window.location.reload();
 
-      await this.searchResults()
+     // await this.searchResults()
       document.getElementsByClassName('autocomplete')[0].classList.add('hidden')
     },
 
