@@ -47,6 +47,8 @@
               :current-page-number="currentPageNumber"
               :city="this.$route.query.city"
             /> -->
+
+            <pagination :searchParams="this.searchParams"/>
           </div>
         </div>
       </div>
@@ -102,7 +104,8 @@ export default {
       city: 'Warszawa', // this.$route.query.city
       value: 0,
       currentPageNumber: null,
-      loaded: false
+      loaded: false,
+      searchParams: null
     }
   },
   computed: {
@@ -113,7 +116,7 @@ export default {
     //  return this.$store.dispatch('loadCompaniesAction')
     },
     pageCount () {
-      return Math.round((this.$store.getters.countValue) / 4)
+      return Math.round((this.$store.getters.countValue) / 2)
     },
     loadFirst () {
       //return this.$store.dispatch('loadFirstPageData')
@@ -129,20 +132,22 @@ export default {
     console.log(url)
 
     if(url[3] !== 'office' ){
-      let searchParams = {
+       let searchParams = {
         page: null,
         city: null,
-        sort: null
-    }
-    if (this.$route.query.page) { searchParams.page = this.$route.query.page } else { searchParams.page = 1 }
-    if (this.$route.query.city) { searchParams.city = this.$route.query.city } else { searchParams.city = '' }
-    if (this.$route.query.sort) { searchParams.sort = this.$route.query.sort } else { searchParams.sort = '' }
+        sort: null,
+        filter: null
+    }  
+
+    if (this.$route.query.page) {searchParams.page = this.$route.query.page } else {searchParams.page = 1 }
+    if (this.$route.query.city) {searchParams.city = this.$route.query.city } else {searchParams.city = '' }
+    if (this.$route.query.sort) { searchParams.sort = this.$route.query.sort } else {searchParams.sort = '' }
 
     console.log(searchParams.page)
     console.log(searchParams.city)
     console.log(searchParams.sort)
 
-  if(searchParams.city) {
+  if (searchParams.city) {
     try {
       await this.loadSearchResults(searchParams).then(() => {
         console.log('companies loaded to the state');
@@ -167,6 +172,7 @@ export default {
         console.log('state getter used')
       } // trycatch
     }
+    this.searchParams = searchParams;
     }
   
   }, // components
