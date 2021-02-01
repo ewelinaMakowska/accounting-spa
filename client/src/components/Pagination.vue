@@ -14,9 +14,15 @@
   </div>
 </template>
 
-<!-- <style scoped>
-
-</style> -->
+ <style lang="scss" scoped>
+  .pagination {
+    list-style: none;
+  
+    &__button-wrapper {
+      display: inline-block;
+    }
+  }
+</style> 
 
 <script>
 
@@ -30,8 +36,7 @@ export default {
   data() {
     return {
       pages : [],
-      filteredPages: [],
-      searchParams: this.$route.query
+      searchParams: this.$route.query,
     }
   },
 
@@ -120,15 +125,28 @@ export default {
       newUrl += `&page=${newPage}`
 
       window.location.href = newUrl;
+    },
+    disableCurrentPageBtn() {
+      let pagBtns = document.getElementsByClassName('pagination__button');
+      for(let i = 0; i<pagBtns.length; i++) {
+        if(pagBtns[i].innerText == this.$route.query.page) {
+          pagBtns[i].setAttribute('disabled','true')
+          pagBtns[i].classList.add('active')
+        }
+      }
     }
   }, 
 
   computed: {
  
   },
+    async created() {
+      console.log('pagination created')
+      this.generatePageNumbers();
+    },
     async mounted() {
       console.log('pagination mounted')
-      this.generatePageNumbers()
+      this.disableCurrentPageBtn()
     }
 }
 </script>
