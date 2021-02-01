@@ -1,9 +1,9 @@
 <template>
   <div class="pagination__wrapper">
 
-    <ul class="pagination">
-      <li class="pagination__button" v-for="(page) in pages" :key="page">
-        <button @click="updatePathParams($event)">{{page}}</button>
+    <ul class="pagination" id="pagination">
+      <li class="pagination__button-wrapper" v-for="(page) in pages" :key="page">
+        <button class="pagination__button" @click="updatePathParams($event)">{{page}}</button>
       </li>
 
       
@@ -32,17 +32,12 @@ export default {
       pages : [],
       filteredPages: [],
       searchParams: this.$route.query
-
-      //currentPageNumber: this.$route.query.page
     }
   },
 
 
   methods: {
     generatePageNumbers() {
-    /* for (let i=1; i<= this.numberOfPages; i++) {
-        this.pages.push(i)
-      }  */
       console.log(this.searchParams)
       let currentPage = this.searchParams.page;
       if (!currentPage) {currentPage = 1}
@@ -50,7 +45,7 @@ export default {
       let twoBefore 
       let oneAfter 
       let twoAfter 
-
+      
       this.pages.push(currentPage)
 
       oneBefore = currentPage-1
@@ -86,21 +81,35 @@ export default {
         this.pages.pop();
       } 
 
-      //construct url
-      
+      this.pages.unshift('prev');
+
+      if(currentPage == 1) {
+        this.pages.shift();
+      }
+
+      this.pages.push('next')
+
+
+      if(currentPage == this.numberOfPages) {
+        this.pages.pop();
+      }      
       //console.log(pages) 
     },
-
     updatePathParams($event) {
       let url = window.location.href.split('/');
       let path = url[url.length-1].split('?')
       const currentQuery = this.$route.query;  
-      let newPage = $event.target.innerText;
+      let newPage
 
-
-    
+      if($event.target.innerText == 'prev') {
+        newPage = parseInt(currentQuery.page)-1
+        console.log(newPage)
+      } else if($event.target.innerText == 'next') {
+        newPage = parseInt(currentQuery.page)+1
+        } else {
+        newPage = $event.target.innerText;
+      }
       let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
-
 
       if(currentQuery.city) {
         newUrl += `&city=${currentQuery.city}`
