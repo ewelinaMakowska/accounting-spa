@@ -3,7 +3,7 @@
 
     <ul class="pagination">
       <li class="pagination__button" v-for="(page) in pages" :key="page">
-        <button @click="shiftUrl()">{{page}}</button>
+        <button @click="updatePathParams($router)">{{page}}</button>
       </li>
 
       
@@ -104,6 +104,36 @@ export default {
 
       let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
       console.log(newUrl)
+    },
+    updatePathParams($router) {
+      let url = window.location.href.split('/');
+      console.log(url);
+      let path = url[url.length-1].split('?')
+      console.log(path)
+      let params = path[path.length-1].split('&')
+      console.log(params)
+
+      let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
+      console.log(newUrl)
+
+      const currentQuery = this.$route.query;     
+      let newPage = '5'
+      currentQuery.page = newPage
+      console.log(currentQuery)
+
+      if(currentQuery.city) {
+        newUrl += `city=${currentQuery.city}`
+      } //todo with other query params
+      console.log(newUrl)
+
+      newUrl += `page=${newPage}`
+
+      console.log(newUrl)
+
+      //window.location.href = newUrl
+
+
+    
     }
   }, 
 
