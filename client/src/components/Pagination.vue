@@ -3,7 +3,7 @@
 
     <ul class="pagination">
       <li class="pagination__button" v-for="(page) in pages" :key="page">
-        <button @click="updatePathParams($router)">{{page}}</button>
+        <button @click="updatePathParams($event)">{{page}}</button>
       </li>
 
       
@@ -90,50 +90,27 @@ export default {
       
       //console.log(pages) 
     },
- 
-    shiftUrl() {
+
+    updatePathParams($event) {
       let url = window.location.href.split('/');
-      console.log(url);
       let path = url[url.length-1].split('?')
-      console.log(path)
-      let params = path[path.length-1].split('&')
-      console.log(params)
-      console.log(this.searchParams)
-      this.searchParams.page = 6;
-
-
-      let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
-      console.log(newUrl)
-    },
-    updatePathParams($router) {
-      let url = window.location.href.split('/');
-      console.log(url);
-      let path = url[url.length-1].split('?')
-      console.log(path)
-      let params = path[path.length-1].split('&')
-      console.log(params)
-
-      let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
-      console.log(newUrl)
-
-      const currentQuery = this.$route.query;     
-      let newPage = '5'
-      currentQuery.page = newPage
-      console.log(currentQuery)
-
-      if(currentQuery.city) {
-        newUrl += `city=${currentQuery.city}`
-      } //todo with other query params
-      console.log(newUrl)
-
-      newUrl += `page=${newPage}`
-
-      console.log(newUrl)
-
-      //window.location.href = newUrl
+      const currentQuery = this.$route.query;  
+      let newPage = $event.target.innerText;
 
 
     
+      let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
+
+
+      if(currentQuery.city) {
+        newUrl += `&city=${currentQuery.city}`
+      } 
+      //todo with other query params
+    
+      currentQuery.page = newPage
+      newUrl += `&page=${newPage}`
+
+      window.location.href = newUrl;
     }
   }, 
 
