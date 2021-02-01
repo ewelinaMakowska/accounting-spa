@@ -1,5 +1,5 @@
 const { Company, City, sequelize } = require('../models/')
-const ITEMS_PER_PAGE = 4;
+const ITEMS_PER_PAGE = 2;
 const { Op } = require('sequelize');
 
 module.exports = {
