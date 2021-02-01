@@ -42,13 +42,8 @@
               />
             </div> <!--flex-container-->
 
-      <!--       <pagination
-              :how-many-pages="pageCount"
-              :current-page-number="currentPageNumber"
-              :city="this.$route.query.city"
-            /> -->
-
             <pagination v-if="loaded" :number-of-pages="pageCount" />
+            
           </div>
         </div>
       </div>
