@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
+//const history = require('connect-history-api-fallback');
 const { sequelize } = require('./models')
 const CompaniesController = require('./controllers/CompaniesController')
 const CitiesController = require('./controllers/CitiesController');
@@ -30,7 +31,13 @@ app.use((req, res, next) => {
   next()
 })
 
+
+
 app.get('/', (req, res) => res.send('HEYEYEYEYA'))
+
+/* app.use(history({
+  index: '/index.html' 
+})); if uncommented npm install --save connect-history-api-fallback */
 
 app.get('/companies', CompaniesController.get)
 app.get('/companiesLimited', CompaniesController.getLimited)

@@ -14,6 +14,9 @@ module.exports = {
   entry: [
     "babel-polyfill", './src/main.js'
   ], 
+  output: {
+    publicPath: '/'
+  },
   devServer: {
     hot: true,
     watchOptions: {
@@ -53,6 +56,6 @@ module.exports = {
       template: 'index.html',
       inject: true
     })
-  ]
+  ],
 }
 
