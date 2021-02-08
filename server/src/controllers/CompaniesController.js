@@ -57,25 +57,19 @@ module.exports = {
        let where;
        let companies;
 
-       if(sort == null) {
+       if(!sort) {
         order = [['id', 'asc']]
-       } else if(sort == 'price_asc') {
-        order = [['price', 'asc']];
-       } else if(sort == 'price_desc') {
-        order = [['price', 'desc']];
+       } else {
+         orderName =  sort.split('_')[0];
+         orderOrder = sort.split('_')[1];
+   
+         order = [orderName, orderOrder]
        }
-
-       /* if(accounting == null) {
-         where = 'ID NOT NULL';
-       } */
-
-       if(accounting = 'ledger') {
-        
-       }
+  
      
       companies = await Company.findAndCountAll({
         attributes: ['name', 'price', 'id'],
-        order: order,
+        order: [order],
         offset: (page-1) * ITEMS_PER_PAGE,
         limit: ITEMS_PER_PAGE,
         include:[
@@ -132,16 +126,19 @@ module.exports = {
     let accounting = req.query.accounting;
 
     let order;
+    let orderName;
+    let orderOrder;
     let companies;
     let whereAccountingName;
     let whereAccountingValue;
 
-    if(sort == null) {
+    if(!sort) {
      order = [['id', 'asc']]
-    } else if(sort == 'price_asc') {
-     order = [['price', 'asc']];
-    } else if(sort == 'price_desc') {
-     order = [['price', 'desc']];
+    } else {
+      orderName = sort.split('_')[0];
+      orderOrder = sort.split('_')[1];
+
+      order = [orderName, orderOrder]
     }
 
     if(!accounting) {
@@ -168,7 +165,7 @@ module.exports = {
        { 
       attributes: ['name', 'id', 'price'],
        offset: (page-1) * ITEMS_PER_PAGE,
-       order: order,
+       order: [order],
        limit: ITEMS_PER_PAGE,
        where: {
          [Op.and]: [

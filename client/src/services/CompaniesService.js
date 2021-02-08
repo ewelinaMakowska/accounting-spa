@@ -9,7 +9,7 @@ export default {
 
   getLimited (searchParams) {
     // return Api.get('companiesLimited/');
-    return Api.get(`companiesLimited/?page=${searchParams.page}&sort=${searchParams.sort}&accounting=${searchParams.accounting}`, searchParams) //, page?
+    return Api.get(`companiesLimited/?city=${searchParams.city}&sort=${searchParams.sort}&accounting=${searchParams.accounting}&page=${searchParams.page}`, searchParams) 
 
     // return Api.get('companiesLimited'), {
     //   page : {

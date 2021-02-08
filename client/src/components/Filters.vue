@@ -20,8 +20,14 @@
       <li>
         Nazwa
         <ul>
-          <li>Od A do Z</li>
-          <li>Od Z do A</li>
+            <li>
+          <input type="radio" id="name_asc" name="c" value="name_asc" @click="setSortParam($event, 'name_asc')">
+          <label for="name_asc">Od A do Z</label>
+          </li>
+          <li>
+          <input type="radio" id="name_desc" name="name_desc" value="name_desc" @click="setSortParam($event, 'name_desc')">
+          <label for="name_desc">Od Z do A</label>
+          </li>
         </ul>
       </li> <!-- price -->
     </ul>
@@ -56,7 +62,7 @@ export default {
       let url = window.location.href.split('/');
       let path = url[url.length-1].split('?')
       const currentQuery = this.$route.query;  
-      let newSortParam = sortParam;
+      //let newSortParam = sortParam;
 
       let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
 
@@ -64,7 +70,7 @@ export default {
         newUrl += `&city=${currentQuery.city}`
       } 
 
-      newUrl += `&sort=${newSortParam}`
+      newUrl += `&sort=${sortParam}`
 
       if(currentQuery.accounting) {
         newUrl += `&accounting=${currentQuery.accounting}`
