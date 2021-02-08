@@ -9,7 +9,7 @@ export default {
 
   getLimited (searchParams) {
     // return Api.get('companiesLimited/');
-    return Api.get(`companiesLimited/?page=${searchParams.page}&sort=${searchParams.sort}`, searchParams) //, page?
+    return Api.get(`companiesLimited/?page=${searchParams.page}&sort=${searchParams.sort}&accounting=${searchParams.accounting}`, searchParams) //, page?
 
     // return Api.get('companiesLimited'), {
     //   page : {
@@ -23,8 +23,8 @@ export default {
     return Api.get(`companiesFiltered/?city=${search}`, search)
   },
 
-  getFilteredLimited (value, page, sort) {
-    return Api.get(`companiesFilteredLimited/?city=${value}&page=${page}&sort=${sort}`, value, page, sort)
+  getFilteredLimited (value, sort, accounting, page) {
+    return Api.get(`companiesFilteredLimited/?city=${value}&sort=${sort}&accounting=${accounting}&page=${page}`, value, sort, accounting, page)
   },
 
   // },

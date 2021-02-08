@@ -111,7 +111,7 @@ export default {
         newUrl += `&sort=${currentQuery.sort}`
       } 
       
-      newUrl += `&accounting=${newAccountingMethod}`
+      newUrl += `&accounting=${accountingMethod}`
       
       if(currentQuery.page) {
         newUrl += `&page=1`
@@ -122,7 +122,7 @@ export default {
   },
   mounted(){
     console.log('filters mounted')
-    //this.setRadiosChecked();
+    this.setRadiosChecked();
 }
 }
 </script>

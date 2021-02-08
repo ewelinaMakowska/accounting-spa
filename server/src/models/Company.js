@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     logo: { type: DataTypes.STRING(45) },
     description: { type: DataTypes.TEXT },
     email: { type: DataTypes.STRING(45) },  
-    lump_sum: { type: DataTypes.BOOLEAN },
+    lumpSum: { type: DataTypes.BOOLEAN },
     ledger: { type: DataTypes.BOOLEAN }
   },  {
     freezeTableName: false, // Model tableName will be the same as the model name

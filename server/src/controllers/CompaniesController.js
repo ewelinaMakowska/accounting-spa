@@ -1,6 +1,6 @@
 const { Company, City, sequelize } = require('../models/')
 const ITEMS_PER_PAGE = 2;
-const { Op } = require('sequelize');
+const { Op, where } = require('sequelize');
 
 module.exports = {
 
@@ -52,7 +52,9 @@ module.exports = {
     try {
        const page = req.query.page;
        const sort = req.query.sort;
+       let accounting = req.query.accounting;
        let order;
+       let where;
        let companies;
 
        if(sort == null) {
@@ -61,6 +63,14 @@ module.exports = {
         order = [['price', 'asc']];
        } else if(sort == 'price_desc') {
         order = [['price', 'desc']];
+       }
+
+       /* if(accounting == null) {
+         where = 'ID NOT NULL';
+       } */
+
+       if(accounting = 'ledger') {
+        
        }
      
       companies = await Company.findAndCountAll({
@@ -97,13 +107,12 @@ module.exports = {
       
             const companies = await Company.findAll({
             where: {
-              [Op.or]: [
-                {city: {[Op.like]: `%${value}%`}}              
-              ] //op or
-            } // where
-         
-            }) //company find all
-          
+              [Op.and]: [
+                {city: {[Op.like]: `%${value}%`}},                      
+                {lump_sum: 1}
+              ]
+            }
+          })    
         res.send(companies);
      
       } catch (error) {
@@ -120,8 +129,12 @@ module.exports = {
     const page = req.query.page;
     const value = req.query.city;
     const sort = req.query.sort;
+    let accounting = req.query.accounting;
+
     let order;
     let companies;
+    let whereAccountingName;
+    let whereAccountingValue;
 
     if(sort == null) {
      order = [['id', 'asc']]
@@ -130,14 +143,39 @@ module.exports = {
     } else if(sort == 'price_desc') {
      order = [['price', 'desc']];
     }
+
+    if(!accounting) {
+      whereAccountingName = ''
+      whereAccountingValue = ''
+    }
+    else if(accounting == 'ledger') {
+        whereAccountingName = 'ledger',
+        whereAccountingValue = 1
+    }
+    else if(accounting == 'lump_sum') {
+        whereAccountingName = 'lumpSum',
+        whereAccountingValue = 1
+      }
     
+
+    console.log(whereAccountingName)
+    console.log(whereAccountingValue)
+    console.log('')
+
+
+        
      companies = await Company.findAndCountAll(
        { 
       attributes: ['name', 'id', 'price'],
        offset: (page-1) * ITEMS_PER_PAGE,
        order: order,
        limit: ITEMS_PER_PAGE,
-       where: {cityId: value},
+       where: {
+         [Op.and]: [
+          {cityId: value},
+          {[whereAccountingName]: 1}
+         ]
+         },
        include:[
         { model: City, 
           as: 'City',

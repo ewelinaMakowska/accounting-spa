@@ -128,21 +128,25 @@ export default {
 
     if(url[3] !== 'office' ){
        let searchParams = {
-        page: null,
         city: null,
         sort: null,
-        filter: null
+        accounting: null,
+        page: null,
+
     }  
 
-    if (this.$route.query.page) {searchParams.page = this.$route.query.page } else {searchParams.page = 1 }
     if (this.$route.query.city) {searchParams.city = this.$route.query.city } else {searchParams.city = '' }
-    if (this.$route.query.sort) { searchParams.sort = this.$route.query.sort } else {searchParams.sort = '' }
+    if (this.$route.query.sort) {searchParams.sort = this.$route.query.sort } else {searchParams.sort = '' }
+    if (this.$route.query.accounting) {searchParams.accounting = this.$route.query.accounting } else {searchParams.accounting = '' }
+    if (this.$route.query.page) {searchParams.page = this.$route.query.page } else {searchParams.page = 1 }
+
 
     console.log(searchParams.page)
     console.log(searchParams.city)
     console.log(searchParams.sort)
+    console.log(searchParams.accounting)
 
-  if (searchParams.city) {
+  if (searchParams.city || searchParams.accounting) {
     try {
       await this.loadSearchResults(searchParams).then(() => {
         console.log('companies loaded to the state');
@@ -150,12 +154,12 @@ export default {
       })
     } catch (err) {
       console.log('fail')
+      console.log(err)
     } finally {
       console.log('state getter used')
     } // trycatch 
 
     } else {
-      //load only first 4 citites
       try {
         await this.loadPage(searchParams).then(() => {
         console.log('companies loaded to the state');
