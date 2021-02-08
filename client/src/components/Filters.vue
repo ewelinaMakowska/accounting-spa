@@ -31,14 +31,12 @@
     Sposób rozliczania
     <ul>
       <li>
-        <button @click="setFilterAccountingMethod('ledger')">
-          Księga Przychodów i Rozchodów
-        </button>  
+        <input type="radio" id="ledger" name="ledger" value="ledger" @click="setFilterAccountingMethod($event, 'ledger')">
+        <label for="ledger">Księga Przychodów i Rozchodów</label>
       </li>
        <li>
-        <button @click="setFilterAccountingMethod('lump_sum')">
-          Ryczałt
-        </button>  
+        <input type="radio" id="lump_sum" name="lump_sum" value="lump_sum" @click="setFilterAccountingMethod($event, 'lump_sum')">
+        <label for="lump_sum">Ryczałt</label>
       </li>
     </ul>
   </div>
@@ -77,8 +75,16 @@ export default {
       this.$router.push({ path: this.$route.path, query: { city: this.$route.query.city, sort: 'price_desc', page: '1' } })
       window.location.reload()
     },
-    setFilterAccountingMethod(accountingMethod) {
+    setAccountingRadioAppearance() {
+      const currentQuery = this.$route.query;  
+      if(currentQuery.accounting) {
+        const radio = document.querySelectorAll(`input[value=${currentQuery.accounting}]`);
+        radio[0].checked = true;
+      }
+    },
+    setFilterAccountingMethod($event, accountingMethod) {
       console.log(accountingMethod);
+      $event.target.setAttribute('checked','true');
 
       let url = window.location.href.split('/');
       let path = url[url.length-1].split('?')
@@ -100,8 +106,11 @@ export default {
       }
     
       window.location.href = newUrl;
-
-    }
-  }
+    },
+  },
+  mounted(){
+    console.log('filters mounted')
+    this.setAccountingRadioAppearance();
+}
 }
 </script>
