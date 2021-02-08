@@ -120,22 +120,35 @@ export default {
         newUrl += `&city=${currentQuery.city}`
       } 
 
+       if(currentQuery.sort) {
+        newUrl += `&sort=${currentQuery.sort}`
+      } 
+
       if(currentQuery.accounting) {
         newUrl += `&accounting=${currentQuery.accounting}`
       } 
       //todo with other query params
     
-      currentQuery.page = newPage
-      newUrl += `&page=${newPage}`
-
+      if (!currentQuery.page) {
+        newUrl += `&page=2`;
+      } else {
+        currentQuery.page = newPage;
+        newUrl += `&page=${newPage}`;
+      }
+      
       window.location.href = newUrl;
     },
     disableCurrentPageBtn() {
       let pagBtns = document.getElementsByClassName('pagination__button');
       for(let i = 0; i<pagBtns.length; i++) {
-        if(pagBtns[i].innerText == this.$route.query.page) {
+        if(this.$route.query.page) {
+          if(pagBtns[i].innerText == this.$route.query.page) {
           pagBtns[i].setAttribute('disabled','true')
           pagBtns[i].classList.add('active')
+          }
+        } else {
+          pagBtns[0].setAttribute('disabled','true')
+          pagBtns[0].classList.add('active')
         }
       }
     }

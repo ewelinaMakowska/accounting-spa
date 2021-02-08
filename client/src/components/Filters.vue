@@ -8,14 +8,12 @@
         Cena
         <ul class="price__options">
           <li>
-            <button @click="sortPriceAscending()">
-              Najtańsze
-            </button>
+          <input type="radio" id="price_asc" name="price_asc" value="price_asc" @click="setSortParam($event, 'price_asc')">
+          <label for="price_asc">rosnąco</label>
           </li>
           <li>
-            <button @click="sortPriceDescending()">
-              Najdroższe
-            </button>
+          <input type="radio" id="price_desc" name="price_desc" value="price_desc" @click="setSortParam($event, 'price_desc')">
+          <label for="price_desc">malejąco</label>
           </li>
         </ul>
       </li> <!-- price -->
@@ -54,32 +52,42 @@ export default {
       console.log(sortOptionsList)
       sortOptionsList.classList.toggle('hidden')
     },
-
-    sortPriceAscending () {
-      console.log('sort asc!')
-
-      const currentParams = this.$route.query
-      console.log(currentParams)
-      console.log(window.location.href)
-
-      this.$router.push({ path: this.$route.path, query: { city: this.$route.query.city, sort: 'price_asc', page: '1' } })
-      window.location.reload()
-    },
-    sortPriceDescending () {
-      console.log('sort desc!')
-
-      const currentParams = this.$route.query
-      console.log(currentParams)
-      console.log(window.location.href)
-
-      this.$router.push({ path: this.$route.path, query: { city: this.$route.query.city, sort: 'price_desc', page: '1' } })
-      window.location.reload()
-    },
-    setAccountingRadioAppearance() {
+    setSortParam($event, sortParam) {
+      let url = window.location.href.split('/');
+      let path = url[url.length-1].split('?')
       const currentQuery = this.$route.query;  
+      let newSortParam = sortParam;
+
+      let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
+
+      if(currentQuery.city) {
+        newUrl += `&city=${currentQuery.city}`
+      } 
+
+      newUrl += `&sort=${newSortParam}`
+
       if(currentQuery.accounting) {
-        const radio = document.querySelectorAll(`input[value=${currentQuery.accounting}]`);
-        radio[0].checked = true;
+        newUrl += `&accounting=${currentQuery.accounting}`
+      }           
+
+      if(currentQuery.page) {
+        newUrl += `&page=1`
+      }    
+      window.location.href = newUrl;
+    },
+    setRadiosChecked() {
+      const currentQuery = this.$route.query;  
+      let radioAccounting;
+      let radioSort;
+
+      if(currentQuery.accounting) {
+        radioAccounting = document.querySelectorAll(`input[value=${currentQuery.accounting}]`);
+        radioAccounting[0].checked = true;
+      }
+
+      if(currentQuery.sort) {
+        radioSort = document.querySelectorAll(`input[value=${currentQuery.sort}]`);
+        radioSort[0].checked = true;
       }
     },
     setFilterAccountingMethod($event, accountingMethod) {
@@ -98,6 +106,10 @@ export default {
       if(currentQuery.city) {
         newUrl += `&city=${currentQuery.city}`
       } 
+
+      if(currentQuery.sort) {
+        newUrl += `&sort=${currentQuery.sort}`
+      } 
       
       newUrl += `&accounting=${newAccountingMethod}`
       
@@ -110,7 +122,7 @@ export default {
   },
   mounted(){
     console.log('filters mounted')
-    this.setAccountingRadioAppearance();
+    //this.setRadiosChecked();
 }
 }
 </script>
