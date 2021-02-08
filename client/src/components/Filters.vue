@@ -27,6 +27,20 @@
         </ul>
       </li> <!-- price -->
     </ul>
+
+    Sposób rozliczania
+    <ul>
+      <li>
+        <button @click="setFilterAccountingMethod('ledger')">
+          Księga Przychodów i Rozchodów
+        </button>  
+      </li>
+       <li>
+        <button @click="setFilterAccountingMethod('lump_sum')">
+          Ryczałt
+        </button>  
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -62,6 +76,31 @@ export default {
 
       this.$router.push({ path: this.$route.path, query: { city: this.$route.query.city, sort: 'price_desc', page: '1' } })
       window.location.reload()
+    },
+    setFilterAccountingMethod(accountingMethod) {
+      console.log(accountingMethod);
+
+      let url = window.location.href.split('/');
+      let path = url[url.length-1].split('?')
+      const currentQuery = this.$route.query;  
+      let newAccountingMethod = accountingMethod;
+
+  
+
+      let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
+
+      if(currentQuery.city) {
+        newUrl += `&city=${currentQuery.city}`
+      } 
+      
+      newUrl += `&accounting=${newAccountingMethod}`
+      
+      if(currentQuery.page) {
+        newUrl += `&page=1`
+      }
+    
+      window.location.href = newUrl;
+
     }
   }
 }

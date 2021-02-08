@@ -119,6 +119,10 @@ export default {
       if(currentQuery.city) {
         newUrl += `&city=${currentQuery.city}`
       } 
+
+      if(currentQuery.accounting) {
+        newUrl += `&accounting=${currentQuery.accounting}`
+      } 
       //todo with other query params
     
       currentQuery.page = newPage
