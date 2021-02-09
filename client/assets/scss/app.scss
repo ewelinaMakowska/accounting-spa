@@ -1,3 +1,89 @@
+$roboto-font: 'Roboto', 'Lato', sans-serif;
+
+$blue: #3061fc;
+$midnight-blue: #001558;
+$blue-lilac: #b0befd;
+$primary-text: #444444;
+
+body {
+  background-color: #ffffff;
+  color: $primary-text;
+  font-family: $roboto-font;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+}
+
+.top-bar {
+  overflow: hidden;
+  margin: 0 0 20px 0;
+  padding: 10px 0;
+  box-shadow: 0px 1px 9px 0px rgb(0 0 0 / 16%);
+
+  &__right {
+    //float: right;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &__left {
+    float: left;
+  }
+
+  &__company-name {
+    display: inline-block;
+    font-size: 16px;
+  }
+
+  &__logo {
+    height: 60px;
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  &__company-name,
+  &__logo {
+    vertical-align: middle;
+  }
+
+  
+
+  &__list {
+    list-style: none;
+
+    li {
+      display: inline-block;
+    }
+  }
+
+  &__link {
+    color: #444;
+    text-decoration: none;
+    margin-right: 10px;
+    padding: 0 3px 5px 3px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+      border-bottom: 2px solid $blue;
+    }
+  }
+
+  .login-button {
+    background-color: $blue;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 7px 20px;
+    border-radius: 4px;
+  }
+}
+
+
 .office-thumb {
   background: grey;
 }

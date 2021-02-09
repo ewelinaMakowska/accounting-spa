@@ -1,53 +1,96 @@
 <template>
-  <div
-    id="main-container"
-    class="main-container container"
-  >
-    <div class="row">
-      <div
-        class="col-lg-12"
-        lg="12"
-      >
-      <img src="assets/img/dummy-logo.svg" height="100px" />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        <br>
-        <br>
-        <button
-          v-if="$store.state.isUserLoggedIn"
-          @click="logout()"
-        >
-          Log Out
-        </button>
+  <div>
+
+    <div class="top-bar">
+
+      <div class="container">
+        <div class="row">
+          <div class="col">
+
+            <div class="top-bar__left">
+              <img src="assets/img/dummy-logo.svg" class="top-bar__logo" />
+              <p class="top-bar__company-name">Business Services</p>
+            </div>
+
+
+            <div class="top-bar__right">
+              <ul class="top-bar__list">
+                <li><a href="#" class="top-bar__link">Usługi</a></li>
+
+                <li>
+                  <a href="#" class="top-bar__link">Księgowi</a>
+                </li>
+
+                <li>
+                  <router-link :to="'/login'" class="login-button top-bar__link" v-if="!$store.state.isUserLoggedIn">
+                    Zaloguj się
+                  </router-link>
+                </li>
+
+                <li> 
+                  <button
+                  v-if="$store.state.isUserLoggedIn"
+                  @click="logout()"
+                  >
+                    Wyloguj
+                  </button>
+                </li>
+              </ul>
+
+            </div>
+
+          </div>
+        </div>
       </div>
+      
     </div>
 
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="row">
-          <div class="col-lg-4">
-            <search />
-            <filters />
-          </div>
+    <div
+      id="main-container"
+      class="main-container container"
+    >
+      <div class="row">
+        <div
+          class="col-lg-12"
+          lg="12"
+        >
+        
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          <br>
+          <br>
+     
+        </div>
+      </div>
 
-          <div class="col-lg-8">
-            <div class="flex-thumbs-container" v-if="loaded">
-              <office-thumb
-                v-for="(office, id) in offices"
-                :id="office.id "
-                :key="id"
-                :name="office.name"
-                :city="office.City"
-                :office="office"
-                :price="office.price"
-              />
-            </div> <!--flex-container-->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-4">
+              <search />
+              <filters />
+            </div>
 
-            <pagination v-if="loaded" :number-of-pages="pageCount" />
-            
+            <div class="col-lg-8">
+              <div class="flex-thumbs-container" v-if="loaded">
+                <office-thumb
+                  v-for="(office, id) in offices"
+                  :id="office.id "
+                  :key="id"
+                  :name="office.name"
+                  :city="office.City"
+                  :office="office"
+                  :price="office.price"
+                />
+              </div> <!--flex-container-->
+
+              <pagination v-if="loaded" :number-of-pages="pageCount" />
+              
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
