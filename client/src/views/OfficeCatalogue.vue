@@ -1,49 +1,7 @@
 <template>
   <div>
 
-    <div class="top-bar">
-
-      <div class="container">
-        <div class="row">
-          <div class="col">
-
-            <div class="top-bar__left">
-              <img src="assets/img/dummy-logo.svg" class="top-bar__logo" />
-              <p class="top-bar__company-name">Business Services</p>
-            </div>
-
-
-            <div class="top-bar__right">
-              <ul class="top-bar__list">
-                <li><a href="#" class="top-bar__link">Usługi</a></li>
-
-                <li>
-                  <a href="#" class="top-bar__link">Księgowi</a>
-                </li>
-
-                <li>
-                  <router-link :to="'/login'" class="login-button top-bar__link" v-if="!$store.state.isUserLoggedIn">
-                    Zaloguj się
-                  </router-link>
-                </li>
-
-                <li> 
-                  <button
-                  v-if="$store.state.isUserLoggedIn"
-                  @click="logout()"
-                  >
-                    Wyloguj
-                  </button>
-                </li>
-              </ul>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-      
-    </div>
+   <top-bar></top-bar>
 
     <div
       id="main-container"
@@ -122,6 +80,7 @@ padding: 20px;
 </style>
 
 <script>
+import TopBar from '../components/TopBar.vue' 
 import OfficeThumb from '../components/OfficeThumb.vue'
 import Pagination from '../components/Pagination.vue' // eslint-disable-line no-unused-vars
 import Search from '../components/Search.vue'
@@ -130,12 +89,13 @@ import Filters from '../components/Filters.vue'
 export default {
   name: 'OfficeCatalogue',
   components: {
+    TopBar,
     OfficeThumb,
     Pagination,
     Search,
     Filters
   },
-  data () {
+  data() {
     return {
       office: {},
       pages: this.pages,
@@ -225,7 +185,7 @@ export default {
     loadSearchResults(value) {
       return this.$store.dispatch('loadSearchResultsLimited', value)
     },
-    logout () {
+/*     logout () {
       this.$store.dispatch('setTokenAction', null)
       this.$store.dispatch('setUserAction', null)
 
@@ -233,8 +193,7 @@ export default {
       localStorage.removeItem('token')
       localStorage.removeItem('isUserLoggedIn')
 
-      // todo: remove token from local storage
-    }
+    } */
   } // created
 
 }// export default
