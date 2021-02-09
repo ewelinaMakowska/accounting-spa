@@ -14,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     price: { type: DataTypes.DOUBLE(5,2),  allowNull : false },
     logo: { type: DataTypes.STRING(45) },
     description: { type: DataTypes.TEXT },
-    email: { type: DataTypes.STRING(45) }  
+    email: { type: DataTypes.STRING(45) },  
+    lumpSum: { type: DataTypes.BOOLEAN },
+    ledger: { type: DataTypes.BOOLEAN }
   },  {
     freezeTableName: false, // Model tableName will be the same as the model name
     timestamps: false,

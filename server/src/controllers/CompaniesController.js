@@ -1,6 +1,6 @@
 const { Company, City, sequelize } = require('../models/')
 const ITEMS_PER_PAGE = 2;
-const { Op } = require('sequelize');
+const { Op, where } = require('sequelize');
 
 module.exports = {
 
@@ -52,20 +52,24 @@ module.exports = {
     try {
        const page = req.query.page;
        const sort = req.query.sort;
+       let accounting = req.query.accounting;
        let order;
+       let where;
        let companies;
 
-       if(sort == null) {
+       if(!sort) {
         order = [['id', 'asc']]
-       } else if(sort == 'price_asc') {
-        order = [['price', 'asc']];
-       } else if(sort == 'price_desc') {
-        order = [['price', 'desc']];
+       } else {
+         orderName =  sort.split('_')[0];
+         orderOrder = sort.split('_')[1];
+   
+         order = [orderName, orderOrder]
        }
+  
      
       companies = await Company.findAndCountAll({
         attributes: ['name', 'price', 'id'],
-        order: order,
+        order: [order],
         offset: (page-1) * ITEMS_PER_PAGE,
         limit: ITEMS_PER_PAGE,
         include:[
@@ -97,13 +101,12 @@ module.exports = {
       
             const companies = await Company.findAll({
             where: {
-              [Op.or]: [
-                {city: {[Op.like]: `%${value}%`}}              
-              ] //op or
-            } // where
-         
-            }) //company find all
-          
+              [Op.and]: [
+                {city: {[Op.like]: `%${value}%`}},                      
+                {lump_sum: 1}
+              ]
+            }
+          })    
         res.send(companies);
      
       } catch (error) {
@@ -120,24 +123,56 @@ module.exports = {
     const page = req.query.page;
     const value = req.query.city;
     const sort = req.query.sort;
-    let order;
-    let companies;
+    let accounting = req.query.accounting;
 
-    if(sort == null) {
+    let order;
+    let orderName;
+    let orderOrder;
+    let companies;
+    let whereAccountingName;
+    let whereAccountingValue;
+
+    if(!sort) {
      order = [['id', 'asc']]
-    } else if(sort == 'price_asc') {
-     order = [['price', 'asc']];
-    } else if(sort == 'price_desc') {
-     order = [['price', 'desc']];
+    } else {
+      orderName = sort.split('_')[0];
+      orderOrder = sort.split('_')[1];
+
+      order = [orderName, orderOrder]
     }
+
+    if(!accounting) {
+      whereAccountingName = ''
+      whereAccountingValue = ''
+    }
+    else if(accounting == 'ledger') {
+        whereAccountingName = 'ledger',
+        whereAccountingValue = 1
+    }
+    else if(accounting == 'lump_sum') {
+        whereAccountingName = 'lumpSum',
+        whereAccountingValue = 1
+      }
     
+
+    console.log(whereAccountingName)
+    console.log(whereAccountingValue)
+    console.log('')
+
+
+        
      companies = await Company.findAndCountAll(
        { 
       attributes: ['name', 'id', 'price'],
        offset: (page-1) * ITEMS_PER_PAGE,
-       order: order,
+       order: [order],
        limit: ITEMS_PER_PAGE,
-       where: {cityId: value},
+       where: {
+         [Op.and]: [
+          {cityId: value},
+          {[whereAccountingName]: 1}
+         ]
+         },
        include:[
         { model: City, 
           as: 'City',
