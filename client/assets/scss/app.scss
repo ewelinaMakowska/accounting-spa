@@ -4,6 +4,7 @@ $blue: #3061fc;
 $midnight-blue: #001558;
 $blue-lilac: #b0befd;
 $primary-text: #444444;
+$secondary-text: rgba(0, 0, 0, 0.54);
 
 body {
   background-color: #ffffff;
@@ -82,6 +83,127 @@ body {
     border-radius: 4px;
   }
 }
+
+
+.search-options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filters {
+  position: relative;
+
+  &__button {
+    background-color: transparent;
+    color: $blue;
+    font-size: 14px;
+    padding: 7px 20px;
+    border: 1px solid $blue;
+    border-radius: 4px;
+    transition: all 0.3s;
+    cursor: pointer;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $blue;
+      color: #ffffff;
+    }
+  }
+
+  &__bubble {
+    font-size: 14px;
+    //position: absolute;
+    position: relative;
+    box-shadow: 0px 1px 9px 0px rgb(0 0 0 / 16%);
+    border-radius: 4px;
+    width: 100%;
+    z-index: 2;
+    margin-top: 20px;
+    padding: 5px 15px;
+  }
+
+  .triangle {
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    position: absolute;
+    z-index: -1;
+    //border: 1px solid grey;
+    box-shadow: -3px -1px 5px 0px rgb(0 0 0 / 10%);
+    transform: rotate(45deg);
+    top: -10px;
+
+    &--sort {
+      left: 3%;
+    }
+  }
+}
+
+.filter-name {
+  font-weight: 500;
+  font-size: 15px;
+  margin-bottom: 0px;
+}
+
+.filter-list {
+  list-style: none;
+  padding-left: 15px;
+  margin-top: 5px;
+}
+
+.filter {
+  &__input {
+    //width: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 9;
+    width: 0;
+  }
+
+  &__icon {
+    height: 15px;
+    z-index: 1;
+    stroke: $secondary-text;
+    fill: none;
+    stroke-linecap: square;
+    stroke-miterlimit: 10;
+    stroke-width: 48; 
+  }
+
+  &__pseudo-label {
+    
+  }
+
+  &__icon,
+  &__pseudo-label {
+    vertical-align: middle;
+  }
+
+  &__label {
+    cursor: pointer;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $blue;
+
+      .filter__icon {
+        stroke: $blue-lilac;
+      }
+    }
+  }
+
+}
+
+.search {
+  &__input-wrapper {
+    //z-index:5; 
+    //margin-top: -31px; 
+    //position:absolute;
+  }
+}
+
 
 
 .office-thumb {

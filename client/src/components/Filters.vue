@@ -1,38 +1,56 @@
 <template>
-  <div>
-    <button @click="showSortOptions()">
+  <div class="filters">
+    <button @click="showSortOptions()" class="filters__button">
+      Filtry
+    </button>
+
+    <button @click="showSortOptions()" class="filters__button">
       Sortowanie
     </button>
-    <ul class="sort__options">
-      <li>
-        Cena
-        <ul class="price__options">
-          <li>
-          <input type="radio" id="price_asc" name="price_asc" value="price_asc" @click="setSortParam($event, 'price_asc')">
-          <label for="price_asc">rosnąco</label>
-          </li>
-          <li>
-          <input type="radio" id="price_desc" name="price_desc" value="price_desc" @click="setSortParam($event, 'price_desc')">
-          <label for="price_desc">malejąco</label>
-          </li>
-        </ul>
-      </li> <!-- price -->
-      <li>
-        Nazwa
-        <ul>
-            <li>
-          <input type="radio" id="name_asc" name="c" value="name_asc" @click="setSortParam($event, 'name_asc')">
-          <label for="name_asc">Od A do Z</label>
-          </li>
-          <li>
-          <input type="radio" id="name_desc" name="name_desc" value="name_desc" @click="setSortParam($event, 'name_desc')">
-          <label for="name_desc">Od Z do A</label>
-          </li>
-        </ul>
-      </li> <!-- price -->
-    </ul>
 
-    Sposób rozliczania
+    <div class="filters__bubble filters__bubble--sort sort-options" style="display:block">
+          <div class="triangle triangle--sort"></div>
+
+        <p class="filter-name">Cena</p>
+        <ul class="filter-list">
+          <li>
+            <label class="filter__label" for="price_asc">
+              <span class="filter__pseudo-label">rosnąco &nbsp;</span>
+              <input class="filter__input" type="radio" id="price_asc" name="price_asc" value="price_asc" @click="setSortParam($event, 'price_asc')">
+              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 328l144-144 144 144'/></svg>    
+            </label>
+          </li>
+
+          <li>
+            <label class="filter__label" for="price_desc">
+              <span class="filter__pseudo-label">malejąco</span>
+              <input class="filter__input" type="radio" id="price_desc" name="price_desc" value="price_desc" @click="setSortParam($event, 'price_desc')">
+              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 184l144 144 144-144'/></svg>   
+            </label>
+          </li>
+
+       <!--    <li>
+            <input type="radio" id="price_desc" name="price_desc" value="price_desc" @click="setSortParam($event, 'price_desc')">
+            <label for="price_desc">malejąco</label>
+          </li> -->
+        </ul>
+
+        <p class="filter-name">Nazwa biura</p>
+        <ul class="filter-list">
+          <li>
+            <input type="radio" id="name_asc" name="c" value="name_asc" @click="setSortParam($event, 'name_asc')">
+            <label for="name_asc">Od A do Z</label>
+          </li>
+
+          <li>
+            <input type="radio" id="name_desc" name="name_desc" value="name_desc" @click="setSortParam($event, 'name_desc')">
+            <label for="name_desc">Od Z do A</label>
+          </li>
+        </ul>
+    </div>
+
+  <div class="filters__bubble filters__bubble--filter filter-options" style="display: none;">
+     Sposób rozliczania
     <ul>
       <li>
         <input type="radio" id="ledger" name="ledger" value="ledger" @click="setFilterAccountingMethod($event, 'ledger')">
@@ -43,6 +61,8 @@
         <label for="lump_sum">Ryczałt</label>
       </li>
     </ul>
+  </div>
+   
   </div>
 </template>
 

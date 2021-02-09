@@ -1,13 +1,8 @@
 <template>
   <div class="search">
-    <br>
-    <br>
-    <br>
-    <!-- <label for="search">Wyszukaj:</label><br> -->
 
     <div
       class="search__input-wrapper"
-      style="z-index:5; margin-top: -31px; background: white; position:absolute;"
     >
       <input
         id="search"
