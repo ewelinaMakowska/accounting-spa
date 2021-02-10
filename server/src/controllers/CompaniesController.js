@@ -68,7 +68,7 @@ module.exports = {
   
      
       companies = await Company.findAndCountAll({
-        attributes: ['name', 'price', 'id'],
+        attributes: ['name', 'price', 'id', 'description'],
         order: [order],
         offset: (page-1) * ITEMS_PER_PAGE,
         limit: ITEMS_PER_PAGE,
@@ -163,7 +163,7 @@ module.exports = {
         
      companies = await Company.findAndCountAll(
        { 
-      attributes: ['name', 'id', 'price'],
+      attributes: ['name', 'id', 'price', 'description'],
        offset: (page-1) * ITEMS_PER_PAGE,
        order: [order],
        limit: ITEMS_PER_PAGE,

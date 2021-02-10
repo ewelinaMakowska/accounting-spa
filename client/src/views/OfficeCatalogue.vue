@@ -31,6 +31,7 @@
                   :city="office.City"
                   :office="office"
                   :price="office.price"
+                  :description="office.description"
                 />
               </div> 
 
