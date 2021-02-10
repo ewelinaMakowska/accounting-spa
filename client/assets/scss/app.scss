@@ -311,6 +311,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
   margin-top: 50px;
 
   &__thumb {
@@ -318,33 +319,70 @@ body {
     width: 300px;
     margin-bottom: 50px;
     box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.16);
+    position: relative;
+    height: fit-content;
+    min-height: 345px;
   }
 }
 
 .thumb {
   &__top {
     border-bottom: 1px solid $very-light-grey;
+    padding: 15px;
   }
 
   &__bottom {
-
+    padding: 15px;
   }
 
   &__logo {
     width: 55px;
+  }
+
+  &__name {
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  &__city,
+  &__price {
+    font-size: 13px;
+    color: $secondary-text;
+
+  }
+
+  &__list {
+    list-style: none;
+  }
+
+  &__description {
+    font-size: 14px;
+    line-height: 23px;
+    margin-bottom: 50px;
+  }
+
+  &__button {
+    background-color: $blue;
+    color: #ffffff;
+    font-size: 13px;
+    padding: 7px 20px;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 5%;
+    left: 15px;
+    text-decoration: none;
   }
 }
 
 .top {
   &__left {
     display: inline-block;
+    width: 15%;
   }
 
   &__right {
     display: inline-block;
+    width: 80%;
   }
 }
 
-.office-thumb {
-  background: grey;
-}

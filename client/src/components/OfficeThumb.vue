@@ -5,7 +5,7 @@
         <img src="assets/img/dummy-logo.svg" class="thumb__logo" alt="company logo" />
       </div>
       <div class="top__right">      
-        <ul>
+        <ul class="thumb__list">
           <li class="thumb__name">{{ name }}</li>
           <li class="thumb__city">{{ city }}</li>
           <li class="thumb__price">{{ price }}</li>
@@ -14,16 +14,17 @@
     </div>
 
     <div class="thumb__bottom">
-      <p>{{ description }}</p>
-    </div>
-  <!--   Biuro {{ name }} <br>
-    ID: {{ id }} <br>
-    Miasto: {{ city }} <br>
-    Cena: {{ price }} <br> -->
+      <p class="thumb__description">{{ description }}</p>
 
-   <router-link :to="'/office/' + office.id">
-      więcej
-    </router-link> 
+   
+    </div>
+
+     <router-link :to="'/office/' + office.id" class="thumb__button">
+        Więcej
+     </router-link> 
+ 
+
+
   </div>
 </template>
 
