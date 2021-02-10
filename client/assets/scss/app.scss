@@ -91,7 +91,8 @@ body {
 }
 
 .filters {
-  position: relative;
+  position: absolute;
+  right: 0;
 
   &__button {
     background-color: transparent;
@@ -120,7 +121,7 @@ body {
     width: 100%;
     z-index: 2;
     margin-top: 20px;
-    padding: 5px 15px;
+    padding: 15px 30px;
   }
 
   .triangle {
@@ -135,6 +136,10 @@ body {
     top: -10px;
 
     &--sort {
+      left: 65%;
+    }
+
+    &--filter {
       left: 3%;
     }
   }

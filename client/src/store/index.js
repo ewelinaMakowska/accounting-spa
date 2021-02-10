@@ -20,7 +20,18 @@ export const store = new Vuex.Store({
     },
     token: localStorage.getItem('token') || null,
     user: localStorage.getItem('user') || null,
-    isUserLoggedIn: localStorage.getItem('isUserLoggedIn') || null
+    isUserLoggedIn: localStorage.getItem('isUserLoggedIn') || null,
+    settings: {
+      filters: {
+        sort: {
+          showBubble: localStorage.getItem('showSortBubble') || false,
+          priceAsc: false,
+          priceDesc: false,
+          nameAsc: false,
+          nameDesc: false
+        }
+      }
+    }
   },
 
   mutations: {
@@ -63,6 +74,16 @@ export const store = new Vuex.Store({
 
     setUser (state, user) {
       state.user = user
+    },
+
+    showSortBubble(state) {
+      state.settings.filters.sort.showBubble = true;
+      localStorage.setItem('showSortBubble', true)
+    },
+
+    hideSortBubble(state) {
+      state.settings.filters.sort.showBubble = false;
+      localStorage.removeItem('showSortBubble', false)
     }
 
   },
@@ -127,6 +148,13 @@ export const store = new Vuex.Store({
     setUserAction ({ commit }, user) {
       commit('setUser', user)
       localStorage.setItem('user', JSON.stringify(user))
+    },
+
+    showSortBubble({ commit }) {
+      commit('showSortBubble')
+    },
+    hideSortBubble({ commit }) {
+      commit('hideSortBubble')
     }
 
   },
@@ -167,7 +195,11 @@ return state.loadedOffices; //?
 
     countValue (state) {
       return state.allCompaniesCount
-    }
+    },
+
+    getFiltersVisibilitySettings(state) {
+      return state.settings.filters;
+    },
 
   }, // getters
 

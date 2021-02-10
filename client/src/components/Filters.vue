@@ -1,21 +1,22 @@
 <template>
   <div class="filters">
-    <button @click="showSortOptions()" class="filters__button">
+    <button class="filters__button">
       Filtry
     </button>
 
-    <button @click="showSortOptions()" class="filters__button">
+    <button @click="showBubble('sort')" class="filters__button">
       Sortowanie
     </button>
 
-    <div class="filters__bubble filters__bubble--sort sort-options" style="display:block">
-          <div class="triangle triangle--sort"></div>
+    <div v-if="filtersVisibilitySettings.sort.showBubble" class="filters__bubble filters__bubble--sort sort-options" id="filters__bubble--sort">
+        <div class="triangle triangle--sort"></div>
+        <button @click="hideBubble('sort')" class="bubble__close-btn" id="sort-close-btn">x</button>
 
         <p class="filter-name">Cena</p>
         <ul class="filter-list">
           <li>
             <label class="filter__label" for="price_asc">
-              <span class="filter__pseudo-label">rosnąco &nbsp;</span>
+              <span class="filter__pseudo-label">rosnąco &nbsp;&nbsp;&nbsp;&nbsp;</span>
               <input class="filter__input" type="radio" id="price_asc" name="price_asc" value="price_asc" @click="setSortParam($event, 'price_asc')">
               <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 328l144-144 144 144'/></svg>    
             </label>
@@ -23,28 +24,29 @@
 
           <li>
             <label class="filter__label" for="price_desc">
-              <span class="filter__pseudo-label">malejąco</span>
+              <span class="filter__pseudo-label">malejąco&nbsp;&nbsp;&nbsp;</span>
               <input class="filter__input" type="radio" id="price_desc" name="price_desc" value="price_desc" @click="setSortParam($event, 'price_desc')">
               <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 184l144 144 144-144'/></svg>   
             </label>
           </li>
-
-       <!--    <li>
-            <input type="radio" id="price_desc" name="price_desc" value="price_desc" @click="setSortParam($event, 'price_desc')">
-            <label for="price_desc">malejąco</label>
-          </li> -->
         </ul>
 
         <p class="filter-name">Nazwa biura</p>
         <ul class="filter-list">
           <li>
-            <input type="radio" id="name_asc" name="c" value="name_asc" @click="setSortParam($event, 'name_asc')">
-            <label for="name_asc">Od A do Z</label>
+            <label class="filter__label" for="name_asc">
+              <span class="filter__pseudo-label">Od A do Z &nbsp;</span>
+              <input class="filter__input" type="radio" id="name_asc" name="name_asc" value="name_asc" @click="setSortParam($event, 'name_asc')">
+              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 328l144-144 144 144'/></svg>    
+            </label>
           </li>
 
           <li>
-            <input type="radio" id="name_desc" name="name_desc" value="name_desc" @click="setSortParam($event, 'name_desc')">
-            <label for="name_desc">Od Z do A</label>
+            <label class="filter__label" for="name_desc">
+              <span class="filter__pseudo-label">Od Z do A &nbsp;</span>
+              <input class="filter__input" type="radio" id="name_desc" name="name_desc" value="name_desc" @click="setSortParam($event, 'name_desc')">
+              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 184l144 144 144-144'/></svg>    
+            </label>
           </li>
         </ul>
     </div>
@@ -72,11 +74,27 @@
 
 <script>
 export default {
+  data() {
+    return {
+       visible: {
+        sort: false,
+        filter: false
+      } 
+    }
+  },
   methods: {
     showSortOptions () {
-      const sortOptionsList = document.getElementsByClassName('sort__options')
+     /*  const sortOptionsList = document.getElementsByClassName('sort__options')
       console.log(sortOptionsList)
-      sortOptionsList.classList.toggle('hidden')
+      sortOptionsList.classList.toggle('hidden') */
+
+    },
+    showBubble(whichBubble) {
+      //zażądać akcji stanu zmieniającej ustawienia
+      return this.$store.dispatch('showSortBubble')
+    },
+    hideBubble(whichBubble) {
+      return this.$store.dispatch('hideSortBubble')
     },
     setSortParam($event, sortParam) {
       let url = window.location.href.split('/');
@@ -144,11 +162,21 @@ export default {
       }
     
       window.location.href = newUrl;
+    }, 
+  },
+   computed: {
+      filtersVisibilitySettings() {
+        return this.$store.getters.getFiltersVisibilitySettings;
+      }
     },
+  async created() {
+
+
   },
   mounted(){
     console.log('filters mounted')
-    this.setRadiosChecked();
+    //this.setRadiosChecked();
+    //console.log(this.visible.sort)
 }
 }
 </script>
