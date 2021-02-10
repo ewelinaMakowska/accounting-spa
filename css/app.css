@@ -235,16 +235,16 @@ body {
 }
 
 .autocomplete__outside {
-  /*     background: #000;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    opacity: 0.3;
-    z-index: -1; */
+  background: #000;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+  z-index: -1;
 }
 
 .office-thumb {
