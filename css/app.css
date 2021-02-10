@@ -358,4 +358,62 @@ body {
   display: inline-block;
   width: 80%;
 }
+
+.pagination {
+  list-style: none;
+  padding-left: 0;
+}
+
+.pagination__button-wrapper {
+  display: inline-block;
+}
+
+.pagination__button {
+  font-size: 16px;
+  background-color: #ffffff;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 2px solid transparent;
+  color: #444444;
+  z-index: 3;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.pagination__button svg {
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-miterlimit: 10;
+  stroke-width: 48;
+  vertical-align: middle;
+}
+
+.pagination__button.active {
+  border-bottom: 2px solid #3061fc;
+}
+
+.pagination__button:hover {
+  outline: none;
+  border-bottom: 2px solid #3061fc;
+  cursor: pointer;
+}
+
+.chevron-btn {
+  border-bottom: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.chevron-btn:hover {
+  border-bottom: none;
+}
+
+.chevron-btn:hover svg {
+  stroke: #b0befd;
+}
 /*# sourceMappingURL=app.css.map */
