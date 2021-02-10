@@ -70,6 +70,7 @@ body {
   color: #ffffff;
   font-size: 14px;
   padding: 7px 20px;
+  margin-right: 0;
   border-radius: 4px;
 }
 
@@ -80,6 +81,10 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  height: 32px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .filters {
@@ -199,6 +204,47 @@ body {
 .bubble__close-btn:hover {
   cursor: pointer;
   fill: #3061fc;
+}
+
+.search__input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  height: 32px;
+  border-bottom: 2px solid #3061fc;
+}
+
+.search__input:focus {
+  outline: none;
+}
+
+.autocomplete__wrapper {
+  position: absolute;
+  z-index: 3;
+  background-color: #ffffff;
+  width: 220px;
+}
+
+.autocomplete__list {
+  list-style: none;
+}
+
+.autocomplete__list li button {
+  background: #ffffff;
+  border: none;
+}
+
+.autocomplete__outside {
+  /*     background: #000;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    z-index: -1; */
 }
 
 .office-thumb {

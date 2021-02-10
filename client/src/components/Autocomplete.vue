@@ -6,7 +6,7 @@
       </ul>
     </div>
     <div
-      class="outside"
+      class="autocomplete__outside"
       @click="hideAutocomplete()"
     />
   </div>

@@ -18,15 +18,15 @@
       <!--  <button class="search__button" @click="searchResults()">Wyszukaj</button> -->
     </div>
 
-    <div v-show="(this.searching)">
+    <div class="autocomplete__wrapper" v-show="(this.searching)">
       <div class="autocomplete">
-        <ul class="cities-list">
+        <ul class="autocomplete__list">
           <li
             v-for="(city, id) in cities"
             :key="id"
           >
             <button
-              class="cities-list__item autocomplete_button"
+              class="autocomplete_button"
               @click="autocompleteInput($event)"
             > 
             
@@ -37,7 +37,7 @@
         </ul>
 
         <div
-          class="outside"
+          class="autocomplete__outside"
           @click="setSearchingFalse()"
         />
       </div> <!--div autocomplete -->
@@ -192,7 +192,7 @@ export default {
 
     setSearchingFalse(){
       // this.searching = 0;
-      document.getElementsByClassName('autocomplete')[0].classList.add('hidden')
+      //document.getElementsByClassName('autocomplete')[0].classList.add('hidden')
     },
 
 
