@@ -37,7 +37,7 @@ module.exports = {
     try {
       const companies = await Company.findAndCountAll({
         offset: 0,
-        limit: 4
+        limit: 9
       })
       res.send(companies)
     } catch (error) {

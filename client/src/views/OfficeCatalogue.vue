@@ -105,7 +105,7 @@ export default {
     //  return this.$store.dispatch('loadCompaniesAction')
     },
     pageCount() {
-      return Math.round((this.$store.getters.countValue) / 2)
+      return Math.ceil((this.$store.getters.countValue) / 9)
     },
     loadFirst () {
       //return this.$store.dispatch('loadFirstPageData')
