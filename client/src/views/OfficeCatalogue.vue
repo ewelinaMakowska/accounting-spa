@@ -9,7 +9,7 @@
     >
       <div class="row">
         <div class="col-lg-12">
-          
+
           <div class="search-options">
             <search />
             <filters />
@@ -22,8 +22,7 @@
         <div class="col-lg-12">
      
 
-            <div class="col-lg-12">
-              <div class="flex-thumbs-container" v-if="loaded">
+              <div class="thumbs" v-if="loaded">
                 <office-thumb
                   v-for="(office, id) in offices"
                   :id="office.id "
@@ -33,7 +32,7 @@
                   :office="office"
                   :price="office.price"
                 />
-              </div> <!--flex-container-->
+              </div> 
 
               <pagination v-if="loaded" :number-of-pages="pageCount" />
               
@@ -41,7 +40,6 @@
           </div>
         </div>
       </div>
-    </div>
 
 </template>
 

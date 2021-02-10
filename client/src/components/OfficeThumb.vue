@@ -1,5 +1,5 @@
 <template>
-  <div class="office-thumb">
+  <div class="thumbs__thumb">
     Biuro {{ name }} <br>
     ID: {{ id }} <br>
     Miasto: {{ city }} <br>

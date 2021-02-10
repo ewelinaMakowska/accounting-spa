@@ -276,6 +276,24 @@ body {
   z-index: -1;
 }
 
+.thumbs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 50px;
+}
+
+.thumbs__thumb {
+  background: grey;
+  width: 300px;
+  margin-bottom: 50px;
+}
+
 .office-thumb {
   background: grey;
 }

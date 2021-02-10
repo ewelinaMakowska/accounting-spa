@@ -307,6 +307,19 @@ body {
   }
 }
 
+.thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 50px;
+
+  &__thumb {
+    background: grey;
+    width: 300px;
+    margin-bottom: 50px;
+
+  }
+}
 
 
 .office-thumb {
