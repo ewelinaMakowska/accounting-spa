@@ -16,7 +16,7 @@
         @blur="setSearchingFalse()"
       >
     </div>
-
+    
     <div class="autocomplete__wrapper" tabindex="0" v-show="(this.searching)">
       <div class="autocomplete">
         <ul class="autocomplete__list">

@@ -223,15 +223,44 @@ body {
   z-index: 3;
   background-color: #ffffff;
   width: 220px;
+  border-top: none;
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  border-radius: 0 0 4px 4px;
 }
 
 .autocomplete__list {
   list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.autocomplete__list li {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: lightblue;
 }
 
 .autocomplete__list li button {
+  border: 1px solid #ffffff;
   background: #ffffff;
-  border: none;
+  margin: 0;
+  width: 100%;
+  font-size: 14px;
+  text-align: left;
+  padding: 5px 10px;
+  outline: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.autocomplete__list li button:hover, .autocomplete__list li button:focus {
+  background: #b0befd;
+  color: #001558;
+  outline: none;
+  border: 1px solid #b0befd;
 }
 
 .autocomplete__outside {

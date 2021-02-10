@@ -5,6 +5,7 @@ $midnight-blue: #001558;
 $blue-lilac: #b0befd;
 $primary-text: #444444;
 $secondary-text: rgba(0, 0, 0, 0.54);
+$very-light-grey: #dddddd;
 
 body {
   background-color: #ffffff;
@@ -251,16 +252,45 @@ body {
     z-index: 3;
     background-color: #ffffff;
     width: 220px;
+    border-top: none;
+    border-left: 1px solid $very-light-grey;
+    border-right: 1px solid $very-light-grey;
+    border-bottom: 1px solid $very-light-grey;
+    border-radius: 0 0 4px 4px;
   }
 
   &__list {
     list-style: none;
+    padding: 0;
+    margin: 0;
+
     li {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      background-color: lightblue;
+
       button {
-        background: #ffffff;
-        border: none;
+        border: 1px solid #ffffff;
+        background: #ffffff;;
+        margin: 0;
+        width: 100%;
+        font-size: 14px;
+        text-align: left;
+        padding: 5px 10px;
+        outline: none;
+        transition: all 0.3s;
+
+        &:hover,
+        &:focus {
+          background: $blue-lilac;
+          color: $midnight-blue;
+          outline: none;
+          border: 1px solid $blue-lilac;
+        }
       }
     }
+
   }
 
   &__outside {
