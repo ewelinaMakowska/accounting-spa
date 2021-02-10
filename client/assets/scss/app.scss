@@ -19,7 +19,7 @@ body {
   overflow: hidden;
   margin: 0 0 20px 0;
   padding: 10px 0;
-  box-shadow: 0px 1px 9px 0px rgb(0 0 0 / 16%);
+  box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.16);
 
   &__right {
     //float: right;
@@ -115,8 +115,9 @@ body {
   &__bubble {
     font-size: 14px;
     //position: absolute;
+    background-color: #ffffff;
     position: relative;
-    box-shadow: 0px 1px 9px 0px rgb(0 0 0 / 16%);
+    box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.16);
     border-radius: 4px;
     width: 100%;
     z-index: 2;
@@ -131,7 +132,7 @@ body {
     position: absolute;
     z-index: -1;
     //border: 1px solid grey;
-    box-shadow: -3px -1px 5px 0px rgb(0 0 0 / 10%);
+    box-shadow: -3px -1px 5px 0px rgba(0, 0, 0, 0.1);
     transform: rotate(45deg);
     top: -10px;
 
@@ -199,6 +200,26 @@ body {
     }
   }
 
+}
+
+.bubble {
+  &__close-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    width: 20px;
+    fill: $primary-text;
+
+    &:hover {
+      cursor: pointer;
+      fill: $blue;
+    }
+  }
 }
 
 .search {
