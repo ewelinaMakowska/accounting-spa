@@ -141,12 +141,13 @@
         }
       },
       changeTextToIcons() {
+        console.log('change text to icons')
         let pagBtns = document.getElementsByClassName('pagination__button');
         let chevronForward = "<svg xmlns='http://www.w3.org/2000/svg' class='chevron-forward' viewBox='0 0 512 512'><path d='M184 112l144 144-144 144'/></svg>"
         let chevronBackward = "<svg xmlns='http://www.w3.org/2000/svg' class='chevron-backward' viewBox='0 0 512 512'><path d='M328 112L184 256l144 144'/></svg>";
 
         for(let i = 0; i<pagBtns.length; i++) {
-          if(this.$route.query.page) {
+         // if(this.$route.query.page) {
             if(pagBtns[i].innerText == 'prev') {
               pagBtns[i].innerHTML = chevronBackward;
               pagBtns[i].classList.add('chevron-backward', 'chevron-btn');
@@ -155,7 +156,7 @@
               pagBtns[i].classList.add('chevron-forward', 'chevron-btn');
             }
           }
-        }
+        //}
     }, 
     },
 
