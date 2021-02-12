@@ -287,13 +287,14 @@ body {
           color: $midnight-blue;
           outline: none;
           border: 1px solid $blue-lilac;
+          cursor: pointer;
         }
       }
     }
 
   }
 
-  &__outside {
+/*   &__outside {
     background: #000;
     width: 100vw;
     height: 100vh;
@@ -304,7 +305,7 @@ body {
     left: 0;
     opacity: 0.3;
     z-index: -1; 
-  }
+  } */
 }
 
 .thumbs {

@@ -22,7 +22,7 @@
         <div class="col-lg-12">
      
 
-              <div class="thumbs" v-if="loaded">
+              <div class="thumbs" id="thumbs" v-if="loaded">
                 <office-thumb
                   v-for="(office, id) in offices"
                   :id="office.id "
@@ -37,6 +37,7 @@
 
               <pagination v-if="loaded" :number-of-pages="pageCount" />
               
+              <div class="thumbs__thumb patch-div" id="patch-div" style="display: none" ></div>
             </div>
           </div>
         </div>
@@ -108,13 +109,12 @@ export default {
     pageCount() {
       return Math.ceil((this.$store.getters.countValue) / 9)
     },
-    loadFirst () {
+    loadFirst() {
       //return this.$store.dispatch('loadFirstPageData')
-    }
-
+    },
   },
 
-  async created () {
+  async created() {
     console.log('Created')
 
     //check if officepage
@@ -168,8 +168,12 @@ export default {
     }
     this.searchParams = searchParams;
     }
-  
-  }, // components
+  }, // created
+
+  updated() {
+    console.log('HOOOK')
+    this.fixFlexContainer();
+  },
   methods: {
     loadPage(page) {
       return this.$store.dispatch('loadOnePageData', page)
@@ -177,6 +181,18 @@ export default {
     loadSearchResults(value) {
       return this.$store.dispatch('loadSearchResultsLimited', value)
     },
+    fixFlexContainer() {
+      let thumbsContainer = document.getElementById('thumbs')
+      let thumbs = thumbsContainer.children;
+      let patchDiv = document.getElementById('patch-div')
+
+      if(thumbs.length % 3 != 0) {
+        thumbsContainer.append(patchDiv)
+        patchDiv.style.opacity = 0;
+        patchDiv.style.display = "block";
+      }
+
+    }
 /*     logout () {
       this.$store.dispatch('setTokenAction', null)
       this.$store.dispatch('setUserAction', null)
@@ -186,7 +202,7 @@ export default {
       localStorage.removeItem('isUserLoggedIn')
 
     } */
-  } // created
+  } //
 
 }// export default
 
