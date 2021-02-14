@@ -21,8 +21,11 @@
                   v-model.trim="email"
                   name="email"
                   type="email"
+                  class="login__input"
                   placeholder="Twój adres e-mail"
                   autocomplete="off"
+                  v-on:keyup='checkIfInputEmpty($event)'
+                  data-empty='false'
                   >
                 </div>
 
@@ -33,7 +36,10 @@
                   v-model="password"
                   name="password"
                   type="password"
+                  class="login__input"
                   placeholder="Twoje hasło"
+                  data-empty='false'
+                  v-on:keyup='checkIfInputEmpty($event)'
                   >
                 </div>
                
@@ -43,7 +49,7 @@
                 >
               </form>
 
-              <div v-if="$v.$anyErrors">
+              <div v-if="$v.$anyError && !formEmpty">
                 <p>Sprawdź poprawność wpowadzonych danych i spróbuj ponownie</p>
               </div>
             </div>
@@ -78,6 +84,7 @@ export default {
       email: null,
       password: null,
       userToken: null,
+      formEmpty: 0
     }
   }, // data
   validations: {
@@ -90,6 +97,19 @@ export default {
     }
   },
   methods: {
+    checkIfInputEmpty($event) {
+      if(!$event.target.value) {
+        $event.target.setAttribute('data-empty','true')
+      }
+
+      let emptiedInputs = document.querySelectorAll(".login__input[data-empty='true']");
+      let inputs = document.getElementsByClassName('login__input')
+
+      if(emptiedInputs.length == inputs.length) {
+        this.formEmpty = 1;
+      }
+      
+    },
     async login(e) {
       e.preventDefault()
       this.$v.$touch();
