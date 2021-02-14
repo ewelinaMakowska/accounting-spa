@@ -1,5 +1,5 @@
 const { Company, City, sequelize } = require('../models/')
-const ITEMS_PER_PAGE = 2;
+const ITEMS_PER_PAGE = 9;
 const { Op, where } = require('sequelize');
 
 module.exports = {
@@ -37,7 +37,7 @@ module.exports = {
     try {
       const companies = await Company.findAndCountAll({
         offset: 0,
-        limit: 4
+        limit: 9
       })
       res.send(companies)
     } catch (error) {
@@ -68,7 +68,7 @@ module.exports = {
   
      
       companies = await Company.findAndCountAll({
-        attributes: ['name', 'price', 'id'],
+        attributes: ['name', 'price', 'id', 'description'],
         order: [order],
         offset: (page-1) * ITEMS_PER_PAGE,
         limit: ITEMS_PER_PAGE,
@@ -163,7 +163,7 @@ module.exports = {
         
      companies = await Company.findAndCountAll(
        { 
-      attributes: ['name', 'id', 'price'],
+      attributes: ['name', 'id', 'price', 'description'],
        offset: (page-1) * ITEMS_PER_PAGE,
        order: [order],
        limit: ITEMS_PER_PAGE,

@@ -1,38 +1,60 @@
 <template>
-  <div>
-    <button @click="showSortOptions()">
+  <div class="filters">
+    <button class="filters__button">
+      Filtry
+    </button>
+
+    <button @click="showBubble('sort')" class="filters__button">
       Sortowanie
     </button>
-    <ul class="sort__options">
-      <li>
-        Cena
-        <ul class="price__options">
-          <li>
-          <input type="radio" id="price_asc" name="price_asc" value="price_asc" @click="setSortParam($event, 'price_asc')">
-          <label for="price_asc">rosnąco</label>
-          </li>
-          <li>
-          <input type="radio" id="price_desc" name="price_desc" value="price_desc" @click="setSortParam($event, 'price_desc')">
-          <label for="price_desc">malejąco</label>
-          </li>
-        </ul>
-      </li> <!-- price -->
-      <li>
-        Nazwa
-        <ul>
-            <li>
-          <input type="radio" id="name_asc" name="c" value="name_asc" @click="setSortParam($event, 'name_asc')">
-          <label for="name_asc">Od A do Z</label>
-          </li>
-          <li>
-          <input type="radio" id="name_desc" name="name_desc" value="name_desc" @click="setSortParam($event, 'name_desc')">
-          <label for="name_desc">Od Z do A</label>
-          </li>
-        </ul>
-      </li> <!-- price -->
-    </ul>
 
-    Sposób rozliczania
+    <div v-if="filtersVisibilitySettings.sort.showBubble" class="filters__bubble filters__bubble--sort sort-options" id="filters__bubble--sort">
+        <div class="triangle triangle--sort"></div>
+        <button @click="hideBubble('sort')" class="bubble__close-btn" id="sort-close-btn">
+          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M400 145.49L366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49z'/></svg>
+        </button>
+
+        <p class="filter-name">Cena</p>
+        <ul class="filter-list">
+          <li>
+            <label class="filter__label" for="price_asc">
+              <span class="filter__pseudo-label">rosnąco &nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <input class="filter__input" type="radio" id="price_asc" name="price_asc" value="price_asc" @click="setSortParam($event, 'price_asc')">
+              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 328l144-144 144 144'/></svg>    
+            </label>
+          </li>
+
+          <li>
+            <label class="filter__label" for="price_desc">
+              <span class="filter__pseudo-label">malejąco&nbsp;&nbsp;&nbsp;</span>
+              <input class="filter__input" type="radio" id="price_desc" name="price_desc" value="price_desc" @click="setSortParam($event, 'price_desc')">
+              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 184l144 144 144-144'/></svg>   
+            </label>
+          </li>
+        </ul>
+
+        <p class="filter-name">Nazwa biura</p>
+        <ul class="filter-list">
+          <li>
+            <label class="filter__label" for="name_asc">
+              <span class="filter__pseudo-label">Od A do Z &nbsp;</span>
+              <input class="filter__input" type="radio" id="name_asc" name="name_asc" value="name_asc" @click="setSortParam($event, 'name_asc')">
+              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 328l144-144 144 144'/></svg>    
+            </label>
+          </li>
+
+          <li>
+            <label class="filter__label" for="name_desc">
+              <span class="filter__pseudo-label">Od Z do A &nbsp;</span>
+              <input class="filter__input" type="radio" id="name_desc" name="name_desc" value="name_desc" @click="setSortParam($event, 'name_desc')">
+              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 184l144 144 144-144'/></svg>    
+            </label>
+          </li>
+        </ul>
+    </div>
+
+  <div class="filters__bubble filters__bubble--filter filter-options" style="display: none;">
+     Sposób rozliczania
     <ul>
       <li>
         <input type="radio" id="ledger" name="ledger" value="ledger" @click="setFilterAccountingMethod($event, 'ledger')">
@@ -44,6 +66,8 @@
       </li>
     </ul>
   </div>
+   
+  </div>
 </template>
 
 <!--<style lang="scss">
@@ -52,11 +76,27 @@
 
 <script>
 export default {
+  data() {
+    return {
+       visible: {
+        sort: false,
+        filter: false
+      } 
+    }
+  },
   methods: {
     showSortOptions () {
-      const sortOptionsList = document.getElementsByClassName('sort__options')
+     /*  const sortOptionsList = document.getElementsByClassName('sort__options')
       console.log(sortOptionsList)
-      sortOptionsList.classList.toggle('hidden')
+      sortOptionsList.classList.toggle('hidden') */
+
+    },
+    showBubble(whichBubble) {
+      //zażądać akcji stanu zmieniającej ustawienia
+      return this.$store.dispatch('showSortBubble')
+    },
+    hideBubble(whichBubble) {
+      return this.$store.dispatch('hideSortBubble')
     },
     setSortParam($event, sortParam) {
       let url = window.location.href.split('/');
@@ -124,11 +164,21 @@ export default {
       }
     
       window.location.href = newUrl;
+    }, 
+  },
+   computed: {
+      filtersVisibilitySettings() {
+        return this.$store.getters.getFiltersVisibilitySettings;
+      }
     },
+  async created() {
+
+
   },
   mounted(){
     console.log('filters mounted')
-    this.setRadiosChecked();
+    //this.setRadiosChecked();
+    //console.log(this.visible.sort)
 }
 }
 </script>

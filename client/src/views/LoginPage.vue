@@ -1,45 +1,63 @@
 <template>
   <div>
     <section>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <b>LogIn</b><br><br><br>
-            <form
+      <div class="login__background">
+   
+
+            <div class="login__wrapper">
+              
+
+              <div class="login__box--top">
+                <h1>Zaloguj się</h1>
+                  <form
               novalidate
-              @submit="login($event)"
-            >
-              <!-- method="post" -->
+              class="login"
+              @submit="login($event)">
 
-              <label for="form__email">E-mail:</label>
-              <input
-                id="form__email"
-                v-model.trim="creds.email"
-                name="email"
-                type="email"
-              ><br><br>
+                <div class="login__group">
+                  <label for="form__email">E-mail</label>
+                  <input
+                  id="form__email"
+                  v-model.trim="creds.email"
+                  name="email"
+                  type="email"
+                  placeholder="Twój adres e-mail"
+                  >
+                </div>
 
-              <label for="form__email">Password:</label>
-              <input
-                id="form__password"
-                v-model="creds.password"
-                name="password"
-                type="password"
-              ><br><br>
+                <div class="login__group">
+                  <label for="form__email">Hasło</label>
+                  <input
+                  id="form__password"
+                  v-model="creds.password"
+                  name="password"
+                  type="password"
+                  placeholder="Twoje hasło"
+                  >
+                </div>
+               
+                <input class="login-button"
+                  type="submit"
+                  value="Send"
+                >
+              </form>
+            </div>
+             
 
-              <input
-                type="submit"
-                value="Send"
-              >
-            </form>
-            <br>
-            Nie masz jeszcze konta? <br>
-            <a href="/register">Zarejestruj się!</a>
+            
+            
+            <div class="login__box--bottom">
+               <p class="login__text">
+                Nie masz jeszcze konta? <br>
+                <a class="login__register-link" href="/register">Zarejestruj się! -></a>
+              </p>
+            </div>
+             </div>
+            
 
             <!-- <user-profile-page :email='creds.email' :token='userToken'>
                         </user-profile-page> -->
-          </div>
-        </div>
+
       </div>
     </section>
   </div>

@@ -1,54 +1,48 @@
 <template>
-  <div
-    id="main-container"
-    class="main-container container"
-  >
-    <div class="row">
-      <div
-        class="col-lg-12"
-        lg="12"
-      >
-      <img src="assets/img/dummy-logo.svg" height="100px" />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        <br>
-        <br>
-        <button
-          v-if="$store.state.isUserLoggedIn"
-          @click="logout()"
-        >
-          Log Out
-        </button>
-      </div>
-    </div>
+  <div>
 
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="row">
-          <div class="col-lg-4">
+   <top-bar></top-bar>
+
+    <div
+      id="main-container"
+      class="main-container container"
+    >
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="search-options">
             <search />
             <filters />
-          </div>
+          </div>  
+             
+        </div>
+      </div>
 
-          <div class="col-lg-8">
-            <div class="flex-thumbs-container" v-if="loaded">
-              <office-thumb
-                v-for="(office, id) in offices"
-                :id="office.id "
-                :key="id"
-                :name="office.name"
-                :city="office.City"
-                :office="office"
-                :price="office.price"
-              />
-            </div> <!--flex-container-->
+      <div class="row">
+        <div class="col-lg-12">
+     
 
-            <pagination v-if="loaded" :number-of-pages="pageCount" />
-            
+              <div class="thumbs" id="thumbs" v-if="loaded">
+                <office-thumb
+                  v-for="(office, id) in offices"
+                  :id="office.id "
+                  :key="id"
+                  :name="office.name"
+                  :city="office.City"
+                  :office="office"
+                  :price="office.price"
+                  :description="office.description"
+                />
+              </div> 
+
+              <pagination v-if="loaded" :number-of-pages="pageCount" />
+              
+              <div class="thumbs__thumb patch-div" id="patch-div" style="display: none" ></div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+
 </template>
 
 <!-- <style>
@@ -79,6 +73,7 @@ padding: 20px;
 </style>
 
 <script>
+import TopBar from '../components/TopBar.vue' 
 import OfficeThumb from '../components/OfficeThumb.vue'
 import Pagination from '../components/Pagination.vue' // eslint-disable-line no-unused-vars
 import Search from '../components/Search.vue'
@@ -87,12 +82,13 @@ import Filters from '../components/Filters.vue'
 export default {
   name: 'OfficeCatalogue',
   components: {
+    TopBar,
     OfficeThumb,
     Pagination,
     Search,
     Filters
   },
-  data () {
+  data() {
     return {
       office: {},
       pages: this.pages,
@@ -111,15 +107,14 @@ export default {
     //  return this.$store.dispatch('loadCompaniesAction')
     },
     pageCount() {
-      return Math.round((this.$store.getters.countValue) / 2)
+      return Math.ceil((this.$store.getters.countValue) / 9)
     },
-    loadFirst () {
+    loadFirst() {
       //return this.$store.dispatch('loadFirstPageData')
-    }
-
+    },
   },
 
-  async created () {
+  async created() {
     console.log('Created')
 
     //check if officepage
@@ -173,8 +168,12 @@ export default {
     }
     this.searchParams = searchParams;
     }
-  
-  }, // components
+  }, // created
+
+  updated() {
+    console.log('HOOOK')
+    this.fixFlexContainer();
+  },
   methods: {
     loadPage(page) {
       return this.$store.dispatch('loadOnePageData', page)
@@ -182,7 +181,19 @@ export default {
     loadSearchResults(value) {
       return this.$store.dispatch('loadSearchResultsLimited', value)
     },
-    logout () {
+    fixFlexContainer() {
+      let thumbsContainer = document.getElementById('thumbs')
+      let thumbs = thumbsContainer.children;
+      let patchDiv = document.getElementById('patch-div')
+
+      if(thumbs.length % 3 != 0) {
+        thumbsContainer.append(patchDiv)
+        patchDiv.style.opacity = 0;
+        patchDiv.style.display = "block";
+      }
+
+    }
+/*     logout () {
       this.$store.dispatch('setTokenAction', null)
       this.$store.dispatch('setUserAction', null)
 
@@ -190,9 +201,8 @@ export default {
       localStorage.removeItem('token')
       localStorage.removeItem('isUserLoggedIn')
 
-      // todo: remove token from local storage
-    }
-  } // created
+    } */
+  } //
 
 }// export default
 
