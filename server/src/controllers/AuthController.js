@@ -65,15 +65,14 @@ module.exports = {
 
 
 
-  async login(req, res) {
 
+  async login(req, res) {
     console.log(req.body)
     const errors = validationResult(req);
 
     for(property in errors) {
       console.log(errors[property])
     }
-   // console.log(`ERRORS:${errors}`)
 
     if(errors.isEmpty()){
       try {
@@ -86,17 +85,26 @@ module.exports = {
 
         if(!user) {
           return res.status(403).send({
-            error: 'Invalid login information'
+            error: 'Invalid login/email information'
           })
         } 
 
         const isPasswordValid = bcrypt.compare(password, user.password);
 
+        console.log(' ')
+        console.log('AUTH LOGIN FUNCTION')
+        console.log(password)
+        console.log(user.password)
+        console.log(isPasswordValid)
+
+        console.log(' ')
+
+
         if (!isPasswordValid) {
           return res.status(403).send({
-            error: 'Invalid login information'
+            error: 'Invalid password'
           })
-        }
+        } else {
 
         const userJson = user.toJSON();
 
@@ -104,7 +112,7 @@ module.exports = {
             user: userJson,
             token: jwtRegUser(userJson)
           })
-        
+        }
       
       } catch(err) {
         res.status(500).send({
