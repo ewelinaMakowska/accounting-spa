@@ -7,6 +7,7 @@ const config = require('../config/config');
 const { validationResult } = require('express-validator');
 //const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
+const loginHelper = require('../helpers/loginHelper')
 
 /* function generateJWT(user) {
   const tokenData = { username: user.username, id: user.id };
@@ -19,12 +20,12 @@ function jwtRegUser(user) {
   //todo: change to process.env.jwt
 }
 
-async function HashPassword(password) {
-  const SALT_ROUNDS = 10;
+/* async function HashPassword(password) {
+  const SALT_ROUNDS = 9;
   const SALT = await bcrypt.genSalt(SALT_ROUNDS); 
   hashedPassword = await bcrypt.hash(password, SALT);
   return hashedPassword;
-}
+} */
 
 module.exports = {
 
@@ -77,13 +78,21 @@ module.exports = {
     if(errors.isEmpty()){
       try {
         const { email, password } = req.body;
-        
+        let user;
+
         //check if there is user with this email in db
-        const user = await User.findOne({
+        user = await loginHelper.getUserData(req);
+        console.log(user)
+        
+
+    /*     userData = await User.findOne({
           where: {
             email: email
           }
-        })
+        }).then((userData) => {
+          console.log(`USER: ${userData}`)
+        }
+        ) */
 
         if(!user) {
           return res.status(403).send({
@@ -91,34 +100,41 @@ module.exports = {
           })
         } else { 
 
-        //if user exists check if password matches
-        const isPasswordValid = bcrypt.compare(password, user.password);
-
-        console.log(' ')
-        console.log('AUTH LOGIN FUNCTION')
+       /*  //if user exists check if password matches
         console.log(password)
-        console.log(user.password)
-        console.log(isPasswordValid)
-
-        console.log(' ')
-
-
-        if (!isPasswordValid) {
-          return res.status(403).send({
-            error: 'Invalid password'
-          })
-        } else {
-
-        const userJson = user.toJSON();
-
-          return res.status(200).send({
+        console.log(user.password) */
+        
+        
+       //ASYNC
+    
+       /*  bcrypt.compare(password, user.password).then((err, resp) => {
+          console.log(resp)
+          if(resp) {
+            const userJson = user.toJSON();
+            return res.status(200).send({
             user: userJson,
             token: jwtRegUser(userJson)
           })
-        }
+        } else {
+          console.log(password)
+          console.log(user.password)
+            return res.status(403).send({
+              error: 'Invalid password'
+            }) 
+          }               
+      });  */
+
+      //SYNC
+      let isPasswordValid = bcrypt.compareSync(password, user.password)      
+      if(isPasswordValid) {
+        res.status(200).send()
+      } else {
+        res.status(403).send()
+      }   
       } //else
       
       } catch(err) { 
+        console.log(err)
         res.status(500).send({
           error: err
         })
