@@ -87,7 +87,7 @@ module.exports = {
           return res.status(403).send({
             error: 'Invalid login/email information'
           })
-        } 
+        } else {
 
         const isPasswordValid = bcrypt.compare(password, user.password);
 
@@ -113,6 +113,7 @@ module.exports = {
             token: jwtRegUser(userJson)
           })
         }
+      } //else
       
       } catch(err) {
         res.status(500).send({
