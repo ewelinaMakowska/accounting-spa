@@ -33,7 +33,15 @@ module.exports = {
         return true;
       }
     }) 
-  ]
+  ],
+
+  loginUser : [
+    body('email')
+      .isEmail()
+      .withMessage('Please enter a valid e-mail')
+      .normalizeEmail(),
+    checkSchema(Password), 
+  ] 
 
 }
 

@@ -66,55 +66,54 @@ module.exports = {
 
 
   async login(req, res) {
-    try {
-      const { email, password } = req.body;
-      const user = await User.findOne({
-        where: {
-          email: email
-        }
-      })
 
-      if(!user) {
-        return res.status(403).send({
-          error: 'Invalid login information'
+    console.log(req.body)
+    const errors = validationResult(req);
+
+    for(property in errors) {
+      console.log(errors[property])
+    }
+   // console.log(`ERRORS:${errors}`)
+
+    if(errors.isEmpty()){
+      try {
+        const { email, password } = req.body;
+        const user = await User.findOne({
+          where: {
+            email: email
+          }
+        })
+
+        if(!user) {
+          return res.status(403).send({
+            error: 'Invalid login information'
+          })
+        } 
+
+        const isPasswordValid = bcrypt.compare(password, user.password);
+
+        if (!isPasswordValid) {
+          return res.status(403).send({
+            error: 'Invalid login information'
+          })
+        }
+
+        const userJson = user.toJSON();
+
+          return res.status(200).send({
+            user: userJson,
+            token: jwtRegUser(userJson)
+          })
+        
+      
+      } catch(err) {
+        res.status(500).send({
+          error: err
         })
       } 
-
-      const isPasswordValid = bcrypt.compare(password, user.password);
-
-      if (!isPasswordValid) {
-        return res.status(403).send({
-          error: 'Invalid login information'
-        })
-      }
-
-      const userJson = user.toJSON();
-
-      //store jwt in a httponly cookie
- /*      let cookieOptions = {
-        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000 ),
-        httpOnly: true,
-    };  */
-
-  /*     return res
-        .cookie('jwt', jwtRegUser(userJson), cookieOptions)
-        .status(200).send({
-          user: userJson,
-          token: jwtRegUser(userJson)
-        })
-        .json({
-            msg: 'Successfully logged in',
-        }); */
-
-        return res.status(200).send({
-          user: userJson,
-          token: jwtRegUser(userJson)
-        })
-       
-    
-    } catch(err) {
-      res.status(500).send({
-        error: err
+    } else {
+      res.status(422).send({
+        error: errors
       })
     }
   }, //login end
