@@ -18,10 +18,11 @@
                   <label for="form__email">E-mail</label>
                   <input
                   id="form__email"
-                  v-model.trim="creds.email"
+                  v-model.trim="email"
                   name="email"
                   type="email"
                   placeholder="Twój adres e-mail"
+                  autocomplete="off"
                   >
                 </div>
 
@@ -29,7 +30,7 @@
                   <label for="form__email">Hasło</label>
                   <input
                   id="form__password"
-                  v-model="creds.password"
+                  v-model="password"
                   name="password"
                   type="password"
                   placeholder="Twoje hasło"
@@ -41,6 +42,10 @@
                   value="Send"
                 >
               </form>
+
+              <div v-if="$v.$anyErrors">
+                <p>Sprawdź poprawność wpowadzonych danych i spróbuj ponownie</p>
+              </div>
             </div>
              
 
@@ -65,42 +70,52 @@
 
 <script>
 import AuthService from '../services/AuthService'
-// import UserProfilePage from '@/views/UserProfilePage.vue'
+import { required, email } from 'vuelidate/lib/validators'
 
 export default {
   data () {
     return {
-      creds: {
-        email: null,
-        password: null
-      },
-      userToken: null
+      email: null,
+      password: null,
+      userToken: null,
     }
   }, // data
-  /*   components: {
-					UserProfilePage
-        }, */
+  validations: {
+    email: {
+      required,
+      email
+    },
+    password: {
+      required
+    }
+  },
   methods: {
-
-    async login (e) {
+    async login(e) {
       e.preventDefault()
-      const creds = this.creds
+      this.$v.$touch();
 
-      console.log(`E-mail: ${creds.email}`)
-      console.log(`Password: ${creds.password}`)
+      if(!this.$v.$invalid) {
+          const creds = {
+            email: this.email,
+            password: this.password
+          }
 
-      try {
-        const response = await AuthService.login(creds)
-        this.$store.dispatch('setTokenAction', response.data.token)
-        this.$store.dispatch('setUserAction', response.data.user)
-        this.userToken = response.data.token
-        location.reload()
-      } catch (err) {
-        console.log(err)
+          console.log(`E-mail: ${creds.email}`)
+          console.log(`Password: ${creds.password}`)
+
+          try {
+            const response = await AuthService.login(creds)
+            this.$store.dispatch('setTokenAction', response.data.token)
+            this.$store.dispatch('setUserAction', response.data.user)
+            this.userToken = response.data.token
+            location.reload()
+          } catch (err) {
+            console.log(err)
+          }
+        }
       }
     }
   }
-}
 </script>
 
 <!-- <style scoped>
