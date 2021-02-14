@@ -68,7 +68,7 @@ module.exports = {
 
   async login(req, res) {
     console.log(req.body)
-    const errors = validationResult(req);
+    const errors = validationResult(req); //check validation
 
     for(property in errors) {
       console.log(errors[property])
@@ -77,6 +77,8 @@ module.exports = {
     if(errors.isEmpty()){
       try {
         const { email, password } = req.body;
+        
+        //check if there is user with this email in db
         const user = await User.findOne({
           where: {
             email: email
@@ -87,8 +89,9 @@ module.exports = {
           return res.status(403).send({
             error: 'Invalid login/email information'
           })
-        } else {
+        } else { 
 
+        //if user exists check if password matches
         const isPasswordValid = bcrypt.compare(password, user.password);
 
         console.log(' ')
@@ -115,16 +118,16 @@ module.exports = {
         }
       } //else
       
-      } catch(err) {
+      } catch(err) { 
         res.status(500).send({
           error: err
         })
-      } 
-    } else {
+      } //catch end
+    } else { //errors is empty else
       res.status(422).send({
         error: errors
       })
-    }
+    } //errors is empty else end
   }, //login end
 
   async getUserData(req, res) {
