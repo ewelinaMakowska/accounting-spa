@@ -24,8 +24,9 @@
                   class="login__input"
                   placeholder="Twój adres e-mail"
                   autocomplete="off"
-                  v-on:keyup='checkIfInputEmpty($event)'
                   data-empty='false'
+                  @click="hideErrorMessageF()"
+                  @focus="hideErrorMessageF()"
                   >
                 </div>
 
@@ -39,7 +40,8 @@
                   class="login__input"
                   placeholder="Twoje hasło"
                   data-empty='false'
-                  v-on:keyup='checkIfInputEmpty($event)'
+                  @click="hideErrorMessageF()"
+                  @focus="hideErrorMessageF()"
                   >
                 </div>
                
@@ -49,25 +51,19 @@
                 >
               </form>
 
-              <div v-if="$v.$anyError && !formEmpty">
+              <div v-if="$v.$anyError && !this.hideErrorMessage" id="login__error-message">
                 <p>Sprawdź poprawność wpowadzonych danych i spróbuj ponownie</p>
               </div>
             </div>
-             
-
-            
-            
+                         
             <div class="login__box--bottom">
                <p class="login__text">
                 Nie masz jeszcze konta? <br>
                 <a class="login__register-link" href="/register">Zarejestruj się! -></a>
               </p>
             </div>
-             </div>
+          </div>
             
-
-            <!-- <user-profile-page :email='creds.email' :token='userToken'>
-                        </user-profile-page> -->
 
       </div>
     </section>
@@ -84,7 +80,10 @@ export default {
       email: null,
       password: null,
       userToken: null,
-      formEmpty: 0
+      inputsWithValue: 0,
+      formEmpty: 0,
+      errorMessageVisible: false,
+      hideErrorMessage: false
     }
   }, // data
   validations: {
@@ -97,18 +96,19 @@ export default {
     }
   },
   methods: {
-    checkIfInputEmpty($event) {
-      if(!$event.target.value) {
-        $event.target.setAttribute('data-empty','true')
+    checkIfErrorMessageVisible() {
+      var errorMessage = document.getElementById('login__error-message');
+      if(errorMessage) {
+        this.errorMessageVisible = true
+        console.log('visible')
+      } else {
+        this.errorMessageVisible = false
       }
-
-      let emptiedInputs = document.querySelectorAll(".login__input[data-empty='true']");
-      let inputs = document.getElementsByClassName('login__input')
-
-      if(emptiedInputs.length == inputs.length) {
-        this.formEmpty = 1;
+    },
+    hideErrorMessageF() {
+      if(this.errorMessageVisible) {
+        this.hideErrorMessage = true;
       }
-      
     },
     async login(e) {
       e.preventDefault()
@@ -132,23 +132,13 @@ export default {
           } catch (err) {
             console.log(err)
           }
-        }
-      }
-    }
-  }
+        } 
+      } //login function
+
+    }, //methods
+    updated() {
+      this.checkIfErrorMessageVisible()
+     }
+}
 </script>
 
-<!-- <style scoped>
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-        border: 1px solid #333;
-        margin-left: 20px;
-    }
-
-    input[type="submit"] {
-        background: lightblue;
-    }
-
-</style> -->
