@@ -47,7 +47,7 @@
                
                 <input class="login-button"
                   type="submit"
-                  value="Send"
+                  value="Zaloguj"
                   @click="showErrorMessageF()"
                 >
               </form>
@@ -132,12 +132,21 @@ export default {
 
           try {
             const response = await AuthService.login(creds)
+            let refDomain = document.referrer.split('/')[2];
+            let domain = window.location.href.split('/')[2]
             this.$store.dispatch('setTokenAction', response.data.token)
             this.$store.dispatch('setUserAction', response.data.user)
             this.userToken = response.data.token
-            location.reload()
+ 
+            if(refDomain == domain) {
+              window.history.go(-1)
+              location.reload()
+            } else {
+              this.$router.push({ path: 'search'})
+              location.reload()
+            }
           } catch (err) {
-            this.backendErrors = err
+            this.backendErrors = err;
           }
         } 
       } //login function

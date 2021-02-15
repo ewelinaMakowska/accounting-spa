@@ -67,6 +67,8 @@ export default {
       localStorage.removeItem('token')
       localStorage.removeItem('isUserLoggedIn')
 
+      window.location.reload()
+
       // todo: remove token from local storage
     }
   } 
