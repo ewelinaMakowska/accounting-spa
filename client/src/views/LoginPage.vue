@@ -48,11 +48,13 @@
                 <input class="login-button"
                   type="submit"
                   value="Send"
+                  @click="showErrorMessageF()"
                 >
               </form>
 
-              <div v-if="$v.$anyError && !this.hideErrorMessage" id="login__error-message">
-                <p>Sprawdź poprawność wpowadzonych danych i spróbuj ponownie</p>
+              <div v-if="$v.$anyError && !this.hideErrorMessage" id="login__error-message" class="login__error-message">
+                <div class="error-message__triangle"></div>
+                <p>Sprawdź poprawność wpowadzonych danych <br/> i spróbuj ponownie</p>
               </div>
             </div>
                          
@@ -108,6 +110,11 @@ export default {
     hideErrorMessageF() {
       if(this.errorMessageVisible) {
         this.hideErrorMessage = true;
+      }
+    },
+    showErrorMessageF() {
+      if(!this.errorMessageVisible) {
+        this.hideErrorMessage = false;
       }
     },
     async login(e) {

@@ -7,6 +7,23 @@ body {
   margin: 0;
 }
 
+h1 {
+  font-size: 29px;
+  font-weight: 700;
+  color: #444444;
+}
+
+input[type='submit'] {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
+  border: none;
+}
+
+input[type='submit']:hover {
+  cursor: pointer;
+}
+
 .top-bar {
   overflow: hidden;
   margin: 0 0 20px 0;
@@ -65,7 +82,7 @@ body {
   border-bottom: 2px solid #3061fc;
 }
 
-.top-bar .login-button {
+.login-button {
   background-color: #3061fc;
   color: #ffffff;
   font-size: 14px;
@@ -111,8 +128,8 @@ body {
 
 .filters__bubble {
   font-size: 14px;
+  position: absolute;
   background-color: #ffffff;
-  position: relative;
   -webkit-box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.16);
           box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.16);
   border-radius: 4px;
@@ -218,6 +235,21 @@ body {
   outline: none;
 }
 
+.autocomplete {
+  /*   &__outside {
+    background: #000;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    z-index: -1; 
+  } */
+}
+
 .autocomplete__wrapper {
   position: absolute;
   z-index: 3;
@@ -261,19 +293,7 @@ body {
   color: #001558;
   outline: none;
   border: 1px solid #b0befd;
-}
-
-.autocomplete__outside {
-  background: #000;
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  opacity: 0.3;
-  z-index: -1;
+  cursor: pointer;
 }
 
 .thumbs {
@@ -293,7 +313,7 @@ body {
 
 .thumbs__thumb {
   background: #ffffff;
-  width: 300px;
+  width: 30%;
   margin-bottom: 50px;
   -webkit-box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.16);
           box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.16);
@@ -415,5 +435,124 @@ body {
 
 .chevron-btn:hover svg {
   stroke: #b0befd;
+}
+
+.login {
+  margin: 30px 0;
+  width: 315px;
+}
+
+.login__wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 60px 0 0 0;
+  background: #ffffff;
+  -webkit-box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.16);
+          box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.16);
+  border-radius: 3px;
+  width: 500px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.login__box--top {
+  padding: 0 90px 30px 90px;
+}
+
+.login__box--bottom {
+  padding: 30px 90px;
+  border-top: 1px solid #dddddd;
+}
+
+.login__group {
+  margin-bottom: 25px;
+}
+
+.login__group label {
+  width: 40%;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.login__group input[type='email'],
+.login__group input[type='password'],
+.login__group input[type='text'] {
+  color: #444444;
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  border-bottom: 2px solid #b0befd;
+  width: 100%;
+  font-size: 16px;
+  padding: 15px 5px 5px 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.login__group input[type='email']:focus, .login__group input[type='email']:hover, .login__group input[type='email']:active,
+.login__group input[type='password']:focus,
+.login__group input[type='password']:hover,
+.login__group input[type='password']:active,
+.login__group input[type='text']:focus,
+.login__group input[type='text']:hover,
+.login__group input[type='text']:active {
+  outline: none;
+  border-bottom: 2px solid #3061fc;
+}
+
+.login__text {
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+}
+
+.login input[type='submit'] {
+  padding: 6px 24px;
+  border-radius: 3px;
+  margin-top: 17px;
+  margin-bottom: 8px;
+}
+
+.login__register-link {
+  text-decoration: none;
+  font-size: 15px;
+  display: inline-block;
+  margin-top: 5px;
+  color: #3061fc;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.login__register-link:hover, .login__register-link:focus {
+  color: #001558;
+}
+
+.login__error-message {
+  border: 4px solid rgba(255, 166, 0, 0.61);
+  background: #ffffff;
+  border-radius: 2px;
+  padding: 3px 10px;
+  text-align: center;
+  position: relative;
+}
+
+.login__error-message p {
+  font-size: 14px;
+  line-height: 20px;
+  color: #001558;
+}
+
+.error-message__triangle {
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 166, 0, 0.61);
+  position: absolute;
+  z-index: -1;
+  top: -13px;
+  left: 50%;
+  -webkit-transform: translateX(-50%) rotate(45deg);
+          transform: translateX(-50%) rotate(45deg);
 }
 /*# sourceMappingURL=app.css.map */
