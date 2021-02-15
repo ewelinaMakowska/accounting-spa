@@ -52,7 +52,7 @@
                 >
               </form>
 
-              <div v-if="$v.$anyError && !this.hideErrorMessage" id="login__error-message" class="login__error-message">
+              <div v-if="($v.$anyError && !this.hideErrorMessage) || (this.backendErrors && !this.hideErrorMessage)" id="login__error-message" class="login__error-message">
                 <div class="error-message__triangle"></div>
                 <p>Sprawdź poprawność wpowadzonych danych <br/> i spróbuj ponownie</p>
               </div>
@@ -82,10 +82,10 @@ export default {
       email: null,
       password: null,
       userToken: null,
-      inputsWithValue: 0,
-      formEmpty: 0,
       errorMessageVisible: false,
-      hideErrorMessage: false
+      hideErrorMessage: false,
+      backendErrors: false
+      
     }
   }, // data
   validations: {
@@ -137,7 +137,7 @@ export default {
             this.userToken = response.data.token
             location.reload()
           } catch (err) {
-            console.log(err)
+            this.backendErrors = err
           }
         } 
       } //login function
