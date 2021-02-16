@@ -116,6 +116,10 @@
         if(currentQuery.accounting) {
           newUrl += `&accounting=${currentQuery.accounting}`
         } 
+
+         if(currentQuery.contact) {
+          newUrl += `&contact=${currentQuery.contact}`
+        } 
       
         if (!currentQuery.page) {
           newUrl += `&page=2`;
