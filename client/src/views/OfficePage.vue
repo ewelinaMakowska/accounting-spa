@@ -1,32 +1,42 @@
 <template>
   <div>
-    <section>
+<!--    Witaj na stronie biura: {{ office.name }} <br>
+      Miejscowość:  {{ office.City.name }}, {{ office.City.region }} <br>
+      Cena za usługę to: {{ office.price }} <br>
+      Adres mailowy biura {{ office.email }}  <br/>
+
+      Księga przychodów i rozchodów: {{ office.ledger }}   <br/>
+      Ryczałt: {{ office.ledger }}   <br/>
+
+      Kontakt telefoniczny/on-line: {{ office.remote }}   <br/>
+      Kontakt osobisty: {{ office.in_person }}   <br/>
+      Dodatkowe informacje: {{ office.additional_points }}   <br/>
+-->
+
+    <top-bar></top-bar>
+    <section class="company-info">
       <div class="container">
         <div class="row">
           <div class="col-lg-12" v-if="notLoading">
-            Witaj na stronie biura: {{ office.name }} <br>
-            Miejscowość:  {{ office.City.name }}, {{ office.City.region }} <br>
-            Cena za usługę to: {{ office.price }} <br>
-            Adres mailowy biura {{ office.email }}  <br/>
 
-            Księga przychodów i rozchodów: {{ office.ledger }}   <br/>
-            Ryczałt: {{ office.ledger }}   <br/>
+            <div class="row">
+              <div class="col-lg-12">
+                <img src="../../assets/img/dummy-logo.svg" class="thumb__logo" alt="company logo" />
+     
+                <h1>Księgowi</h1>
+              </div>
+            </div>
 
-            Kontakt telefoniczny/on-line: {{ office.remote }}   <br/>
-            Kontakt osobisty: {{ office.in_person }}   <br/>
-            Dodatkowe informacje: {{ office.additional_points }}   <br/>
-
-
-
-            
           </div>
         </div>
       </div>
     </section>
 
-     <section
+    <section
       v-if="office.email"
+      class="company-form"
       id="form"
+      style="display: none;"
     >
       <div class="container">
         <div class="row">
@@ -66,8 +76,12 @@
 <script>
 import CompaniesService from '../services/CompaniesService'
 import ContactService from '../services/ContactService'
+import TopBar from '../components/TopBar.vue' 
 
 export default {
+  components: {
+    TopBar
+  },
   data() {
     return {
       notLoading: false
