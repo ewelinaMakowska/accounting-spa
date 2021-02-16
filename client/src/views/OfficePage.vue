@@ -21,7 +21,7 @@
 
             <div class="row">
               <div class="col-lg-12">
-                <img src="../../assets/img/dummy-logo.svg" class="thumb__logo" alt="company logo" />
+                <img src="/assets/img/dummy-logo.svg" class="thumb__logo" alt="company logo" />
      
                 <h1>Księgowi</h1>
               </div>

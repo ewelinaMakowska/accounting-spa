@@ -6,7 +6,7 @@
           <div class="col">
 
             <div class="top-bar__left">
-              <img src="assets/img/dummy-logo.svg" class="top-bar__logo" />
+              <img src="/assets/img/dummy-logo.svg" class="top-bar__logo" />
               <p class="top-bar__company-name">Business Services</p>
             </div>
 
