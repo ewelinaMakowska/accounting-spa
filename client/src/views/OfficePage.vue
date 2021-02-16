@@ -3,7 +3,7 @@
     <section>
       <div class="container">
         <div class="row">
-          <div class="col-lg-12" v-if="loading">
+          <div class="col-lg-12" v-if="notLoading">
             Witaj na stronie biura: {{ office.name }} <br>
             Miejscowość:  {{ office.City.name }}, {{ office.City.region }} <br>
             Cena za usługę to: {{ office.price }} <br>
@@ -62,7 +62,7 @@ import ContactService from '../services/ContactService'
 export default {
   data() {
     return {
-      loading: false
+      notLoading: false
     }
   },
   computed: {
@@ -100,11 +100,11 @@ export default {
       async loadCompany(id) {
         await this.$store.dispatch('loadCompany', id)
         .then(() => {
-           this.loading = true;
+           this.notLoading = true;
         })
         .catch(function (error) {
           console.log(error);
-          this.loading = false;
+          this.notLoading = false;
         })
       },
     async submitForm(e) {
