@@ -10,7 +10,8 @@ import EditContentPage from './views/EditContentPage.vue'
 import UserProfilePage from './views/UserProfilePage.vue'
 import { store } from './store'
 import { sync } from 'vuex-router-sync'
-
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
 import '../assets/scss/app.scss'
 // require('../assets/scss/app.scss')
 

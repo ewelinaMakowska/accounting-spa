@@ -18,10 +18,15 @@
                   <label for="form__email">E-mail</label>
                   <input
                   id="form__email"
-                  v-model.trim="creds.email"
+                  v-model.trim="email"
                   name="email"
                   type="email"
+                  class="login__input"
                   placeholder="Twój adres e-mail"
+                  autocomplete="off"
+                  data-empty='false'
+                  @click="hideErrorMessageF()"
+                  @focus="hideErrorMessageF()"
                   >
                 </div>
 
@@ -29,34 +34,38 @@
                   <label for="form__email">Hasło</label>
                   <input
                   id="form__password"
-                  v-model="creds.password"
+                  v-model="password"
                   name="password"
                   type="password"
+                  class="login__input"
                   placeholder="Twoje hasło"
+                  data-empty='false'
+                  @click="hideErrorMessageF()"
+                  @focus="hideErrorMessageF()"
                   >
                 </div>
                
                 <input class="login-button"
                   type="submit"
-                  value="Send"
+                  value="Zaloguj"
+                  @click="showErrorMessageF()"
                 >
               </form>
-            </div>
-             
 
-            
-            
+              <div v-if="($v.$anyError && !this.hideErrorMessage) || (this.backendErrors && !this.hideErrorMessage)" id="login__error-message" class="login__error-message">
+                <div class="error-message__triangle"></div>
+                <p>Sprawdź poprawność wpowadzonych danych <br/> i spróbuj ponownie</p>
+              </div>
+            </div>
+                         
             <div class="login__box--bottom">
                <p class="login__text">
                 Nie masz jeszcze konta? <br>
                 <a class="login__register-link" href="/register">Zarejestruj się! -></a>
               </p>
             </div>
-             </div>
+          </div>
             
-
-            <!-- <user-profile-page :email='creds.email' :token='userToken'>
-                        </user-profile-page> -->
 
       </div>
     </section>
@@ -65,55 +74,87 @@
 
 <script>
 import AuthService from '../services/AuthService'
-// import UserProfilePage from '@/views/UserProfilePage.vue'
+import { required, email } from 'vuelidate/lib/validators'
 
 export default {
   data () {
     return {
-      creds: {
-        email: null,
-        password: null
-      },
-      userToken: null
+      email: null,
+      password: null,
+      userToken: null,
+      errorMessageVisible: false,
+      hideErrorMessage: false,
+      backendErrors: false
+      
     }
   }, // data
-  /*   components: {
-					UserProfilePage
-        }, */
-  methods: {
-
-    async login (e) {
-      e.preventDefault()
-      const creds = this.creds
-
-      console.log(`E-mail: ${creds.email}`)
-      console.log(`Password: ${creds.password}`)
-
-      try {
-        const response = await AuthService.login(creds)
-        this.$store.dispatch('setTokenAction', response.data.token)
-        this.$store.dispatch('setUserAction', response.data.user)
-        this.userToken = response.data.token
-        location.reload()
-      } catch (err) {
-        console.log(err)
-      }
+  validations: {
+    email: {
+      required,
+      email
+    },
+    password: {
+      required
     }
-  }
+  },
+  methods: {
+    checkIfErrorMessageVisible() {
+      var errorMessage = document.getElementById('login__error-message');
+      if(errorMessage) {
+        this.errorMessageVisible = true
+        console.log('visible')
+      } else {
+        this.errorMessageVisible = false
+      }
+    },
+    hideErrorMessageF() {
+      if(this.errorMessageVisible) {
+        this.hideErrorMessage = true;
+      }
+    },
+    showErrorMessageF() {
+      if(!this.errorMessageVisible) {
+        this.hideErrorMessage = false;
+      }
+    },
+    async login(e) {
+      e.preventDefault()
+      this.$v.$touch();
+
+      if(!this.$v.$invalid) {
+          const creds = {
+            email: this.email,
+            password: this.password
+          }
+
+          console.log(`E-mail: ${creds.email}`)
+          console.log(`Password: ${creds.password}`)
+
+          try {
+            const response = await AuthService.login(creds)
+            let refDomain = document.referrer.split('/')[2];
+            let domain = window.location.href.split('/')[2]
+            this.$store.dispatch('setTokenAction', response.data.token)
+            this.$store.dispatch('setUserAction', response.data.user)
+            this.userToken = response.data.token
+ 
+            if(refDomain == domain) {
+              window.history.go(-1)
+              location.reload()
+            } else {
+              this.$router.push({ path: 'search'})
+              location.reload()
+            }
+          } catch (err) {
+            this.backendErrors = err;
+          }
+        } 
+      } //login function
+
+    }, //methods
+    updated() {
+      this.checkIfErrorMessageVisible()
+     }
 }
 </script>
 
-<!-- <style scoped>
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-        border: 1px solid #333;
-        margin-left: 20px;
-    }
-
-    input[type="submit"] {
-        background: lightblue;
-    }
-
-</style> -->

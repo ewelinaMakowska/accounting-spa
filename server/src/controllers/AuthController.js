@@ -7,6 +7,7 @@ const config = require('../config/config');
 const { validationResult } = require('express-validator');
 //const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
+const loginHelper = require('../helpers/loginHelper')
 
 /* function generateJWT(user) {
   const tokenData = { username: user.username, id: user.id };
@@ -19,12 +20,12 @@ function jwtRegUser(user) {
   //todo: change to process.env.jwt
 }
 
-async function HashPassword(password) {
-  const SALT_ROUNDS = 10;
+/* async function HashPassword(password) {
+  const SALT_ROUNDS = 9;
   const SALT = await bcrypt.genSalt(SALT_ROUNDS); 
   hashedPassword = await bcrypt.hash(password, SALT);
   return hashedPassword;
-}
+} */
 
 module.exports = {
 
@@ -65,58 +66,84 @@ module.exports = {
 
 
 
+
   async login(req, res) {
-    try {
-      const { email, password } = req.body;
-      const user = await User.findOne({
-        where: {
-          email: email
-        }
-      })
+    console.log(req.body)
+    const errors = validationResult(req); //check validation
 
-      if(!user) {
-        return res.status(403).send({
-          error: 'Invalid login information'
-        })
-      } 
-
-      const isPasswordValid = bcrypt.compare(password, user.password);
-
-      if (!isPasswordValid) {
-        return res.status(403).send({
-          error: 'Invalid login information'
-        })
-      }
-
-      const userJson = user.toJSON();
-
-      //store jwt in a httponly cookie
- /*      let cookieOptions = {
-        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000 ),
-        httpOnly: true,
-    };  */
-
-  /*     return res
-        .cookie('jwt', jwtRegUser(userJson), cookieOptions)
-        .status(200).send({
-          user: userJson,
-          token: jwtRegUser(userJson)
-        })
-        .json({
-            msg: 'Successfully logged in',
-        }); */
-
-        return res.status(200).send({
-          user: userJson,
-          token: jwtRegUser(userJson)
-        })
-       
-    
-    } catch(err) {
-      res.status(500).send({
-        error: err
-      })
+    for(property in errors) {
+      console.log(errors[property])
     }
+
+    if(errors.isEmpty()){
+      try {
+        const { email, password } = req.body;
+        let user;
+
+        //check if there is user with this email in db
+        user = await loginHelper.getUserData(req);
+        console.log(user)
+        
+
+    /*     userData = await User.findOne({
+          where: {
+            email: email
+          }
+        }).then((userData) => {
+          console.log(`USER: ${userData}`)
+        }
+        ) */
+
+        if(!user) {
+          return res.status(403).send({
+            error: 'Invalid login/email information'
+          })
+        } else { 
+
+       /*  //if user exists check if password matches
+        console.log(password)
+        console.log(user.password) */
+        
+        
+       //ASYNC
+    
+       /*  bcrypt.compare(password, user.password).then((err, resp) => {
+          console.log(resp)
+          if(resp) {
+            const userJson = user.toJSON();
+            return res.status(200).send({
+            user: userJson,
+            token: jwtRegUser(userJson)
+          })
+        } else {
+          console.log(password)
+          console.log(user.password)
+            return res.status(403).send({
+              error: 'Invalid password'
+            }) 
+          }               
+      });  */
+
+      //SYNC
+      let isPasswordValid = bcrypt.compareSync(password, user.password)      
+      if(isPasswordValid) {
+        res.status(200).send()
+      } else {
+        res.status(403).send()
+      }   
+      } //else
+      
+      } catch(err) { 
+        console.log(err)
+        res.status(500).send({
+          error: err
+        })
+      } //catch end
+    } else { //errors is empty else
+      res.status(422).send({
+        error: errors
+      })
+    } //errors is empty else end
   }, //login end
 
   async getUserData(req, res) {

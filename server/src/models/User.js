@@ -3,15 +3,20 @@ const Sequelize = require('sequelize');
 const bcrypt = require('bcryptjs');
 
  async function HashPassword(user) {
-  const SALT_ROUNDS = 10;
-
+  const SALT_ROUNDS = 9;
+  console.log('HASH PASS FUNCTION')
+  
   if(!user.changed('password')) {
     return;
   }
 
-  const SALT = await bcrypt.genSalt(SALT_ROUNDS); 
-  user.password = await bcrypt.hash(user.password, SALT);
-}
+   bcrypt.genSalt(SALT_ROUNDS, (err, SALT) => {
+     bcrypt.hash(user.password, SALT, (err, hash) => {
+       user.password = hash
+     });
+  }); 
+} 
+
 
 module.exports = (sequelize, DataTypes) => {
 
@@ -32,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     password: { 
-      type: DataTypes.STRING(90),
+      type: DataTypes.STRING(200),
       allowNull: false 
     },
 

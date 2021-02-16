@@ -56,7 +56,7 @@ app.get('/userProfile', isAuth, AuthController.getUserData)
 
 app.post('/email', ContactControllerPolicy.email, ContactController.mailCompany)
 app.post('/register', AuthControllerPolicy.registerUser, AuthController.registerUser)
-app.post('/login', AuthController.login)
+app.post('/login',  AuthControllerPolicy.loginUser, AuthController.login)
 
 sequelize.sync()
 .then(() => {
