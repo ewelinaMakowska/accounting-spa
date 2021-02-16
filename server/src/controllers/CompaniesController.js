@@ -217,7 +217,7 @@ module.exports = {
     try {
       const id = req.params.id
       const companies = await Company.findOne({
-        attributes: ['name', 'description', 'price', 'email', 'logo'],
+        attributes: ['name', 'description', 'price', 'email', 'logo', 'ledger', 'lump_sum', 'in_person', 'remote'],
         where: {id: id},
         include : [{
           attributes: ['name', 'region'],
