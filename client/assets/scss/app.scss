@@ -16,8 +16,14 @@ body {
   margin: 0;
 }
 
+.main-text {
+  font-size: 16px;
+  color: $primary-text;
+  line-height: 27px;
+}
+
 h1 {
-  font-size: 29px;
+  font-size: 35px;
   font-weight: 700;
   color: $primary-text;
 }
@@ -580,4 +586,68 @@ input[type='submit'] {
     transform: translateX(-50%) rotate(45deg);
   }
 }
+
+.c-profile {
+  &__title {
+    margin-top: 20px;
+
+    img, div {
+      display: inline-block;
+      vertical-align: bottom;
+    }
+
+    h1 {
+      margin-bottom: 5px;
+    }
+
+    span {
+      font-size: 17px;
+      color: $secondary-text;
+      font-weight: 400;
+    }
+
+    img {
+      margin-right: 45px;
+      height: 80px;
+      width: 80px;
+    }
+  }
+
+  &__basic-data {
+    margin-top: 30px;
+
+    & > div {
+      display: inline-block;
+    }
+  }
+}
+
+.basic-data {
+  &__description {
+    width: 60%;
+    //padding-right: 25px;
+    padding-right: 80px;
+
+  }
+
+  &__price {
+    width: 29%;
+    text-align: center;
+
+    p {
+      font-size: 25px;
+      font-weight: 300;
+      vertical-align: middle;
+
+      span {
+        font-weight: 500;
+        font-size: 55px;
+        vertical-align: middle;
+        display: inline-block;
+        margin-top: -7px;
+      }
+    }
+  }
+}
+
 

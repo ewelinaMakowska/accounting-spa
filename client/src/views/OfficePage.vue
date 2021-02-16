@@ -14,16 +14,40 @@
 -->
 
     <top-bar></top-bar>
-    <section class="company-info">
+    <section class="c-profile__info">
       <div class="container">
         <div class="row">
           <div class="col-lg-12" v-if="notLoading">
 
             <div class="row">
               <div class="col-lg-12">
-                <img src="/assets/img/dummy-logo.svg" class="thumb__logo" alt="company logo" />
-     
-                <h1>Księgowi</h1>
+
+                <div class="c-profile__title">
+                  <img src="/assets/img/dummy-logo.svg" class="thumb__logo" alt="company logo" />
+                  <div>
+                    <h1>Księgowi</h1>
+                    <span>Warszawa, mazowieckie</span>
+                  </div>
+                  
+                </div>
+
+                <div class="c-profile__basic-data">
+                  <div class="basic-data__description">
+                    <p class="main-text">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus velit in diam hendrerit vestibulum rutrum at velit. In vel urna porttitor, rhoncus tortor non, posuere diam. Donec aliquet dolor ac facilisis pulvinar. Pellentesque est mauris, mattis eu urna ac, semper eleifend odio. Phasellus eleifend eleifend efficitur.
+                    </p>
+                  </div>
+
+                  <div class="basic-data__price">
+                    <p>Od &nbsp;<span>99</span> &nbsp;zł/msc</p>
+                    <button>Skontaktuj się z nami</button>
+                  </div>
+                </div>
+
+                <div class="c-profile__flex-list">
+                  <div></div>
+                </div>
+           
               </div>
             </div>
 
@@ -70,7 +94,6 @@
     </section> 
   </div> 
 </template>
-
 
 
 <script>
