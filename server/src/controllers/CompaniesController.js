@@ -149,11 +149,11 @@ module.exports = {
       whereAccountingValue = ''
     }
     else if(accounting == 'ledger') {
-        whereAccountingName = 'ledger',
+        whereAccountingName = 'ledger';
         whereAccountingValue = 1
     }
     else if(accounting == 'lump_sum') {
-        whereAccountingName = 'lumpSum',
+        whereAccountingName = 'lumpSum';
         whereAccountingValue = 1
       }
     
@@ -163,14 +163,16 @@ module.exports = {
     console.log('')
 
     if(!contact) {
-      contactValue = ''
+      whereContactName = '',
+      whereContactValue = ''
     }
+
     else if(contact == 'in_person') {
-        whereContactName = 'inPerson',
+        whereContactName = 'inPerson';
         whereContactValue = 1
     }
     else if(contact == 'remote') {
-        whereContactName = 'remote',
+        whereContactName = 'remote';
         whereContactValue = 1
       }
 

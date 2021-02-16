@@ -68,12 +68,12 @@
     Kontakt z księgowym
     <ul>
       <li>
-        <input type="radio" id="ledger" name="ledger" value="ledger" @click="setFilterAccountingMethod($event, 'in_person')">
-        <label for="ledger">Osobiście</label>
+        <input type="radio" id="in_person" name="in_person" value="in_person" @click="setFilterContactMethod($event, 'in_person')">
+        <label for="in_person">Osobiście</label>
       </li>
        <li>
-        <input type="radio" id="lump_sum" name="lump_sum" value="lump_sum" @click="setFilterAccountingMethod($event, 'remote')">
-        <label for="lump_sum">Telefonicznie/online</label>
+        <input type="radio" id="remote" name="remote" value="remote" @click="setFilterContactMethod($event, 'remote')">
+        <label for="remote">Telefonicznie/online</label>
       </li>
     </ul>
   </div>
@@ -174,7 +174,7 @@ export default {
     
       window.location.href = newUrl;
     }, 
-     setContact($event, contact) {
+     setFilterContactMethod($event, contact) {
       console.log(contact);
       $event.target.setAttribute('checked','true');
 
