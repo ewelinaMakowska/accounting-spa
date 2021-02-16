@@ -122,7 +122,7 @@ export const store = new Vuex.Store({
     },
 
     async loadSearchResultsLimited ({ commit }, searchParameters) {
-      const result = await CompaniesService.getFilteredLimited(searchParameters.city, searchParameters.sort, searchParameters.accounting, searchParameters.page)
+      const result = await CompaniesService.getFilteredLimited(searchParameters.city, searchParameters.sort, searchParameters.accounting, searchParameters.contact, searchParameters.page)
       commit('loadCompanies', result.data)
       console.log('action load Search Results Limited executed succesfully')
     },

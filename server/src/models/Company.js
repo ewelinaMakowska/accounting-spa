@@ -16,7 +16,9 @@ module.exports = (sequelize, DataTypes) => {
     description: { type: DataTypes.TEXT },
     email: { type: DataTypes.STRING(45) },  
     lumpSum: { type: DataTypes.BOOLEAN },
-    ledger: { type: DataTypes.BOOLEAN }
+    ledger: { type: DataTypes.BOOLEAN },
+    inPerson: { type: DataTypes.BOOLEAN },
+    remote: { type: DataTypes.BOOLEAN }
   },  {
     freezeTableName: false, // Model tableName will be the same as the model name
     timestamps: false,
