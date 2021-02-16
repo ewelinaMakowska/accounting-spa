@@ -53,7 +53,8 @@
         </ul>
     </div>
 
-  <div class="filters__bubble filters__bubble--filter filter-options" style="display: block;">
+  <div class="filters__bubble filters__bubble--filter filter-options" style="display: block; transform: translateX(-163px);
+">
      Sposób rozliczania
     <ul>
       <li>
@@ -154,7 +155,7 @@ export default {
       let url = window.location.href.split('/');
       let path = url[url.length-1].split('?')
       const currentQuery = this.$route.query;  
-      let newAccountingMethod = accountingMethod;
+      //let newAccountingMethod = accountingMethod;
 
       let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
 
@@ -167,10 +168,14 @@ export default {
       } 
       
       newUrl += `&accounting=${accountingMethod}`
+
+      if(currentQuery.contact) {
+        newUrl += `&sort=${currentQuery.contact}`
+      } 
       
-      if(currentQuery.page) {
+      //if(currentQuery.page) {
         newUrl += `&page=1`
-      }
+      //}
     
       window.location.href = newUrl;
     }, 
@@ -194,14 +199,14 @@ export default {
       } 
 
       if(currentQuery.accounting) {
-        newUrl += `&sort=${currentQuery.accounting}`
+        newUrl += `&accounting=${currentQuery.accounting}`
       } 
       
       newUrl += `&contact=${contact}`
       
-      if(currentQuery.page) {
+      //if(currentQuery.page) {
         newUrl += `&page=1`
-      }
+      //} 
     
       window.location.href = newUrl;
     }, 
