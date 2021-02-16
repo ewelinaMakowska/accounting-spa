@@ -8,7 +8,15 @@
             Miejscowość:  {{ office.City.name }}, {{ office.City.region }} <br>
             Cena za usługę to: {{ office.price }} <br>
             Adres mailowy biura {{ office.email }}  <br/>
-            Rodzaj rozliczenia {{ office.ledger }}  
+
+            Księga przychodów i rozchodów: {{ office.ledger }}   <br/>
+            Ryczałt: {{ office.ledger }}   <br/>
+
+            Kontakt telefoniczny/on-line: {{ office.remote }}   <br/>
+            Kontakt osobisty: {{ office.in_person }}   <br/>
+            Dodatkowe informacje: {{ office.additional_points }}   <br/>
+
+
 
             
           </div>
@@ -101,6 +109,7 @@ export default {
         await this.$store.dispatch('loadCompany', id)
         .then(() => {
            this.notLoading = true;
+           console.log('LOADED')
         })
         .catch(function (error) {
           console.log(error);
