@@ -26,7 +26,9 @@
                   <img src="/assets/img/dummy-logo.svg" class="thumb__logo" alt="company logo" />
                   <div>
                     <h1>{{ office.name }}</h1>
-                    <span>{{ office.City }}</span>
+                    <span class="c-profile__location">
+                      {{ office.City }}
+                    </span>                
                   </div>
                   
                 </div>
@@ -47,39 +49,46 @@
                 </div>
 
                 <div class="c-profile__flex-list">
-                  <div class="flex-list__item">
-                    <span>icon</span> 
-                    <p class="main-text">
-                      główny e-mail do kontaktu:<br/>
-                      <span>email@email.com.pl</span>
-                    </p>
-                  </div>
-
-                  <div class="flex-list__item">
-                    <span>icon</span> 
+                  <div class="flex-list__item">                   
+                    <i class="material-icons-sharp checkmark">done</i>
                     <p class="main-text">
                       obsługiwane sposoby rozliczania:<br/>
-                      <span v-if="office.ledger">Księga Przychodów i Rozchodów</span><br/>
-                      <span v-if="office.lump_sum">Ryczałt</span>
+                    </p>
+                     <ul class="sublist">
+                        <li v-if="office.ledger">Księga Przychodów i Rozchodów</li>
+                        <li v-if="office.lump_sum">Ryczałt</li>
+                      </ul>
+                  </div>
+
+                  <div class="flex-list__item">                   
+                    <i class="material-icons-sharp checkmark">done</i>
+                    <p class="main-text">
+                      kontakt z księgowym:<br/>
+                    </p>
+                     <ul class="sublist">
+                        <li v-if="office.remote">telefoniczny/online</li>
+                        <li v-if="office.in_person">osobisty</li>
+                      </ul>
+                  </div>
+
+                  <div v-if="office.email" class="flex-list__item">                   
+                    <i class="material-icons-sharp checkmark">done</i>
+                    <p class="main-text">
+                      adres e-mail:<br/>
+                    </p>
+                     <ul class="sublist">
+                        <li>{{ office.email }}</li>
+                      </ul>
+                  </div>
+
+
+                  <div v-if="office.additional_points" class="flex-list__item">                   
+                    <i class="material-icons-sharp checkmark">done</i>
+                    <p class="main-text">
+                      {{ office.additional_points}}<br/>
                     </p>
                   </div>
 
-                  <div class="flex-list__item">
-                    <span>icon</span> 
-                    <p class="main-text">
-                      główny e-mail do kontaktu:<br/>
-                      <span>email@email.com.pl</span>
-                    </p>
-                  </div>
-
-                  <div class="flex-list__item">
-                    <span>icon</span> 
-                    <p class="main-text">
-                      główny e-mail do kontaktu:<br/>
-                      <span>email@email.com.pl</span>
-                    </p>
-                  </div>
-              
                 </div>
            
               </div>

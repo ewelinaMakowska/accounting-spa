@@ -578,23 +578,29 @@ input[type='submit']:hover {
           transform: translateX(-50%) rotate(45deg);
 }
 
+.c-profile__location {
+  font-size: 17px;
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 400;
+}
+
 .c-profile__title {
   margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .c-profile__title img, .c-profile__title div {
-  display: inline-block;
-  vertical-align: bottom;
+  display: block;
+}
+
+.c-profile__title img {
+  margin-top: 22px;
 }
 
 .c-profile__title h1 {
   margin-bottom: 5px;
-}
-
-.c-profile__title span {
-  font-size: 17px;
-  color: rgba(0, 0, 0, 0.54);
-  font-weight: 400;
 }
 
 .c-profile__title img {
@@ -657,19 +663,37 @@ input[type='submit']:hover {
 
 .flex-list__item {
   width: 400px;
+  margin-bottom: 15px;
 }
 
-.flex-list__item span, .flex-list__item p {
+.flex-list__item .sublist {
+  margin: 0;
+  padding: 0;
+  margin-left: 85px;
+}
+
+.flex-list__item .sublist li {
+  margin-bottom: 15px;
+}
+
+.flex-list__item .sublist li::marker {
+  color: #b0befd;
+}
+
+.flex-list__item i, .flex-list__item p {
   display: inline-block;
   vertical-align: middle;
 }
 
-.flex-list__item span {
+.flex-list__item .checkmark {
+  color: #3061fc;
+  font-size: 36px;
   margin-right: 20px;
 }
 
 .flex-list__item p {
   line-height: 24px;
+  max-width: 80%;
 }
 
 .flex-list__item p span {
