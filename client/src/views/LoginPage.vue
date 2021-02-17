@@ -139,11 +139,13 @@ export default {
             this.userToken = response.data.token
  
             if(refDomain == domain) {
-              window.history.go(-1)
-              location.reload()
+              window.history.go(-1).then(()=> {
+                window.location.reload()
+              })
             } else {
-              this.$router.push({ path: 'search'})
-              location.reload()
+              this.$router.push({ path: 'search'}).then(() => {
+                window.location.reload()
+              })
             }
           } catch (err) {
             this.backendErrors = err;
