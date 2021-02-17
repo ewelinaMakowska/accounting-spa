@@ -102,6 +102,21 @@ input[type='submit'] {
 }
 
 //MAIN VIEW
+.blue-button {
+  background-color: $blue;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 7px 20px;
+  margin-right: 0;
+  border: 2px solid $blue;
+  border-radius: 4px;
+  transition: all 0.3s;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .login-button {
   background-color: $blue;
   color: #ffffff;
@@ -613,36 +628,55 @@ input[type='submit'] {
     }
   }
 
+  &__flex-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin-top: 45px;
+  }
+
   &__basic-data {
     margin-top: 30px;
+    display: flex;
 
     & > div {
-      display: inline-block;
+      display: block;
+    }
+
+    .price-wrapper {
+      //position: relative;
+      width: 29%;
+      text-align: center;
     }
   }
 }
 
 .basic-data {
+
   &__description {
     width: 60%;
     //padding-right: 25px;
     padding-right: 80px;
+    border-right: 1px solid $very-light-grey;
+    padding-bottom: 20px;
+    padding-top: 5px;
 
   }
 
+ 
+
   &__price {
-    width: 29%;
-    text-align: center;
+    p, span {
+      vertical-align: middle;
+    }
 
     p {
       font-size: 25px;
       font-weight: 300;
-      vertical-align: middle;
 
       span {
         font-weight: 500;
         font-size: 55px;
-        vertical-align: middle;
         display: inline-block;
         margin-top: -7px;
       }
@@ -650,4 +684,31 @@ input[type='submit'] {
   }
 }
 
+.flex-list {
+  &__item {
+    //width: 50%;
+    width: 400px;
 
+
+    span, p {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    span {
+      margin-right: 20px;
+    }
+
+    p {
+      line-height: 24px;
+
+      span {
+        color: $secondary-text;
+      }
+    }
+  }
+}
+
+.contact_us-button {
+  margin-top: -20px;
+}

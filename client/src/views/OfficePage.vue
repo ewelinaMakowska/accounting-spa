@@ -38,14 +38,47 @@
                     </p>
                   </div>
 
-                  <div class="basic-data__price">
-                    <p>Od &nbsp;<span>99</span> &nbsp;zł/msc</p>
-                    <button>Skontaktuj się z nami</button>
+                  <div class="price-wrapper">
+                    <div class="basic-data__price">
+                      <p>Od &nbsp;<span>99</span> &nbsp;zł/msc</p>
+                      <button class="blue-button contact_us-button">Skontaktuj się z nami</button>
+                    </div>
                   </div>
                 </div>
 
                 <div class="c-profile__flex-list">
-                  <div></div>
+                  <div class="flex-list__item">
+                    <span>icon</span> 
+                    <p class="main-text">
+                      główny e-mail do kontaktu:<br/>
+                      <span>email@email.com.pl</span>
+                    </p>
+                  </div>
+
+                  <div class="flex-list__item">
+                    <span>icon</span> 
+                    <p class="main-text">
+                      główny e-mail do kontaktu:<br/>
+                      <span>email@email.com.pl</span>
+                    </p>
+                  </div>
+
+                  <div class="flex-list__item">
+                    <span>icon</span> 
+                    <p class="main-text">
+                      główny e-mail do kontaktu:<br/>
+                      <span>email@email.com.pl</span>
+                    </p>
+                  </div>
+
+                  <div class="flex-list__item">
+                    <span>icon</span> 
+                    <p class="main-text">
+                      główny e-mail do kontaktu:<br/>
+                      <span>email@email.com.pl</span>
+                    </p>
+                  </div>
+              
                 </div>
            
               </div>
