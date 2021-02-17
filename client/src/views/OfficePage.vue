@@ -6,7 +6,7 @@
       Adres mailowy biura {{ office.email }}  <br/>
 
       Księga przychodów i rozchodów: {{ office.ledger }}   <br/>
-      Ryczałt: {{ office.ledger }}   <br/>
+      Ryczałt: {{ office.lump_sum }}   <br/>
 
       Kontakt telefoniczny/on-line: {{ office.remote }}   <br/>
       Kontakt osobisty: {{ office.in_person }}   <br/>
@@ -58,8 +58,9 @@
                   <div class="flex-list__item">
                     <span>icon</span> 
                     <p class="main-text">
-                      główny e-mail do kontaktu:<br/>
-                      <span>email@email.com.pl</span>
+                      obsługiwane sposoby rozliczania:<br/>
+                      <span v-if="office.ledger">Księga Przychodów i Rozchodów</span><br/>
+                      <span v-if="office.lump_sum">Ryczałt</span>
                     </p>
                   </div>
 
