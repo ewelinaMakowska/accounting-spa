@@ -113,6 +113,12 @@ input[type='submit']:hover {
   border-radius: 4px;
 }
 
+.login-button i {
+  vertical-align: text-bottom;
+  margin-right: 5px;
+  font-size: 17px;
+}
+
 .search-options {
   display: -webkit-box;
   display: -ms-flexbox;

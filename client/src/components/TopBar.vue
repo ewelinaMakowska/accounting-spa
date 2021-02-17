@@ -21,7 +21,7 @@
 
                 <li>
                   <router-link :to="'/login'" class="login-button top-bar__link" v-if="!$store.state.isUserLoggedIn">
-                    Zaloguj się
+                    <i class="material-icons-sharp">login</i>&nbsp;Zaloguj się
                   </router-link>
                 </li>
 

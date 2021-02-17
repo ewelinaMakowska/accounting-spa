@@ -124,6 +124,12 @@ input[type='submit'] {
   padding: 7px 20px;
   margin-right: 0;
   border-radius: 4px;
+
+  i {
+    vertical-align: text-bottom;
+    margin-right: 5px;
+    font-size: 17px;
+  }
 }
 
 .search-options {
