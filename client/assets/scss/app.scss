@@ -688,19 +688,36 @@ input[type='submit'] {
   &__item {
     //width: 50%;
     width: 400px;
+    margin-bottom: 15px;
 
+     .sublist {
+      margin: 0;
+      padding: 0;
+      margin-left: 85px;
 
-    span, p {
+       li {
+        margin-bottom: 15px;
+
+        &::marker {
+          color: $blue-lilac;
+        }
+       }
+     }
+
+    i, p {
       display: inline-block;
       vertical-align: middle;
     }
 
-    span {
+    .checkmark {
+      color: $blue;
+      font-size: 36px;
       margin-right: 20px;
     }
 
     p {
       line-height: 24px;
+      max-width: 80%;
 
       span {
         color: $secondary-text;
@@ -712,3 +729,4 @@ input[type='submit'] {
 .contact_us-button {
   margin-top: -20px;
 }
+
