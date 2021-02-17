@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="animate__animated animate__fadeIn">
 
    <top-bar></top-bar>
 
@@ -126,6 +126,7 @@ export default {
         city: null,
         sort: null,
         accounting: null,
+        contact: null,
         page: null,
 
     }  
@@ -133,6 +134,7 @@ export default {
     if (this.$route.query.city) {searchParams.city = this.$route.query.city } else {searchParams.city = '' }
     if (this.$route.query.sort) {searchParams.sort = this.$route.query.sort } else {searchParams.sort = '' }
     if (this.$route.query.accounting) {searchParams.accounting = this.$route.query.accounting } else {searchParams.accounting = '' }
+    if (this.$route.query.contact) {searchParams.contact = this.$route.query.contact } else {searchParams.contact = '' }
     if (this.$route.query.page) {searchParams.page = this.$route.query.page } else {searchParams.page = 1 }
 
 
@@ -140,8 +142,9 @@ export default {
     console.log(searchParams.city)
     console.log(searchParams.sort)
     console.log(searchParams.accounting)
+    console.log(searchParams.contact)
 
-  if (searchParams.city || searchParams.accounting) {
+  if (searchParams.city || searchParams.accounting || searchParams.contact) {
     try {
       await this.loadSearchResults(searchParams).then(() => {
         console.log('companies loaded to the state');

@@ -6,7 +6,7 @@
           <div class="col">
 
             <div class="top-bar__left">
-              <img src="assets/img/dummy-logo.svg" class="top-bar__logo" />
+              <img src="/assets/img/dummy-logo.svg" class="top-bar__logo" />
               <p class="top-bar__company-name">Business Services</p>
             </div>
 
@@ -21,7 +21,7 @@
 
                 <li>
                   <router-link :to="'/login'" class="login-button top-bar__link" v-if="!$store.state.isUserLoggedIn">
-                    Zaloguj się
+                    <i class="material-icons-sharp">login</i>&nbsp;Zaloguj się
                   </router-link>
                 </li>
 

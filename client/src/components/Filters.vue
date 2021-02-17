@@ -53,7 +53,8 @@
         </ul>
     </div>
 
-  <div class="filters__bubble filters__bubble--filter filter-options" style="display: none;">
+  <div class="filters__bubble filters__bubble--filter filter-options" style="display: none; transform: translateX(-163px);
+">
      Sposób rozliczania
     <ul>
       <li>
@@ -63,6 +64,17 @@
        <li>
         <input type="radio" id="lump_sum" name="lump_sum" value="lump_sum" @click="setFilterAccountingMethod($event, 'lump_sum')">
         <label for="lump_sum">Ryczałt</label>
+      </li>
+    </ul>
+    Kontakt z księgowym
+    <ul>
+      <li>
+        <input type="radio" id="in_person" name="in_person" value="in_person" @click="setFilterContactMethod($event, 'in_person')">
+        <label for="in_person">Osobiście</label>
+      </li>
+       <li>
+        <input type="radio" id="remote" name="remote" value="remote" @click="setFilterContactMethod($event, 'remote')">
+        <label for="remote">Telefonicznie/online</label>
       </li>
     </ul>
   </div>
@@ -143,9 +155,7 @@ export default {
       let url = window.location.href.split('/');
       let path = url[url.length-1].split('?')
       const currentQuery = this.$route.query;  
-      let newAccountingMethod = accountingMethod;
-
-  
+      //let newAccountingMethod = accountingMethod;
 
       let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
 
@@ -158,10 +168,45 @@ export default {
       } 
       
       newUrl += `&accounting=${accountingMethod}`
+
+      if(currentQuery.contact) {
+        newUrl += `&sort=${currentQuery.contact}`
+      } 
       
-      if(currentQuery.page) {
+      //if(currentQuery.page) {
         newUrl += `&page=1`
-      }
+      //}
+    
+      window.location.href = newUrl;
+    }, 
+     setFilterContactMethod($event, contact) {
+      console.log(contact);
+      $event.target.setAttribute('checked','true');
+
+      let url = window.location.href.split('/');
+      let path = url[url.length-1].split('?')
+      const currentQuery = this.$route.query;  
+      //let newAccountingMethod = accountingMethod;
+
+      let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
+
+      if(currentQuery.city) {
+        newUrl += `&city=${currentQuery.city}`
+      } 
+
+      if(currentQuery.sort) {
+        newUrl += `&sort=${currentQuery.sort}`
+      } 
+
+      if(currentQuery.accounting) {
+        newUrl += `&accounting=${currentQuery.accounting}`
+      } 
+      
+      newUrl += `&contact=${contact}`
+      
+      //if(currentQuery.page) {
+        newUrl += `&page=1`
+      //} 
     
       window.location.href = newUrl;
     }, 

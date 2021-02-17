@@ -1,5 +1,5 @@
 <template>
-  <div class="thumbs__thumb">
+  <div class="thumbs__thumb animate__animated animate__fadeIn">
     <div class="thumb__top">
       <div class="top__left">
         <img src="assets/img/dummy-logo.svg" class="thumb__logo" alt="company logo" />

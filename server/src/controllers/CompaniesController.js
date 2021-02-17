@@ -124,6 +124,7 @@ module.exports = {
     const value = req.query.city;
     const sort = req.query.sort;
     let accounting = req.query.accounting;
+    let contact = req.query.contact
 
     let order;
     let orderName;
@@ -131,6 +132,8 @@ module.exports = {
     let companies;
     let whereAccountingName;
     let whereAccountingValue;
+    let whereContactName;
+    let whereContactValue;
 
     if(!sort) {
      order = [['id', 'asc']]
@@ -146,11 +149,11 @@ module.exports = {
       whereAccountingValue = ''
     }
     else if(accounting == 'ledger') {
-        whereAccountingName = 'ledger',
+        whereAccountingName = 'ledger';
         whereAccountingValue = 1
     }
     else if(accounting == 'lump_sum') {
-        whereAccountingName = 'lumpSum',
+        whereAccountingName = 'lumpSum';
         whereAccountingValue = 1
       }
     
@@ -159,8 +162,20 @@ module.exports = {
     console.log(whereAccountingValue)
     console.log('')
 
+    if(!contact) {
+      whereContactName = '',
+      whereContactValue = ''
+    }
 
-        
+    else if(contact == 'in_person') {
+        whereContactName = 'inPerson';
+        whereContactValue = 1
+    }
+    else if(contact == 'remote') {
+        whereContactName = 'remote';
+        whereContactValue = 1
+      }
+
      companies = await Company.findAndCountAll(
        { 
       attributes: ['name', 'id', 'price', 'description'],
@@ -170,7 +185,8 @@ module.exports = {
        where: {
          [Op.and]: [
           {cityId: value},
-          {[whereAccountingName]: 1}
+          {[whereAccountingName]: 1},
+          {[whereContactName]: 1}
          ]
          },
        include:[
@@ -201,7 +217,7 @@ module.exports = {
     try {
       const id = req.params.id
       const companies = await Company.findOne({
-        attributes: ['name', 'description', 'price', 'email', 'logo'],
+        attributes: ['name', 'description', 'price', 'email', 'logo', 'ledger', 'lump_sum', 'in_person', 'remote', 'additional_points'],
         where: {id: id},
         include : [{
           attributes: ['name', 'region'],

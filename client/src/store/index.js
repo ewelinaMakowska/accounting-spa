@@ -53,7 +53,13 @@ export const store = new Vuex.Store({
     },
 
     loadCompanyMutation: (state, data) => {
-      state.loadedOffices = data
+     // state.loadedOffices = data
+      //state.allCompaniesCount = data.length
+
+      console.log(data)
+      data.City = `${data.City.name}, ${data.City.region}`
+
+      state.loadedOffices = data;
       state.allCompaniesCount = data.length
     },
 
@@ -122,7 +128,7 @@ export const store = new Vuex.Store({
     },
 
     async loadSearchResultsLimited ({ commit }, searchParameters) {
-      const result = await CompaniesService.getFilteredLimited(searchParameters.city, searchParameters.sort, searchParameters.accounting, searchParameters.page)
+      const result = await CompaniesService.getFilteredLimited(searchParameters.city, searchParameters.sort, searchParameters.accounting, searchParameters.contact, searchParameters.page)
       commit('loadCompanies', result.data)
       console.log('action load Search Results Limited executed succesfully')
     },
