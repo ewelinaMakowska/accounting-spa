@@ -25,8 +25,8 @@
                 <div class="c-profile__title">
                   <img src="/assets/img/dummy-logo.svg" class="thumb__logo" alt="company logo" />
                   <div>
-                    <h1>Księgowi</h1>
-                    <span>Warszawa, mazowieckie</span>
+                    <h1>{{ office.name }}</h1>
+                    <span>{{ office.City }}</span>
                   </div>
                   
                 </div>
@@ -34,13 +34,13 @@
                 <div class="c-profile__basic-data">
                   <div class="basic-data__description">
                     <p class="main-text">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus velit in diam hendrerit vestibulum rutrum at velit. In vel urna porttitor, rhoncus tortor non, posuere diam. Donec aliquet dolor ac facilisis pulvinar. Pellentesque est mauris, mattis eu urna ac, semper eleifend odio. Phasellus eleifend eleifend efficitur.
+                     {{ office.description }}
                     </p>
                   </div>
 
                   <div class="price-wrapper">
                     <div class="basic-data__price">
-                      <p>Od &nbsp;<span>99</span> &nbsp;zł/msc</p>
+                      <p>Od &nbsp;<span>{{ office.price }}</span> &nbsp;zł/msc</p>
                       <button class="blue-button contact_us-button">Skontaktuj się z nami</button>
                     </div>
                   </div>
