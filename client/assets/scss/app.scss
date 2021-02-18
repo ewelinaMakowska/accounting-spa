@@ -101,6 +101,21 @@ input[type='submit'] {
   }
 }
 
+.user-bar {
+  margin-left: 10px;
+  margin-right: 20px;
+
+  span, p, i {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+    i{
+      color: $blue;
+      margin-top: -2px;
+    }
+}
+
 //MAIN VIEW
 .blue-button {
   background-color: $blue;

@@ -19,6 +19,12 @@
                   <a href="#" class="top-bar__link">Księgowi</a>
                 </li>
 
+                <li class="user-bar">
+                  <span><i class="material-icons-sharp">person</i></span>
+                  <p>User Login</p> 
+                  
+                </li>
+
                 <li>
                   <router-link :to="'/login'" class="login-button blue-button top-bar__link" v-if="!$store.state.isUserLoggedIn">
                     <i class="material-icons-sharp">login</i>&nbsp;Zaloguj się
