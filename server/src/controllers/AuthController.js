@@ -78,7 +78,7 @@ module.exports = {
     if(errors.isEmpty()){
       try {
         const { email, password } = req.body;
-        let user;
+        var user;
 
         //check if there is user with this email in db
         user = await loginHelper.getUserData(req);
@@ -91,8 +91,17 @@ module.exports = {
         } else { 
           //SYNC
           let isPasswordValid = bcrypt.compareSync(password, user.password)      
+
+          
           if(isPasswordValid) {
-            res.status(200).send()
+            const userJson = user.toJSON();
+
+            res.status(200).send({
+              user : userJson,
+              token: jwtRegUser(userJson)
+            }) 
+
+           // res.status(200).send()
           } else {
             res.status(403).send()
           }   
