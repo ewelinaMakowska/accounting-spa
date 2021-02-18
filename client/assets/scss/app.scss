@@ -472,11 +472,13 @@ input[type='submit'] {
 }
 
 .pagination {
-  list-style: none;
-  padding-left: 0;
+  //list-style: none;
+  //padding-left: 0;
+  display: flex;
+  align-items: center;
 
   &__button-wrapper {
-    display: inline-block;
+    display: block;
   }
 
   &__button {
@@ -490,16 +492,9 @@ input[type='submit'] {
     z-index: 3;
     transition: all 0.3s;
 
-    svg {
-      height: 16px;
+    i {
       margin: 0;
       padding: 0;
-      fill: none;
-      stroke: currentColor;
-      stroke-linecap: square;
-      stroke-miterlimit: 10;
-      stroke-width: 48;
-      vertical-align: middle;
     }
 
     &.active {
@@ -517,6 +512,7 @@ input[type='submit'] {
 .chevron-btn {
   border-bottom: none; 
   transition: all 0.3s;
+  margin-top: 1px;
 }
 
 .chevron-btn:hover {

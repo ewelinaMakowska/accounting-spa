@@ -1,10 +1,10 @@
 <template>
   <div class="pagination__wrapper">
-    <ul class="pagination" id="pagination">
-      <li class="pagination__button-wrapper" v-for="(page) in pages" :key="page">
+    <div class="pagination" id="pagination">
+      <div class="pagination__button-wrapper" v-for="(page) in pages" :key="page">
         <button class="pagination__button" @click="updatePathParams($event)">{{page}}</button>
-      </li> 
-    </ul>  
+      </div> 
+    </div>  
   </div>
 </template>
 
@@ -92,9 +92,7 @@
 
         console.log($event.target)
 
-
-        if($event.target.classList.contains('chevron-backward')) {
-                    
+        if($event.target.classList.contains('chevron-backward')) {               
           newPage = parseInt(currentQuery.page)-1
           console.log(newPage)
         } else if($event.target.classList.contains('chevron-forward')) {
@@ -147,8 +145,8 @@
       changeTextToIcons() {
         console.log('change text to icons')
         let pagBtns = document.getElementsByClassName('pagination__button');
-        let chevronForward = "<svg xmlns='http://www.w3.org/2000/svg' class='chevron-forward' viewBox='0 0 512 512'><path d='M184 112l144 144-144 144'/></svg>"
-        let chevronBackward = "<svg xmlns='http://www.w3.org/2000/svg' class='chevron-backward' viewBox='0 0 512 512'><path d='M328 112L184 256l144 144'/></svg>";
+        let chevronForward = "<i class='material-icons-sharp chevron-forward'>chevron_right</i>"
+        let chevronBackward = "<i class='material-icons-sharp chevron-backward'>chevron_left</i>"
 
         for(let i = 0; i<pagBtns.length; i++) {
          // if(this.$route.query.page) {
