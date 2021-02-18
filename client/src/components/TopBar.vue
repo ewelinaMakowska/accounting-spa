@@ -19,7 +19,7 @@
                   <a href="#" class="top-bar__link">Księgowi</a>
                 </li>
 
-                <li class="user-bar">
+                <li v-if="$store.state.user" class="user-bar">
                   <span><i class="material-icons-sharp">person</i></span>
                   <p>{{ userLogin }}</p> 
                   
