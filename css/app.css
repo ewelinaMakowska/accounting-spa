@@ -100,8 +100,29 @@ input[type='submit']:hover {
   transition: all 0.3s;
 }
 
-.blue-button:hover {
+.blue-button:hover, .blue-button:focus {
   cursor: pointer;
+  background-color: #b0befd;
+  border: 2px solid #b0befd;
+  color: #001558;
+}
+
+.transparent-button {
+  background-color: transparent;
+  color: #3061fc;
+  font-size: 14px;
+  padding: 7px 20px;
+  margin-right: 0;
+  border: 2px solid #3061fc;
+  border-radius: 4px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.transparent-button:hover, .transparent-button:focus {
+  cursor: pointer;
+  background-color: #3061fc;
+  color: #ffffff;
 }
 
 .login-button {

@@ -112,8 +112,30 @@ input[type='submit'] {
   border-radius: 4px;
   transition: all 0.3s;
 
-  &:hover {
+  &:hover,
+  &:focus {
     cursor: pointer;
+    background-color: $blue-lilac;
+    border: 2px solid $blue-lilac;
+    color: $midnight-blue;
+  }
+}
+
+.transparent-button {
+  background-color: transparent;
+  color: $blue;
+  font-size: 14px;
+  padding: 7px 20px;
+  margin-right: 0;
+  border: 2px solid $blue;
+  border-radius: 4px;
+  transition: all 0.3s;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    background-color: $blue;
+    color: #ffffff;
   }
 }
 

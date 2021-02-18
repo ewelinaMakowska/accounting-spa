@@ -20,7 +20,7 @@
                 </li>
 
                 <li>
-                  <router-link :to="'/login'" class="login-button top-bar__link" v-if="!$store.state.isUserLoggedIn">
+                  <router-link :to="'/login'" class="login-button blue-button top-bar__link" v-if="!$store.state.isUserLoggedIn">
                     <i class="material-icons-sharp">login</i>&nbsp;Zaloguj się
                   </router-link>
                 </li>
@@ -29,6 +29,7 @@
                   <button
                   v-if="$store.state.isUserLoggedIn"
                   @click="logout()"
+                  class="transparent-button"
                   >
                     Wyloguj
                   </button>
