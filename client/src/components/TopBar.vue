@@ -21,7 +21,7 @@
 
                 <li class="user-bar">
                   <span><i class="material-icons-sharp">person</i></span>
-                  <p>User Login</p> 
+                  <p>{{ userLogin }}</p> 
                   
                 </li>
 
@@ -64,6 +64,11 @@ export default {
     }
   },
 
+computed: {
+  userLogin() {
+    return this.$store.getters.getUserLogin;
+  }
+},
 
   methods: {
     logout() {
