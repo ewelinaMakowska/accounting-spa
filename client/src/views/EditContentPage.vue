@@ -25,7 +25,7 @@
         <div class="row">
           <div class="col-sm-12">
             <h1>Znalezione firmy:</h1>
-
+<!-- 
             <div class="companies-list">
               <div class="companies-list__company">
                 <div class="companies-list__id">
@@ -68,7 +68,39 @@
                 </div>
               </div>
 
-            </div> <!-- /companies-list -->
+            </div> <!- companies-list --> 
+
+
+            <div class="companies-list">
+
+         <!--        <office-thumb
+                  v-for="(office, id) in offices"
+                  :id="office.id "
+                  :key="id"
+                  :name="office.name" -->
+
+              <div v-for="(office, id) in offices" :key="id" class="companies-list__company">
+                <div class="companies-list__id">
+                  {{office.id}}
+                </div>
+
+                <div class="companies-list__name">
+                  {{office.name}}
+                </div>
+
+                <div class="companies-list__location">
+                  {{office.City}}
+                </div>
+
+                <div class="companies-list__buttons">
+                  <button>Profil</button>
+                  <button>Edytuj</button>
+                  <button>Usuń</button>
+                </div>
+              </div>
+
+
+            </div> 
 
     
                   
