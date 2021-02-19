@@ -137,7 +137,7 @@ export default {
       } */
 
       var searchParameters = {
-        searchValue: 1,
+        searchValue: this.searchValue,
         page: 1
       }
 
