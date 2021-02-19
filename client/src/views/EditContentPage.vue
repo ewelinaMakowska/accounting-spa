@@ -142,19 +142,20 @@ export default {
       }
 
       try {
-        const companies = await this.loadSearchResultsSimple(searchParameters).then(() => {
+   /*      const companies = await this.loadSearchResultsSimple(searchParameters).then(() => {
           console.log('search results!'); })
           console.log(companies)
+          this.loaded = true; */
+
+
+          let url = window.location.href.split('/');
+          let path = url[url.length-1].split('?')
+          let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
+          newUrl += `search=${searchParameters.searchValue}&page=1`
+          window.location.href = newUrl; 
+
           this.loaded = true;
-
-
-  /*         let url = window.location.href;
-          let newUrl = url + '?search=' + searchParameters.searchValue + '&page=' + 1;
-
-          window.location.href = newUrl; */
           
-
-
 
         } catch(err) {
           console.log(err)
@@ -169,10 +170,9 @@ export default {
     }
   },
 
-  async mounted() {
+  async created() {
   
- 
-    if(!this.$route.query.page || !this.$route.query.search) {
+  if(!this.$route.query.page || !this.$route.query.search) {
       console.log('test')
     } else {
 
@@ -182,15 +182,14 @@ export default {
      
     }
 
-    console.log(searchParameters)
-
     const companies = await this.loadSearchResultsSimple(searchParameters).then(() => {
       this.loaded = true;
     })
     } 
    
   
-  },
+  }
+
 }
 
 </script>
