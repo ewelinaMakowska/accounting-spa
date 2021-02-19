@@ -146,6 +146,16 @@ export default {
           console.log('search results!'); })
           console.log(companies)
           this.loaded = true;
+
+
+  /*         let url = window.location.href;
+          let newUrl = url + '?search=' + searchParameters.searchValue + '&page=' + 1;
+
+          window.location.href = newUrl; */
+          
+
+
+
         } catch(err) {
           console.log(err)
       } 
@@ -159,10 +169,30 @@ export default {
     }
   },
 
-  mounted() {
+  async mounted() {
+  
+ 
+    if(!this.$route.query.page || !this.$route.query.search) {
+      console.log('test')
+    } else {
 
-  }
+    const searchParameters = {
+      searchValue: this.$route.query.search,
+      page: this.$route.query.page,
+     
+    }
+
+    console.log(searchParameters)
+
+    const companies = await this.loadSearchResultsSimple(searchParameters).then(() => {
+      this.loaded = true;
+    })
+    } 
+   
+  
+  },
 }
+
 </script>
 
 <style scoped lang="scss">
