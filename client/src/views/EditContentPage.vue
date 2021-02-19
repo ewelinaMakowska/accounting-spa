@@ -20,7 +20,7 @@
       </div>
     </section>
 
-    <section>
+    <section v-if="loaded">
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
@@ -91,7 +91,7 @@
                 <div class="companies-list__location">
                   {{office.City}}
                 </div>
-                
+
                 <div class="companies-list__buttons">
                   <router-link :to="'/office/' + office.id">Profil</router-link>
                   <button>Edytuj</button>
@@ -118,7 +118,7 @@ export default {
   data () {
     return {
       searchValue: null,
-      //page: 1
+      loaded: false
     }
   }, // data
   methods: {
@@ -145,6 +145,7 @@ export default {
         const companies = await this.loadSearchResultsSimple(searchParameters).then(() => {
           console.log('search results!'); })
           console.log(companies)
+          this.loaded = true;
         } catch(err) {
           console.log(err)
       } 
@@ -156,6 +157,10 @@ export default {
     offices() {
       return this.$store.getters.loadedOffices
     }
+  },
+
+  mounted() {
+
   }
 }
 </script>
