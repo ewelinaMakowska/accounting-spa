@@ -91,9 +91,9 @@
                 <div class="companies-list__location">
                   {{office.City}}
                 </div>
-
+                
                 <div class="companies-list__buttons">
-                  <button>Profil</button>
+                  <router-link :to="'/office/' + office.id">Profil</router-link>
                   <button>Edytuj</button>
                   <button>Usuń</button>
                 </div>
