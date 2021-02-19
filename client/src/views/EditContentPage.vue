@@ -24,7 +24,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <h1>Znalezione firmy:</h1>
+            <h2>Znalezione firmy:</h2>
 <!-- 
             <div class="companies-list">
               <div class="companies-list__company">
@@ -72,12 +72,6 @@
 
 
             <div class="companies-list">
-
-         <!--        <office-thumb
-                  v-for="(office, id) in offices"
-                  :id="office.id "
-                  :key="id"
-                  :name="office.name" -->
 
               <div v-for="(office, id) in offices" :key="id" class="companies-list__company">
                 <div class="companies-list__id">
@@ -131,32 +125,18 @@ export default {
       const searchValue = this.searchValue;
       var page = 1;
 
-     /*  const searchParameters = {
-        searchValue: this.searchValue,
-        page: page
-      } */
-
       var searchParameters = {
         searchValue: this.searchValue,
         page: 1
       }
 
       try {
-   /*      const companies = await this.loadSearchResultsSimple(searchParameters).then(() => {
-          console.log('search results!'); })
-          console.log(companies)
-          this.loaded = true; */
-
-
           let url = window.location.href.split('/');
           let path = url[url.length-1].split('?')
           let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
           newUrl += `search=${searchParameters.searchValue}&page=1`
           window.location.href = newUrl; 
-
           this.loaded = true;
-          
-
         } catch(err) {
           console.log(err)
       } 
@@ -172,20 +152,20 @@ export default {
 
   async created() {
   
-  if(!this.$route.query.page || !this.$route.query.search) {
-      console.log('test')
-    } else {
+    if(!this.$route.query.page || !this.$route.query.search) {
+        console.log('test')
+      } else {
 
-    const searchParameters = {
-      searchValue: this.$route.query.search,
-      page: this.$route.query.page,
-     
-    }
+      const searchParameters = {
+        searchValue: this.$route.query.search,
+        page: this.$route.query.page,
+      
+      }
 
-    const companies = await this.loadSearchResultsSimple(searchParameters).then(() => {
-      this.loaded = true;
-    })
-    } 
+      const companies = await this.loadSearchResultsSimple(searchParameters).then(() => {
+        this.loaded = true;
+      })
+      } 
    
   
   }
@@ -239,13 +219,12 @@ export default {
       }
 
     &__buttons {
-      //border-right: none !important;
-      text-align: center;
-      width: 23%;
+        text-align: center;
+        width: 23%;
 
       button {
         display: inline-block;
       }
-      }
+    }
   }
 </style>
