@@ -78,60 +78,34 @@ module.exports = {
     if(errors.isEmpty()){
       try {
         const { email, password } = req.body;
-        let user;
+        var user;
 
         //check if there is user with this email in db
         user = await loginHelper.getUserData(req);
         console.log(user)
         
-
-    /*     userData = await User.findOne({
-          where: {
-            email: email
-          }
-        }).then((userData) => {
-          console.log(`USER: ${userData}`)
-        }
-        ) */
-
         if(!user) {
           return res.status(403).send({
             error: 'Invalid login/email information'
           })
         } else { 
+          //SYNC
+          let isPasswordValid = bcrypt.compareSync(password, user.password)      
 
-       /*  //if user exists check if password matches
-        console.log(password)
-        console.log(user.password) */
-        
-        
-       //ASYNC
-    
-       /*  bcrypt.compare(password, user.password).then((err, resp) => {
-          console.log(resp)
-          if(resp) {
+          
+          if(isPasswordValid) {
             const userJson = user.toJSON();
-            return res.status(200).send({
-            user: userJson,
-            token: jwtRegUser(userJson)
-          })
-        } else {
-          console.log(password)
-          console.log(user.password)
-            return res.status(403).send({
-              error: 'Invalid password'
-            }) 
-          }               
-      });  */
 
-      //SYNC
-      let isPasswordValid = bcrypt.compareSync(password, user.password)      
-      if(isPasswordValid) {
-        res.status(200).send()
-      } else {
-        res.status(403).send()
-      }   
-      } //else
+            res.status(200).send({
+              user : userJson,
+              token: jwtRegUser(userJson)
+            }) 
+
+           // res.status(200).send()
+          } else {
+            res.status(403).send()
+          }   
+        } //else
       
       } catch(err) { 
         console.log(err)

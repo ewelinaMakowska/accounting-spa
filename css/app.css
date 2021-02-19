@@ -88,6 +88,22 @@ input[type='submit']:hover {
   border-bottom: 2px solid #3061fc;
 }
 
+.user-bar {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.user-bar span, .user-bar p, .user-bar i {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.user-bar i {
+  color: #3061fc;
+  margin-top: -2px;
+  margin-right: 5px;
+}
+
 .blue-button {
   background-color: #3061fc;
   color: #ffffff;
@@ -100,8 +116,29 @@ input[type='submit']:hover {
   transition: all 0.3s;
 }
 
-.blue-button:hover {
+.blue-button:hover, .blue-button:focus {
   cursor: pointer;
+  background-color: #b0befd;
+  border: 2px solid #b0befd;
+  color: #001558;
+}
+
+.transparent-button {
+  background-color: transparent;
+  color: #3061fc;
+  font-size: 14px;
+  padding: 7px 20px;
+  margin-right: 0;
+  border: 2px solid #3061fc;
+  border-radius: 4px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.transparent-button:hover, .transparent-button:focus {
+  cursor: pointer;
+  background-color: #3061fc;
+  color: #ffffff;
 }
 
 .login-button {
@@ -408,12 +445,16 @@ input[type='submit']:hover {
 }
 
 .pagination {
-  list-style: none;
-  padding-left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .pagination__button-wrapper {
-  display: inline-block;
+  display: block;
 }
 
 .pagination__button {
@@ -429,16 +470,9 @@ input[type='submit']:hover {
   transition: all 0.3s;
 }
 
-.pagination__button svg {
-  height: 16px;
+.pagination__button i {
   margin: 0;
   padding: 0;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: square;
-  stroke-miterlimit: 10;
-  stroke-width: 48;
-  vertical-align: middle;
 }
 
 .pagination__button.active {
@@ -455,6 +489,7 @@ input[type='submit']:hover {
   border-bottom: none;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
+  margin-top: 1px;
 }
 
 .chevron-btn:hover {

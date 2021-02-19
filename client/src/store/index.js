@@ -207,6 +207,13 @@ return state.loadedOffices; //?
       return state.settings.filters;
     },
 
+    getUserLogin(state) {
+      const user = JSON.parse(state.user);
+      let userLogin = user.email;
+      
+      return userLogin;
+    }
+
   }, // getters
 
   modules: {

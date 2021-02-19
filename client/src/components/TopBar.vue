@@ -19,8 +19,14 @@
                   <a href="#" class="top-bar__link">Księgowi</a>
                 </li>
 
+                <li v-if="$store.state.user" class="user-bar">
+                  <span><i class="material-icons-sharp">person</i></span>
+                  <p>{{ userLogin }}</p> 
+                  
+                </li>
+
                 <li>
-                  <router-link :to="'/login'" class="login-button top-bar__link" v-if="!$store.state.isUserLoggedIn">
+                  <router-link :to="'/login'" class="login-button blue-button top-bar__link" v-if="!$store.state.isUserLoggedIn">
                     <i class="material-icons-sharp">login</i>&nbsp;Zaloguj się
                   </router-link>
                 </li>
@@ -29,6 +35,7 @@
                   <button
                   v-if="$store.state.isUserLoggedIn"
                   @click="logout()"
+                  class="transparent-button"
                   >
                     Wyloguj
                   </button>
@@ -57,6 +64,11 @@ export default {
     }
   },
 
+computed: {
+  userLogin() {
+    return this.$store.getters.getUserLogin;
+  }
+},
 
   methods: {
     logout() {

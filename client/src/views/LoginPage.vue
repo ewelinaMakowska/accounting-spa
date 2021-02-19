@@ -140,10 +140,16 @@ export default {
  
             if(refDomain == domain) {
               window.history.go(-1)
-              location.reload()
+              setTimeout(() => {
+                window.location.reload()
+              }, 500) 
+              
             } else {
               this.$router.push({ path: 'search'})
-              location.reload()
+              setTimeout(() => {
+                window.location.reload()
+              }, 500) 
+            
             }
           } catch (err) {
             this.backendErrors = err;
