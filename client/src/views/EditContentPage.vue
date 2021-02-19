@@ -86,12 +86,36 @@ export default {
   data () {
     return {
       searchValue: null,
+      //page: 1
     }
   }, // data
   methods: {
+    loadSearchResultsSimple(searchParameters) {
+      return this.$store.dispatch('loadSearchResultsSimple', searchParameters)
+    },
+
     async submitForm($event) {
       $event.preventDefault();
       const searchValue = this.searchValue;
+      var page = 1;
+
+     /*  const searchParameters = {
+        searchValue: this.searchValue,
+        page: page
+      } */
+
+      var searchParameters = {
+        searchValue: 1,
+        page: 1
+      }
+
+      try {
+        const companies = await this.loadSearchResultsSimple(searchParameters).then(() => {
+          console.log('search results!'); })
+          console.log(companies)
+        } catch(err) {
+          console.log(err)
+      } 
 
   
     }

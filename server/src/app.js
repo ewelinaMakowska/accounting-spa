@@ -58,6 +58,9 @@ app.post('/email', ContactControllerPolicy.email, ContactController.mailCompany)
 app.post('/register', AuthControllerPolicy.registerUser, AuthController.registerUser)
 app.post('/login',  AuthControllerPolicy.loginUser, AuthController.login)
 
+app.get('/editContent', CompaniesController.getByNameOrID)
+
+
 sequelize.sync()
 .then(() => {
   app.listen(port, () => console.log(`Your app is listening on port: ${port}`));

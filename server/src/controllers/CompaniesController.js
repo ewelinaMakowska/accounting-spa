@@ -236,7 +236,7 @@ module.exports = {
         error: 'Internal Server Error'
       });
     }
-  }
+  },
 
 
  
@@ -255,5 +255,49 @@ module.exports = {
   //     });
   //   }
   // }
+
+
+  async getByNameOrID(req, res) {
+    console.log('GET NAME OR ID!!!')
+    console.log(req.query);
+    const searchValue = req.query.searchValue;
+    const page = req.query.page
+
+    try {
+      const companies = await Company.findAndCountAll(
+        { 
+       attributes: ['name', 'id'],
+        offset: (page-1) * ITEMS_PER_PAGE,
+       // order: [order],
+        limit: ITEMS_PER_PAGE,
+        where: {
+          [Op.or]: [
+           {id: searchValue},
+           {name: searchValue}
+          ]
+          },
+        include:[
+         { model: City, 
+           as: 'City',
+           attributes: ['name', 'region'],
+           required: false //left join
+           }
+         ] 
+      })
+
+      console.log(companies)  
+
+      res.status(200).send(companies);
  
+    } catch(err) {
+      console.log(err)
+      res.status(500).send({
+        error: 'Internal Server Error'
+      });
+  }
+}
+
+
+
+
 }
