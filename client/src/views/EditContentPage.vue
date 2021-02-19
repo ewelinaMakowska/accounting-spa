@@ -5,8 +5,15 @@
         <div class="row">
           <div class="col-sm-12">
             <h1>Wyszukaj firmy:</h1>
-            <input type="search" autocomplete="off" />
-            <button>Szukaj</button>
+
+            <form @submit="submitForm($event)">
+              <input type="search" id="search-id-name-input" v-model.trim="searchValue" autocomplete="off" />
+              <input
+                type="submit"
+                value="Szukaj"
+                
+              >
+            </form>
 
           </div>
         </div>
@@ -78,10 +85,21 @@
 export default {
   data () {
     return {
+      searchValue: null,
     }
   }, // data
   methods: {
+    async submitForm($event) {
+      $event.preventDefault();
+      const searchValue = this.searchValue;
 
+  
+    }
+  },
+  computed: {
+    offices() {
+      return this.$store.getters.loadedOffices
+    }
   }
 }
 </script>
