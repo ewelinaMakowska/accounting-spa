@@ -121,11 +121,9 @@ export default {
 
     async submitForm($event) {
       $event.preventDefault();
-      const searchValue = this.searchValue;
-      var page = 1;
-
+    
       var searchParameters = {
-        searchValue: this.searchValue,
+        searchValue: this.searchValue.normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
         page: 1
       }
 
