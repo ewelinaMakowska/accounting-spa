@@ -61,7 +61,7 @@ app.post('/register', AuthControllerPolicy.registerUser, AuthController.register
 app.post('/login',  AuthControllerPolicy.loginUser, AuthController.login)
 
 app.get('/editContent', CompaniesControllerPolicy.search, CompaniesController.getByNameOrID)
-app.delete('/deleteCompany/:id', CompaniesController.deleteCompany)
+
 
 sequelize.sync()
 .then(() => {
