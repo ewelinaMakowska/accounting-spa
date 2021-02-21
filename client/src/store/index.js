@@ -94,6 +94,12 @@ export const store = new Vuex.Store({
 
   },
   actions: {
+    async deleteCompany({commit}, companyId) {
+      const deletedRows = await CompaniesService.deleteCompany(companyId);
+      console.log('action deleteCompany executed succesfully')
+
+    },
+
     async loadCompaniesAction ({ commit }) {
       const result = await CompaniesService.getAllCompanies()
       commit('loadCompanies', result.data)
@@ -133,6 +139,12 @@ export const store = new Vuex.Store({
       console.log('action load Search Results Limited executed succesfully')
     },
 
+    async loadSearchResultsSimple ({ commit }, searchParameters) {
+      const result = await CompaniesService.getByNameOrID(searchParameters.searchValue, searchParameters.page)
+      commit('loadCompanies', result.data)
+      console.log('action load Search Results simple exectued successfully')
+    },
+
     async loadFirstPageData ({ commit }) {
       const result = await CompaniesService.getFirstLimited()
       commit('loadCompanies', result.data)
@@ -161,7 +173,8 @@ export const store = new Vuex.Store({
     },
     hideSortBubble({ commit }) {
       commit('hideSortBubble')
-    }
+    },
+
 
   },
 

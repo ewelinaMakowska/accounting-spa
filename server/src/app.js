@@ -12,6 +12,8 @@ const { check, checkSchema, body } = require('express-validator');
 
 const AuthControllerPolicy = require('./policies/AuthControllerPolicy');
 const ContactControllerPolicy = require('./policies/ContactControllerPolicy');
+const CompaniesControllerPolicy = require('./policies/CompaniesControllerPolicy');
+
 
 const isAuth = require('./middleware/is-auth')
 
@@ -57,6 +59,11 @@ app.get('/userProfile', isAuth, AuthController.getUserData)
 app.post('/email', ContactControllerPolicy.email, ContactController.mailCompany)
 app.post('/register', AuthControllerPolicy.registerUser, AuthController.registerUser)
 app.post('/login',  AuthControllerPolicy.loginUser, AuthController.login)
+
+app.get('/editContent', CompaniesControllerPolicy.search, CompaniesController.getByNameOrID)
+app.delete('/deleteCompany/:companyId', CompaniesController.deleteCompany)
+
+
 
 sequelize.sync()
 .then(() => {

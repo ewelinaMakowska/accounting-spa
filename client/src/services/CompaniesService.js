@@ -27,6 +27,10 @@ export default {
     return Api.get(`companiesFilteredLimited/?city=${value}&sort=${sort}&accounting=${accounting}&contact=${contact}&page=${page}`, value, sort, accounting, contact, page)
   },
 
+  getByNameOrID (searchValue, page) {
+    return Api.get(`editContent/?searchValue=${searchValue}&page=${page}`, searchValue, page)
+  },
+
   // },
 
   getFirstLimited () {
@@ -35,10 +39,12 @@ export default {
 
   getOne(id) { // id?
     return Api.get(`company/${id}`, id) //, id?
-  }
+  },
 
   // countAll() {
   //   return Api.get('companies');
   // }
-
+  deleteCompany(companyId) {
+    return Api.delete(`deleteCompany/${companyId}`, companyId)
+  }
 }

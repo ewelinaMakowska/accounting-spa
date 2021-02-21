@@ -10,8 +10,7 @@
               <input type="search" id="search-id-name-input" v-model.trim="searchValue" autocomplete="off" />
               <input
                 type="submit"
-                value="Szukaj"
-                
+                value="Szukaj"               
               >
             </form>
 
@@ -20,12 +19,12 @@
       </div>
     </section>
 
-    <section>
+    <section v-if="loaded">
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <h1>Znalezione firmy:</h1>
-
+            <h2>Znalezione firmy:</h2>
+<!-- 
             <div class="companies-list">
               <div class="companies-list__company">
                 <div class="companies-list__id">
@@ -68,7 +67,33 @@
                 </div>
               </div>
 
-            </div> <!-- /companies-list -->
+            </div> <!- companies-list --> 
+
+
+            <div class="companies-list">
+
+              <div v-for="(office, id) in offices" :key="id" class="companies-list__company">
+                <div class="companies-list__id">
+                  {{office.id}}
+                </div>
+
+                <div class="companies-list__name">
+                  {{office.name}}
+                </div>
+
+                <div class="companies-list__location">
+                  {{office.City}}
+                </div>
+
+                <div class="companies-list__buttons">
+                  <router-link :to="'/office/' + office.id">Profil</router-link>
+                  <button>Edytuj</button>
+                  <button @click="deleteCompany($event)" :id="office.id">Usuń</button>
+                </div>
+              </div>
+
+
+            </div> 
 
     
                   
@@ -86,12 +111,43 @@ export default {
   data () {
     return {
       searchValue: null,
+      loaded: false
     }
   }, // data
   methods: {
+    async deleteCompany($event) {
+      const id = $event.target.id;
+      let companyId = parseInt(id)
+
+      try {
+        await this.$store.dispatch('deleteCompany', companyId);
+      } catch(err) {
+        console.log(err)
+      }
+    },
+
+    loadSearchResultsSimple(searchParameters) {
+      return this.$store.dispatch('loadSearchResultsSimple', searchParameters)
+    },
+
     async submitForm($event) {
       $event.preventDefault();
-      const searchValue = this.searchValue;
+    
+      var searchParameters = {
+        searchValue: this.searchValue.normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
+        page: 1
+      }
+
+      try {
+          let url = window.location.href.split('/');
+          let path = url[url.length-1].split('?')
+          let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
+          newUrl += `search=${searchParameters.searchValue}&page=1`
+          window.location.href = newUrl; 
+          this.loaded = true;
+        } catch(err) {
+          console.log(err)
+      } 
 
   
     }
@@ -100,8 +156,30 @@ export default {
     offices() {
       return this.$store.getters.loadedOffices
     }
+  },
+
+  async created() {
+  
+    if(!this.$route.query.page || !this.$route.query.search) {
+        console.log('test')
+      } else {
+
+      const searchParameters = {
+        searchValue: this.$route.query.search,
+        page: this.$route.query.page,
+      
+      }
+
+      const companies = await this.loadSearchResultsSimple(searchParameters).then(() => {
+        this.loaded = true;
+      })
+      } 
+   
+  
   }
+
 }
+
 </script>
 
 <style scoped lang="scss">
@@ -149,13 +227,12 @@ export default {
       }
 
     &__buttons {
-      //border-right: none !important;
-      text-align: center;
-      width: 23%;
+        text-align: center;
+        width: 23%;
 
       button {
         display: inline-block;
       }
-      }
+    }
   }
 </style>
