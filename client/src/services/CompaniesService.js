@@ -47,7 +47,7 @@ export default {
   // }
 
   deleteCompany(id) {
-    return Api.delete(`deleteCompany/${id}`, id)
+    return Api.delete(`deleteCompany/${id}`)
   }
 
 }
