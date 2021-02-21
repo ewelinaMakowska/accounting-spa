@@ -17,10 +17,11 @@
 
               <span class="c-profile__location">
                 <input 
-                type="text"
+                type="search"
                 placeholder="Miasto"
                 v-model.trim="city"
                 />
+                <!-- todo: autocomplete with no city? go to add city! -->
                 <input 
                 type="text"
                 placeholder="województwo"
@@ -153,6 +154,8 @@
       </div>
       </form>
     </div>
+
+    <!-- to do add if no city form add city in a separate component -->
 </template>
 
 <style scoped>

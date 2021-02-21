@@ -19,6 +19,8 @@
       </div>
     </section>
 
+
+
     <section v-if="loaded">
       <div class="container">
         <div class="row">
@@ -97,6 +99,18 @@
 
     
                   
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1>Dodaj firmę </h1>
+            <p>Dodaj nową firmę za pomocą prostego formularza. -></p>
+            <router-link to="add-company">Dodaj</router-link>
           </div>
         </div>
       </div>
