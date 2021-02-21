@@ -1,27 +1,28 @@
-require('dotenv').config();
 const bodyParser = require("body-parser");
-const mysql2 = require("mysql2");
 
-module.exports = {
-  
-  //todo: add env variables
-
-  "development": {
-    port: process.env.PORT,
-    db: {
-      database: process.env.DB_DATABASE,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      options: {
-        dialects: process.env.DB_DIALECTS,
-        host: process.env.DB_HOST,
-        operatorsAliases: process.env.DB_OPERATOR_ALIASES
+module.exports = { //todo: add env variables
+  port: 3306,
+  db: {
+    database: 'accounting_companies',
+    user: 'root',
+    password: '',
+    options: {
+      dialect: 'mysql',
+      host: 'localhost',
+      operatorsAliases: false
     }
-    },
-    authentication: {
-      jwtSecret: process.env.AUTH_JWT_SECRET
-    }
+  },
+  authentication: {
+    jwtSecret: 'myDevelopmentSuperSecret'
   }
-  
 }
 
+
+/* function setDevEnv(app) {
+  process.env.NODE_ENV = 'development';
+  process.env.DB_URL = '';
+  process.env.JWT_SECRET = 'my-secret';
+  app.use(bodyParser.json());
+  app.use(morgan('dev'));
+  app.use(cors());
+} */
