@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form >
+    <form @submit="addCompany($event)">
       <div class="row">
         <div class="col-lg-12">
           <h1>Dodaj firmę</h1>
@@ -10,16 +10,22 @@
               <h2> 
                 <input 
                 type="text"
-                placeholder="Nazwa firmy"/>
+                placeholder="Nazwa firmy"
+                v-model.trim="name"
+                />              
               </h2>
 
               <span class="c-profile__location">
                 <input 
                 type="text"
-                placeholder="Miasto"/>,
+                placeholder="Miasto"
+                v-model.trim="city"
+                />
                 <input 
                 type="text"
-                placeholder="województwo"/>
+                placeholder="województwo"
+                v-model.trim="region"
+                />
               </span>                
             </div>
             
@@ -31,6 +37,7 @@
                 <input 
                 type="text"
                 placeholder="Opis firmy"
+                v-model.trim="description"
                 />
               </p>
             </div>
@@ -41,6 +48,7 @@
                   <input 
                   type="text"
                   placeholder="Cena"
+                  v-model.trim="price"
                   />
                 </span> &nbsp;zł/msc</p>
                 <input 
@@ -133,6 +141,7 @@
                 <input 
                   type="text"
                   placeholder="Dodatkowe informacje"
+                  v-model.trim="additionalPoints"
                   />
                 <br/>
               </p>
@@ -153,6 +162,30 @@
   export default {
     data() {
       return {
+        name: '',
+        city: '',
+        region: '',
+        price: '',
+        description: '',
+        email: '',
+        additionalPoints: ''
+      }
+    },
+    methods: {
+      addCompany($event) {
+        $event.preventDefault()
+
+        const data = {
+          name: this.name,
+          city: this.city,
+          region: this.region,
+          price: this.price,
+          description: this.description,
+          email: this.email,
+          additionalPoints: this.additionalPoints
+        }
+
+        console.log(data.name, data.city, data.region)
 
       }
     },
