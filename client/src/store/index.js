@@ -167,7 +167,12 @@ export const store = new Vuex.Store({
     },
     hideSortBubble({ commit }) {
       commit('hideSortBubble')
-    }
+    },
+    //DELETE
+    async deleteCompany({ commit }) {
+      await CompaniesService.deleteCompany(id)
+    return id;
+   },
 
   },
 
@@ -221,6 +226,8 @@ return state.loadedOffices; //?
     }
 
   }, // getters
+
+  
 
   modules: {
   } // modules

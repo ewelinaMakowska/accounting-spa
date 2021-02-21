@@ -1,3 +1,4 @@
+import { deleteCompany } from '../../../server/src/controllers/CompaniesController'
 import Api from './Api'
 
 export default {
@@ -39,10 +40,14 @@ export default {
 
   getOne(id) { // id?
     return Api.get(`company/${id}`, id) //, id?
-  }
+  },
 
   // countAll() {
   //   return Api.get('companies');
   // }
+
+  deleteCompany(id) {
+    return Api.delete(`deleteCompany/${id}`)
+  }
 
 }

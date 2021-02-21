@@ -88,7 +88,7 @@
                 <div class="companies-list__buttons">
                   <router-link :to="'/office/' + office.id">Profil</router-link>
                   <button>Edytuj</button>
-                  <button>Usuń</button>
+                  <button @click="deleteCompany($event)" :id="office.id">Usuń</button>
                 </div>
               </div>
 
@@ -115,6 +115,15 @@ export default {
     }
   }, // data
   methods: {
+    async deleteCompany($event) {
+      const id = $event.target.id;
+      try {
+              await this.$store.dispatch('deleteCompany', id)
+      } catch(err) {
+        console.log(err)
+      }
+    },
+
     loadSearchResultsSimple(searchParameters) {
       return this.$store.dispatch('loadSearchResultsSimple', searchParameters)
     },
