@@ -10,8 +10,7 @@
               <input type="search" id="search-id-name-input" v-model.trim="searchValue" autocomplete="off" />
               <input
                 type="submit"
-                value="Szukaj"
-                
+                value="Szukaj"               
               >
             </form>
 

@@ -1,6 +1,8 @@
 const { Company, City, sequelize } = require('../models/')
 const ITEMS_PER_PAGE = 9;
 const { Op, where } = require('sequelize');
+const { validationResult } = require('express-validator');
+
 
 module.exports = {
 
@@ -258,44 +260,58 @@ module.exports = {
 
 
   async getByNameOrID(req, res) {
-    console.log('GET NAME OR ID!!!')
-    console.log(req.query);
-    const searchValue = req.query.searchValue;
-    const page = req.query.page
-
-    try {
-      const companies = await Company.findAndCountAll(
-        { 
-       attributes: ['name', 'id'],
-        offset: (page-1) * ITEMS_PER_PAGE,
-       // order: [order],
-        limit: ITEMS_PER_PAGE,
-        where: {
-          [Op.or]: [
-           {id: searchValue},
-           {name: searchValue}
-          ]
-          },
-        include:[
-         { model: City, 
-           as: 'City',
-           attributes: ['name', 'region'],
-           required: false //left join
-           }
-         ] 
-      })
-
-      console.log(companies)  
-
-      res.status(200).send(companies);
  
-    } catch(err) {
-      console.log(err)
-      res.status(500).send({
-        error: 'Internal Server Error'
-      });
-  }
+    const errors = validationResult(req);
+    console.log(req.body.searchValue)
+    console.log(req.body.page)
+
+
+    if(errors.isEmpty()) {
+      console.log('GET NAME OR ID!!!')
+      console.log(req.query);
+      const searchValue = req.query.searchValue;
+      const page = req.query.page
+
+      try {
+        const companies = await Company.findAndCountAll(
+          { 
+         attributes: ['name', 'id'],
+          offset: (page-1) * ITEMS_PER_PAGE,
+         // order: [order],
+          limit: ITEMS_PER_PAGE,
+          where: {
+            [Op.or]: [
+             {id: searchValue},
+             {name: searchValue}
+            ]
+            },
+          include:[
+           { model: City, 
+             as: 'City',
+             attributes: ['name', 'region'],
+             required: false //left join
+             }
+           ] 
+        })
+  
+        console.log(companies)  
+  
+        res.status(200).send(companies);
+   
+      } catch(err) {
+        console.log(err)
+        res.status(500).send({
+          error: 'Internal Server Error'
+        });
+      }
+    } else {
+      res.status(422).send({
+        error: errors
+      })
+    } 
+
 }
+
 
 
 
