@@ -94,6 +94,12 @@ export const store = new Vuex.Store({
 
   },
   actions: {
+    async deleteCompany({commit}, companyId) {
+      const deletedRows = await CompaniesService.deleteCompany(companyId);
+      console.log('action deleteCompany executed succesfully')
+
+    },
+
     async loadCompaniesAction ({ commit }) {
       const result = await CompaniesService.getAllCompanies()
       commit('loadCompanies', result.data)
@@ -167,7 +173,8 @@ export const store = new Vuex.Store({
     },
     hideSortBubble({ commit }) {
       commit('hideSortBubble')
-    }
+    },
+
 
   },
 

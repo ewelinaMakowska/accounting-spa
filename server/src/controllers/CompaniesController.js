@@ -309,6 +309,25 @@ module.exports = {
         error: errors
       })
     } 
+},
+
+
+async deleteCompany(req, res) {
+  try {
+    for (let property in req.params.companyId) {
+      console.log(property, property.value)
+    }
+    console.log(req.params.companyId)
+    
+    let n = await Company.destroy({ where: { id: req.params.companyId } });
+    console.log(`number of deleted rows: ${n}`);
+    res.status(200).send(n)
+  } catch(err) {
+    console.log(err)
+    res.status(204).send({
+      errors: err
+    })
+  }
 
 }
 

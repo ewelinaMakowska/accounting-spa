@@ -39,10 +39,12 @@ export default {
 
   getOne(id) { // id?
     return Api.get(`company/${id}`, id) //, id?
-  }
+  },
 
   // countAll() {
   //   return Api.get('companies');
   // }
-
+  deleteCompany(companyId) {
+    return Api.delete(`deleteCompany/${companyId}`, companyId)
+  }
 }
