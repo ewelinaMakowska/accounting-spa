@@ -11,6 +11,9 @@
       </div>
     </section>
 
+    <!-- visible with param and if admin -->
+    <!-- todo: form for editing company -->
+
     <section
       v-if="office.email"
       class="company-form"
