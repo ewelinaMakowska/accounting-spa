@@ -5,10 +5,10 @@ const db = {}
 
 
 const sequelize = new Sequelize (
-  config.db.database,
-  config.db.user,
-  config.db.password,
-  config.db.options
+  config.development.db.database,
+  config.development.db.user,
+  config.development.db.password,
+  config.development.db.options
 )
 
 // const sequelize = new Sequelize('accounting_companies', 'root', '', {
