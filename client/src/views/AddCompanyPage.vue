@@ -92,7 +92,7 @@
                     <input 
                     type="checkbox"
                     id="ledger"
-                    value="ledger"
+                    @change="ledger='true'"
                      />
                     <label for="ledger">
                       Księga Przychodów i Rozchodów
@@ -103,7 +103,6 @@
                     <input 
                     type="checkbox"
                     id="lump-sum"
-                    value="lump_sum"
                      />
                     <label for="ledger">
                       Ryczałt
@@ -122,7 +121,7 @@
                     <input 
                     type="checkbox"
                     id="remote"
-                    value="remote"
+                    checked
                      />
                     <label for="remote">
                       Telefoniczny/on-line
@@ -195,7 +194,10 @@
         additionalPoints: '',
         cityname: '',
         cityId: '',
-        searching: false
+        ledger: false,
+        lumSum: false,
+        remote: true,
+        inPerson: false
       }
     },
     methods: {
@@ -210,10 +212,11 @@
           price: this.price,
           description: this.description,
           email: this.email,
-          additionalPoints: this.additionalPoints
+          additionalPoints: this.additionalPoints,
+          ledger: this.ledger
         }
 
-        console.log(data.name, data.city, data.cityId)
+        console.log(data.name, data.city, data.cityId, data.ledger)
 
       },
        setSearching(){
