@@ -252,6 +252,7 @@
 
     //handler of a button with city name - ads cityid to url
       async autocompleteInput ($event) {
+        $event.preventDefault();
         const cityID = $event.target.childNodes[1].innerText;
         const cityName = $event.target.innerText;
         const searchInput = document.getElementById('city-input');
