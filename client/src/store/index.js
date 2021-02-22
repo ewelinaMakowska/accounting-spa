@@ -100,7 +100,7 @@ export const store = new Vuex.Store({
     },
 
     async addCompany(companyData) {
-      const company = await CompaniesService.addCompany(companyData);
+      const company = await CompaniesService.addCompany(companyData.name, companyData.price, companyData.cityid, companyData.email, companyData.description, companyData.ledger, companyData.lumpSum, companyData.inPerson);
       console.log('action addCompany executed succesfully')
     },
 

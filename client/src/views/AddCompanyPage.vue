@@ -184,6 +184,8 @@
 </style>
 
 <script>
+import CompaniesService from '../services/CompaniesService'
+
   export default {
     data() {
       return {
@@ -222,7 +224,7 @@
         console.log(`name: ${data.name}, city name: ${data.city}, city id: ${data.cityId}, price: ${data.price}, description: ${data.description}, email: ${data.email}, additional info: ${data.additionalPoints}, ledger: ${data.ledger}, lump sum: ${data.lumpSum}, contatct in person : ${data.inPerson}`)
 
         try {
-          const company = await this.$store.dispatch('addCompany', data);
+          const company = await CompaniesService.addCompany(data);
           console.log(company)
         } catch(err) {
           console.log(err)

@@ -334,14 +334,18 @@ async deleteCompany(req, res) {
 
 
 async addCompany(req, res) {
+  console.log(req.body)
+  console.log(' ')
+
   try {   
-    const company = await Company.create({name: req.query.name, cityid: req.query.cityid, price: req.query.price})
+    
+    const company = await Company.create({name: req.body.name, cityid: req.body.cityId, price: req.body.price})
     console.log(`added company: ${company.name}`);
     res.status(200).send(company)
   } catch(err) {
     console.log(err)
-    res.status(204).send({
-      errors: err
+    res.status(500).send({
+      error: err
     })
   }
 
