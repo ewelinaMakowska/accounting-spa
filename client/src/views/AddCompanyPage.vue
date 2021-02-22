@@ -194,6 +194,7 @@
         email: '',
         additionalPoints: '',
         cityname: '',
+        cityId: '',
         searching: false
       }
     },
@@ -204,6 +205,7 @@
         const data = {
           name: this.name,
           city: this.city,
+          cityId: this.cityId,
           region: this.region,
           price: this.price,
           description: this.description,
@@ -211,7 +213,7 @@
           additionalPoints: this.additionalPoints
         }
 
-        console.log(data.name, data.city, data.region)
+        console.log(data.name, data.city, data.cityId)
 
       },
        setSearching(){
@@ -248,6 +250,9 @@
         console.log(cityName)
 
         searchInput.value = cityName;
+        this.city = cityName;
+        this.cityId = $event.target.querySelector('.cityid').innerText;
+
         document.getElementById('autocomplete-wrapper').style.opacity = 0
         document.getElementById('autocomplete-wrapper').style.height = 0;
         document.getElementById('autocomplete-wrapper').style.overflow = 'hidden';
