@@ -100,7 +100,7 @@ export const store = new Vuex.Store({
     },
 
     async addCompany(companyData) {
-      const deletedRows = await CompaniesService.addCompany(companyData);
+      const company = await CompaniesService.addCompany(companyData);
       console.log('action addCompany executed succesfully')
     },
 
