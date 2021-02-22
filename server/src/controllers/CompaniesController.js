@@ -339,7 +339,16 @@ async addCompany(req, res) {
 
   try {   
     
-    const company = await Company.create({name: req.body.name, cityid: req.body.cityId, price: req.body.price})
+    const company = await Company.create({
+      name: req.body.name,
+      cityid: req.body.cityId,
+      price: req.body.price,
+      description: req.body.description,
+      email: req.body.email,
+      ledger: req.body.ledger,
+      lumpSum: req.body.lumpSum,
+      inPerson: req.body.inPerson,
+      remote: true})
     console.log(`added company: ${company.name}`);
     res.status(200).send(company)
   } catch(err) {
