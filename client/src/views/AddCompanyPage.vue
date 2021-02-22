@@ -92,7 +92,7 @@
                     <input 
                     type="checkbox"
                     id="ledger"
-                    @change="ledger='true'"
+                    @change="ledger=!ledger"
                      />
                     <label for="ledger">
                       Księga Przychodów i Rozchodów
@@ -103,6 +103,7 @@
                     <input 
                     type="checkbox"
                     id="lump-sum"
+                    @change="lumpSum=!lumpSum"
                      />
                     <label for="ledger">
                       Ryczałt
@@ -122,6 +123,7 @@
                     type="checkbox"
                     id="remote"
                     checked
+                    @change="remote=!remote"
                      />
                     <label for="remote">
                       Telefoniczny/on-line
@@ -131,7 +133,7 @@
                     <input 
                     type="checkbox"
                     id="in-person"
-                    value="in_person"
+                    @change="inPerson=!inPerson"
                      />
                     <label for="inperson">
                       Osobisty
@@ -175,7 +177,6 @@
       </form>
     </div>
 
-    <!-- to do add if no city form add city in a separate component -->
 </template>
 
 <style scoped>
@@ -195,7 +196,7 @@
         cityname: '',
         cityId: '',
         ledger: false,
-        lumSum: false,
+        lumpSum: false,
         remote: true,
         inPerson: false
       }
@@ -208,15 +209,16 @@
           name: this.name,
           city: this.city,
           cityId: this.cityId,
-          region: this.region,
           price: this.price,
           description: this.description,
           email: this.email,
           additionalPoints: this.additionalPoints,
-          ledger: this.ledger
+          ledger: this.ledger,
+          lumpSum: this.lumpSum,
+          inPerson: this.inPerson,
         }
 
-        console.log(data.name, data.city, data.cityId, data.ledger)
+        console.log(`name: ${data.name}, city name: ${data.city}, city id: ${data.cityId}, price: ${data.price}, description: ${data.description}, email: ${data.email}, additional info: ${data.additionalPoints}, ledger: ${data.ledger}, lump sum: ${data.lumpSum}, contact remote: ${data.remote}, contatct in person : ${data.inPerson}`)
 
       },
        setSearching(){
