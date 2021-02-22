@@ -44,7 +44,7 @@
                         </button>
                       </li>
                     </ul>
-                    <button>Dodaj miasto</button>
+                    <router-link to='add-city'>Dodaj miasto</router-link>
                   </div> <!--div autocomplete -->
                 </div> <!-- /autocomplete wrapper -->
 
