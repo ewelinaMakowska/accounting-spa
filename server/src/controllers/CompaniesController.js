@@ -329,6 +329,22 @@ async deleteCompany(req, res) {
     })
   }
 
+},
+
+
+
+async addCompany(req, res) {
+  try {   
+    const company = await Company.create({name: req.query.name})
+    console.log(`added company: ${company.name}`);
+    res.status(200).send(company)
+  } catch(err) {
+    console.log(err)
+    res.status(204).send({
+      errors: err
+    })
+  }
+
 }
 
 

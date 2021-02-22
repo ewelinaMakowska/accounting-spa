@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form @submit="addCompany($event)">
+    <form @submit="addCompany($event)" novalidate>
       <div class="row">
         <div class="col-lg-12">
           <h1>Dodaj firmę</h1>
@@ -152,6 +152,7 @@
                     <input 
                     type="email"
                     placeholder="Adres mailowy firmy"
+                    v-model.trim="email"
                     />
                     </li>
                 </ul>
@@ -202,7 +203,7 @@
       }
     },
     methods: {
-      addCompany($event) {
+      async addCompany($event) {
         $event.preventDefault()
 
         const data = {
@@ -218,7 +219,15 @@
           inPerson: this.inPerson,
         }
 
-        console.log(`name: ${data.name}, city name: ${data.city}, city id: ${data.cityId}, price: ${data.price}, description: ${data.description}, email: ${data.email}, additional info: ${data.additionalPoints}, ledger: ${data.ledger}, lump sum: ${data.lumpSum}, contact remote: ${data.remote}, contatct in person : ${data.inPerson}`)
+        console.log(`name: ${data.name}, city name: ${data.city}, city id: ${data.cityId}, price: ${data.price}, description: ${data.description}, email: ${data.email}, additional info: ${data.additionalPoints}, ledger: ${data.ledger}, lump sum: ${data.lumpSum}, contatct in person : ${data.inPerson}`)
+
+        try {
+          const company = await this.$store.dispatch('addCompany', data);
+          console.log(company)
+        } catch(err) {
+          console.log(err)
+        }
+  
 
       },
        setSearching(){
@@ -293,9 +302,6 @@
         } else {
           document.getElementById('autocomplete-wrapper').style.opacity = 0;
           document.getElementById('autocomplete-wrapper').style.height = 0;
-
-
-
         }
       },
     },

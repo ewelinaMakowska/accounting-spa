@@ -46,5 +46,9 @@ export default {
   // }
   deleteCompany(companyId) {
     return Api.delete(`deleteCompany/${companyId}`, companyId)
+  },
+
+  addCompany(companyData) {
+    return Api.post(`addCompany/?name=${companyData.name}&cityid=${companyData.cityId}&price=${companyData.price}&email=${companyData.email}&description=${companyData.description}&ledger=${companyData.ledger}&lumpsum=${companyData.lumpSum}&inperson=${companyData.inPerson}&additionalpoints=${companyData.additionalPoints}`, companyData)
   }
 }

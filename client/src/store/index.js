@@ -97,7 +97,11 @@ export const store = new Vuex.Store({
     async deleteCompany({commit}, companyId) {
       const deletedRows = await CompaniesService.deleteCompany(companyId);
       console.log('action deleteCompany executed succesfully')
+    },
 
+    async addCompany(companyData) {
+      const deletedRows = await CompaniesService.addCompany(companyData);
+      console.log('action addCompany executed succesfully')
     },
 
     async loadCompaniesAction ({ commit }) {
