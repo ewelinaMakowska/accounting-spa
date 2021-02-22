@@ -22,12 +22,13 @@
                 v-model.trim="city"
                 @keyup="loadCitiesFilteredLimited($event)"
                 @focus="setSearching()"
-                @blur="setSearchingFalse()"
+            
                 id="city-input"
                 autocomplete="off"
                 />
 
-                 <div class="autocomplete__wrapper" tabindex="0" v-show="(this.searching)">
+                 <div class="autocomplete__wrapper" tabindex="0" id="autocomplete-wrapper" 
+                 style="opacity: 0">
                   <div class="autocomplete">
                     <ul class="autocomplete__list">
                       <li
@@ -192,6 +193,7 @@
         description: '',
         email: '',
         additionalPoints: '',
+        cityname: '',
         searching: false
       }
     },
@@ -246,6 +248,15 @@
         console.log(cityName)
 
         searchInput.value = cityName;
+        document.getElementById('autocomplete-wrapper').style.opacity = 0
+        document.getElementById('autocomplete-wrapper').style.height = 0;
+        document.getElementById('autocomplete-wrapper').style.overflow = 'hidden';
+
+    
+
+        
+         // this.searching = false
+       
 
     /*     this.$router.push({ path: 'search', query: { city: cityID, page: 1}})
         window.location.reload(); */
@@ -265,9 +276,16 @@
           })
 
         if ($event.target.value!=''){
-          this.searching = 1 
+          //this.searching = 1 
+          document.getElementById('autocomplete-wrapper').style.opacity = 1;
+          document.getElementById('autocomplete-wrapper').style.height = 'auto';
+
         } else {
-          this.searching = 0
+          document.getElementById('autocomplete-wrapper').style.opacity = 0;
+          document.getElementById('autocomplete-wrapper').style.height = 0;
+
+
+
         }
       },
     },
@@ -275,6 +293,9 @@
       cities() {
         return this.$store.getters.loadedCities
       }
+    },
+    update() {
+
     }
   }
 </script>
