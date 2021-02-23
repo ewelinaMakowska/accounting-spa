@@ -229,6 +229,10 @@ return state.loadedOffices; //?
       let userLogin = user.email;
       
       return userLogin;
+    },
+
+    token(state) {
+      return state.token;
     }
 
   }, // getters

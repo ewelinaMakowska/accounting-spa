@@ -1,5 +1,3 @@
-//const { getUserData } = require("../controllers/AuthController")
-
 const { City } = require('../models')
 const { Op } = require('sequelize');
 

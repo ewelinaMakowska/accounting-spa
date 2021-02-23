@@ -16,7 +16,8 @@ const CompaniesControllerPolicy = require('./policies/CompaniesControllerPolicy'
 
 
 const isAuth = require('./middleware/is-auth')
-const checkIfCityExists = require('./middleware/checkIfCityExists')
+const checkIfCityExists = require('./middleware/checkIfCityExists');
+const { token } = require('morgan');
 
 const app = express()
 const port = 3306
@@ -30,7 +31,7 @@ app.use((req, res, next) => {
     'Access-Control-Allow-Methods',
     'OPTIONS, GET, POST, PUT, PATCH, DELETE'
   ); */
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+ res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next()
 })
 
@@ -62,8 +63,8 @@ app.post('/email', ContactControllerPolicy.email, ContactController.mailCompany)
 app.post('/register', AuthControllerPolicy.registerUser, AuthController.registerUser)
 app.post('/login',  AuthControllerPolicy.loginUser, AuthController.login)
 
-app.get('/editContent', CompaniesControllerPolicy.search, CompaniesController.getByNameOrID)
-app.delete('/deleteCompany/:companyId', CompaniesController.deleteCompany)
+app.get('/editContent', isAuth, CompaniesControllerPolicy.search, CompaniesController.getByNameOrID)
+app.delete('/deleteCompany/:companyId', isAuth, CompaniesController.deleteCompany)
 app.post('/addCompany', CompaniesController.addCompany)
 
 
