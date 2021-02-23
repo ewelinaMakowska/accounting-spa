@@ -16,6 +16,7 @@ const CompaniesControllerPolicy = require('./policies/CompaniesControllerPolicy'
 
 
 const isAuth = require('./middleware/is-auth')
+const checkIfCityExists = require('./middleware/checkIfCityExists')
 
 const app = express()
 const port = 3306
@@ -54,7 +55,7 @@ app.get('/company/:id', CompaniesController.getOne)
 //app.get('/companies/:id', CompaniesController.getOne)
 app.get('/cities', CitiesController.getCities)
 app.get('/citiesFilteredLimited', CitiesController.getCitiesFilteredLimited)
-app.post('/addCity', CitiesController.addCity)
+app.post('/addCity', checkIfCityExists, CitiesController.addCity)
 app.get('/userProfile', isAuth, AuthController.getUserData)
 
 app.post('/email', ContactControllerPolicy.email, ContactController.mailCompany)
