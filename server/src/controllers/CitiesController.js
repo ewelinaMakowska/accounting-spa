@@ -37,7 +37,23 @@ async getCitiesFilteredLimited(req, res, next) {
       error: 'Internal Server Error'
     });
   } 
-} 
+},
+
+async addCity(req, res) {
+  try {
+    const newCity = await City.create({
+      name: req.query.name,
+      region: req.query.region
+    })
+
+    if(newCity) {
+      res.status(200).send(newCity)
+    }
+  } catch(err) {
+    console.log(err)
+    res.status(500).send(err)
+  }
+}
 
 
 }

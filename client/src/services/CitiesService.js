@@ -8,6 +8,11 @@ export default {
   },
   getFilteredLimited (value) {
     return Api.get(`citiesFilteredLimited/?name=${value}`, value)
+  },
+  addCity(City) {
+    console.log('SERVICE')
+    console.log(City.name, City.region)
+    return Api.post(`addCity/?name=${City.name}&region=${City.region}`)
   }
 
 }

@@ -54,6 +54,7 @@ app.get('/company/:id', CompaniesController.getOne)
 //app.get('/companies/:id', CompaniesController.getOne)
 app.get('/cities', CitiesController.getCities)
 app.get('/citiesFilteredLimited', CitiesController.getCitiesFilteredLimited)
+app.post('/addCity', CitiesController.addCity)
 app.get('/userProfile', isAuth, AuthController.getUserData)
 
 app.post('/email', ContactControllerPolicy.email, ContactController.mailCompany)
