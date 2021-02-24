@@ -89,7 +89,7 @@
 
                 <div class="companies-list__buttons">
                   <router-link :to="'/office/' + office.id">Profil</router-link>
-                  <button>Edytuj</button>
+                  <router-link :to="'/office/' + office.id + '?edit=true#edit-company'">Edytuj</router-link>
                   <button @click="deleteCompany($event)" :id="office.id">Usuń</button>
                 </div>
               </div>
