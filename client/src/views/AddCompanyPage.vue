@@ -44,7 +44,7 @@
                         </button>
                       </li>
                     </ul>
-                    <router-link to='add-city'>Dodaj miasto</router-link>
+                    <router-link to='add-city' id="add-city-btn">Dodaj miasto</router-link>
                   </div> <!--div autocomplete -->
                 </div> <!-- /autocomplete wrapper -->
 
@@ -262,7 +262,7 @@ import CompaniesService from '../services/CompaniesService'
           this.searching = 0;
           console.log('set searching false')
         }, 500)
-      },
+      }, 
 
       async loadCities () {
         await this.$store.dispatch('loadCities')
@@ -275,6 +275,7 @@ import CompaniesService from '../services/CompaniesService'
     //handler of a button with city name - ads cityid to url
       async autocompleteInput ($event) {
         $event.preventDefault();
+
         const cityID = $event.target.childNodes[1].innerText;
         const cityName = $event.target.innerText;
         const searchInput = document.getElementById('city-input');
@@ -290,9 +291,12 @@ import CompaniesService from '../services/CompaniesService'
         this.city = cityName;
         this.cityId = $event.target.querySelector('.cityid').innerText;
 
-        document.getElementById('autocomplete-wrapper').style.opacity = 0
-        document.getElementById('autocomplete-wrapper').style.height = 0;
-        document.getElementById('autocomplete-wrapper').style.overflow = 'hidden';
+        let autocompleteWrapper = document.getElementById('autocomplete-wrapper')
+
+        autocompleteWrapper.style.opacity = 0
+        autocompleteWrapper.style.height = 0;
+        autocompleteWrapper.style.overflow = 'hidden';
+        
         this.selected = true;
     
 
@@ -318,14 +322,24 @@ import CompaniesService from '../services/CompaniesService'
             console.log(error)
           })
 
-        if ($event.target.value!=''){
+        var autocompleteWrapper = document.getElementById('autocomplete-wrapper');
+        var addCityBtn = document.getElementById('add-city-btn');
+
+
+
+        if ($event.target.value!='' && autocompleteWrapper && addCityBtn ){
           //this.searching = 1 
-          document.getElementById('autocomplete-wrapper').style.opacity = 1;
-          document.getElementById('autocomplete-wrapper').style.height = 'auto';
+
+
+          autocompleteWrapper.style.opacity = 1;
+          autocompleteWrapper.style.height = 'auto';
+          addCityBtn.setAttribute('disabled', false)
 
         } else {
-          document.getElementById('autocomplete-wrapper').style.opacity = 0;
-          document.getElementById('autocomplete-wrapper').style.height = 0;
+          autocompleteWrapper.style.opacity = 0;
+          autocompleteWrapper.style.height = 0;
+          addCityBtn.setAttribute('disabled', true)
+
         }
       },
     },

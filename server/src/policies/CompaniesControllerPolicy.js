@@ -20,7 +20,7 @@ module.exports = {
     add : [
       body('name')
         .isLength({min: 2, max: 30})
-        .withMessage(`Name must be between 1 or max 15 length`)
+        .withMessage(`Name must be between 1 or max 30 length`)
         .trim(),
       body('description')
         .isLength({min: 3, max: 350})
