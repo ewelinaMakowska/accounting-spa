@@ -123,7 +123,7 @@
                     type="checkbox"
                     id="remote"
                     checked
-                    @change="remote=!remote"
+                    @change="remote=!remote" 
                      />
                     <label for="remote">
                       Telefoniczny/on-line
@@ -208,11 +208,25 @@ import CompaniesService from '../services/CompaniesService'
       async addCompany($event) {
         $event.preventDefault()
 
+        let price = this.price.split('')  
+
+        price = price.map(function(character) {
+          if(character === ',') {
+            return '.'
+          } else {
+            return character
+          }
+        })
+
+        price = price.join('')
+
+
+
         const data = {
           name: this.name,
           city: this.city,
           cityId: this.cityId,
-          price: this.price,
+          price: price,
           description: this.description,
           email: this.email,
           additionalPoints: this.additionalPoints,
