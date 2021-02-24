@@ -201,14 +201,15 @@ import CompaniesService from '../services/CompaniesService'
         ledger: false,
         lumpSum: false,
         remote: true,
-        inPerson: false
+        inPerson: false,
+        selected: false
       }
     },
     methods: {
       async addCompany($event) {
         $event.preventDefault()
-
-        let price = this.price.split('')  
+        if(this.selected == true) {
+          let price = this.price.split('')  
 
         price = price.map(function(character) {
           if(character === ',') {
@@ -244,6 +245,11 @@ import CompaniesService from '../services/CompaniesService'
           console.log(err)
         }
   
+        } else {
+          console.log('CITY MUST BE CHOSEN FROM LIST')
+        }
+
+        
 
       },
        setSearching(){
@@ -287,7 +293,7 @@ import CompaniesService from '../services/CompaniesService'
         document.getElementById('autocomplete-wrapper').style.opacity = 0
         document.getElementById('autocomplete-wrapper').style.height = 0;
         document.getElementById('autocomplete-wrapper').style.overflow = 'hidden';
-
+        this.selected = true;
     
 
         
@@ -303,6 +309,7 @@ import CompaniesService from '../services/CompaniesService'
 
     //gets list of cities and shows it
       async loadCitiesFilteredLimited($event) {
+        this.selected = false;
         const name = document.getElementById('city-input').value;
         console.log(`name: ${name}`)
 
