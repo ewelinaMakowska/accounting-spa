@@ -21,9 +21,7 @@
                 placeholder="Miasto"
                 v-model.trim="city"
                 @keyup="loadCitiesFilteredLimited($event)"
-                @focus="setSearching()"
-                @blur="setSearchingFalse()"
-            
+                @blur="hideAutocompleteWrapperDelayed($event)"           
                 id="city-input"
                 autocomplete="off"
                 />
@@ -38,7 +36,7 @@
                       >
                         <button
                           class="autocomplete_button"
-                          @click="autocompleteInput($event)"
+                          @click="autocompleteInput($event, hideAutocompleteWrapperDelayed($event))"
                         >                        
                            {{ city.name }}, {{ city.region }}
                           <span class="cityid" style="display:none;">{{city.id}}</span>
@@ -222,8 +220,6 @@ import CompaniesService from '../services/CompaniesService'
 
         price = price.join('')
 
-
-
         const data = {
           name: this.name,
           city: this.city,
@@ -245,34 +241,23 @@ import CompaniesService from '../services/CompaniesService'
         } catch(err) {
           console.log(err)
         }
-  
         } else {
           console.log('CITY MUST BE CHOSEN FROM LIST')
         }
-
-        
-
       },
-       setSearching(){
-        this.searching = 1;
-        console.log('set searching true')
-      },
-
-      setSearchingFalse(){
-        setTimeout(() => {
-          this.searching = 0;
-          console.log('set searching false')
-        }, 500)
-      }, 
-
       hideAutocompleteWrapper() {
         const autocompleteWrapper = document.getElementById('autocomplete-wrapper')
 
         autocompleteWrapper.style.opacity = 0
         autocompleteWrapper.style.height = 0;
         autocompleteWrapper.style.overflow = 'hidden';
-
         console.log('autocomplete hidden')
+      },
+
+      hideAutocompleteWrapperDelayed() {
+        setTimeout(() => {
+          this.hideAutocompleteWrapper();
+        }, 200)
       },
 
       showAutocompleteWrapper() {
@@ -293,7 +278,8 @@ import CompaniesService from '../services/CompaniesService'
       },
 
     //handler of a button with city name - ads cityid to url
-      async autocompleteInput ($event) {
+      async autocompleteInput ($event, callback) {
+        this.selected = true;
         $event.preventDefault();
 
         const cityID = $event.target.childNodes[1].innerText;
@@ -310,20 +296,6 @@ import CompaniesService from '../services/CompaniesService'
         searchInput.value = cityName;
         this.city = cityName;
         this.cityId = $event.target.querySelector('.cityid').innerText;
-
-        this.hideAutocompleteWrapper();
-        this.selected = true;
-    
-
-        
-         // this.searching = false
-       
-
-    /*     this.$router.push({ path: 'search', query: { city: cityID, page: 1}})
-        window.location.reload(); */
-
-      // await this.searchResults()
-       // document.getElementsByClassName('autocomplete')[0].classList.add('hidden')
       },
 
     //gets list of cities and shows it
@@ -341,13 +313,11 @@ import CompaniesService from '../services/CompaniesService'
         var addCityBtn = document.getElementById('add-city-btn');
 
         if ($event.target.value!='' && autocompleteWrapper && addCityBtn ){
-          //this.searching = 1 
           this.showAutocompleteWrapper()
           addCityBtn.removeAttribute('disabled')
         } else {
           this.hideAutocompleteWrapper()
-          addCityBtn.setAttribute('disabled')
-
+          addCityBtn.setAttribute('disabled', '')
         }
       },
     },
