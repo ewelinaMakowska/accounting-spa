@@ -1,4 +1,4 @@
-const { query } = require('express-validator')
+const { query, body } = require('express-validator')
 
 
 module.exports = {
@@ -18,35 +18,35 @@ module.exports = {
     ],
 
     add : [
-      query('name')
+      body('name')
         .isLength({min: 2, max: 30})
         .withMessage(`Name must be between 1 or max 15 length`)
         .trim(),
-      query('description')
+      body('description')
         .isLength({min: 3, max: 350})
         .withMessage('Description must be at least 3 characters long and max 250')
         .trim(),
-      query('price')
+      body('price')
         .isLength({min: 1, max: 6})
         .withMessage('Price must be at least 1 characters long and max 6')
         .isDecimal({min:1})
         .withMessage('Price must be a decimal value')
         .trim(),
-      query('email')
+      body('email')
         .isEmail()
         .withMessage('Email must be an email')
         .trim(),
-      query('additionalData')
+      body('additionalData')
         .isLength({max: 150})
         .withMessage('Additional info must be min 3 characters long, max 50')
         .trim(),
-      query('ledger')
+      body('ledger')
         .isBoolean()
         .withMessage('ledger must be boolean'),
-      query('lumpSum')
+      body('lumpSum')
         .isBoolean()
         .withMessage('lump sum must be boolean'),
-      query('inPerson')
+      body('inPerson')
         .isBoolean()
         .withMessage('inPerson must be boolean'),
     ]

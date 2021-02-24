@@ -334,29 +334,37 @@ async deleteCompany(req, res) {
 
 
 async addCompany(req, res) {
+  const errors = validationResult(req);
+
   console.log(req.body)
   console.log(' ')
 
-  try {   
-    
-    const company = await Company.create({
-      name: req.body.name,
-      cityid: req.body.cityId,
-      price: req.body.price,
-      description: req.body.description,
-      email: req.body.email,
-      ledger: req.body.ledger,
-      lumpSum: req.body.lumpSum,
-      inPerson: req.body.inPerson,
-      remote: true})
-    console.log(`added company: ${company.name}`);
-    res.status(200).send(company)
-  } catch(err) {
-    console.log(err)
-    res.status(500).send({
-      error: err
+  if(!errors.isEmpty()){
+    return res.status(422).send({
+      error: errors
     })
+  } else {
+    try {   
+      const company = await Company.create({
+        name: req.body.name,
+        cityid: req.body.cityId,
+        price: req.body.price,
+        description: req.body.description,
+        email: req.body.email,
+        ledger: req.body.ledger,
+        lumpSum: req.body.lumpSum,
+        inPerson: req.body.inPerson,
+        remote: true})
+      console.log(`added company: ${company.name}`);
+      res.status(200).send(company)
+    } catch(err) {
+      console.log(err)
+      res.status(500).send({
+        error: err
+      })
+    }
   }
+ 
 
 }
 
