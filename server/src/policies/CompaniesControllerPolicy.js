@@ -26,6 +26,10 @@ module.exports = {
         .isLength({min: 3, max: 350})
         .withMessage('Description must be at least 3 characters long and max 250')
         .trim(),
+      body('cityid')
+        .notEmpty()
+        .isInt({min: 1})
+        .withMessage('City id must be an int greater than zero'),
       body('price')
         .isLength({min: 1, max: 6})
         .withMessage('Price must be at least 1 characters long and max 6')
