@@ -45,7 +45,7 @@
                         </button>
                       </li>
                     </ul>
-                    <router-link to='add-city' id="add-city-btn">Dodaj miasto</router-link>
+                    <router-link to='add-city' id="add-city-btn" disabled>Dodaj miasto</router-link>
                   </div> <!--div autocomplete -->
                 </div> <!-- /autocomplete wrapper -->
 
@@ -343,10 +343,10 @@ import CompaniesService from '../services/CompaniesService'
         if ($event.target.value!='' && autocompleteWrapper && addCityBtn ){
           //this.searching = 1 
           this.showAutocompleteWrapper()
-          addCityBtn.setAttribute('disabled', false)
+          addCityBtn.removeAttribute('disabled')
         } else {
           this.hideAutocompleteWrapper()
-          addCityBtn.setAttribute('disabled', true)
+          addCityBtn.setAttribute('disabled')
 
         }
       },

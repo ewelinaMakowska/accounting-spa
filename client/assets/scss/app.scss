@@ -38,6 +38,11 @@ input[type='submit'] {
   }
 }
 
+a[disabled]:hover,
+button[disabled]:hover {
+  cursor: default;
+  pointer-events: none;
+}
 
 //TOP BAR 
 .top-bar {
