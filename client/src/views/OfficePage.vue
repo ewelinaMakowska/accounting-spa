@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12" v-if="notLoading">
-            <company-info :company="company"/>            
+            <company-info :company="company" />            
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@
     
     <!-- visible with param ?edit and if admin -->
     <section id="edit-company" v-if="this.$route.query.edit=='true'">
-      edit company form
+      <edit-company :company="company" />
     </section>
   </div> 
 </template>
@@ -65,11 +65,13 @@ import CompaniesService from '../services/CompaniesService'
 import ContactService from '../services/ContactService'
 import TopBar from '../components/TopBar.vue' 
 import CompanyInfo from '../components/CompanyInfo.vue'
+import EditCompany from '../components/EditCompany.vue'
 
 export default {
   components: {
     TopBar,
-    CompanyInfo
+    CompanyInfo,
+    EditCompany
   },
   data() {
     return {

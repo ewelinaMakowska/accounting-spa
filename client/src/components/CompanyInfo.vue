@@ -89,6 +89,7 @@
       async editCompany($event) {
         const companyId = this.$route.params.id;
         history.pushState({}, '', `/office/${companyId}?edit=true`);
+        window.location.reload()
       }
     },
     props: {
