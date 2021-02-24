@@ -24,6 +24,9 @@
           <div class="basic-data__price">
             <p>Od &nbsp;<span>{{ company.price }}</span> &nbsp;zł/msc</p>
             <button class="blue-button contact_us-button">Skontaktuj się z nami</button>
+            <!-- visible only for an admin -->
+            <button @click="editCompany($event)">Edytuj firmę</button>
+            
           </div>
         </div>
       </div>
@@ -77,6 +80,17 @@
 
 <script>
   export default {
+    data() {
+      return {
+
+      }
+    },
+    methods: {
+      async editCompany($event) {
+        const companyId = this.$route.params.id;
+        history.pushState({}, '', `/office/${companyId}?edit=true`);
+      }
+    },
     props: {
       company: Object
     }
