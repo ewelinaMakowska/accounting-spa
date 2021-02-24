@@ -22,6 +22,7 @@
                 v-model.trim="city"
                 @keyup="loadCitiesFilteredLimited($event)"
                 @focus="setSearching()"
+                @blur="setSearchingFalse()"
             
                 id="city-input"
                 autocomplete="off"
@@ -264,6 +265,25 @@ import CompaniesService from '../services/CompaniesService'
         }, 500)
       }, 
 
+      hideAutocompleteWrapper() {
+        const autocompleteWrapper = document.getElementById('autocomplete-wrapper')
+
+        autocompleteWrapper.style.opacity = 0
+        autocompleteWrapper.style.height = 0;
+        autocompleteWrapper.style.overflow = 'hidden';
+
+        console.log('autocomplete hidden')
+      },
+
+      showAutocompleteWrapper() {
+        const autocompleteWrapper = document.getElementById('autocomplete-wrapper')
+
+        autocompleteWrapper.style.opacity = 1;
+        autocompleteWrapper.style.height = 'auto';
+
+        console.log('autocomplete shown')
+      },
+
       async loadCities () {
         await this.$store.dispatch('loadCities')
           .catch(function (error) {
@@ -291,12 +311,7 @@ import CompaniesService from '../services/CompaniesService'
         this.city = cityName;
         this.cityId = $event.target.querySelector('.cityid').innerText;
 
-        let autocompleteWrapper = document.getElementById('autocomplete-wrapper')
-
-        autocompleteWrapper.style.opacity = 0
-        autocompleteWrapper.style.height = 0;
-        autocompleteWrapper.style.overflow = 'hidden';
-        
+        this.hideAutocompleteWrapper();
         this.selected = true;
     
 
@@ -325,19 +340,12 @@ import CompaniesService from '../services/CompaniesService'
         var autocompleteWrapper = document.getElementById('autocomplete-wrapper');
         var addCityBtn = document.getElementById('add-city-btn');
 
-
-
         if ($event.target.value!='' && autocompleteWrapper && addCityBtn ){
           //this.searching = 1 
-
-
-          autocompleteWrapper.style.opacity = 1;
-          autocompleteWrapper.style.height = 'auto';
+          this.showAutocompleteWrapper()
           addCityBtn.setAttribute('disabled', false)
-
         } else {
-          autocompleteWrapper.style.opacity = 0;
-          autocompleteWrapper.style.height = 0;
+          this.hideAutocompleteWrapper()
           addCityBtn.setAttribute('disabled', true)
 
         }
