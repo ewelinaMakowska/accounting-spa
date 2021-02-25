@@ -1,6 +1,6 @@
 const { Op } = require('sequelize');
 const { City } = require('../models/');
-const CITIES_ON_AUTOCOMPLETE = 5;
+const CITIES_ON_AUTOCOMPLETE = 10;
 const { validationResult } = require('express-validator');
 
 module.exports = {
