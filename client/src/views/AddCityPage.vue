@@ -29,19 +29,25 @@ import CitiesService from '../services/CitiesService'
       }
     },
     methods: {
+      capitalizeFirstLetter(string) {
+        //todo: capitalize first letters of city
+
+
+        
+
+      },
       addCity($event) {
         $event.preventDefault();
 
-        const name = encodeURI(this.City.name);
+        const name = this.capitalizeFirstLetter(this.City.name)
         console.log(name)
-        const region = encodeURI(this.City.region);
+        const region = this.City.region.toLowerCase();
         console.log(region)
 
         const City = {
           name: name,
           region: region
         }
-
 
       //  console.log(City.name, City.region)
          try {
