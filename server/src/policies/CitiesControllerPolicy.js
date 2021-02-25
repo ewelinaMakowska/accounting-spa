@@ -13,7 +13,7 @@ const region = {
   "region": {
     in: 'body',
     matches: {
-      options: [/[\p{Letter}\s]+/gu],
+      options: [/[\p{Letter}-]+/gu],
       errorMessage: "Invalid region"
     }
   }
