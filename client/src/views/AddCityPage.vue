@@ -30,12 +30,19 @@ import CitiesService from '../services/CitiesService'
     },
     methods: {
       capitalizeFirstLetter(string) {
-        //todo: capitalize first letters of city
+        var words = string.split(' ')
+        console.log(words)
 
 
-        
+        for(let i = 0; i < words.length; i++) {
+          words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+          console.log(words[i])
+        }
 
+         return words = words.join(' ')
       },
+      
+
       addCity($event) {
         $event.preventDefault();
 
