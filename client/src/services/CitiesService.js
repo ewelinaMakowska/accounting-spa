@@ -12,7 +12,8 @@ export default {
   addCity(City) {
     console.log('SERVICE')
     console.log(City.name, City.region)
-    return Api.post(`addCity/?name=${City.name}&region=${City.region}`)
+    //return Api.post(`addCity/?name=${City.name}&region=${City.region}`)
+    return Api.post('addCity', City)
   }
 
 }

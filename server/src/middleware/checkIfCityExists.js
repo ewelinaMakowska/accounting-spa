@@ -7,8 +7,8 @@ module.exports = async (req, res, next) => {
       const cities = await City.findAll({
         where: {
           [Op.and]: [
-            {name: req.query.name},
-            {region: req.query.region}
+            {name: req.body.name},
+            {region: req.body.region}
           ]
         }
       })
