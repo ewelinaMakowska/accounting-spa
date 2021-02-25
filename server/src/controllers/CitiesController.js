@@ -22,7 +22,7 @@ async getCities (req, res) {
 
 async getCitiesFilteredLimited(req, res, next) {
   try {
-    const value = req.body.name;
+    const value = req.query.name;
 
     const cities = await City.findAndCountAll({
       offset: 0,
@@ -46,24 +46,20 @@ async addCity(req, res) {
     res.status(422).send({
       error: errors
     })
+
   } else {
     try {
-      console.log('BODYYY')
-      console.log(req.body)
       const newCity = await City.create({
-        name: req.body.name,
-        region: req.body.region
+        name: req.query.name,
+        region: req.query.region
       })
   
       if(newCity) {
         res.status(200).send(newCity)
-        errors = null
       }
     } catch(err) {
       console.log(err)
-
       res.status(500).send(err)
-      
     }
   }
   

@@ -5,8 +5,8 @@
         <h1>Dodaj miasto</h1>
         
         <form class="form" @submit="addCity($event)">
-          <input id="city-input" type="text" v-model.trim="City.name" /><br/>
-          <input id="region-input" type="text" v-model.trim="City.region" /><br/>
+          <input type="text" v-model.trim="City.name" /><br/>
+          <input type="text" v-model.trim="City.region" /><br/>
           <input type="submit" value="Dodaj" />
         </form>
 
@@ -43,7 +43,7 @@ import CitiesService from '../services/CitiesService'
       },
       
 
-      async addCity($event) {
+      addCity($event) {
         $event.preventDefault();
 
         const name = this.capitalizeFirstLetter(this.City.name)
@@ -58,8 +58,7 @@ import CitiesService from '../services/CitiesService'
 
       //  console.log(City.name, City.region)
          try {
-          const newCity = await CitiesService.addCity(City)
-          console.log(newCity)
+          CitiesService.addCity(City)
         } catch(err) {
           console.log(err)
         } 
