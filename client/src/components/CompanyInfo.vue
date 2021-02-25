@@ -88,7 +88,7 @@
     methods: {
       async editCompany($event) {
         const companyId = this.$route.params.id;
-        history.pushState({}, '', `/office/${companyId}?edit=true`);
+        history.pushState({}, '', `/office/${companyId}?edit=true#edit-form`);
         window.location.reload()
       }
     },

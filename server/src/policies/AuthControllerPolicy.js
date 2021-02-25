@@ -11,7 +11,6 @@ const Password = {
 }
 
 module.exports = {
-
   registerUser : [
     body('eMail')
       .isEmail()

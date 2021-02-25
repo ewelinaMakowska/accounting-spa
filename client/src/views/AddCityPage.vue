@@ -31,7 +31,16 @@ import CitiesService from '../services/CitiesService'
     methods: {
       addCity($event) {
         $event.preventDefault();
-        const City = this.City;
+
+        const name = encodeURI(this.City.name);
+        console.log(name)
+        const region = encodeURI(this.City.region);
+        console.log(region)
+
+        const City = {
+          name: name,
+          region: region
+        }
 
 
       //  console.log(City.name, City.region)

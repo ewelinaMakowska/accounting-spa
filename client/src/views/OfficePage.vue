@@ -5,6 +5,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12" v-if="notLoading">
+            <!-- v-if="this.$route.query.edit=='false'" -->
             <company-info :company="company" />            
           </div>
         </div>

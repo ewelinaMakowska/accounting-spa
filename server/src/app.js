@@ -13,6 +13,8 @@ const { check, checkSchema, body } = require('express-validator');
 const AuthControllerPolicy = require('./policies/AuthControllerPolicy');
 const ContactControllerPolicy = require('./policies/ContactControllerPolicy');
 const CompaniesControllerPolicy = require('./policies/CompaniesControllerPolicy');
+const CitiesControllerPolicy = require('./policies/CitiesControllerPolicy');
+
 
 
 const isAuth = require('./middleware/is-auth')
@@ -56,7 +58,7 @@ app.get('/company/:id', CompaniesController.getOne)
 //app.get('/companies/:id', CompaniesController.getOne)
 app.get('/cities', CitiesController.getCities)
 app.get('/citiesFilteredLimited', CitiesController.getCitiesFilteredLimited)
-app.post('/addCity', checkIfCityExists, CitiesController.addCity)
+app.post('/addCity', CitiesControllerPolicy.add, checkIfCityExists, CitiesController.addCity)
 app.get('/userProfile', isAuth, AuthController.getUserData)
 
 app.post('/email', ContactControllerPolicy.email, ContactController.mailCompany)

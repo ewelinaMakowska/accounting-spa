@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const { City } = require('../models/');
 const CITIES_ON_AUTOCOMPLETE = 5;
+const { validationResult } = require('express-validator');
 
 module.exports = {
 
@@ -40,19 +41,28 @@ async getCitiesFilteredLimited(req, res, next) {
 },
 
 async addCity(req, res) {
-  try {
-    const newCity = await City.create({
-      name: req.query.name,
-      region: req.query.region
+  const errors = validationResult(req)
+  if(!errors.isEmpty()){
+    res.status(422).send({
+      error: errors
     })
 
-    if(newCity) {
-      res.status(200).send(newCity)
+  } else {
+    try {
+      const newCity = await City.create({
+        name: req.query.name,
+        region: req.query.region
+      })
+  
+      if(newCity) {
+        res.status(200).send(newCity)
+      }
+    } catch(err) {
+      console.log(err)
+      res.status(500).send(err)
     }
-  } catch(err) {
-    console.log(err)
-    res.status(500).send(err)
   }
+  
 }
 
 
