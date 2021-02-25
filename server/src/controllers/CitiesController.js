@@ -50,8 +50,8 @@ async addCity(req, res) {
   } else {
     try {
       const newCity = await City.create({
-        name: req.query.name,
-        region: req.query.region
+        name: req.body.name,
+        region: req.body.region
       })
   
       if(newCity) {
