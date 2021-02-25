@@ -248,10 +248,12 @@ import CompaniesService from '../services/CompaniesService'
       hideAutocompleteWrapper() {
         const autocompleteWrapper = document.getElementById('autocomplete-wrapper')
 
-        autocompleteWrapper.style.opacity = 0
-        autocompleteWrapper.style.height = 0;
-        autocompleteWrapper.style.overflow = 'hidden';
-        console.log('autocomplete hidden')
+        if(autocompleteWrapper) {
+          autocompleteWrapper.style.opacity = 0
+          autocompleteWrapper.style.height = 0;
+          autocompleteWrapper.style.overflow = 'hidden';
+          console.log('autocomplete hidden')
+        }
       },
 
       hideAutocompleteWrapperDelayed() {
