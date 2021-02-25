@@ -1,6 +1,6 @@
 const { Op } = require('sequelize');
 const { City } = require('../models/');
-const CITIES_ON_AUTOCOMPLETE = 10;
+//const CITIES_ON_AUTOCOMPLETE = 10;
 const { validationResult } = require('express-validator');
 
 module.exports = {
@@ -26,7 +26,7 @@ async getCitiesFilteredLimited(req, res, next) {
 
     const cities = await City.findAndCountAll({
       offset: 0,
-      limit: CITIES_ON_AUTOCOMPLETE,
+      //limit: CITIES_ON_AUTOCOMPLETE,
       where: {[Op.or]: [{name: {[Op.like]: `${value}%`}}] //op or
       }
     })
