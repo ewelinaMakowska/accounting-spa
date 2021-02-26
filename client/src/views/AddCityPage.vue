@@ -43,7 +43,7 @@ import CitiesService from '../services/CitiesService'
       },
       
 
-      addCity($event) {
+      async addCity($event) {
         $event.preventDefault();
 
         const name = this.capitalizeFirstLetter(this.City.name)
@@ -56,12 +56,13 @@ import CitiesService from '../services/CitiesService'
           region: region
         }
 
+
       //  console.log(City.name, City.region)
          try {
-          CitiesService.addCity(City)
+          await CitiesService.addCity(City)
         } catch(err) {
           console.log(err)
-        } 
+        }  
       }
     }
   }
