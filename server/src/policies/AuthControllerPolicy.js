@@ -1,4 +1,4 @@
-const { check, checkSchema, body } = require('express-validator')
+const { checkSchema, body, sanitizeBody } = require('express-validator')
 
 const Password = {
   "password": {
@@ -17,11 +17,11 @@ module.exports = {
       .withMessage('Please enter a valid e-mail')
       .normalizeEmail(),
     body('firstName', 'Please enter a valid name')
-      .isAlpha()
+      //.isAlpha()
       .isLength({min:2, max: 25})
       .trim(),
     body('lastName', 'Please enter a valid last name')
-      .isAlpha()
+      //.isAlpha()
       .isLength({min:2, max: 25})
       .trim(),
     checkSchema(Password),

@@ -1,4 +1,5 @@
 const { body, checkSchema, sanitizeBody } = require('express-validator')
+
 const name = {
   "name": {
     in: 'body',
@@ -18,7 +19,6 @@ const region = {
     }
   }
 }
-
 
 module.exports = {
   add : [

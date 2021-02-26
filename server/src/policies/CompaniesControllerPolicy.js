@@ -1,4 +1,4 @@
-const { query, body } = require('express-validator')
+const { query, body, sanitizeBody, sanitizeQuery} = require('express-validator')
 
 
 module.exports = {
@@ -15,6 +15,7 @@ module.exports = {
       .isLength({min: 1, max: 2})
       .withMessage('Please enter a number of length between min 1 and max 2')
       .trim(),
+      sanitizeQuery('*').escape()
     ],
 
     add : [
@@ -27,9 +28,11 @@ module.exports = {
         .withMessage('Description must be at least 3 characters long and max 250')
         .trim(),
       body('cityid')
-        .notEmpty()
+        .isLength({min: 1, max: 3})
+        .withMessage('cityid min length 1')
         .isInt({min: 1})
-        .withMessage('City id must be an int greater than zero'),
+        .withMessage('City id must be an int greater than zero')
+        .trim(),
       body('price')
         .isLength({min: 1, max: 6})
         .withMessage('Price must be at least 1 characters long and max 6')
@@ -39,6 +42,7 @@ module.exports = {
       body('email')
         .isEmail()
         .withMessage('Email must be an email')
+        .normalizeEmail()
         .trim(),
       body('additionalData')
         .isLength({max: 150})
@@ -53,6 +57,7 @@ module.exports = {
       body('inPerson')
         .isBoolean()
         .withMessage('inPerson must be boolean'),
+      sanitizeBody('*').escape()
     ]
 
 }
