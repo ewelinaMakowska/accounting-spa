@@ -638,6 +638,10 @@ button[disabled]:hover {
   display: flex;
 }
 
+.c-profile__title--edit {
+  margin-top: 55px;
+}
+
 .c-profile__title img, .c-profile__title div {
   display: block;
 }
@@ -749,5 +753,67 @@ button[disabled]:hover {
 
 .contact_us-button {
   margin-top: -20px;
+}
+
+.sublist--edit {
+  list-style: none;
+}
+
+.add-company__input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  height: 32px;
+  border-bottom: 2px solid #b0befd;
+}
+
+.add-company__input:focus {
+  outline: none;
+}
+
+.add-company__name {
+  font-size: 25px;
+  font-weight: 700;
+  color: #444444;
+  height: auto;
+  padding-bottom: 8px;
+}
+
+.add-company__city {
+  min-width: 265px;
+}
+
+.add-company__autocomplete {
+  min-width: 265px;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.add-company__description {
+  border-bottom: none;
+  background: transparent;
+  width: 100%;
+}
+
+.add-city-btn {
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 11px;
+  padding: 5px 15px;
+  border: 1px solid #3061fc;
+  border-radius: 2px;
+}
+
+.add-city-btn__wrapper {
+  text-align: center;
+}
+
+.company-description__wrapper {
+  height: 100%;
+  min-height: 250px;
+  width: 80%;
+  background: #DDD;
 }
 /*# sourceMappingURL=app.css.map */

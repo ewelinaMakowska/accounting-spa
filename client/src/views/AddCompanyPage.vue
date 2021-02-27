@@ -1,10 +1,11 @@
 <template>
   <div class="container">
-    <form @submit="addCompany($event)" novalidate>
+
+    <form @submit="addCompany($event)" novalidate id="add-company">
       <div class="row">
         <div class="col-lg-12">
           <h1>Dodaj firmę</h1>
-          <div class="c-profile__title">
+          <div class="c-profile__title c-profile__title--edit">
             <img src="/assets/img/dummy-logo.svg" class="thumb__logo" alt="company logo" />
             <div>
               <h2> 
@@ -12,6 +13,7 @@
                 type="text"
                 placeholder="Nazwa firmy"
                 v-model.trim="name"
+                class="add-company__name add-company__input"
                 />              
               </h2>
 
@@ -24,9 +26,10 @@
                 @blur="hideAutocompleteWrapperDelayed($event)"           
                 id="city-input"
                 autocomplete="off"
+                class="add-company__city add-company__input"
                 />
 
-                 <div class="autocomplete__wrapper" tabindex="0" id="autocomplete-wrapper" 
+                 <div class="autocomplete__wrapper add-company__autocomplete" tabindex="0" id="autocomplete-wrapper" 
                  style="opacity: 0">
                   <div class="autocomplete">
                     <ul class="autocomplete__list">
@@ -43,7 +46,10 @@
                         </button>
                       </li>
                     </ul>
-                    <router-link to='add-city' id="add-city-btn" disabled>Dodaj miasto</router-link>
+
+                    <div class="add-city-btn__wrapper">
+                      <router-link to='add-city' id="add-city-btn" class="transparent-button add-city-btn" disabled>Dodaj miasto</router-link>
+                    </div>
                   </div> <!--div autocomplete -->
                 </div> <!-- /autocomplete wrapper -->
 
@@ -53,14 +59,15 @@
           </div>
 
           <div class="c-profile__basic-data">
-            <div class="basic-data__description">
-              <p class="main-text">
+            <div class="basic-data__description basic-data__description--edit">
+              <div class="company-description__wrapper">
                 <input 
                 type="text"
                 placeholder="Opis firmy"
                 v-model.trim="description"
+                class="add-company__description add-company__input"
                 />
-              </p>
+              </div>
             </div>
 
             <div class="price-wrapper">
@@ -68,8 +75,8 @@
                 <p>Od &nbsp;<span>
                   <input 
                   type="text"
-                  placeholder="Cena"
                   v-model.trim="price"
+                  class="add-company__input add-company__price"
                   />
                 </span> &nbsp;zł/msc</p>
                 <input 
@@ -86,7 +93,7 @@
               <p class="main-text">
                 obsługiwane sposoby rozliczania:<br/>
               </p>
-                <ul class="sublist">
+                <ul class="sublist sublist--edit">
                   <li >
                     <input 
                     type="checkbox"
@@ -116,7 +123,7 @@
               <p class="main-text">
                 kontakt z księgowym:<br/>
               </p>
-                <ul class="sublist">
+                <ul class="sublist sublist--edit">
                   <li >
                     <input 
                     type="checkbox"
@@ -152,6 +159,7 @@
                     type="email"
                     placeholder="Adres mailowy firmy"
                     v-model.trim="email"
+                    class="add-company__input add-company__email"
                     />
                     </li>
                 </ul>
@@ -165,6 +173,7 @@
                   type="text"
                   placeholder="Dodatkowe informacje"
                   v-model.trim="additionalPoints"
+                  class="add-company__input add-company__email"
                   />
                 <br/>
               </p>
