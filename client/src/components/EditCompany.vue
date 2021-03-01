@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    {{company}}
+
       <form @submit="updateCompany($event)" novalidate id="edit-company">
       <div class="row">
         <div class="col-lg-12">
@@ -100,7 +102,7 @@
                     <input 
                     type="checkbox"
                     id="ledger"
-                    @change="ledger=!ledger"
+                    @change="ledger=!ledger; setChecked($event)"
                      />
                     <label for="ledger">
                       Księga Przychodów i Rozchodów
@@ -111,9 +113,9 @@
                     <input 
                     type="checkbox"
                     id="lump-sum"
-                    @change="lumpSum=!lumpSum"
+                    @change="lumpSum=!lumpSum; setChecked($event)"
                      />
-                    <label for="ledger">
+                    <label for="lump_sum">
                       Ryczałt
                     </label>    
                   </li>
@@ -141,9 +143,9 @@
                     <input 
                     type="checkbox"
                     id="in-person"
-                    @change="inPerson=!inPerson"
+                    @change="inPerson=!inPerson; setChecked($event)"
                      />
-                    <label for="inperson">
+                    <label for="in-person">
                       Osobisty
                     </label>   
                   </li>
@@ -213,6 +215,11 @@ import CompaniesService from '../services/CompaniesService'
     methods: {
       async updateCompany($event) {
         $event.preventDefault()
+
+        let ledgerCheckbox = document.getElementById('ledger')
+        let lumpSumCheckbox = document.getElementById('lump-sum')
+        let inPersonCheckbox = document.getElementById('in-person')
+
         if(this.selected == true) {
           let price = this.price.split('')  
 
@@ -236,9 +243,9 @@ import CompaniesService from '../services/CompaniesService'
         price: this.$props.company.price,
         email: this.$props.company.email,
         description: this.$props.company.description,
-        ledger: this.ledger,
-        lumpSum: this.lumpSum,
-        inPerson: this.inPerson,
+        ledger: this.$props.company.ledger,
+        lumpSum: this.$props.company.lump_sum,
+        inPerson: this.$props.company.in_person,
         additionalInfo: this.$props.company.additional_points,
       }
 
@@ -265,6 +272,30 @@ import CompaniesService from '../services/CompaniesService'
       if(this.additionalPoints) {
         dataToSend.additionalInfo = this.additionalPoints
       }
+
+      if(this.email) {
+        dataToSend.email = this.email
+      }
+
+      if(ledgerCheckbox.hasAttribute('checked')) {
+        dataToSend.ledger = 1;
+      } else {
+        dataToSend.ledger = 0;
+      }
+
+      if(lumpSumCheckbox.hasAttribute('checked')) {
+        dataToSend.lumpSum = 1;
+      } else {
+        dataToSend.lumpSum = 0;
+      }
+
+       if(inPersonCheckbox.hasAttribute('checked')) {
+        dataToSend.inPerson = 1;
+      } else {
+        dataToSend.inPerson = 0;
+      }
+
+      
 
       console.log(dataToSend)
 
@@ -314,6 +345,15 @@ import CompaniesService from '../services/CompaniesService'
         console.log(this.$store.getters.state.cities.citiesList)
       },
 
+      setChecked($event) {
+        console.log('checked')
+        if($event.target.hasAttribute('checked')) {
+          $event.target.removeAttribute('checked');
+        } else {
+          $event.target.setAttribute('checked', 'true');
+        }
+      },
+
     //handler of a button with city name - ads cityid to url
       async autocompleteInput ($event) {
         this.selected = true;
@@ -357,12 +397,13 @@ import CompaniesService from '../services/CompaniesService'
           addCityBtn.setAttribute('disabled', '')
         }
       },
+
       checkInputs() {
         if(this.$props.company.ledger) {
           document.getElementById('ledger').setAttribute('checked', true)
         }
 
-        if(this.$props.company.lumpSum) {
+        if(this.$props.company.lump_sum) {
           document.getElementById('lump-sum').setAttribute('checked', true)
         }
 
