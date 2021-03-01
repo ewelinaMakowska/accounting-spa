@@ -241,7 +241,7 @@ import CompaniesService from '../services/CompaniesService'
         ledger: this.ledger,
         lumpSum: this.lumpSum,
         inPerson: this.inPerson,
-        additionalInfo: this.$props.company.additionalPoints,
+        additionalInfo: this.$props.company.additional_points,
       }
 
       if(this.name) {
@@ -271,12 +271,12 @@ import CompaniesService from '../services/CompaniesService'
       console.log(dataToSend)
 
 
-  /*     try {
-          const company = await CompaniesService.updateCompany(dataToSend);
-          console.log(company)
+      try {
+        const company = await CompaniesService.updateCompany(dataToSend);
+        console.log(company)
       } catch(err) {
-          console.log(err)
-      }  */
+        console.log(err)
+      }  
 
         } else {
           console.log('CITY MUST BE CHOSEN FROM LIST')

@@ -366,6 +366,20 @@ async addCompany(req, res) {
   }
  
 
+},
+
+
+async updateCompany(req, res) {
+    try {   
+      const company = await Company.update(req.body, {where: {id: req.params.id}})
+      console.log(`updated company: ${company.name}`);
+      res.status(200).send(company)
+    } catch(err) {
+      console.log(err)
+      res.status(500).send({
+        error: err
+      })
+    }  
 }
 
 

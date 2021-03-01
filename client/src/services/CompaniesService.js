@@ -57,6 +57,6 @@ export default {
   updateCompany(companyData) {
     console.log('SERVICE')
     console.log()
-    return Api.put(`updateCompany`, companyData)
+    return Api.put(`updateCompany/${companyData.id}`, companyData)
   }
 }
