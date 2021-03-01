@@ -67,8 +67,8 @@ app.post('/login',  AuthControllerPolicy.loginUser, AuthController.login)
 
 app.get('/editContent', isAuth, CompaniesControllerPolicy.search, CompaniesController.getByNameOrID)
 app.delete('/deleteCompany/:companyId', isAuth, CompaniesController.deleteCompany)
-app.post('/addCompany', CompaniesControllerPolicy.add, CompaniesController.addCompany)
-app.put('/updateCompany/:id', CompaniesController.updateCompany)
+app.post('/addCompany', isAuth, CompaniesControllerPolicy.add, CompaniesController.addCompany)
+app.put('/updateCompany/:id', isAuth, CompaniesController.updateCompany)
 
 
 
