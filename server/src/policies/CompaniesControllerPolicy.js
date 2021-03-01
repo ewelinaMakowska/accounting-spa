@@ -27,7 +27,7 @@ module.exports = {
         .isLength({min: 3, max: 350})
         .withMessage('Description must be at least 3 characters long and max 250')
         .trim(),
-      body('cityid')
+      body('cityId')
         .isLength({min: 1, max: 3})
         .withMessage('cityid min length 1')
         .isInt({min: 1})
