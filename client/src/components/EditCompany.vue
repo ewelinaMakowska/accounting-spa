@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    {{ company }}
       <form @submit="updateCompany($event)" novalidate id="edit-company">
       <div class="row">
         <div class="col-lg-12">
@@ -226,54 +227,46 @@ import CompaniesService from '../services/CompaniesService'
 
         price = price.join('')
 
-   /*      const data = {
-          name: this.name,
-          city: this.city,
-          cityId: parseInt(this.cityId),
-          price: parseFloat(price),
-          description: this.description,
-          email: this.email,
-          additionalPoints: this.additionalPoints,
-          ledger: this.ledger,
-          lumpSum: this.lumpSum,
-          inPerson: this.inPerson,
-        }
-
-        console.log(`name: ${data.name}, city name: ${data.city}, city id: ${data.cityId}, price: ${data.price}, description: ${data.description}, email: ${data.email}, additional info: ${data.additionalPoints}, ledger: ${data.ledger}, lump sum: ${data.lumpSum}, contatct in person : ${data.inPerson}`) */
 
         //add only changed data
 
-        let dataToSend = {
+      let dataToSend = {
+        name: this.$props.company.name,
+        cityId: this.$props.company.cityId,
+        price: this.$props.company.price,
+        email: this.$props.company.email,
+        description: this.$props.company.description,
         ledger: this.ledger,
         lumpSum: this.lumpSum,
-        inPerson: this.inPerson
-        }
+        inPerson: this.inPerson,
+        additionalInfo: this.$props.company.additionalPoints,
+      }
 
-        if(this.name) {
-          dataToSend.name = this.name
-        }
+      if(this.name) {
+        dataToSend.name = this.name
+      }
 
-        if(this.cityId) {
-          dataToSend.cityId = this.cityId
-        }
+      if(this.cityId) {
+        dataToSend.cityId = this.cityId
+      }
 
-        if(this.price) {
-          dataToSend.price = this.price
-        }
+      if(this.price) {
+        dataToSend.price = this.price
+      }
 
-        if(this.description) {
-          dataToSend.description = this.description
-        }
+      if(this.description) {
+        dataToSend.description = this.description
+      }
 
-        if(this.email) {
-          dataToSend.email = this.email
-        }
+      if(this.email) {
+        dataToSend.email = this.email
+      }
 
-        if(this.additionalPoints) {
-          dataToSend.additionalInfo = this.additionalPoints
-        }
+      if(this.additionalPoints) {
+        dataToSend.additionalInfo = this.additionalPoints
+      }
 
-        console.log(dataToSend)
+      console.log(dataToSend)
 
 
        /*  try {
