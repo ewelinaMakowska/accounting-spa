@@ -54,7 +54,7 @@
 
     
     <!-- visible with param ?edit and if admin -->
-    <section id="edit-company" v-if="this.$route.query.edit=='true'">
+    <section id="edit-company" v-if="this.$route.query.edit=='true' && notLoading">
       <edit-company :company="company" />
     </section>
   </div> 
