@@ -18,6 +18,8 @@ const CitiesControllerPolicy = require('./policies/CitiesControllerPolicy');
 
 
 const isAuth = require('./middleware/is-auth')
+const isAdmin = require('./middleware/isAdmin')
+
 const checkIfCityExists = require('./middleware/checkIfCityExists');
 const { token } = require('morgan');
 
@@ -65,10 +67,10 @@ app.post('/email', ContactControllerPolicy.email, ContactController.mailCompany)
 app.post('/register', AuthControllerPolicy.registerUser, AuthController.registerUser)
 app.post('/login',  AuthControllerPolicy.loginUser, AuthController.login)
 
-app.get('/editContent', isAuth, CompaniesControllerPolicy.search, CompaniesController.getByNameOrID)
-app.delete('/deleteCompany/:companyId', isAuth, CompaniesController.deleteCompany)
-app.post('/addCompany', isAuth, CompaniesControllerPolicy.add, CompaniesController.addCompany)
-app.put('/updateCompany/:id', isAuth, CompaniesController.updateCompany)
+app.get('/editContent', isAuth, isAdmin, CompaniesControllerPolicy.search, CompaniesController.getByNameOrID)
+app.delete('/deleteCompany/:companyId', isAuth, isAdmin, CompaniesController.deleteCompany)
+app.post('/addCompany', isAuth, isAdmin, CompaniesControllerPolicy.add, CompaniesController.addCompany)
+app.put('/updateCompany/:id', isAuth, isAdmin, CompaniesController.updateCompany)
 
 
 
