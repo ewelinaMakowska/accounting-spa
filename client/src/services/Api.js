@@ -7,9 +7,22 @@
 // }
 
 import axios from 'axios'
+import { store } from '../store/index';
+
+let token = 'token';
+
+if(store.getters.token) {
+  token = store.getters.token.replace(/['"]+/g, '');
+}
 
 const instance =
   axios.create({
-    baseURL: 'http://localhost:3306'
+    baseURL: 'http://localhost:3306', //change to process.env
+
   })
+
+if(token) {
+  Object.assign(instance.defaults, {headers: {Authorization: `Bearer ${token}`}});
+}
+
 export default instance

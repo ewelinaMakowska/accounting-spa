@@ -219,7 +219,7 @@ module.exports = {
     try {
       const id = req.params.id
       const companies = await Company.findOne({
-        attributes: ['name', 'description', 'price', 'email', 'logo', 'ledger', 'lump_sum', 'in_person', 'remote', 'additional_points'],
+        attributes: ['name', 'description', 'price', 'email', 'logo', 'ledger', 'lump_sum', 'in_person', 'remote', 'id', 'cityId', 'additional_points'],
         where: {id: id},
         include : [{
           attributes: ['name', 'region'],
@@ -329,6 +329,57 @@ async deleteCompany(req, res) {
     })
   }
 
+},
+
+
+
+async addCompany(req, res) {
+  const errors = validationResult(req);
+
+  console.log(req.body)
+  console.log(' ')
+
+  if(!errors.isEmpty()){
+    return res.status(422).send({
+      error: errors
+    })
+  } else {
+    try {   
+      const company = await Company.create({
+        name: req.body.name,
+        cityid: req.body.cityId,
+        price: req.body.price,
+        description: req.body.description,
+        email: req.body.email,
+        ledger: req.body.ledger,
+        lumpSum: req.body.lumpSum,
+        inPerson: req.body.inPerson,
+        remote: true})
+      console.log(`added company: ${company.name}`);
+      res.status(200).send(company)
+    } catch(err) {
+      console.log(err)
+      res.status(500).send({
+        error: err
+      })
+    }
+  }
+ 
+
+},
+
+
+async updateCompany(req, res) {
+    try {   
+      const company = await Company.update(req.body, {where: {id: req.params.id}})
+      console.log(`updated company: ${company.name}`);
+      res.status(200).send(company)
+    } catch(err) {
+      console.log(err)
+      res.status(500).send({
+        error: err
+      })
+    }  
 }
 
 

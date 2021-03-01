@@ -13,9 +13,13 @@ const { check, checkSchema, body } = require('express-validator');
 const AuthControllerPolicy = require('./policies/AuthControllerPolicy');
 const ContactControllerPolicy = require('./policies/ContactControllerPolicy');
 const CompaniesControllerPolicy = require('./policies/CompaniesControllerPolicy');
+const CitiesControllerPolicy = require('./policies/CitiesControllerPolicy');
+
 
 
 const isAuth = require('./middleware/is-auth')
+const checkIfCityExists = require('./middleware/checkIfCityExists');
+const { token } = require('morgan');
 
 const app = express()
 const port = 3306
@@ -29,7 +33,7 @@ app.use((req, res, next) => {
     'Access-Control-Allow-Methods',
     'OPTIONS, GET, POST, PUT, PATCH, DELETE'
   ); */
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+ res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next()
 })
 
@@ -54,14 +58,19 @@ app.get('/company/:id', CompaniesController.getOne)
 //app.get('/companies/:id', CompaniesController.getOne)
 app.get('/cities', CitiesController.getCities)
 app.get('/citiesFilteredLimited', CitiesController.getCitiesFilteredLimited)
+app.post('/addCity', CitiesControllerPolicy.add, checkIfCityExists, CitiesController.addCity)
 app.get('/userProfile', isAuth, AuthController.getUserData)
 
 app.post('/email', ContactControllerPolicy.email, ContactController.mailCompany)
 app.post('/register', AuthControllerPolicy.registerUser, AuthController.registerUser)
 app.post('/login',  AuthControllerPolicy.loginUser, AuthController.login)
 
-app.get('/editContent', CompaniesControllerPolicy.search, CompaniesController.getByNameOrID)
-app.delete('/deleteCompany/:companyId', CompaniesController.deleteCompany)
+app.get('/editContent', isAuth, CompaniesControllerPolicy.search, CompaniesController.getByNameOrID)
+app.delete('/deleteCompany/:companyId', isAuth, CompaniesController.deleteCompany)
+app.post('/addCompany', isAuth, CompaniesControllerPolicy.add, CompaniesController.addCompany)
+app.put('/updateCompany/:id', isAuth, CompaniesController.updateCompany)
+
+
 
 
 

@@ -38,6 +38,11 @@ input[type='submit'] {
   }
 }
 
+a[disabled]:hover,
+button[disabled]:hover {
+  cursor: default;
+  pointer-events: none;
+}
 
 //TOP BAR 
 .top-bar {
@@ -653,6 +658,10 @@ input[type='submit'] {
     margin-top: 20px;
     display: flex;
 
+    &--edit {
+      margin-top: 55px;
+    }
+
     img, div {
       display: block;
     }
@@ -705,6 +714,8 @@ input[type='submit'] {
     padding-bottom: 20px;
     padding-top: 5px;
 
+    &--edit {
+    }
   }
 
  
@@ -774,3 +785,112 @@ input[type='submit'] {
   margin-top: -20px;
 }
 
+.sublist--edit {
+  list-style: none;
+}
+
+.add-company {
+  &__price {
+    &--edit {
+      width: 70px;
+      text-align: center;
+    }
+  }
+
+  &__input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    height: 32px;
+    border-bottom: 2px solid $blue-lilac;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__textarea {
+    border: none;
+    font-family: $roboto-font;
+    resize: vertical;
+    overflow: hidden;
+    //background-color: #f0f3ff;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid $blue-lilac;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__name {
+    font-size: 25px;
+    font-weight: 700;
+    color: #444444;
+    height: auto;
+    padding-bottom: 8px;
+  }
+
+  &__city {
+    min-width: 265px;
+    font-size: 17px;
+  }
+
+  &__autocomplete {
+    min-width: 265px;
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+
+  &__description {
+    width: 100%;
+    //border-bottom: 2px solid $blue-lilac;
+    //background: transparent;
+    width: 450px;
+    //height: 100%;
+    min-height: 200px;
+    display: inline-block;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  &__price {
+    font-size: 28px;
+    font-weight: 700;
+    color: $primary-text;
+    font-family: $roboto-font;
+  }
+
+}
+
+.add-city-btn {
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 11px;
+  padding: 5px 15px;
+  border: 1px solid $blue;
+  border-radius: 2px;
+
+  &__wrapper {
+    text-align: center;
+  }
+}
+
+.company-description__wrapper {
+  height: 100%;
+  text-align: center;
+  //min-height: 250px;
+  //width: 80%;
+  //border-bottom: 2px solid $blue-lilac;
+  //background: #DDD;
+}
+
+.d-inline-block {
+  display: inline-block !important;
+}

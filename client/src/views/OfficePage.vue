@@ -1,103 +1,19 @@
 <template>
   <div>
-<!--    Witaj na stronie biura: {{ office.name }} <br>
-      Miejscowość:  {{ office.City.name }}, {{ office.City.region }} <br>
-      Cena za usługę to: {{ office.price }} <br>
-      Adres mailowy biura {{ office.email }}  <br/>
-
-      Księga przychodów i rozchodów: {{ office.ledger }}   <br/>
-      Ryczałt: {{ office.lump_sum }}   <br/>
-
-      Kontakt telefoniczny/on-line: {{ office.remote }}   <br/>
-      Kontakt osobisty: {{ office.in_person }}   <br/>
-      Dodatkowe informacje: {{ office.additional_points }}   <br/>
--->
-
     <top-bar></top-bar>
     <section class="c-profile__info">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12" v-if="notLoading">
-
-            <div class="row">
-              <div class="col-lg-12">
-
-                <div class="c-profile__title">
-                  <img src="/assets/img/dummy-logo.svg" class="thumb__logo" alt="company logo" />
-                  <div>
-                    <h1>{{ office.name }}</h1>
-                    <span class="c-profile__location">
-                      {{ office.City }}
-                    </span>                
-                  </div>
-                  
-                </div>
-
-                <div class="c-profile__basic-data">
-                  <div class="basic-data__description">
-                    <p class="main-text">
-                     {{ office.description }}
-                    </p>
-                  </div>
-
-                  <div class="price-wrapper">
-                    <div class="basic-data__price">
-                      <p>Od &nbsp;<span>{{ office.price }}</span> &nbsp;zł/msc</p>
-                      <button class="blue-button contact_us-button">Skontaktuj się z nami</button>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="c-profile__flex-list">
-                  <div class="flex-list__item">                   
-                    <i class="material-icons-sharp checkmark">done</i>
-                    <p class="main-text">
-                      obsługiwane sposoby rozliczania:<br/>
-                    </p>
-                     <ul class="sublist">
-                        <li v-if="office.ledger">Księga Przychodów i Rozchodów</li>
-                        <li v-if="office.lump_sum">Ryczałt</li>
-                      </ul>
-                  </div>
-
-                  <div class="flex-list__item">                   
-                    <i class="material-icons-sharp checkmark">done</i>
-                    <p class="main-text">
-                      kontakt z księgowym:<br/>
-                    </p>
-                     <ul class="sublist">
-                        <li v-if="office.remote">telefoniczny/online</li>
-                        <li v-if="office.in_person">osobisty</li>
-                      </ul>
-                  </div>
-
-                  <div v-if="office.email" class="flex-list__item">                   
-                    <i class="material-icons-sharp checkmark">done</i>
-                    <p class="main-text">
-                      adres e-mail:<br/>
-                    </p>
-                     <ul class="sublist">
-                        <li>{{ office.email }}</li>
-                      </ul>
-                  </div>
-
-
-                  <div v-if="office.additional_points" class="flex-list__item">                   
-                    <i class="material-icons-sharp checkmark">done</i>
-                    <p class="main-text">
-                      {{ office.additional_points}}<br/>
-                    </p>
-                  </div>
-
-                </div>
-           
-              </div>
-            </div>
-
+          <div class="col-lg-12" v-if="(this.$route.query.edit =='false' || !this.$route.query.edit) && notLoading">
+            <!-- v-if="this.$route.query.edit=='false'" -->
+            <company-info :company="company" />            
           </div>
         </div>
       </div>
     </section>
+
+    <!-- visible with param and if admin -->
+    <!-- todo: form for editing company -->
 
     <section
       v-if="office.email"
@@ -135,6 +51,12 @@
         </div>
       </div>
     </section> 
+
+    
+    <!-- visible with param ?edit and if admin -->
+    <section id="edit-company" v-if="this.$route.query.edit =='true' && notLoading">
+      <edit-company :company="company" />
+    </section>
   </div> 
 </template>
 
@@ -143,10 +65,14 @@
 import CompaniesService from '../services/CompaniesService'
 import ContactService from '../services/ContactService'
 import TopBar from '../components/TopBar.vue' 
+import CompanyInfo from '../components/CompanyInfo.vue'
+import EditCompany from '../components/EditCompany.vue'
 
 export default {
   components: {
-    TopBar
+    TopBar,
+    CompanyInfo,
+    EditCompany
   },
   data() {
     return {

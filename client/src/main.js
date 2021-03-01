@@ -8,6 +8,8 @@ import LoginPage from './views/LoginPage.vue'
 import RegistrationPage from './views/RegistrationPage.vue'
 import EditContentPage from './views/EditContentPage.vue'
 import UserProfilePage from './views/UserProfilePage.vue'
+import AddCompanyPage from './views/AddCompanyPage.vue'
+import AddCityPage from './views/AddCityPage.vue'
 import { store } from './store'
 import { sync } from 'vuex-router-sync'
 import Vuelidate from 'vuelidate'
@@ -55,6 +57,16 @@ const routes = [
     path: '/edit-content',
     name: 'edit-content-page',
     component: EditContentPage
+  },
+  {
+    path: '/add-company',
+    name: 'add-company-page',
+    component: AddCompanyPage
+  },
+  {
+    path: '/add-city',
+    name: 'add-city-page',
+    component: AddCityPage
   },
   {
     path: '*',

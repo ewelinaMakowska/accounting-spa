@@ -19,6 +19,8 @@
       </div>
     </section>
 
+
+
     <section v-if="loaded">
       <div class="container">
         <div class="row">
@@ -87,7 +89,7 @@
 
                 <div class="companies-list__buttons">
                   <router-link :to="'/office/' + office.id">Profil</router-link>
-                  <button>Edytuj</button>
+                  <router-link :to="'/office/' + office.id + '?edit=true#edit-company'">Edytuj</router-link>
                   <button @click="deleteCompany($event)" :id="office.id">Usuń</button>
                 </div>
               </div>
@@ -97,6 +99,18 @@
 
     
                   
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1>Dodaj firmę </h1>
+            <p>Dodaj nową firmę za pomocą prostego formularza. -></p>
+            <router-link to="add-company">Dodaj</router-link>
           </div>
         </div>
       </div>

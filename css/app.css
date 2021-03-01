@@ -30,6 +30,12 @@ input[type='submit']:hover {
   cursor: pointer;
 }
 
+a[disabled]:hover,
+button[disabled]:hover {
+  cursor: default;
+  pointer-events: none;
+}
+
 .top-bar {
   overflow: hidden;
   margin: 0 0 20px 0;
@@ -632,6 +638,10 @@ input[type='submit']:hover {
   display: flex;
 }
 
+.c-profile__title--edit {
+  margin-top: 55px;
+}
+
 .c-profile__title img, .c-profile__title div {
   display: block;
 }
@@ -743,5 +753,87 @@ input[type='submit']:hover {
 
 .contact_us-button {
   margin-top: -20px;
+}
+
+.sublist--edit {
+  list-style: none;
+}
+
+.add-company__input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  height: 32px;
+  border-bottom: 2px solid #b0befd;
+}
+
+.add-company__input:focus {
+  outline: none;
+}
+
+.add-company__textarea {
+  border: none;
+  font-family: "Roboto", "Lato", sans-serif;
+  resize: vertical;
+  overflow: hidden;
+  background-color: #f0f3ff;
+}
+
+.add-company__textarea:focus {
+  outline: none;
+}
+
+.add-company__name {
+  font-size: 25px;
+  font-weight: 700;
+  color: #444444;
+  height: auto;
+  padding-bottom: 8px;
+}
+
+.add-company__city {
+  min-width: 265px;
+}
+
+.add-company__autocomplete {
+  min-width: 265px;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.add-company__description {
+  width: 100%;
+  width: 450px;
+  min-height: 200px;
+  display: inline-block;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.add-company__price {
+  font-size: 28px;
+  font-weight: 700;
+  color: #444444;
+  font-family: "Roboto", "Lato", sans-serif;
+}
+
+.add-city-btn {
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 11px;
+  padding: 5px 15px;
+  border: 1px solid #3061fc;
+  border-radius: 2px;
+}
+
+.add-city-btn__wrapper {
+  text-align: center;
+}
+
+.company-description__wrapper {
+  height: 100%;
+  text-align: center;
 }
 /*# sourceMappingURL=app.css.map */

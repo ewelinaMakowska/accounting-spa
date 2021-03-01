@@ -46,5 +46,17 @@ export default {
   // }
   deleteCompany(companyId) {
     return Api.delete(`deleteCompany/${companyId}`, companyId)
+  },
+
+  addCompany(companyData) {
+    console.log('SERVICE')
+    console.log()
+    return Api.post(`addCompany`, companyData)
+  },
+
+  updateCompany(companyData) {
+    console.log('SERVICE')
+    console.log()
+    return Api.put(`updateCompany/${companyData.id}`, companyData)
   }
 }

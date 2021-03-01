@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const { City } = require('../models/');
-const CITIES_ON_AUTOCOMPLETE = 5;
+//const CITIES_ON_AUTOCOMPLETE = 10;
+const { validationResult } = require('express-validator');
 
 module.exports = {
 
@@ -25,7 +26,7 @@ async getCitiesFilteredLimited(req, res, next) {
 
     const cities = await City.findAndCountAll({
       offset: 0,
-      limit: CITIES_ON_AUTOCOMPLETE,
+      //limit: CITIES_ON_AUTOCOMPLETE,
       where: {[Op.or]: [{name: {[Op.like]: `${value}%`}}] //op or
       }
     })
@@ -37,7 +38,32 @@ async getCitiesFilteredLimited(req, res, next) {
       error: 'Internal Server Error'
     });
   } 
-} 
+},
+
+async addCity(req, res) {
+  const errors = validationResult(req)
+  if(!errors.isEmpty()){
+    res.status(422).send({
+      error: errors
+    })
+
+  } else {
+    try {
+      const newCity = await City.create({
+        name: req.body.name,
+        region: req.body.region
+      })
+  
+      if(newCity) {
+        res.status(200).send(newCity)
+      }
+    } catch(err) {
+      console.log(err)
+      res.status(500).send(err)
+    }
+  }
+  
+}
 
 
 }
