@@ -4,7 +4,7 @@
     <section class="c-profile__info">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12" v-if="notLoading">
+          <div class="col-lg-12" v-if="(this.$route.query.edit =='false' || !this.$route.query.edit) && notLoading">
             <!-- v-if="this.$route.query.edit=='false'" -->
             <company-info :company="company" />            
           </div>
@@ -54,7 +54,7 @@
 
     
     <!-- visible with param ?edit and if admin -->
-    <section id="edit-company" v-if="this.$route.query.edit=='true' && notLoading">
+    <section id="edit-company" v-if="this.$route.query.edit =='true' && notLoading">
       <edit-company :company="company" />
     </section>
   </div> 
