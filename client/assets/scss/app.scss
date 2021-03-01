@@ -802,6 +802,18 @@ button[disabled]:hover {
     }
   }
 
+  &__textarea {
+    border: none;
+    font-family: $roboto-font;
+    resize: vertical;
+    overflow: hidden;
+    background-color: #f0f3ff;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
   &__name {
     font-size: 25px;
     font-weight: 700;
@@ -821,9 +833,15 @@ button[disabled]:hover {
   }
 
   &__description {
-    border-bottom: none;
-    background: transparent;
     width: 100%;
+    //border-bottom: 2px solid $blue-lilac;
+    //background: transparent;
+    width: 450px;
+    //height: 100%;
+    min-height: 200px;
+    display: inline-block;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
 
 }
@@ -845,8 +863,9 @@ button[disabled]:hover {
 
 .company-description__wrapper {
   height: 100%;
-  min-height: 250px;
-  width: 80%;
+  text-align: center;
+  //min-height: 250px;
+  //width: 80%;
   //border-bottom: 2px solid $blue-lilac;
-  background: #DDD;
+  //background: #DDD;
 }

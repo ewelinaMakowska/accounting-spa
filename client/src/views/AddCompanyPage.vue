@@ -61,11 +61,11 @@
           <div class="c-profile__basic-data">
             <div class="basic-data__description basic-data__description--edit">
               <div class="company-description__wrapper">
-                <input 
+                <textarea 
                 type="text"
                 placeholder="Opis firmy"
                 v-model.trim="description"
-                class="add-company__description add-company__input"
+                class="add-company__description add-company__textarea"
                 />
               </div>
             </div>
@@ -169,11 +169,10 @@
             <div class="flex-list__item">                   
               <i class="material-icons-sharp checkmark">done</i>
               <p class="main-text">
-                <input 
-                  type="text"
+                <textarea 
                   placeholder="Dodatkowe informacje"
                   v-model.trim="additionalPoints"
-                  class="add-company__input add-company__email"
+                  class="add-company__textarea add-company__email"
                   />
                 <br/>
               </p>
