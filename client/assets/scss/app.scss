@@ -790,6 +790,13 @@ button[disabled]:hover {
 }
 
 .add-company {
+  &__price {
+    &--edit {
+      width: 70px;
+      text-align: center;
+    }
+  }
+
   &__input {
     border-top: none;
     border-left: none;
@@ -807,7 +814,11 @@ button[disabled]:hover {
     font-family: $roboto-font;
     resize: vertical;
     overflow: hidden;
-    background-color: #f0f3ff;
+    //background-color: #f0f3ff;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid $blue-lilac;
 
     &:focus {
       outline: none;
@@ -824,6 +835,7 @@ button[disabled]:hover {
 
   &__city {
     min-width: 265px;
+    font-size: 17px;
   }
 
   &__autocomplete {
@@ -842,6 +854,8 @@ button[disabled]:hover {
     display: inline-block;
     margin-top: 30px;
     margin-bottom: 30px;
+    font-size: 14px;
+    line-height: 24px;
   }
 
   &__price {
@@ -875,4 +889,8 @@ button[disabled]:hover {
   //width: 80%;
   //border-bottom: 2px solid $blue-lilac;
   //background: #DDD;
+}
+
+.d-inline-block {
+  display: inline-block !important;
 }

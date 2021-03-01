@@ -72,14 +72,15 @@
 
             <div class="price-wrapper">
               <div class="basic-data__price">
-                <p>Od &nbsp;
+                <p class="d-inline-block">Od &nbsp;</p>
                   <input 
                   type="text"
                   v-model.trim="price"
                   :placeholder="company.price"
-                  class="add-company__input add-company__price"
+                  class="add-company__input add-company__price add-company__price--edit d-inline-block"
                   />
-                 &nbsp;zł/msc</p>
+                <p class="d-inline-block"> &nbsp;zł/msc</p><br/>
+
                 <input 
                 type="submit" 
                 value="Wyślij"
