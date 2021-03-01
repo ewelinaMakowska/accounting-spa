@@ -327,12 +327,29 @@ import CompaniesService from '../services/CompaniesService'
           addCityBtn.setAttribute('disabled', '')
         }
       },
+      checkInputs() {
+        if(this.$props.company.ledger) {
+          document.getElementById('ledger').setAttribute('checked', true)
+        }
+
+        if(this.$props.company.lumpSum) {
+          document.getElementById('lump-sum').setAttribute('checked', true)
+        }
+
+         if(this.$props.company.in_person) {
+          document.getElementById('in-person').setAttribute('checked', true)
+        }
+      }
     },
     computed: {
       cities() {
         return this.$store.getters.loadedCities
       }
     },
+    mounted() {
+      this.checkInputs();
+    },
+
     update() {
 
     },
