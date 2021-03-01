@@ -41,9 +41,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false 
     },
 
-    type: { 
+    role: { 
       type: DataTypes.STRING(45), 
-      defaultValue: 'user' 
+      defaultValue: 'basic' 
     }, 
 
     id: { 
