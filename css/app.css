@@ -810,6 +810,13 @@ button[disabled]:hover {
   margin-bottom: 30px;
 }
 
+.add-company__price {
+  font-size: 28px;
+  font-weight: 700;
+  color: #444444;
+  font-family: "Roboto", "Lato", sans-serif;
+}
+
 .add-city-btn {
   display: inline-block;
   text-decoration: none;

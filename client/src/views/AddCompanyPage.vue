@@ -72,13 +72,13 @@
 
             <div class="price-wrapper">
               <div class="basic-data__price">
-                <p>Od &nbsp;<span>
+                <p>Od &nbsp;
                   <input 
                   type="text"
                   v-model.trim="price"
                   class="add-company__input add-company__price"
                   />
-                </span> &nbsp;zł/msc</p>
+                 &nbsp;zł/msc</p>
                 <input 
                 type="submit" 
                 value="Dodaj"

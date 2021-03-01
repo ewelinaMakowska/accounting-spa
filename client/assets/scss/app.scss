@@ -844,6 +844,13 @@ button[disabled]:hover {
     margin-bottom: 30px;
   }
 
+  &__price {
+    font-size: 28px;
+    font-weight: 700;
+    color: $primary-text;
+    font-family: $roboto-font;
+  }
+
 }
 
 .add-city-btn {
