@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    {{this.$route.params.id}}
     {{ company }}
       <form @submit="updateCompany($event)" novalidate id="edit-company">
       <div class="row">
@@ -231,6 +232,7 @@ import CompaniesService from '../services/CompaniesService'
         //add only changed data
 
       let dataToSend = {
+        id: this.$props.company.id,
         name: this.$props.company.name,
         cityId: this.$props.company.cityId,
         price: this.$props.company.price,
@@ -269,12 +271,12 @@ import CompaniesService from '../services/CompaniesService'
       console.log(dataToSend)
 
 
-       /*  try {
-          const company = await CompaniesService.addCompany(data);
+  /*     try {
+          const company = await CompaniesService.updateCompany(dataToSend);
           console.log(company)
-        } catch(err) {
+      } catch(err) {
           console.log(err)
-        } */
+      }  */
 
         } else {
           console.log('CITY MUST BE CHOSEN FROM LIST')
