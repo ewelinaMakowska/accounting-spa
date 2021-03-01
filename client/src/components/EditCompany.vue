@@ -1,7 +1,5 @@
 <template>
   <div class="container">
-    {{company}}
-
       <form @submit="updateCompany($event)" novalidate id="edit-company">
       <div class="row">
         <div class="col-lg-12">
