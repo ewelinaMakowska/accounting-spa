@@ -5,6 +5,7 @@ module.exports = (req, res, next) => {
   let decodedToken;
   try {
     decodedToken = jwt.verify(token, 'myDevelopmentSuperSecret');
+    req.role = decodedToken.role;
   } catch(err) {
     err.statusCode = 500;
     throw err
