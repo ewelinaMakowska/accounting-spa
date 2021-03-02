@@ -63,11 +63,6 @@ button[disabled]:hover {
     float: left;
   }
 
-  &__company-name {
-    display: inline-block;
-    font-size: 16px;
-  }
-
   &__logo {
     height: 43px;
     display: inline-block;
@@ -75,7 +70,6 @@ button[disabled]:hover {
     margin-bottom: 5px;
   }
 
-  &__company-name,
   &__logo {
     vertical-align: middle;
   }
@@ -432,14 +426,32 @@ button[disabled]:hover {
 
   &__name {
     font-weight: 500;
-    margin-bottom: 5px;
+    font-size: 18px;
+    margin-bottom: 11px;
   }
 
   &__city,
   &__price {
     font-size: 13px;
     color: $secondary-text;
+    margin-bottom: 3px;
+  }
 
+  &__city-wrapper {
+    display: inline-block;
+  }
+
+  &__icon {
+    color:$blue;
+    font-size: 13px;
+    margin-right: 5px;
+    display: inline-block;
+  }
+
+  &__city,
+  &__price,
+  &__icon {
+    vertical-align: middle;
   }
 
   &__list {
