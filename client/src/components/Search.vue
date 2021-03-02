@@ -130,12 +130,11 @@
         const name = document.getElementById('search').value;
         console.log(`name: ${name}`)
 
-        await this.$store.dispatch('loadCitiesFilteredLimited', name)
+        if (name.length >= 1 && name != ' '){
+          await this.$store.dispatch('loadCitiesFilteredLimited', name)
           .catch(function (error) {
             console.log(error)
           })
-
-        if ($event.target.value!=''){
           this.searching = 1 
         } else {
           this.searching = 0
