@@ -6,8 +6,7 @@
           <div class="col">
 
             <div class="top-bar__left">
-              <img src="/assets/img/dummy-logo.svg" class="top-bar__logo" />
-              <p class="top-bar__company-name">Business Services</p>
+              <router-link to="/search"><img src="/assets/img/app-logo.svg" class="top-bar__logo" /></router-link>
             </div>
 
 
