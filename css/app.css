@@ -664,6 +664,11 @@ button[disabled]:hover {
   color: #001558;
 }
 
+.register-link__text, .register-link__icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .error-message__triangle {
   width: 20px;
   height: 20px;

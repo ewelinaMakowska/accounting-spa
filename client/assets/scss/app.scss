@@ -681,6 +681,14 @@ button[disabled]:hover {
   }
 }
 
+.register-link {
+  &__text,
+  &__icon {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
 .error-message {
   &__triangle {
     width: 20px;

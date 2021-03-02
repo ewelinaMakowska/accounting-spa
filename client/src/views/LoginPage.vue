@@ -61,7 +61,10 @@
             <div class="login__box--bottom">
                <p class="login__text">
                 Nie masz jeszcze konta? <br>
-                <a class="login__register-link" href="/register">Zarejestruj się! -></a>
+                <router-link class="login__register-link" to="/register">
+                  <span class="register-link__text">Zarejestruj się!</span> 
+                  <i class="material-icons-sharp register-link__icon">arrow_right_alt</i>
+                </router-link>
               </p>
             </div>
           </div>
