@@ -44,6 +44,18 @@ button[disabled]:hover {
   pointer-events: none;
 }
 
+.main-container {
+  margin-top: 35px;
+}
+
+.visible--block {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
 //TOP BAR 
 .top-bar {
   overflow: hidden;
@@ -314,6 +326,16 @@ button[disabled]:hover {
     //z-index:5; 
     //margin-top: -31px; 
     //position:absolute;
+    position: relative;
+  }
+
+  &__icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    color: $secondary-text;
+    transform: translateY(-50%);
+    font-size: 18px;
   }
 
   &__input {
@@ -322,6 +344,7 @@ button[disabled]:hover {
     border-right: none;
     height: 32px;
     border-bottom: 2px solid $blue;
+    width: 250px;
 
     &:focus {
       outline: none;
@@ -334,7 +357,7 @@ button[disabled]:hover {
     position: absolute;
     z-index: 3;
     background-color: #ffffff;
-    width: 220px;
+    width: 250px;
     border-top: none;
     border-left: 1px solid $very-light-grey;
     border-right: 1px solid $very-light-grey;
@@ -350,8 +373,19 @@ button[disabled]:hover {
     li {
       width: 100%;
       padding: 0;
-      margin: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 5px;
+      margin-bottom: 5px;
       background-color: lightblue;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
 
       button {
         border: 1px solid #ffffff;

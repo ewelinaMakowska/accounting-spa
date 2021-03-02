@@ -36,6 +36,18 @@ button[disabled]:hover {
   pointer-events: none;
 }
 
+.main-container {
+  margin-top: 35px;
+}
+
+.visible--block {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
 .top-bar {
   overflow: hidden;
   margin: 0 0 20px 0;
@@ -290,12 +302,27 @@ button[disabled]:hover {
   fill: #3061fc;
 }
 
+.search__input-wrapper {
+  position: relative;
+}
+
+.search__icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  color: rgba(0, 0, 0, 0.54);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 18px;
+}
+
 .search__input {
   border-top: none;
   border-left: none;
   border-right: none;
   height: 32px;
   border-bottom: 2px solid #3061fc;
+  width: 250px;
 }
 
 .search__input:focus {
@@ -321,7 +348,7 @@ button[disabled]:hover {
   position: absolute;
   z-index: 3;
   background-color: #ffffff;
-  width: 220px;
+  width: 250px;
   border-top: none;
   border-left: 1px solid #dddddd;
   border-right: 1px solid #dddddd;
@@ -338,8 +365,19 @@ button[disabled]:hover {
 .autocomplete__list li {
   width: 100%;
   padding: 0;
-  margin: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
   background-color: lightblue;
+}
+
+.autocomplete__list li:first-child {
+  margin-top: 0;
+}
+
+.autocomplete__list li:last-child {
+  margin-bottom: 0;
 }
 
 .autocomplete__list li button {
