@@ -23,9 +23,15 @@
         <div class="price-wrapper">
           <div class="basic-data__price">
             <p>Od &nbsp;<span>{{ company.price }}</span> &nbsp;zł/msc</p>
-            <button class="blue-button contact_us-button">Skontaktuj się z nami</button>
-            <!-- visible only for an admin -->
-            <button @click="editCompany($event)">Edytuj firmę</button>
+
+            <button class="blue-button contact_us-button">Skontaktuj się z nami</button><br/>
+
+            <button 
+            v-if="$store.state.user && ($store.getters.userRole == 'admin')" 
+            class="orange-button edit-company-btn" 
+            @click="editCompany($event)">
+              Edytuj firmę
+            </button>
             
           </div>
         </div>
@@ -82,7 +88,7 @@
   export default {
     data() {
       return {
-
+        admin: 'admin'
       }
     },
     methods: {

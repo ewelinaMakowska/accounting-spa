@@ -3,6 +3,7 @@ $roboto-font: 'Roboto', 'Lato', sans-serif;
 $blue: #3061fc;
 $midnight-blue: #001558;
 $blue-lilac: #b0befd;
+$pale-orange: #f8ca87;
 $primary-text: #444444;
 $secondary-text: rgba(0, 0, 0, 0.54);
 $very-light-grey: #dddddd;
@@ -164,6 +165,25 @@ button[disabled]:hover {
     cursor: pointer;
     background-color: $blue;
     color: #ffffff;
+  }
+}
+
+.orange-button {
+  background-color: $pale-orange;
+  color: $midnight-blue;
+  font-size: 14px;
+  padding: 7px 20px;
+  margin-right: 0;
+  border: 2px solid $pale-orange;
+  border-radius: 4px;
+  transition: all 0.3s;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    background-color: $midnight-blue;
+    border: 2px solid $midnight-blue;
+    color: $pale-orange;
   }
 }
 
@@ -948,4 +968,8 @@ button[disabled]:hover {
 
 .d-inline-block {
   display: inline-block !important;
+}
+
+.edit-company-btn {
+  margin-top: 10px;
 }

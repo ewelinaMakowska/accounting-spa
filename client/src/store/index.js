@@ -183,9 +183,18 @@ export const store = new Vuex.Store({
   },
 
   getters: {
-
     state (state) {
       return state
+    },
+
+    userRole(state) {
+      if(state.user) {
+        const user = JSON.parse(state.user);
+        const role = user.role;
+        return role
+      } else {
+        return false
+      }
     },
 
     loadedOffices (state) {
