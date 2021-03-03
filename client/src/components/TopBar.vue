@@ -17,9 +17,9 @@
                 <li><a href="#" class="top-bar__link">Usługi</a></li>
 
                 <li>
-                  <a href="#" class="top-bar__link">Księgowi</a>
+                  <a href="#" :class="[isPathSearch ? navButtonDecoratedClass : '', navButtonClass]" >Księgowi</a>
                 </li>
-
+                
                 <li v-if="userLoggedIn && (userRole === 'admin')">
                   <router-link class="top-bar__link edit-page-link" to="/edit-content">Edycja</router-link>
                 </li>
@@ -69,6 +69,8 @@ export default {
 
   data () {
     return {
+      navButtonClass: 'top-bar__link',
+      navButtonDecoratedClass: 'top-bar__link--decorated'
     }
   },
 
@@ -83,6 +85,14 @@ computed: {
 
   userRole() {
     return this.$store.getters.userRole;
+  },
+
+  isPathSearch() {
+    if(this.$route.path === '/search') {
+      return true
+    } else {
+      return false
+    }
   }
 },
 
