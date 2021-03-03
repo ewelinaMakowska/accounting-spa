@@ -329,13 +329,7 @@ button[disabled]:hover {
   }
 
   &__icon {
-    height: 15px;
-    z-index: 1;
-    stroke: $secondary-text;
-    fill: none;
-    stroke-linecap: square;
-    stroke-miterlimit: 10;
-    stroke-width: 48; 
+    color: $secondary-text;
   }
 
   &__pseudo-label {
@@ -356,7 +350,7 @@ button[disabled]:hover {
       color: $blue;
 
       .filter__icon {
-        stroke: $blue-lilac;
+        color: $blue-lilac;
       }
     }
   }

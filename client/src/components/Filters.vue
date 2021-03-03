@@ -20,7 +20,7 @@
             <label class="filter__label" for="price_asc">
               <span class="filter__pseudo-label">rosnąco &nbsp;&nbsp;&nbsp;&nbsp;</span>
               <input class="filter__input" type="radio" id="price_asc" name="price_asc" value="price_asc" @click="setSortParam($event, 'price_asc')">
-              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 328l144-144 144 144'/></svg>    
+              <i class="material-icons-sharp filter__icon">expand_less</i>   
             </label>
           </li>
 
@@ -28,7 +28,7 @@
             <label class="filter__label" for="price_desc">
               <span class="filter__pseudo-label">malejąco&nbsp;&nbsp;&nbsp;</span>
               <input class="filter__input" type="radio" id="price_desc" name="price_desc" value="price_desc" @click="setSortParam($event, 'price_desc')">
-              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 184l144 144 144-144'/></svg>   
+              <i class="material-icons-sharp filter__icon">expand_more</i>    
             </label>
           </li>
         </ul>
@@ -39,7 +39,7 @@
             <label class="filter__label" for="name_asc">
               <span class="filter__pseudo-label">Od A do Z &nbsp;</span>
               <input class="filter__input" type="radio" id="name_asc" name="name_asc" value="name_asc" @click="setSortParam($event, 'name_asc')">
-              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 328l144-144 144 144'/></svg>    
+              <i class="material-icons-sharp filter__icon">expand_less</i>  
             </label>
           </li>
 
@@ -47,7 +47,7 @@
             <label class="filter__label" for="name_desc">
               <span class="filter__pseudo-label">Od Z do A &nbsp;</span>
               <input class="filter__input" type="radio" id="name_desc" name="name_desc" value="name_desc" @click="setSortParam($event, 'name_desc')">
-              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 184l144 144 144-144'/></svg>    
+              <i class="material-icons-sharp filter__icon">expand_more</i>   
             </label>
           </li>
         </ul>
@@ -66,7 +66,8 @@
             <label class="filter__label" for="ledger">
               <span class="filter__pseudo-label">Księga przychodów i rozchodów &nbsp;&nbsp;&nbsp;&nbsp;</span>
               <input class="filter__input" type="radio" id="ledger" name="ledger" value="ledger" @click="setFilterAccountingMethod($event, 'ledger')">
-              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 328l144-144 144 144'/></svg>    
+              <!-- <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 328l144-144 144 144'/></svg>   -->  
+              <i class="material-icons-sharp filter__icon">expand_less</i>
             </label>
           </li>
 
