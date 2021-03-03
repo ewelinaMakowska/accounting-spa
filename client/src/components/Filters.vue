@@ -227,7 +227,7 @@ export default {
       newUrl += `&accounting=${accountingMethod}`
 
       if(currentQuery.contact) {
-        newUrl += `&sort=${currentQuery.contact}`
+        newUrl += `&contact=${currentQuery.contact}`
       } 
       
       //if(currentQuery.page) {
