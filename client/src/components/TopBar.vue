@@ -21,9 +21,11 @@
                 </li>
 
                 <li v-if="$store.state.user" class="user-bar">
-                  <span><i class="material-icons-sharp">person</i></span>
-                  <p>{{ userLogin }}</p> 
-                  
+                  <span v-if="$store.getters.userRole === 'basic'" class="user-bar__icon user-bar__icon--basic"><i class="material-icons-sharp">person</i></span>
+
+                  <span v-if="$store.getters.userRole === 'admin'" class="user-bar__icon user-bar__icon--admin"><i class="material-icons-sharp">person</i></span>
+
+                  <p class="user-bar__login">{{ userLogin }}</p>                 
                 </li>
 
                 <li>
