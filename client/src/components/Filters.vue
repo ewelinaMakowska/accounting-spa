@@ -53,7 +53,9 @@
         </ul>
     </div>
 
-  <div class="filters__bubble filters__bubble--filter filter-options" style="display: none; transform: translateX(-163px);
+
+
+  <div class="filters__bubble filters__bubble--filter filter-options" style="transform: translateX(-163px);
 ">
      Sposób rozliczania
     <ul>

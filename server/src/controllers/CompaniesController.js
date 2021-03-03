@@ -123,7 +123,7 @@ module.exports = {
     console.log(req.query);
    try {
     const page = req.query.page;
-    const value = req.query.city;
+    let value = req.query.city;
     const sort = req.query.sort;
     let accounting = req.query.accounting;
     let contact = req.query.contact
@@ -132,6 +132,7 @@ module.exports = {
     let orderName;
     let orderOrder;
     let companies;
+    let whereCityId;
     let whereAccountingName;
     let whereAccountingValue;
     let whereContactName;
@@ -178,6 +179,13 @@ module.exports = {
         whereContactValue = 1
       }
 
+    if(value) {
+      whereCityId = 'cityId'
+    } else {
+      whereCityId = 'remote'
+      value = 1
+    }
+
      companies = await Company.findAndCountAll(
        { 
       attributes: ['name', 'id', 'price', 'description'],
@@ -186,7 +194,7 @@ module.exports = {
        limit: ITEMS_PER_PAGE,
        where: {
          [Op.and]: [
-          {cityId: value},
+          {[whereCityId]: value},
           {[whereAccountingName]: 1},
           {[whereContactName]: 1}
          ]
@@ -195,7 +203,6 @@ module.exports = {
         { model: City, 
           as: 'City',
           attributes: ['name', 'region'],
-          //where: { id: value },   
           required: false //left join
           }
         ] 
