@@ -284,6 +284,10 @@ button[disabled]:hover {
     z-index: 2;
     margin-top: 20px;
     padding: 15px 30px;
+
+    &--filters {
+      min-width: 230px;
+    }
   }
 
   .triangle {
@@ -310,13 +314,17 @@ button[disabled]:hover {
 .filter-name {
   font-weight: 500;
   font-size: 15px;
-  margin-bottom: 0px;
+  margin-bottom: 12px;
 }
 
 .filter-list {
   list-style: none;
   padding-left: 15px;
   margin-top: 5px;
+}
+
+.filter-group:first-child {
+  margin-bottom: 20px;
 }
 
 .filter {
@@ -330,6 +338,10 @@ button[disabled]:hover {
 
   &__icon {
     color: $secondary-text;
+
+    &--filters {
+      font-size: 16px;
+    }
   }
 
   &__pseudo-label {
@@ -343,6 +355,10 @@ button[disabled]:hover {
 
   &__label {
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
 
     &:hover,
     &:focus,

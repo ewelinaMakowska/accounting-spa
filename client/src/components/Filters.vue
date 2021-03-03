@@ -18,7 +18,7 @@
         <ul class="filter-list">
           <li>
             <label class="filter__label" for="price_asc">
-              <span class="filter__pseudo-label">rosnąco &nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="filter__pseudo-label">rosnąco</span>
               <input class="filter__input" type="radio" id="price_asc" name="price_asc" value="price_asc" @click="setSortParam($event, 'price_asc')">
               <i class="material-icons-sharp filter__icon">expand_less</i>   
             </label>
@@ -26,7 +26,7 @@
 
           <li>
             <label class="filter__label" for="price_desc">
-              <span class="filter__pseudo-label">malejąco&nbsp;&nbsp;&nbsp;</span>
+              <span class="filter__pseudo-label">malejąco</span>
               <input class="filter__input" type="radio" id="price_desc" name="price_desc" value="price_desc" @click="setSortParam($event, 'price_desc')">
               <i class="material-icons-sharp filter__icon">expand_more</i>    
             </label>
@@ -37,7 +37,7 @@
         <ul class="filter-list">
           <li>
             <label class="filter__label" for="name_asc">
-              <span class="filter__pseudo-label">Od A do Z &nbsp;</span>
+              <span class="filter__pseudo-label">Od A do Z</span>
               <input class="filter__input" type="radio" id="name_asc" name="name_asc" value="name_asc" @click="setSortParam($event, 'name_asc')">
               <i class="material-icons-sharp filter__icon">expand_less</i>  
             </label>
@@ -45,7 +45,7 @@
 
           <li>
             <label class="filter__label" for="name_desc">
-              <span class="filter__pseudo-label">Od Z do A &nbsp;</span>
+              <span class="filter__pseudo-label">Od Z do A</span>
               <input class="filter__input" type="radio" id="name_desc" name="name_desc" value="name_desc" @click="setSortParam($event, 'name_desc')">
               <i class="material-icons-sharp filter__icon">expand_more</i>   
             </label>
@@ -60,33 +60,37 @@
           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M400 145.49L366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49z'/></svg>
         </button>
 
+
+      <div class="filter-group">
         <p class="filter-name">Sposób rozliczania</p>
         <ul class="filter-list">
           <li>
             <label class="filter__label" for="ledger">
-              <span class="filter__pseudo-label">Księga przychodów i rozchodów &nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="filter__pseudo-label">Księga Przychodów i Rozchodów</span>
               <input class="filter__input" type="radio" id="ledger" name="ledger" value="ledger" @click="setFilterAccountingMethod($event, 'ledger')">
-              <!-- <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 328l144-144 144 144'/></svg>   -->  
-              <i class="material-icons-sharp filter__icon">expand_less</i>
+              <i class="material-icons-sharp filter__icon filter__icon--filters">menu_book</i>
             </label>
           </li>
 
           <li>
             <label class="filter__label" for="lump_sum">
-              <span class="filter__pseudo-label">Ryczał†&nbsp;&nbsp;&nbsp;</span>
+              <span class="filter__pseudo-label">Ryczał†</span>
               <input class="filter__input" type="radio" id="lump_sum" name="lump_sum" value="lump_sum" @click="setFilterAccountingMethod($event, 'lump_sum')">
-              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 184l144 144 144-144'/></svg>   
+              <i class="material-icons-sharp filter__icon filter__icon--filters">library_books</i>  
             </label>
           </li>
         </ul>
+      </div>
+        
 
-        <p class="filter-name">Kontakt z księgowym</p>
+      <div class="filter-group">
+         <p class="filter-name">Kontakt z księgowym</p>
         <ul class="filter-list">
           <li>
             <label class="filter__label" for="in_person">
               <span class="filter__pseudo-label">Osobisty &nbsp;</span>
               <input class="filter__input" type="radio" id="in_person" name="in_person" value="in_person" @click="setFilterContactMethod($event, 'in_person')">
-              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 328l144-144 144 144'/></svg>    
+              <i class="material-icons-sharp filter__icon filter__icon--filters">person_pin_circle</i>   
             </label>
           </li>
 
@@ -94,10 +98,12 @@
             <label class="filter__label" for="remote">
               <span class="filter__pseudo-label">Online/telefonicznie&nbsp;</span>
               <input class="filter__input" type="radio" id="remote" name="remote" value="remote" @click="setFilterContactMethod($event, 'remote')">
-              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 184l144 144 144-144'/></svg>    
+              <i class="material-icons-sharp filter__icon filter__icon--filters">wifi</i>    
             </label>
           </li>
         </ul>
+      </div>
+       
     </div>
 
 
