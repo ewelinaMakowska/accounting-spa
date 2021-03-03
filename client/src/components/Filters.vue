@@ -63,17 +63,17 @@
         <p class="filter-name">Sposób rozliczania</p>
         <ul class="filter-list">
           <li>
-            <label class="filter__label" for="price_asc">
+            <label class="filter__label" for="ledger">
               <span class="filter__pseudo-label">Księga przychodów i rozchodów &nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <input class="filter__input" type="radio" id="price_asc" name="price_asc" value="price_asc" @click="setSortParam($event, 'price_asc')">
+              <input class="filter__input" type="radio" id="ledger" name="ledger" value="ledger" @click="setFilterAccountingMethod($event, 'ledger')">
               <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 328l144-144 144 144'/></svg>    
             </label>
           </li>
 
           <li>
-            <label class="filter__label" for="price_desc">
+            <label class="filter__label" for="lump_sum">
               <span class="filter__pseudo-label">Ryczał†&nbsp;&nbsp;&nbsp;</span>
-              <input class="filter__input" type="radio" id="price_desc" name="price_desc" value="price_desc" @click="setSortParam($event, 'price_desc')">
+              <input class="filter__input" type="radio" id="lump_sum" name="lump_sum" value="lump_sum" @click="setFilterAccountingMethod($event, 'lump_sum')">
               <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 184l144 144 144-144'/></svg>   
             </label>
           </li>
@@ -82,17 +82,17 @@
         <p class="filter-name">Kontakt z księgowym</p>
         <ul class="filter-list">
           <li>
-            <label class="filter__label" for="name_asc">
+            <label class="filter__label" for="in_person">
               <span class="filter__pseudo-label">Osobisty &nbsp;</span>
-              <input class="filter__input" type="radio" id="name_asc" name="name_asc" value="name_asc" @click="setSortParam($event, 'name_asc')">
+              <input class="filter__input" type="radio" id="in_person" name="in_person" value="in_person" @click="setFilterContactMethod($event, 'in_person')">
               <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 328l144-144 144 144'/></svg>    
             </label>
           </li>
 
           <li>
-            <label class="filter__label" for="name_desc">
+            <label class="filter__label" for="remote">
               <span class="filter__pseudo-label">Online/telefonicznie&nbsp;</span>
-              <input class="filter__input" type="radio" id="name_desc" name="name_desc" value="name_desc" @click="setSortParam($event, 'name_desc')">
+              <input class="filter__input" type="radio" id="remote" name="remote" value="remote" @click="setFilterContactMethod($event, 'remote')">
               <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 184l144 144 144-144'/></svg>    
             </label>
           </li>
@@ -151,7 +151,6 @@ export default {
 
     },
     showBubble(whichBubble) {
-      //zażądać akcji stanu zmieniającej ustawienia
       return this.$store.dispatch(whichBubble)
     },
 
@@ -182,6 +181,7 @@ export default {
       }    
       window.location.href = newUrl;
     },
+
     setRadiosChecked() {
       const currentQuery = this.$route.query;  
       let radioAccounting;
@@ -197,6 +197,7 @@ export default {
         radioSort[0].checked = true;
       }
     },
+
     setFilterAccountingMethod($event, accountingMethod) {
       console.log(accountingMethod);
       $event.target.setAttribute('checked','true');
@@ -228,6 +229,7 @@ export default {
     
       window.location.href = newUrl;
     }, 
+
      setFilterContactMethod($event, contact) {
       console.log(contact);
       $event.target.setAttribute('checked','true');
