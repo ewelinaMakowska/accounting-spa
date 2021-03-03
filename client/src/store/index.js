@@ -213,18 +213,6 @@ export const store = new Vuex.Store({
       } // return officeId
     }, // loadOffice //getter szukający w stanie w załadowanych wszystkich biurach :|
 
-    // oneCompany (state, id) {
-    //   console.log(state.loadedOffices)
-    //      let x = state.loadedOffices.find(office => {
-    //       office.id === id; });
-    //       return x;
-    // }, //loadOffice //getter szukający w stanie w załadowanych wszystkich biurach :|
-
-    /*   loadedOffice (state) {
-// ma zaciągnąc tylko jedno biuro
-return state.loadedOffices; //?
-    },  */
-
     countValue (state) {
       return state.allCompaniesCount
     },
@@ -242,6 +230,10 @@ return state.loadedOffices; //?
 
     token(state) {
       return state.token;
+    },
+
+    user(state) {
+      return state.user;
     }
 
   }, // getters

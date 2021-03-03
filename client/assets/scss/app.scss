@@ -147,6 +147,26 @@ button[disabled]:hover {
     }
 }
 
+.edit-page-link {
+  background-color: transparent;
+  color: $blue;
+  font-size: 14px;
+  padding: 7px 20px;
+  margin-right: 0;
+  border: 2px solid $pale-orange;
+  border-radius: 4px;
+  margin-right: 13px;
+  margin-left: 10px;
+  transition: all 0.3s;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    background-color: $pale-orange;
+    border-bottom: 2px solid $pale-orange;
+  }
+}
+
 //MAIN VIEW
 .blue-button {
   background-color: $blue;

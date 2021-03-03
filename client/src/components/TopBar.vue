@@ -20,7 +20,12 @@
                   <a href="#" class="top-bar__link">Księgowi</a>
                 </li>
 
-                <li v-if="$store.state.user" class="user-bar">
+                <li v-if="userLoggedIn && (userRole === 'admin')">
+                  <router-link class="top-bar__link edit-page-link" to="/edit-content">Edycja</router-link>
+                </li>
+
+
+                <li v-if="userLoggedIn" class="user-bar">
                   <span v-if="this.userRole === 'basic'" class="user-bar__icon user-bar__icon--basic"><i class="material-icons-sharp">person</i></span>
 
                   <span v-if="this.userRole === 'admin'" class="user-bar__icon user-bar__icon--admin"><i class="material-icons-sharp">person</i></span>
@@ -70,6 +75,10 @@ export default {
 computed: {
   userLogin() {
     return this.$store.getters.getUserLogin;
+  },
+
+  userLoggedIn() {
+    return this.$store.getters.user;
   },
 
   userRole() {
