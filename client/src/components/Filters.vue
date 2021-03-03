@@ -1,16 +1,16 @@
 <template>
   <div class="filters">
-    <button class="filters__button">
+    <button @click="showBubble('showFiltersBubble')" class="filters__button">
       Filtry
     </button>
 
-    <button @click="showBubble('sort')" class="filters__button">
+    <button @click="showBubble('showSortBubble')" class="filters__button">
       Sortowanie
     </button>
 
     <div v-if="filtersVisibilitySettings.sort.showBubble" class="filters__bubble filters__bubble--sort sort-options" id="filters__bubble--sort">
         <div class="triangle triangle--sort"></div>
-        <button @click="hideBubble('sort')" class="bubble__close-btn" id="sort-close-btn">
+        <button @click="hideBubble('hideSortBubble')" class="bubble__close-btn" id="sort-close-btn">
           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M400 145.49L366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49z'/></svg>
         </button>
 
@@ -54,9 +54,56 @@
     </div>
 
 
+      <div v-if="filtersVisibilitySettings.filters.showBubble" class="filters__bubble filters__bubble--filters filter-options" id="filters__bubble--filters">
+        <div class="triangle triangle--filters"></div>
+        <button @click="hideBubble('hideFiltersBubble')" class="bubble__close-btn" id="filters-close-btn">
+          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M400 145.49L366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49z'/></svg>
+        </button>
 
-  <div class="filters__bubble filters__bubble--filter filter-options" style="transform: translateX(-163px);
+        <p class="filter-name">Sposób rozliczania</p>
+        <ul class="filter-list">
+          <li>
+            <label class="filter__label" for="price_asc">
+              <span class="filter__pseudo-label">Księga przychodów i rozchodów &nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <input class="filter__input" type="radio" id="price_asc" name="price_asc" value="price_asc" @click="setSortParam($event, 'price_asc')">
+              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 328l144-144 144 144'/></svg>    
+            </label>
+          </li>
+
+          <li>
+            <label class="filter__label" for="price_desc">
+              <span class="filter__pseudo-label">Ryczał†&nbsp;&nbsp;&nbsp;</span>
+              <input class="filter__input" type="radio" id="price_desc" name="price_desc" value="price_desc" @click="setSortParam($event, 'price_desc')">
+              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 184l144 144 144-144'/></svg>   
+            </label>
+          </li>
+        </ul>
+
+        <p class="filter-name">Kontakt z księgowym</p>
+        <ul class="filter-list">
+          <li>
+            <label class="filter__label" for="name_asc">
+              <span class="filter__pseudo-label">Osobisty &nbsp;</span>
+              <input class="filter__input" type="radio" id="name_asc" name="name_asc" value="name_asc" @click="setSortParam($event, 'name_asc')">
+              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 328l144-144 144 144'/></svg>    
+            </label>
+          </li>
+
+          <li>
+            <label class="filter__label" for="name_desc">
+              <span class="filter__pseudo-label">Online/telefonicznie&nbsp;</span>
+              <input class="filter__input" type="radio" id="name_desc" name="name_desc" value="name_desc" @click="setSortParam($event, 'name_desc')">
+              <svg xmlns='http://www.w3.org/2000/svg' class="filter__icon" viewBox='0 0 512 512'><path d='M112 184l144 144 144-144'/></svg>    
+            </label>
+          </li>
+        </ul>
+    </div>
+
+
+
+ <!--  <div class="filters__bubble filters__bubble--filter filter-options" style="transform: translateX(-163px);
 ">
+     
      Sposób rozliczania
     <ul>
       <li>
@@ -79,14 +126,12 @@
         <label for="remote">Telefonicznie/online</label>
       </li>
     </ul>
-  </div>
+    
+  </div> -->
    
   </div>
 </template>
 
-<!--<style lang="scss">
- .hidden { display: none; }
-</style> -->
 
 <script>
 export default {
@@ -107,11 +152,13 @@ export default {
     },
     showBubble(whichBubble) {
       //zażądać akcji stanu zmieniającej ustawienia
-      return this.$store.dispatch('showSortBubble')
+      return this.$store.dispatch(whichBubble)
     },
+
     hideBubble(whichBubble) {
-      return this.$store.dispatch('hideSortBubble')
+      return this.$store.dispatch(whichBubble)
     },
+
     setSortParam($event, sortParam) {
       let url = window.location.href.split('/');
       let path = url[url.length-1].split('?')

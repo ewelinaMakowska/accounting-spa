@@ -29,6 +29,14 @@ export const store = new Vuex.Store({
           priceDesc: false,
           nameAsc: false,
           nameDesc: false
+        },
+
+        filters: {
+          showBubble: localStorage.getItem('showFiltersBubble') || false,
+          ledger: false,
+          lumpSum: false,
+          remote: false,
+          inPerson: false
         }
       }
     }
@@ -87,9 +95,19 @@ export const store = new Vuex.Store({
       localStorage.setItem('showSortBubble', true)
     },
 
+    showFiltersBubble(state) {
+      state.settings.filters.filters.showBubble = true;
+      localStorage.setItem('showFiltersBubble', true)
+    },
+
     hideSortBubble(state) {
       state.settings.filters.sort.showBubble = false;
       localStorage.removeItem('showSortBubble', false)
+    },
+
+    hideFiltersBubble(state) {
+      state.settings.filters.filters.showBubble = false;
+      localStorage.removeItem('showFiltersBubble', false)
     }
 
   },
@@ -175,8 +193,17 @@ export const store = new Vuex.Store({
     showSortBubble({ commit }) {
       commit('showSortBubble')
     },
+
+    showFiltersBubble({ commit }) {
+      commit('showFiltersBubble')
+    },
+
     hideSortBubble({ commit }) {
       commit('hideSortBubble')
+    },
+
+    hideFiltersBubble({ commit }) {
+      commit('hideFiltersBubble')
     },
 
 
