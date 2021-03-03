@@ -21,9 +21,9 @@
                 </li>
 
                 <li v-if="$store.state.user" class="user-bar">
-                  <span v-if="$store.getters.userRole === 'basic'" class="user-bar__icon user-bar__icon--basic"><i class="material-icons-sharp">person</i></span>
+                  <span v-if="this.userRole === 'basic'" class="user-bar__icon user-bar__icon--basic"><i class="material-icons-sharp">person</i></span>
 
-                  <span v-if="$store.getters.userRole === 'admin'" class="user-bar__icon user-bar__icon--admin"><i class="material-icons-sharp">person</i></span>
+                  <span v-if="this.userRole === 'admin'" class="user-bar__icon user-bar__icon--admin"><i class="material-icons-sharp">person</i></span>
 
                   <p class="user-bar__login">{{ userLogin }}</p>                 
                 </li>
@@ -70,6 +70,10 @@ export default {
 computed: {
   userLogin() {
     return this.$store.getters.getUserLogin;
+  },
+
+  userRole() {
+    return this.$store.getters.userRole;
   }
 },
 
