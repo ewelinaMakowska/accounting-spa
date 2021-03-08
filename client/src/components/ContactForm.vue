@@ -3,32 +3,48 @@
   <form
     novalidate
     @submit="submitForm($event)"
+    id="contact-form"
+    class="contact-form"
   >
 
-    <p>Skontaktuj się z nami!</p>
-    <br>
+    <h2>Skontaktuj się z nami!</h2>
 
-    <label for="form__name">Your Name:</label><input
-      id="form__name"
-      name="name"
+    <div class="contact-form__group">
+      <label for="contact-form__name">Imię:</label>
+      <input
+      id="contact-form__name"
+      name="contact-form__name"
       type="text"
-    >
-    <br>
+      placeholder="Twoje imię"
+      >
+    </div>
 
-    <label for="form__email">Your E-mail:</label><input
-      id="form__email"
-      name="email"
+  
+    <div class="contact-form__group">
+      <label for="contact-form__email">E-mail:</label>
+      <input
+      id="contact-form__email"
+      name="contact-form__email"
       type="email"
-    >
-    <br>
-
-    <label for="form__message">Your Message:</label><br>
-
-    <textarea id="form__message" /><br>
+      placeholder="Twój adres e-mail"
+      >
+    </div>
+    
+    
+    <div class="contact-form__group">
+      <label for="contact-form__message">Wiadomość:</label>
+      <textarea 
+      id="contact-form__message" 
+      class="contact-form__message" 
+      placeholder="Twoja wiadomość do nas"
+      />
+    </div>
+    
     
     <input
+      class="contact-form__submit"
       type="submit"
-      value="Send"
+      value="Wyślij"
     >
 
   </form>
@@ -48,9 +64,9 @@ export default {
       e.preventDefault()
 
       const eMailData = {
-        name: document.getElementById('form__name').value,
-        email: document.getElementById('form__email').value,
-        message: document.getElementById('form__message').value,
+        name: document.getElementById('contact-form__name').value,
+        email: document.getElementById('contact-form__email').value,
+        message: document.getElementById('contact-form__message').value,
         company: this.$props.company.email
       }
 

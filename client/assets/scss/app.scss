@@ -1045,3 +1045,65 @@ button[disabled]:hover {
 .edit-company-btn {
   margin-top: 10px;
 }
+
+.contact-form {
+  width: 60%;
+  margin-top: 30px;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  &__group {
+    margin-bottom: 25px;
+
+    label {
+      display: block;
+    }
+  }
+
+  input[type='email'],
+  input[type='text'] {
+    width: 100%;
+    color: $primary-text;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: 2px solid $blue-lilac;
+    font-size: 16px;
+    padding: 15px 5px 5px 0;
+    transition: 0.3s;
+
+      &:focus,
+      &:hover,
+      &:active {
+        outline: none;
+        border-bottom: 2px solid $blue;
+      }
+    }
+
+    .contact-form__message {
+      border: none;
+      font-family: $roboto-font;
+      resize: vertical;
+      overflow: hidden;
+      //background-color: #f0f3ff;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: 2px solid $blue-lilac;
+  
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &__submit {
+      padding: 6px 24px;
+      border-radius: 3px;
+      margin-top: 17px;
+      margin-bottom: 8px;
+    }
+
+
+}
