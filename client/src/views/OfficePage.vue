@@ -19,7 +19,6 @@
       v-if="office.email"
       class="company-form"
       id="form"
-      style="display: none;"
     >
       <div class="container">
         <div class="row">
