@@ -2,6 +2,7 @@
   <div>
     <top-bar></top-bar>
 
+
     <section class="c-profile__info">
       <div class="container">
         <div class="row">
@@ -13,8 +14,15 @@
       </div>
     </section>
 
-    <section v-if="(this.$route.query.edit =='false' || !this.$route.query.edit) && notLoading">
-      <contact-form :company="company"  />
+
+    <section v-if="(this.$route.query.edit =='false' || !this.$route.query.edit) && notLoading && company.email">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <contact-form :company="company"  />
+          </div>
+        </div>
+      </div>
     </section>
 
     
@@ -47,9 +55,6 @@
     },
 
     computed: {
-      office() {
-        return this.$store.getters.loadedOffices
-      },
       company() {
         return this.$store.getters.loadedOffices
       } 
