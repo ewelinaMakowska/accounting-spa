@@ -152,7 +152,13 @@ export default {
   },
   methods: {
     showBubble(whichBubble) {   
-      return this.$store.dispatch(whichBubble)
+      this.$store.dispatch(whichBubble)
+
+      if(whichBubble === 'showSortBubble') {
+        this.hideBubble('hideFiltersBubble')
+      } else if(whichBubble === 'showFiltersBubble') {
+        this.hideBubble('hideSortBubble')
+      }
     },
 
     hideBubble(whichBubble) {
