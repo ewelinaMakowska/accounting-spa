@@ -1,6 +1,7 @@
 <template>
   <div>
     <top-bar></top-bar>
+
     <section class="c-profile__info">
       <div class="container">
         <div class="row">
@@ -12,13 +13,16 @@
       </div>
     </section>
 
-    <!-- visible with param and if admin -->
-    <!-- todo: form for editing company -->
+    <section v-if="(this.$route.query.edit =='false' || !this.$route.query.edit) && notLoading">
+      <contact-form :company="company"  />
+    </section>
+
 
     <section
       v-if="office.email"
       class="company-form"
       id="form"
+      style="display: none;"
     >
       <div class="container">
         <div class="row">
@@ -65,14 +69,17 @@ import CompaniesService from '../services/CompaniesService'
 import ContactService from '../services/ContactService'
 import TopBar from '../components/TopBar.vue' 
 import CompanyInfo from '../components/CompanyInfo.vue'
+import ContactForm from '../components/ContactForm.vue'
 import EditCompany from '../components/EditCompany.vue'
 
 export default {
   components: {
     TopBar,
     CompanyInfo,
+    ContactForm,
     EditCompany
   },
+  
   data() {
     return {
       notLoading: false
@@ -121,7 +128,8 @@ export default {
           this.notLoading = false;
         })
       },
-    async submitForm(e) {
+
+ /*    async submitForm(e) {
       e.preventDefault()
 
       const eMailData = {
@@ -142,7 +150,7 @@ export default {
       } catch (err) {
         console.log(err)
       }
-    }
+    } */
 
   } // mounted
 
