@@ -29,6 +29,14 @@ export const store = new Vuex.Store({
           priceDesc: false,
           nameAsc: false,
           nameDesc: false
+        },
+
+        filters: {
+          showBubble: localStorage.getItem('showFiltersBubble') || false,
+          ledger: false,
+          lumpSum: false,
+          remote: false,
+          inPerson: false
         }
       }
     }
@@ -87,9 +95,19 @@ export const store = new Vuex.Store({
       localStorage.setItem('showSortBubble', true)
     },
 
+    showFiltersBubble(state) {
+      state.settings.filters.filters.showBubble = true;
+      localStorage.setItem('showFiltersBubble', true)
+    },
+
     hideSortBubble(state) {
       state.settings.filters.sort.showBubble = false;
       localStorage.removeItem('showSortBubble', false)
+    },
+
+    hideFiltersBubble(state) {
+      state.settings.filters.filters.showBubble = false;
+      localStorage.removeItem('showFiltersBubble', false)
     }
 
   },
@@ -175,17 +193,35 @@ export const store = new Vuex.Store({
     showSortBubble({ commit }) {
       commit('showSortBubble')
     },
+
+    showFiltersBubble({ commit }) {
+      commit('showFiltersBubble')
+    },
+
     hideSortBubble({ commit }) {
       commit('hideSortBubble')
+    },
+
+    hideFiltersBubble({ commit }) {
+      commit('hideFiltersBubble')
     },
 
 
   },
 
   getters: {
-
     state (state) {
       return state
+    },
+
+    userRole(state) {
+      if(state.user) {
+        const user = JSON.parse(state.user);
+        const role = user.role;
+        return role
+      } else {
+        return false
+      }
     },
 
     loadedOffices (state) {
@@ -204,18 +240,6 @@ export const store = new Vuex.Store({
       } // return officeId
     }, // loadOffice //getter szukający w stanie w załadowanych wszystkich biurach :|
 
-    // oneCompany (state, id) {
-    //   console.log(state.loadedOffices)
-    //      let x = state.loadedOffices.find(office => {
-    //       office.id === id; });
-    //       return x;
-    // }, //loadOffice //getter szukający w stanie w załadowanych wszystkich biurach :|
-
-    /*   loadedOffice (state) {
-// ma zaciągnąc tylko jedno biuro
-return state.loadedOffices; //?
-    },  */
-
     countValue (state) {
       return state.allCompaniesCount
     },
@@ -233,6 +257,10 @@ return state.loadedOffices; //?
 
     token(state) {
       return state.token;
+    },
+
+    user(state) {
+      return state.user;
     }
 
   }, // getters

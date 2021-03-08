@@ -6,8 +6,9 @@
           <div class="col">
 
             <div class="top-bar__left">
-              <img src="/assets/img/dummy-logo.svg" class="top-bar__logo" />
-              <p class="top-bar__company-name">Business Services</p>
+              <a href="/search">
+                <img src="/assets/img/app-logo.svg" class="top-bar__logo" />
+              </a>
             </div>
 
 
@@ -16,13 +17,20 @@
                 <li><a href="#" class="top-bar__link">Usługi</a></li>
 
                 <li>
-                  <a href="#" class="top-bar__link">Księgowi</a>
+                  <a href="#" :class="[isPathSearch ? navButtonDecoratedClass : '', navButtonClass]" >Księgowi</a>
+                </li>
+                
+                <li v-if="userLoggedIn && (userRole === 'admin')">
+                  <router-link class="top-bar__link edit-page-link" to="/edit-content">Edycja</router-link>
                 </li>
 
-                <li v-if="$store.state.user" class="user-bar">
-                  <span><i class="material-icons-sharp">person</i></span>
-                  <p>{{ userLogin }}</p> 
-                  
+
+                <li v-if="userLoggedIn" class="user-bar">
+                  <span v-if="this.userRole === 'basic'" class="user-bar__icon user-bar__icon--basic"><i class="material-icons-sharp">person</i></span>
+
+                  <span v-if="this.userRole === 'admin'" class="user-bar__icon user-bar__icon--admin"><i class="material-icons-sharp">person</i></span>
+
+                  <p class="user-bar__login">{{ userLogin }}</p>                 
                 </li>
 
                 <li>
@@ -61,12 +69,30 @@ export default {
 
   data () {
     return {
+      navButtonClass: 'top-bar__link',
+      navButtonDecoratedClass: 'top-bar__link--decorated'
     }
   },
 
 computed: {
   userLogin() {
     return this.$store.getters.getUserLogin;
+  },
+
+  userLoggedIn() {
+    return this.$store.getters.user;
+  },
+
+  userRole() {
+    return this.$store.getters.userRole;
+  },
+
+  isPathSearch() {
+    if(this.$route.path === '/search') {
+      return true
+    } else {
+      return false
+    }
   }
 },
 

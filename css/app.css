@@ -36,6 +36,18 @@ button[disabled]:hover {
   pointer-events: none;
 }
 
+.main-container {
+  margin-top: 35px;
+}
+
+.visible--block {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
 .top-bar {
   overflow: hidden;
   margin: 0 0 20px 0;
@@ -56,18 +68,14 @@ button[disabled]:hover {
   float: left;
 }
 
-.top-bar__company-name {
+.top-bar__logo {
+  height: 43px;
   display: inline-block;
-  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 .top-bar__logo {
-  height: 60px;
-  display: inline-block;
-  margin-right: 10px;
-}
-
-.top-bar__company-name, .top-bar__logo {
   vertical-align: middle;
 }
 
@@ -145,6 +153,25 @@ button[disabled]:hover {
   cursor: pointer;
   background-color: #3061fc;
   color: #ffffff;
+}
+
+.orange-button {
+  background-color: #f8ca87;
+  color: #001558;
+  font-size: 14px;
+  padding: 7px 20px;
+  margin-right: 0;
+  border: 2px solid #f8ca87;
+  border-radius: 4px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.orange-button:hover, .orange-button:focus {
+  cursor: pointer;
+  background-color: #001558;
+  border: 2px solid #001558;
+  color: #f8ca87;
 }
 
 .login-button {
@@ -294,12 +321,27 @@ button[disabled]:hover {
   fill: #3061fc;
 }
 
+.search__input-wrapper {
+  position: relative;
+}
+
+.search__icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  color: rgba(0, 0, 0, 0.54);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 18px;
+}
+
 .search__input {
   border-top: none;
   border-left: none;
   border-right: none;
   height: 32px;
   border-bottom: 2px solid #3061fc;
+  width: 250px;
 }
 
 .search__input:focus {
@@ -325,7 +367,7 @@ button[disabled]:hover {
   position: absolute;
   z-index: 3;
   background-color: #ffffff;
-  width: 220px;
+  width: 250px;
   border-top: none;
   border-left: 1px solid #dddddd;
   border-right: 1px solid #dddddd;
@@ -342,8 +384,19 @@ button[disabled]:hover {
 .autocomplete__list li {
   width: 100%;
   padding: 0;
-  margin: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
   background-color: lightblue;
+}
+
+.autocomplete__list li:first-child {
+  margin-top: 0;
+}
+
+.autocomplete__list li:last-child {
+  margin-bottom: 0;
 }
 
 .autocomplete__list li button {
@@ -410,12 +463,29 @@ button[disabled]:hover {
 
 .thumb__name {
   font-weight: 500;
-  margin-bottom: 5px;
+  font-size: 18px;
+  margin-bottom: 11px;
 }
 
 .thumb__city, .thumb__price {
   font-size: 13px;
   color: rgba(0, 0, 0, 0.54);
+  margin-bottom: 3px;
+}
+
+.thumb__city-wrapper {
+  display: inline-block;
+}
+
+.thumb__icon {
+  color: #3061fc;
+  font-size: 13px;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.thumb__city, .thumb__price, .thumb__icon {
+  vertical-align: middle;
 }
 
 .thumb__list {
@@ -613,6 +683,11 @@ button[disabled]:hover {
   color: #001558;
 }
 
+.register-link__text, .register-link__icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .error-message__triangle {
   width: 20px;
   height: 20px;
@@ -759,6 +834,11 @@ button[disabled]:hover {
   list-style: none;
 }
 
+.add-company__price--edit {
+  width: 70px;
+  text-align: center;
+}
+
 .add-company__input {
   border-top: none;
   border-left: none;
@@ -776,7 +856,10 @@ button[disabled]:hover {
   font-family: "Roboto", "Lato", sans-serif;
   resize: vertical;
   overflow: hidden;
-  background-color: #f0f3ff;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid #b0befd;
 }
 
 .add-company__textarea:focus {
@@ -793,6 +876,7 @@ button[disabled]:hover {
 
 .add-company__city {
   min-width: 265px;
+  font-size: 17px;
 }
 
 .add-company__autocomplete {
@@ -808,6 +892,8 @@ button[disabled]:hover {
   display: inline-block;
   margin-top: 30px;
   margin-bottom: 30px;
+  font-size: 14px;
+  line-height: 24px;
 }
 
 .add-company__price {
@@ -835,5 +921,13 @@ button[disabled]:hover {
 .company-description__wrapper {
   height: 100%;
   text-align: center;
+}
+
+.d-inline-block {
+  display: inline-block !important;
+}
+
+.edit-company-btn {
+  margin-top: 10px;
 }
 /*# sourceMappingURL=app.css.map */

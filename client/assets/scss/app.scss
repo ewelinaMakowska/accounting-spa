@@ -3,6 +3,7 @@ $roboto-font: 'Roboto', 'Lato', sans-serif;
 $blue: #3061fc;
 $midnight-blue: #001558;
 $blue-lilac: #b0befd;
+$pale-orange: #f8ca87;
 $primary-text: #444444;
 $secondary-text: rgba(0, 0, 0, 0.54);
 $very-light-grey: #dddddd;
@@ -44,6 +45,18 @@ button[disabled]:hover {
   pointer-events: none;
 }
 
+.main-container {
+  margin-top: 35px;
+}
+
+.visible--block {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
 //TOP BAR 
 .top-bar {
   overflow: hidden;
@@ -63,18 +76,13 @@ button[disabled]:hover {
     float: left;
   }
 
-  &__company-name {
-    display: inline-block;
-    font-size: 16px;
-  }
-
   &__logo {
-    height: 60px;
+    height: 43px;
     display: inline-block;
-    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
   }
 
-  &__company-name,
   &__logo {
     vertical-align: middle;
   }
@@ -97,6 +105,11 @@ button[disabled]:hover {
     border-bottom: 2px solid transparent;
     transition: all 0.3s;
 
+    &--decorated {
+      text-decoration: none;
+      border-bottom: 2px solid $blue;
+    }
+
     &:hover,
     &:focus,
     &:active {
@@ -110,16 +123,53 @@ button[disabled]:hover {
   margin-left: 10px;
   margin-right: 20px;
 
-  span, p, i {
+  &__icon, &__icon i, &__login {
     display: inline-block;
     vertical-align: middle;
   }
 
-    i{
-      color: $blue;
-      margin-top: -2px;
-      margin-right: 5px;
+    &__icon {
+      display: inline-block;
+      vertical-align: middle;
+      padding: 4px 6px 6px 6px;
+      border-radius: 50px;
+      margin-right: 7px;
+
+      i {
+        margin: 0;
+        color: $blue;
+        font-size: 17px;
+      }
+
+      &--basic {
+        background: $very-light-grey;
+      }
+
+      &--admin {
+        background: $pale-orange;
+      }
+
     }
+}
+
+.edit-page-link {
+  background-color: transparent;
+  color: $blue;
+  font-size: 14px;
+  padding: 7px 20px;
+  margin-right: 0;
+  border: 2px solid $pale-orange;
+  border-radius: 4px;
+  margin-right: 13px;
+  margin-left: 10px;
+  transition: all 0.3s;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    background-color: $pale-orange;
+    border-bottom: 2px solid $pale-orange;
+  }
 }
 
 //MAIN VIEW
@@ -157,6 +207,25 @@ button[disabled]:hover {
     cursor: pointer;
     background-color: $blue;
     color: #ffffff;
+  }
+}
+
+.orange-button {
+  background-color: $pale-orange;
+  color: $midnight-blue;
+  font-size: 14px;
+  padding: 7px 20px;
+  margin-right: 0;
+  border: 2px solid $pale-orange;
+  border-radius: 4px;
+  transition: all 0.3s;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    background-color: $midnight-blue;
+    border: 2px solid $midnight-blue;
+    color: $pale-orange;
   }
 }
 
@@ -214,7 +283,11 @@ button[disabled]:hover {
     width: 100%;
     z-index: 2;
     margin-top: 20px;
-    padding: 15px 30px;
+    padding: 15px 30px 25px 30px;
+
+    &--filters {
+      min-width: 230px;
+    }
   }
 
   .triangle {
@@ -241,13 +314,21 @@ button[disabled]:hover {
 .filter-name {
   font-weight: 500;
   font-size: 15px;
-  margin-bottom: 0px;
+  margin-bottom: 12px;
 }
 
 .filter-list {
   list-style: none;
   padding-left: 15px;
   margin-top: 5px;
+}
+
+.filter-group {
+  margin-top: 25px;
+}
+
+.filter-group:first-child {
+  margin-bottom: 20px;
 }
 
 .filter {
@@ -260,13 +341,11 @@ button[disabled]:hover {
   }
 
   &__icon {
-    height: 15px;
-    z-index: 1;
-    stroke: $secondary-text;
-    fill: none;
-    stroke-linecap: square;
-    stroke-miterlimit: 10;
-    stroke-width: 48; 
+    color: $secondary-text;
+
+    &--filters {
+      font-size: 16px;
+    }
   }
 
   &__pseudo-label {
@@ -280,6 +359,10 @@ button[disabled]:hover {
 
   &__label {
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
 
     &:hover,
     &:focus,
@@ -287,8 +370,16 @@ button[disabled]:hover {
       color: $blue;
 
       .filter__icon {
-        stroke: $blue-lilac;
+        color: $blue-lilac;
       }
+    }
+
+    &--filters {
+      margin-bottom: 8px;
+    }
+
+    &--sort {
+      margin-bottom: 2px;
     }
   }
 
@@ -297,19 +388,27 @@ button[disabled]:hover {
 .bubble {
   &__close-btn {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 2px;
+    top: 2px;
     margin: 0;
     padding: 0;
     background: #ffffff;
     border: none;
     outline: none;
-    width: 20px;
-    fill: $primary-text;
 
-    &:hover {
+    i {
+      color: $secondary-text;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+
+    &:hover,
+    &:focus {
       cursor: pointer;
-      fill: $blue;
+
+      i {
+        color: $blue;
+      }
     }
   }
 }
@@ -319,6 +418,16 @@ button[disabled]:hover {
     //z-index:5; 
     //margin-top: -31px; 
     //position:absolute;
+    position: relative;
+  }
+
+  &__icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    color: $secondary-text;
+    transform: translateY(-50%);
+    font-size: 18px;
   }
 
   &__input {
@@ -327,6 +436,7 @@ button[disabled]:hover {
     border-right: none;
     height: 32px;
     border-bottom: 2px solid $blue;
+    width: 250px;
 
     &:focus {
       outline: none;
@@ -339,7 +449,7 @@ button[disabled]:hover {
     position: absolute;
     z-index: 3;
     background-color: #ffffff;
-    width: 220px;
+    width: 250px;
     border-top: none;
     border-left: 1px solid $very-light-grey;
     border-right: 1px solid $very-light-grey;
@@ -355,8 +465,19 @@ button[disabled]:hover {
     li {
       width: 100%;
       padding: 0;
-      margin: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 5px;
+      margin-bottom: 5px;
       background-color: lightblue;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
 
       button {
         border: 1px solid #ffffff;
@@ -431,14 +552,32 @@ button[disabled]:hover {
 
   &__name {
     font-weight: 500;
-    margin-bottom: 5px;
+    font-size: 18px;
+    margin-bottom: 11px;
   }
 
   &__city,
   &__price {
     font-size: 13px;
     color: $secondary-text;
+    margin-bottom: 3px;
+  }
 
+  &__city-wrapper {
+    display: inline-block;
+  }
+
+  &__icon {
+    color:$blue;
+    font-size: 13px;
+    margin-right: 5px;
+    display: inline-block;
+  }
+
+  &__city,
+  &__price,
+  &__icon {
+    vertical-align: middle;
   }
 
   &__list {
@@ -631,6 +770,14 @@ button[disabled]:hover {
       line-height: 20px;
       color: $midnight-blue;
     }
+  }
+}
+
+.register-link {
+  &__text,
+  &__icon {
+    display: inline-block;
+    vertical-align: middle;
   }
 }
 
@@ -893,4 +1040,8 @@ button[disabled]:hover {
 
 .d-inline-block {
   display: inline-block !important;
+}
+
+.edit-company-btn {
+  margin-top: 10px;
 }
