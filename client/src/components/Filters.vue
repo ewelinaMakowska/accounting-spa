@@ -17,7 +17,7 @@
         <p class="filter-name">Cena</p>
         <ul class="filter-list">
           <li>
-            <label class="filter__label" for="price_asc">
+            <label class="filter__label filter__label--sort" for="price_asc">
               <span class="filter__pseudo-label">rosnąco</span>
               <input class="filter__input" type="radio" id="price_asc" name="price_asc" value="price_asc" @click="setSortParam($event, 'price_asc')">
               <i class="material-icons-sharp filter__icon">expand_less</i>   
@@ -25,7 +25,7 @@
           </li>
 
           <li>
-            <label class="filter__label" for="price_desc">
+            <label class="filter__label filter__label--sort" for="price_desc">
               <span class="filter__pseudo-label">malejąco</span>
               <input class="filter__input" type="radio" id="price_desc" name="price_desc" value="price_desc" @click="setSortParam($event, 'price_desc')">
               <i class="material-icons-sharp filter__icon">expand_more</i>    
@@ -36,7 +36,7 @@
         <p class="filter-name">Nazwa biura</p>
         <ul class="filter-list">
           <li>
-            <label class="filter__label" for="name_asc">
+            <label class="filter__label filter__label--sort" for="name_asc">
               <span class="filter__pseudo-label">Od A do Z</span>
               <input class="filter__input" type="radio" id="name_asc" name="name_asc" value="name_asc" @click="setSortParam($event, 'name_asc')">
               <i class="material-icons-sharp filter__icon">expand_less</i>  
@@ -44,7 +44,7 @@
           </li>
 
           <li>
-            <label class="filter__label" for="name_desc">
+            <label class="filter__label filter__label--sort" for="name_desc">
               <span class="filter__pseudo-label">Od Z do A</span>
               <input class="filter__input" type="radio" id="name_desc" name="name_desc" value="name_desc" @click="setSortParam($event, 'name_desc')">
               <i class="material-icons-sharp filter__icon">expand_more</i>   
@@ -65,7 +65,7 @@
         <p class="filter-name">Sposób rozliczania</p>
         <ul class="filter-list">
           <li>
-            <label class="filter__label" for="ledger">
+            <label class="filter__label filter__label--filters" for="ledger">
               <span class="filter__pseudo-label">Księga Przychodów i Rozchodów</span>
               <input class="filter__input" type="radio" id="ledger" name="ledger" value="ledger" @click="setFilterAccountingMethod($event, 'ledger')">
               <i class="material-icons-sharp filter__icon filter__icon--filters">menu_book</i>
@@ -73,7 +73,7 @@
           </li>
 
           <li>
-            <label class="filter__label" for="lump_sum">
+            <label class="filter__label filter__label--filters" for="lump_sum">
               <span class="filter__pseudo-label">Ryczał†</span>
               <input class="filter__input" type="radio" id="lump_sum" name="lump_sum" value="lump_sum" @click="setFilterAccountingMethod($event, 'lump_sum')">
               <i class="material-icons-sharp filter__icon filter__icon--filters">library_books</i>  
@@ -87,7 +87,7 @@
          <p class="filter-name">Kontakt z księgowym</p>
         <ul class="filter-list">
           <li>
-            <label class="filter__label" for="in_person">
+            <label class="filter__label filter__label--filters" for="in_person">
               <span class="filter__pseudo-label">Osobisty &nbsp;</span>
               <input class="filter__input" type="radio" id="in_person" name="in_person" value="in_person" @click="setFilterContactMethod($event, 'in_person')">
               <i class="material-icons-sharp filter__icon filter__icon--filters">person_pin_circle</i>   
@@ -95,7 +95,7 @@
           </li>
 
           <li>
-            <label class="filter__label" for="remote">
+            <label class="filter__label filter__label--filters" for="remote">
               <span class="filter__pseudo-label">Online/telefonicznie&nbsp;</span>
               <input class="filter__input" type="radio" id="remote" name="remote" value="remote" @click="setFilterContactMethod($event, 'remote')">
               <i class="material-icons-sharp filter__icon filter__icon--filters">wifi</i>    
@@ -151,13 +151,7 @@ export default {
     }
   },
   methods: {
-    showSortOptions () {
-     /*  const sortOptionsList = document.getElementsByClassName('sort__options')
-      console.log(sortOptionsList)
-      sortOptionsList.classList.toggle('hidden') */
-
-    },
-    showBubble(whichBubble) {
+    showBubble(whichBubble) {   
       return this.$store.dispatch(whichBubble)
     },
 
