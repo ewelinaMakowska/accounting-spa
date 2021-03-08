@@ -165,6 +165,11 @@ export default {
       return this.$store.dispatch(whichBubble)
     },
 
+    hideAllBubbles() {
+      this.$store.dispatch('hideFiltersBubble')
+      this.$store.dispatch('hideSortBubble')
+    },
+
     setSortParam($event, sortParam) {
       let url = window.location.href.split('/');
       let path = url[url.length-1].split('?')
@@ -280,6 +285,7 @@ export default {
   },
   mounted(){
     console.log('filters mounted')
+    this.hideAllBubbles();
     //this.setRadiosChecked();
     //console.log(this.visible.sort)
 }
