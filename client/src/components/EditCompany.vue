@@ -83,7 +83,7 @@
 
                 <button 
                 @click="exitEditionMode()"
-                class="orange-button edit-company-btn">
+                class="orange-button edit-company-btn edit-company-btn--transparent">
                 Wyjdź z edycji
                 </button>
 
