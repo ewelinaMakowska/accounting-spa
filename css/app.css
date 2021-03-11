@@ -1108,4 +1108,42 @@ button[disabled]:hover {
   background-color: #b0befd;
   color: #001558;
 }
+
+.reg-background {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.reg-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 60px 0 0 0;
+  background: #ffffff;
+  -webkit-box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.16);
+          box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.16);
+  border-radius: 3px;
+  width: 70%;
+}
+
+.reg-box__img {
+  width: 100%;
+}
+
+.reg-box__left {
+  height: 100%;
+  width: 60%;
+  margin: 0;
+  padding: 0;
+}
+
+.reg-box__right {
+  width: 40%;
+}
 /*# sourceMappingURL=app.css.map */

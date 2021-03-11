@@ -1,15 +1,24 @@
 <template>
-  <div>
-    <section>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <b>Registration</b><br><br><br>
+  <div class="reg-background">    
+
+
+            <div class="reg-box">
+              <div class="reg-box__left">
+                <!--  <img src="/assets/img/buildings.jpg" alt="img" class="reg-box__img"/> -->
+              </div>
+
+              <div class="reg-box__right">
+                formularz
+              </div>
+            </div>
+
+
+         <!--    <b>Registration</b><br><br><br>
+
             <form
               novalidate
               @submit="register($event)"
             >
-              <!-- method="post" -->
               <label for="form__name">First Name:</label>
               <input
                 id="form__first-name"
@@ -54,11 +63,9 @@
                 type="submit"
                 value="Send"
               >
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
+            </form> -->
+
+   
   </div>
 </template>
 
