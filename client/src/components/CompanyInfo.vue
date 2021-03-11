@@ -24,7 +24,7 @@
           <div class="basic-data__price">
             <p>Od &nbsp;<span>{{ company.price }}</span> &nbsp;zł/msc</p>
 
-            <button class="blue-button contact_us-button">Skontaktuj się z nami</button><br/>
+            <a href="#contact-form" class="blue-button contact_us-button">Skontaktuj się z nami</a><br/>
 
             <button 
             v-if="$store.state.user && ($store.getters.userRole == 'admin')" 
@@ -32,7 +32,7 @@
             @click="editCompany($event)">
               Edytuj firmę
             </button>
-            
+      
           </div>
         </div>
       </div>
@@ -92,7 +92,7 @@
       }
     },
     methods: {
-      async editCompany($event) {
+      async editCompany() {
         const companyId = this.$route.params.id;
         history.pushState({}, '', `/office/${companyId}?edit=true#edit-form`);
         window.location.reload()

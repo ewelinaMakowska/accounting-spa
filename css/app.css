@@ -905,6 +905,20 @@ button[disabled]:hover {
 
 .contact_us-button {
   margin-top: -20px;
+  text-decoration: none;
+  background-color: #3061fc;
+  border: 2px solid #3061fc !important;
+  color: #ffffff;
+  border-radius: 3px;
+  padding: 7px 20px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.contact_us-button:focus, .contact_us-button:hover, .contact_us-button:active {
+  border: 2px solid #b0befd !important;
+  background-color: #b0befd;
+  color: #001558;
 }
 
 .sublist--edit {
@@ -1006,6 +1020,8 @@ button[disabled]:hover {
 
 .edit-company-btn {
   margin-top: 10px;
+  background: transparent;
+  color: #3061fc;
 }
 
 .contact-form {

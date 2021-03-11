@@ -931,6 +931,21 @@ button[disabled]:hover {
 
 .contact_us-button {
   margin-top: -20px;
+  text-decoration: none;
+  background-color: $blue;
+  border: 2px solid $blue !important;
+  color: #ffffff;
+  border-radius: 3px;
+  padding: 7px 20px;
+  transition: all 0.3s;
+
+  &:focus,
+  &:hover,
+  &:active {
+    border: 2px solid $blue-lilac !important;
+    background-color: $blue-lilac;
+    color: $midnight-blue;
+  }
 }
 
 .sublist--edit {
@@ -1045,6 +1060,8 @@ button[disabled]:hover {
 
 .edit-company-btn {
   margin-top: 10px;
+  background: transparent;
+  color: $blue;
 }
 
 .contact-form {

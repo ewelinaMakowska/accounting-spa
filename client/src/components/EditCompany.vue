@@ -81,10 +81,16 @@
                   />
                 <p class="d-inline-block"> &nbsp;zł/msc</p><br/>
 
+                <button 
+                @click="exitEditionMode()"
+                class="orange-button edit-company-btn">
+                Wyjdź z edycji
+                </button>
+
                 <input 
                 type="submit" 
                 value="Wyślij"
-                class="blue-button contact_us-button">
+                class="contact_us-button">
               </div>
             </div>
           </div>
@@ -408,13 +414,21 @@ import CompaniesService from '../services/CompaniesService'
          if(this.$props.company.in_person) {
           document.getElementById('in-person').setAttribute('checked', true)
         }
+      },
+
+      exitEditionMode() {
+        const companyId = this.$route.params.id;
+        history.pushState({}, '', `/office/${companyId}`);
+        window.location.reload()
       }
     },
+
     computed: {
       cities() {
         return this.$store.getters.loadedCities
       }
     },
+
     mounted() {
       this.checkInputs();
     },
