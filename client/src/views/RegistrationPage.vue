@@ -4,11 +4,87 @@
 
             <div class="reg-box">
               <div class="reg-box__left">
-                <!--  <img src="/assets/img/buildings.jpg" alt="img" class="reg-box__img"/> -->
               </div>
 
               <div class="reg-box__right">
-                formularz
+                <img src="/assets/img/app-logo.svg" alt="logo" class="reg-box__logo" />
+
+                <div class="right-content">
+                  <h1 class="text-center">Załóż konto</h1>
+
+                  <form
+                  novalidate
+                  @submit="register($event)"
+                  >
+
+                    <div class="login__group">
+                      <label for="form__name">Imię:</label>
+                      <input
+                      id="form__first-name"
+                      v-model.trim="userData.firstName"
+                      name="firstName"
+                      type="text"
+                      autocomplete="off"
+                      placeholder="Twoje imię"
+                      >
+                    </div>
+
+                    <div class="login__group">
+                      <label for="form__name">Nazwisko:</label>
+                      <input
+                      id="form__last-name"
+                      v-model.trim="userData.lastName"
+                      name="lastName"
+                      type="text"
+                      autocomplete="off"
+                      placeholder="Twoje nazwisko"
+                      >
+                    </div>
+
+                    <div class="login__group">
+                      <label for="form__email">E-mail:</label>
+                      <input
+                      id="form__email"
+                      class="login__input"
+                      v-model.trim="userData.eMail"
+                      name="eMail"
+                      type="email"
+                      autocomplete="off"
+                      placeholder="Twój e-mail"
+                      >
+                    </div>
+
+                    <div class="login__group">
+                      <label for="form__email">Hasło:</label>
+                      <input
+                      id="form__password"
+                      v-model="userData.password"
+                      name="password"
+                      type="password"
+                      placeholder="Hasło do Twojego konta..."
+                      autocomplete="off"
+                      >
+                    </div>
+
+                    <div class="login__group">
+                      <label for="form__email">Potwierdź hasło:</label>
+                      <input
+                      id="form__confirm-password"
+                      v-model="userData.confirmPassword"
+                      name="confirmPassword"
+                      type="password"
+                      placeholder="...wpisz je jeszcze raz"
+                      autocomplete="off"
+                      >
+                    </div>
+
+                    <input
+                    type="submit"
+                    value="Gotowe!"
+                    >
+                  </form>
+                </div>
+                
               </div>
             </div>
 

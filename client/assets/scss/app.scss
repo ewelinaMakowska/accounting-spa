@@ -1145,6 +1145,10 @@ button[disabled]:hover {
     }
 }
 
+.right-content {
+  padding: 45px 90px 30px 90px;
+}
+
 .reg-background {
   width: 100vw;
   height: 100vh;
@@ -1162,20 +1166,35 @@ button[disabled]:hover {
   box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.16);
   border-radius: 3px;
   width: 70%;
+  height: 630px;
+  //align-items: stretch;
 
   &__img {
     width: 100%;
   }
 
-  &__left {
-    height: 100%;
-    width: 60%;
-    margin: 0;
-    padding: 0;
-    background: url('../../assets/img/buildings.jpg');
+  &__logo {
+    width: 100px;
+    float: right;
+    clear: left;
+    margin-top: 10px;
+    margin-right: 10px;
   }
 
+  &__left {
+    height: 100%;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(rgba(4, 0, 255, 0.53), rgba(188, 136, 202, 0.12)), url('../../assets/img/buildings.jpg');
+    }
+
   &__right {
-    width: 40%;
+    width: 50%;
+    height: 100%;
   }
+}
+
+.text-center {
+  text-align: center;
 }
