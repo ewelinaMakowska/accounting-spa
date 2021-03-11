@@ -81,10 +81,16 @@
                   />
                 <p class="d-inline-block"> &nbsp;zł/msc</p><br/>
 
+                <button 
+                @click="exitEditionMode()"
+                class="orange-button edit-company-btn edit-company-btn--transparent">
+                Wyjdź z edycji
+                </button>
+
                 <input 
                 type="submit" 
                 value="Wyślij"
-                class="blue-button contact_us-button">
+                class="contact_us-button">
               </div>
             </div>
           </div>
@@ -175,6 +181,7 @@
                   v-model.trim="additionalPoints"
                   :placeholder="company.additionalPoints"
                   class="add-company__textarea add-company__email"
+                  title="Dodatkowe informacje"
                   />
                 <br/>
               </p>
@@ -408,13 +415,21 @@ import CompaniesService from '../services/CompaniesService'
          if(this.$props.company.in_person) {
           document.getElementById('in-person').setAttribute('checked', true)
         }
+      },
+
+      exitEditionMode() {
+        const companyId = this.$route.params.id;
+        history.pushState({}, '', `/office/${companyId}`);
+        window.location.reload()
       }
     },
+
     computed: {
       cities() {
         return this.$store.getters.loadedCities
       }
     },
+
     mounted() {
       this.checkInputs();
     },

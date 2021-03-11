@@ -7,6 +7,7 @@ $pale-orange: #f8ca87;
 $primary-text: #444444;
 $secondary-text: rgba(0, 0, 0, 0.54);
 $very-light-grey: #dddddd;
+$subtle-violet: #f1f3ff;
 
 body {
   background-color: #ffffff;
@@ -930,6 +931,21 @@ button[disabled]:hover {
 
 .contact_us-button {
   margin-top: -20px;
+  text-decoration: none;
+  background-color: $blue;
+  border: 2px solid $blue !important;
+  color: #ffffff;
+  border-radius: 3px;
+  padding: 7px 20px;
+  transition: all 0.3s;
+
+  &:focus,
+  &:hover,
+  &:active {
+    border: 2px solid $blue-lilac !important;
+    background-color: $blue-lilac;
+    color: $midnight-blue;
+  }
 }
 
 .sublist--edit {
@@ -957,15 +973,19 @@ button[disabled]:hover {
   }
 
   &__textarea {
-    border: none;
     font-family: $roboto-font;
-    resize: vertical;
-    overflow: hidden;
-    //background-color: #f0f3ff;
     border-top: none;
     border-left: none;
     border-right: none;
     border-bottom: 2px solid $blue-lilac;
+    width: 100%;
+    margin-top: 20px;
+    background-color: $subtle-violet;
+    resize: none;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    line-height: 22px;
+    color: $primary-text;
 
     &:focus {
       outline: none;
@@ -992,12 +1012,8 @@ button[disabled]:hover {
   }
 
   &__description {
-    width: 100%;
-    //border-bottom: 2px solid $blue-lilac;
-    //background: transparent;
     width: 450px;
-    //height: 100%;
-    min-height: 200px;
+    height: 200px;
     display: inline-block;
     margin-top: 30px;
     margin-bottom: 30px;
@@ -1043,5 +1059,90 @@ button[disabled]:hover {
 }
 
 .edit-company-btn {
-  margin-top: 10px;
+  margin-top: 15px;
+}
+
+.edit-company-btn--transparent {
+  background: transparent;
+  color: $blue;
+}
+
+.contact-form {
+  width: 60%;
+  margin-top: 50px;
+
+  h2 {
+    margin-bottom: 30px;
+  }
+
+  &__group {
+    margin-bottom: 30px;
+
+    label {
+      display: block;
+    }
+  }
+
+  input[type='email'],
+  input[type='text'] {
+    width: 100%;
+    color: $primary-text;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: 2px solid $blue-lilac;
+    font-size: 16px;
+    padding: 15px 5px 5px 0;
+    transition: 0.3s;
+
+      &:focus,
+      &:hover,
+      &:active {
+        outline: none;
+        border-bottom: 2px solid $blue;
+      }
+    }
+
+    .contact-form__message {
+      font-family: $roboto-font;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: 2px solid $blue-lilac;
+      width: 100%;
+      margin-top: 20px;
+      height: 200px;
+      background-color: $subtle-violet;
+      resize: none;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      line-height: 22px;
+      color: $primary-text;
+   
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &__submit {
+      margin-top: 17px;
+      margin-bottom: 8px;
+      background-color: $blue;
+      border: 2px solid $blue !important;
+      color: #ffffff;
+      border-radius: 3px;
+      padding: 7px 20px;
+      transition: all 0.3s;
+
+      &:focus,
+      &:hover,
+      &:active {
+        border: 2px solid $blue-lilac !important;
+        background-color: $blue-lilac;
+        color: $midnight-blue;
+      }
+
+    }
+
+
 }

@@ -4,15 +4,13 @@
       <div class="login__background">
    
 
-            <div class="login__wrapper">
-              
-
+            <div class="login__wrapper">             
               <div class="login__box--top">
                 <h1>Zaloguj się</h1>
                   <form
-              novalidate
-              class="login"
-              @submit="login($event)">
+                  novalidate
+                  class="login"
+                  @submit="login($event)">
 
                 <div class="login__group">
                   <label for="form__email">E-mail</label>
@@ -110,16 +108,19 @@ export default {
         this.errorMessageVisible = false
       }
     },
+
     hideErrorMessageF() {
       if(this.errorMessageVisible) {
         this.hideErrorMessage = true;
       }
     },
+
     showErrorMessageF() {
       if(!this.errorMessageVisible) {
         this.hideErrorMessage = false;
       }
     },
+
     async login(e) {
       e.preventDefault()
       this.$v.$touch();
