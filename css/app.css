@@ -943,14 +943,19 @@ button[disabled]:hover {
 }
 
 .add-company__textarea {
-  border: none;
   font-family: "Roboto", "Lato", sans-serif;
-  resize: vertical;
-  overflow: hidden;
   border-top: none;
   border-left: none;
   border-right: none;
   border-bottom: 2px solid #b0befd;
+  width: 100%;
+  margin-top: 20px;
+  background-color: #f1f3ff;
+  resize: none;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  line-height: 22px;
+  color: #444444;
 }
 
 .add-company__textarea:focus {
@@ -977,9 +982,8 @@ button[disabled]:hover {
 }
 
 .add-company__description {
-  width: 100%;
   width: 450px;
-  min-height: 200px;
+  height: 200px;
   display: inline-block;
   margin-top: 30px;
   margin-bottom: 30px;

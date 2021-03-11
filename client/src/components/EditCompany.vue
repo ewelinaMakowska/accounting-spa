@@ -181,6 +181,7 @@
                   v-model.trim="additionalPoints"
                   :placeholder="company.additionalPoints"
                   class="add-company__textarea add-company__email"
+                  title="Dodatkowe informacje"
                   />
                 <br/>
               </p>
