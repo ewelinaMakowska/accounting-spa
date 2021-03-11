@@ -16,6 +16,7 @@
       name="contact-form__name"
       type="text"
       placeholder="Twoje imię"
+      autocomplete="off"
       >
     </div>
 
@@ -27,6 +28,7 @@
       name="contact-form__email"
       type="email"
       placeholder="Twój adres e-mail"
+      autocomplete="off"
       >
     </div>
     
@@ -37,6 +39,7 @@
       id="contact-form__message" 
       class="contact-form__message" 
       placeholder="Twoja wiadomość do nas"
+      autocomplete="off"
       />
     </div>
     
