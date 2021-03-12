@@ -15,6 +15,7 @@
                   <form
                   novalidate
                   @submit="register($event)"
+                  class="register-form"
                   >
 
                     <div class="login__group">
@@ -50,7 +51,7 @@
                       name="eMail"
                       type="email"
                       autocomplete="off"
-                      placeholder="Twój e-mail"
+                      placeholder="Twój adres e-mail"
                       >
                     </div>
 
@@ -73,14 +74,15 @@
                       v-model="userData.confirmPassword"
                       name="confirmPassword"
                       type="password"
-                      placeholder="...wpisz je jeszcze raz"
+                      placeholder="...wpisz je jeszcze raz i..."
                       autocomplete="off"
                       >
                     </div>
 
                     <input
                     type="submit"
-                    value="Gotowe!"
+                    value="...gotowe!"
+                    class="register-form__submit"
                     >
                   </form>
                 </div>

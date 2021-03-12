@@ -1157,7 +1157,7 @@ button[disabled]:hover {
 
 .reg-box {
   position: absolute;
-  top: 50%;
+  top: 49%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -1174,7 +1174,7 @@ button[disabled]:hover {
   }
 
   &__logo {
-    width: 100px;
+    width: 90px;
     float: right;
     clear: left;
     margin-top: 10px;
@@ -1197,4 +1197,11 @@ button[disabled]:hover {
 
 .text-center {
   text-align: center;
+}
+
+.register-form {
+  &__submit {
+    @extend .contact_us-button;
+    margin-top: 15px;
+  }
 }
