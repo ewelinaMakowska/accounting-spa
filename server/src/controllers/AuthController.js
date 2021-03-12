@@ -1,18 +1,10 @@
-//const sendMail = require('../mail')
-//const { validationResult } = require('express-validator/check')
 
 const { User } = require('../models')
 const jwt = require('jsonwebtoken')
 const config = require('../config/config');
 const { validationResult } = require('express-validator');
-//const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
 const loginHelper = require('../helpers/loginHelper')
-
-/* function generateJWT(user) {
-  const tokenData = { username: user.username, id: user.id };
-  return jwt.sign({ user: tokenData }, config.authentication.jwtSecret) //todo: change to process.env.jwt
-} */
 
 function jwtRegUser(user) {
   const ONE_WEEK = 60 * 60 * 24 * 7;
@@ -20,22 +12,13 @@ function jwtRegUser(user) {
   //todo: change to process.env.jwt
 }
 
-/* async function HashPassword(password) {
-  const SALT_ROUNDS = 9;
-  const SALT = await bcrypt.genSalt(SALT_ROUNDS); 
-  hashedPassword = await bcrypt.hash(password, SALT);
-  return hashedPassword;
-} */
 
 module.exports = {
-
    async registerUser(req, res) {
-
-   const errors = validationResult(req);
+    const errors = validationResult(req);
    
     if(errors.isEmpty()) {
       try  {
-
         const user = {
           email: req.body.eMail,
           password: req.body.password,
@@ -61,7 +44,6 @@ module.exports = {
         error: errors
       })
     }
-   //or res.redirect('/login')
   },  //registerUser end
 
 
@@ -69,7 +51,7 @@ module.exports = {
 
   async login(req, res) {
     console.log(req.body)
-    const errors = validationResult(req); //check validation
+    const errors = validationResult(req); 
 
     for(property in errors) {
       console.log(errors[property])
@@ -101,7 +83,6 @@ module.exports = {
               token: jwtRegUser(userJson)
             }) 
 
-           // res.status(200).send()
           } else {
             res.status(403).send()
           }   
@@ -113,12 +94,14 @@ module.exports = {
           error: err
         })
       } //catch end
+
     } else { //errors is empty else
       res.status(422).send({
         error: errors
       })
     } //errors is empty else end
   }, //login end
+
 
   async getUserData(req, res) {
     try {
