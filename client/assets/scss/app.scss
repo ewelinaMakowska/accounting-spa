@@ -1143,6 +1143,65 @@ button[disabled]:hover {
       }
 
     }
+}
 
+.right-content {
+  padding: 45px 90px 30px 90px;
+}
 
+.reg-background {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.reg-box {
+  position: absolute;
+  top: 49%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  padding: 0;
+  background: #ffffff;
+  box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.16);
+  border-radius: 3px;
+  width: 70%;
+  height: 630px;
+  //align-items: stretch;
+
+  &__img {
+    width: 100%;
+  }
+
+  &__logo {
+    width: 90px;
+    float: right;
+    clear: left;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+
+  &__left {
+    height: 100%;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(rgba(4, 0, 255, 0.53), rgba(188, 136, 202, 0.12)), url('../../assets/img/buildings.jpg');
+    }
+
+  &__right {
+    width: 50%;
+    height: 100%;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.register-form {
+  &__submit {
+    @extend .contact_us-button;
+    margin-top: 15px;
+  }
 }
