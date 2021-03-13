@@ -1,4 +1,3 @@
-const { JsonWebTokenError } = require('jsonwebtoken')
 const isAuth = require('../src/middleware/is-auth')
 jwt = require('jsonwebtoken')
 
