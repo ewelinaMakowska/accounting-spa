@@ -39,28 +39,14 @@
               
               <div class="thumbs__thumb patch-div" id="patch-div" style="display: none" ></div>
             </div>
-          </div>
-        </div>
       </div>
+    </div>
+
+  <footer-component></footer-component>
+  </div>
 
 </template>
 
-<!-- <style>
-* {
-    font-family: 'Roboto', sans-serif;
-}
-
-.main-container {
-    margin: 30px auto;
-}
-
-.flex-thumbs-container {
-display: flex;
-flex-wrap: wrap;
-padding: 20px;
-}
-
-</style> -->
 
 <style lang="scss">
     .office-thumb {
@@ -78,6 +64,7 @@ import OfficeThumb from '../components/OfficeThumb.vue'
 import Pagination from '../components/Pagination.vue' // eslint-disable-line no-unused-vars
 import Search from '../components/Search.vue'
 import Filters from '../components/Filters.vue'
+import FooterComponent from '../components/Footer.vue'
 
 export default {
   name: 'OfficeCatalogue',
@@ -86,8 +73,10 @@ export default {
     OfficeThumb,
     Pagination,
     Search,
-    Filters
+    Filters,
+    FooterComponent
   },
+
   data() {
     return {
       office: {},
@@ -99,6 +88,7 @@ export default {
       searchParams: null
     }
   },
+
   computed: {
     offices () {
       return this.$store.getters.loadedOffices
@@ -177,6 +167,7 @@ export default {
     console.log('HOOOK')
     this.fixFlexContainer();
   },
+
   methods: {
     loadPage(page) {
       return this.$store.dispatch('loadOnePageData', page)
