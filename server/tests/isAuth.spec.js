@@ -31,7 +31,7 @@ test("it should provide role and email if token is valid", () => {
     }
   }
 
-  jest
+  const mockVerify = jest
     .spyOn(jwt, "verify")
     .mockImplementation(() => {
       const decodedToken = {}
@@ -42,4 +42,6 @@ test("it should provide role and email if token is valid", () => {
 
   expect(req).toHaveProperty('role')
   expect(req).toHaveProperty('email')
+
+  mockVerify.mockRestore()
 })
