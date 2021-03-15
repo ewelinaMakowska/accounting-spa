@@ -49,9 +49,6 @@ test("it should provide role and email if token is valid", () => {
 }),
 
 
-
-
-
 test("it should call next() method if user role is admin", () => {
   const req = {
     role: 'admin'
@@ -64,4 +61,24 @@ test("it should call next() method if user role is admin", () => {
 
     isAdmin(req, {}, next);
     expect(next).toHaveBeenCalled();
+}),
+
+
+test("it should throw 'Not authenticated.' error if user role is different than admin", () => {
+  const req = {
+    role: 'basic'
+  }
+
+  const res = {
+    status: jest.fn(function(code) {
+      this.statusCode = code;
+      return this;
+    }),
+    send: function(message) {
+      return message;
+    }
+  }
+
+  isAdmin(req, res, () => {})
+  expect(res.status).toHaveBeenCalledWith(401)
 })
