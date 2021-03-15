@@ -12,15 +12,15 @@
 
             <div class="footer__socials">
               <a href="#" class="footer__social">
-                <social-icon :height='20'/>
+                <social-icon :height="25" :name="'facebook'" />
               </a>
 
               <a href="#" class="footer__social">
-                <i class="material-icons-sharp">linkedin</i>
+                <social-icon :height="25" :name="'linkedin'" />
               </a>
 
               <a href="#" class="footer__social">
-                <i class="material-icons-sharp">instagram</i>
+                <social-icon :height="25" :name="'instagram'" />
               </a>
             </div>
 
