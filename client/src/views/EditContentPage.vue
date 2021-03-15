@@ -21,59 +21,13 @@
 
 
 
-    <section v-if="loaded">
+    <section v-if="loaded" id="found-companies" class="found-companies">
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
             <h2>Znalezione firmy:</h2>
-<!-- 
-            <div class="companies-list">
-              <div class="companies-list__company">
-                <div class="companies-list__id">
-                  1
-                </div>
-
-                <div class="companies-list__name">
-                  Nazwa firmy
-                </div>
-
-                <div class="companies-list__location">
-                  Warszawa, mazowieckie
-                </div>
-
-                <div class="companies-list__buttons">
-                  <button>Profil</button>
-                  <button>Edytuj</button>
-                  <button>Usuń</button>
-                </div>
-              </div>
-
-
-              <div class="companies-list__company">
-                <div class="companies-list__id">
-                  2
-                </div>
-
-                <div class="companies-list__name">
-                  Nazwa innej firmy
-                </div>
-
-                <div class="companies-list__location">
-                  Kraków, małopolskie
-                </div>
-
-                <div class="companies-list__buttons">
-                  <button>Profil</button>
-                  <button>Edytuj</button>
-                  <button>Usuń</button>
-                </div>
-              </div>
-
-            </div> <!- companies-list --> 
-
 
             <div class="companies-list">
-
               <div v-for="(office, id) in offices" :key="id" class="companies-list__company">
                 <div class="companies-list__id">
                   {{office.id}}
@@ -95,8 +49,6 @@
                   <button @click="deleteCompany($event)" :id="office.id" class="orange-button">Usuń</button>
                 </div>
               </div>
-
-
             </div> 
 
     
