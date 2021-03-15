@@ -58,6 +58,14 @@ button[disabled]:hover {
   margin-top: 35px;
 }
 
+#main-container {
+  &::after {
+    content: '';
+    display: block;
+    height: 120px;
+  }
+}
+
 .visible--block {
   display: block;
 }

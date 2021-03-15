@@ -42,7 +42,7 @@
       </div>
     </div>
 
-  <footer-component></footer-component>
+  <footer-component />
   </div>
 
 </template>
