@@ -78,6 +78,11 @@ input[type=submit] {
   border: 2px solid $blue;
 }
 
+.mt-minus {
+  vertical-align: middle;
+  margin-top: -35px !important;
+}
+
 //TOP BAR 
 .top-bar {
   overflow: hidden;
@@ -1066,6 +1071,7 @@ input[type=submit] {
 
 .edit-company-btn {
   margin-top: 15px;
+  width: 176px;
 }
 
 .edit-company-btn--transparent {
