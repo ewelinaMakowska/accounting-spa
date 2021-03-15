@@ -88,9 +88,11 @@
                 </div>
 
                 <div class="companies-list__buttons">
-                  <router-link :to="'/office/' + office.id">Profil</router-link>
-                  <router-link :to="'/office/' + office.id + '?edit=true#edit-company'">Edytuj</router-link>
-                  <button @click="deleteCompany($event)" :id="office.id">Usuń</button>
+                  <router-link :to="'/office/' + office.id" class="light-button">Profil</router-link>
+
+                  <router-link :to="'/office/' + office.id + '?edit=true#edit-company'" class="light-button">Edytuj</router-link>
+
+                  <button @click="deleteCompany($event)" :id="office.id" class="orange-button">Usuń</button>
                 </div>
               </div>
 

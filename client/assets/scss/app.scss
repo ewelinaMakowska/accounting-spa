@@ -1282,7 +1282,7 @@ button[disabled]:hover {
     }
   
    &__name {
-     width: 40%;
+     width: 35%;
     }
 
   &__location {
@@ -1291,10 +1291,31 @@ button[disabled]:hover {
 
   &__buttons {
       text-align: center;
-      width: 23%;
+      width: 28%;
 
-    button {
-      display: inline-block;
-    }
+      @mixin small-button {
+        font-size: 12px;
+        padding: 4px 17px;
+        border-radius: 3px;
+        text-decoration: none;
+      }
+
+      @mixin edit-button {
+        display: inline-block;
+        margin-left: 5px;
+        border-width: 1px;
+      }
+
+      .light-button {
+        @extend .transparent-button;
+        @include small-button;
+        @include edit-button;
+      }
+
+      .orange-button {
+        @extend .orange-button;
+        @include small-button;
+        @include edit-button;
+      }
   }
 }
