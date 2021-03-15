@@ -73,8 +73,10 @@
         <div class="row">
           <div class="col-sm-12">
             <h1>Dodaj firmę </h1>
-            <p>Dodaj nową firmę za pomocą prostego formularza. -></p>
-            <router-link to="add-company">Dodaj</router-link>
+            <p>Dodaj nową firmę za pomocą prostego formularza.</p>
+            <router-link to="add-company" class="add-company-link">
+              Dodaj <i class="material-icons-sharp">chevron_right</i>
+            </router-link>
           </div>
         </div>
       </div>
