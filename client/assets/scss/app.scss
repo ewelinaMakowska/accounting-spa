@@ -8,6 +8,7 @@ $primary-text: #444444;
 $secondary-text: rgba(0, 0, 0, 0.54);
 $very-light-grey: #dddddd;
 $subtle-violet: #f1f3ff;
+$transparent-white: rgba(255, 255, 255, 0.9);
 
 body {
   background-color: #ffffff;
@@ -1208,6 +1209,12 @@ button[disabled]:hover {
 
 .social-icon {
   fill: $blue-lilac;
+  transition: all 0.3s;
+
+  &:hover,
+  &:focus {
+    fill: $transparent-white;
+  }
 }
 
 .footer {
@@ -1215,10 +1222,33 @@ button[disabled]:hover {
   margin: 40px 0 0 0;
   padding: 10px 0;
   background-color: $midnight-blue;
-  color: #ffffff;
 
   &__flex-container {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 6px;
+  }
+
+  &__link {
+    color: $blue-lilac;
+    text-decoration: none;
+    margin-right: 20px;
+    transition: all 0.3s;
+
+    &:hover,
+    &:focus {
+      color: $transparent-white;
+    }
+  }
+
+  &__social {
+    margin-right: 15px;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 

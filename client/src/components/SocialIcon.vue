@@ -1,5 +1,5 @@
 <template>
-  <svg xmlns='http://www.w3.org/2000/svg' :height="height+'px'" class='social-icon' viewBox='0 0 512 512'>
+  <svg xmlns='http://www.w3.org/2000/svg' :height="height+'px'" viewBox='0 0 512 512'>
     <path :d='path'/>
   </svg>
 </template>

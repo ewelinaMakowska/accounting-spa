@@ -6,21 +6,21 @@
           <div class="col-sm-12 footer__flex-container">
 
             <div class="footer__links">
-              <router-link class="footer__link" to="/search">Usługi</router-link>
-              <router-link class="footer__link" to="/search">Księgowi</router-link>
+              <a class="footer__link" href="#">Usługi</a>
+              <a class="footer__link" href="/search">Księgowi</a>
             </div>
 
             <div class="footer__socials">
               <a href="#" class="footer__social">
-                <social-icon :height="25" :name="'facebook'" />
+                <social-icon class="social-icon" :height="30" :name="'facebook'" />
               </a>
 
               <a href="#" class="footer__social">
-                <social-icon :height="25" :name="'linkedin'" />
+                <social-icon class="social-icon" :height="30" :name="'linkedin'" />
               </a>
 
               <a href="#" class="footer__social">
-                <social-icon :height="25" :name="'instagram'" />
+                <social-icon class="social-icon" :height="30" :name="'instagram'" />
               </a>
             </div>
 
