@@ -37,29 +37,47 @@
           <div class="col-sm-12">
             <h2>Znalezione firmy:</h2>
 
-            <div class="companies-list">
-              <div v-for="(office, id) in offices" :key="id" class="companies-list__company">
+              <div class="companies-list__company--header">
                 <div class="companies-list__id">
-                  {{office.id}}
+                  ID
                 </div>
 
                 <div class="companies-list__name">
-                  {{office.name}}
+                  Nazwa
                 </div>
 
                 <div class="companies-list__location">
-                  {{office.City}}
+                  Lokalizacja
                 </div>
 
                 <div class="companies-list__buttons">
-                  <router-link :to="'/office/' + office.id" class="light-button">Profil</router-link>
-
-                  <router-link :to="'/office/' + office.id + '?edit=true#edit-company'" class="light-button">Edytuj</router-link>
-
-                  <button @click="deleteCompany($event)" :id="office.id" class="orange-button">Usuń</button>
+                  
                 </div>
               </div>
-            </div> 
+
+              <div class="companies-list">
+                <div v-for="(office, id) in offices" :key="id" class="companies-list__company">
+                  <div class="companies-list__id">
+                    {{office.id}}
+                  </div>
+
+                  <div class="companies-list__name">
+                    {{office.name}}
+                  </div>
+
+                  <div class="companies-list__location">
+                    {{office.City}}
+                  </div>
+
+                  <div class="companies-list__buttons">
+                    <router-link :to="'/office/' + office.id" class="light-button">Profil</router-link>
+
+                    <router-link :to="'/office/' + office.id + '?edit=true#edit-company'" class="light-button">Edytuj</router-link>
+
+                    <button @click="deleteCompany($event)" :id="office.id" class="orange-button">Usuń</button>
+                  </div>
+                </div>
+              </div> 
 
     
                   

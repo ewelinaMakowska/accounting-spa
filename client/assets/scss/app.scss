@@ -1365,6 +1365,19 @@ input[type=submit] {
   }
 }
 
+.companies-list__company--header {
+  @extend .companies-list__company;
+  color: $secondary-text;
+  border-top: none;
+  font-size: 14px;
+  margin-top: 25px;
+
+  div {
+    text-transform: uppercase;
+
+  }
+}
+
 section.find-companies {
   margin-bottom: 15px;
 
