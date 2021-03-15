@@ -1,7 +1,8 @@
 <template>
   <div style="position: relative; min-height: 100vh;">
     <top-bar />
-    <section>
+
+    <section class="find-companies">
       <div class="container">
         <div class="row">
           <div class="col-sm-12">

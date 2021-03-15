@@ -1357,7 +1357,18 @@ input[type=submit] {
   }
 }
 
+section.find-companies {
+  h1 {
+    margin-bottom: 35px;
+  }
+
+  margin-bottom: 15px;
+}
+
+
 section.add-company {
+  margin-top: 50px;
+
   &::after {
     content: '';
     display: block;
