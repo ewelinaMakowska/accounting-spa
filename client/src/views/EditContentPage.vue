@@ -173,16 +173,13 @@ export default {
   },
 
   async created() {
-  
     if(!this.$route.query.page || !this.$route.query.search) {
         console.log('test')
       } else {
-
-      const searchParameters = {
-        searchValue: this.$route.query.search,
-        page: this.$route.query.page,
-      
-      }
+        const searchParameters = {
+          searchValue: this.$route.query.search,
+          page: this.$route.query.page, 
+        }
 
       const companies = await this.loadSearchResultsSimple(searchParameters).then(() => {
         this.loaded = true;
@@ -195,58 +192,3 @@ export default {
 }
 
 </script>
-
-<style scoped lang="scss">
-  .companies-list {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    
-
-    &__company {
-      border-top: 1px solid grey;
-      border-left: 1px solid grey;
-      border-right: 1px solid grey;
-      margin: 0;
-      padding: 0;
-      margin-top: -2px;
-
-      &:last-child {
-        border-bottom: 1px solid grey;
-      }
-
-      & > div {
-        display: inline-block;
-       border-right: 1px solid grey;
-       padding: 7px 10px 5px 10px;
-
-       &:last-child {
-         border-right: none;
-       }
-      }
-    }
-
-    &__id {
-      width: 5%;
-      text-align: center;
-      }
-    
-
-     &__name {
-       width: 40%;
-      }
-
-    &__location {
-      width: 30%;
-      }
-
-    &__buttons {
-        text-align: center;
-        width: 23%;
-
-      button {
-        display: inline-block;
-      }
-    }
-  }
-</style>
