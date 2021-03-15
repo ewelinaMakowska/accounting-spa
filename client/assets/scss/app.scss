@@ -1229,9 +1229,13 @@ input[type=submit] {
 }
 
 .footer {
+  position: absolute;
+  bottom: 0;
   overflow: hidden;
   margin: 40px 0 0 0;
   padding: 10px 0;
+  height: 70px;
+  width: 100vw;
   background-color: $midnight-blue;
 
   &__flex-container {
@@ -1350,5 +1354,13 @@ input[type=submit] {
         @include small-button;
         @include edit-button;
       }
+  }
+}
+
+section.add-company {
+  &::after {
+    content: '';
+    display: block;
+    height: 120px;
   }
 }

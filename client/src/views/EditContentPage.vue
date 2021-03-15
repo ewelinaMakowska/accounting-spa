@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div style="position: relative; min-height: 100vh;">
+    <top-bar />
     <section>
       <div class="container">
         <div class="row">
@@ -66,7 +67,7 @@
       </div>
     </section>
 
-    <section>
+    <section class="add-company">
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
@@ -78,79 +79,88 @@
       </div>
     </section>
 
+  <footer-component />
   </div>
 </template>
 
 <script>
+  import TopBar from '../components/TopBar.vue'
+  import FooterComponent from '../components/Footer.vue'
 
-export default {
-  data () {
-    return {
-      searchValue: null,
-      loaded: false
-    }
-  }, // data
-  methods: {
-    async deleteCompany($event) {
-      const id = $event.target.id;
-      let companyId = parseInt(id)
-
-      try {
-        await this.$store.dispatch('deleteCompany', companyId);
-      } catch(err) {
-        console.log(err)
+  export default {
+    data () {
+      return {
+        searchValue: null,
+        loaded: false
       }
+    }, // data
+
+    components: {
+      TopBar,
+      FooterComponent
     },
 
-    loadSearchResultsSimple(searchParameters) {
-      return this.$store.dispatch('loadSearchResultsSimple', searchParameters)
-    },
+    methods: {
+      async deleteCompany($event) {
+        const id = $event.target.id;
+        let companyId = parseInt(id)
 
-    async submitForm($event) {
-      $event.preventDefault();
-    
-      var searchParameters = {
-        searchValue: this.searchValue.normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
-        page: 1
-      }
-
-      try {
-          let url = window.location.href.split('/');
-          let path = url[url.length-1].split('?')
-          let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
-          newUrl += `search=${searchParameters.searchValue}&page=1`
-          window.location.href = newUrl; 
-          this.loaded = true;
+        try {
+          await this.$store.dispatch('deleteCompany', companyId);
         } catch(err) {
           console.log(err)
-      } 
+        }
+      },
 
-  
-    }
-  },
-  computed: {
-    offices() {
-      return this.$store.getters.loadedOffices
-    }
-  },
+      loadSearchResultsSimple(searchParameters) {
+        return this.$store.dispatch('loadSearchResultsSimple', searchParameters)
+      },
 
-  async created() {
-    if(!this.$route.query.page || !this.$route.query.search) {
-        console.log('test')
-      } else {
-        const searchParameters = {
-          searchValue: this.$route.query.search,
-          page: this.$route.query.page, 
+      async submitForm($event) {
+        $event.preventDefault();
+      
+        var searchParameters = {
+          searchValue: this.searchValue.normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
+          page: 1
         }
 
-      const companies = await this.loadSearchResultsSimple(searchParameters).then(() => {
-        this.loaded = true;
-      })
-      } 
-   
-  
-  }
+        try {
+            let url = window.location.href.split('/');
+            let path = url[url.length-1].split('?')
+            let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
+            newUrl += `search=${searchParameters.searchValue}&page=1`
+            window.location.href = newUrl; 
+            this.loaded = true;
+          } catch(err) {
+            console.log(err)
+        } 
 
-}
+    
+      }
+    },
+    computed: {
+      offices() {
+        return this.$store.getters.loadedOffices
+      }
+    },
+
+    async created() {
+      if(!this.$route.query.page || !this.$route.query.search) {
+          console.log('test')
+        } else {
+          const searchParameters = {
+            searchValue: this.$route.query.search,
+            page: this.$route.query.page, 
+          }
+
+        const companies = await this.loadSearchResultsSimple(searchParameters).then(() => {
+          this.loaded = true;
+        })
+        } 
+    
+    
+    }
+
+  }
 
 </script>

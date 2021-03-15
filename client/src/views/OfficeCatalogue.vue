@@ -1,5 +1,5 @@
 <template>
-  <div class="animate__animated animate__fadeIn">
+  <div class="animate__animated animate__fadeIn" style="position: relative;">
 
    <top-bar></top-bar>
 
