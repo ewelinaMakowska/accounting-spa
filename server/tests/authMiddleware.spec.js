@@ -1,4 +1,6 @@
 const isAuth = require('../src/middleware/is-auth')
+const isAdmin = require('../src/middleware/isAdmin')
+
 jwt = require('jsonwebtoken')
 
 
@@ -44,4 +46,22 @@ test("it should provide role and email if token is valid", () => {
   expect(req).toHaveProperty('email')
 
   mockVerify.mockRestore()
+}),
+
+
+
+
+
+test("it should call next() method if user role is admin", () => {
+  const req = {
+    role: 'admin'
+  }
+
+  const next = jest
+    .fn(() => {
+      return null;
+    })
+
+    isAdmin(req, {}, next);
+    expect(next).toHaveBeenCalled();
 })
