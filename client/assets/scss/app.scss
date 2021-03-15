@@ -10,6 +10,13 @@ $very-light-grey: #dddddd;
 $subtle-violet: #f1f3ff;
 $transparent-white: rgba(255, 255, 255, 0.9);
 
+@mixin small-button {
+  font-size: 12px;
+  padding: 4px 17px;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
 body {
   background-color: #ffffff;
   color: $primary-text;
@@ -57,6 +64,10 @@ button[disabled]:hover {
 
 .hidden {
   display: none;
+}
+
+input[type=submit] {
+  border: 2px solid $blue;
 }
 
 //TOP BAR 
@@ -1258,6 +1269,28 @@ button[disabled]:hover {
   }
 }
 
+.edit {
+  &__search {
+    @extend .search__input;
+    border-bottom: 2px solid $blue-lilac;
+    margin-right: 10px;
+
+    &:focus,
+    &:active {
+      border-bottom: 2px solid $blue;
+    }
+  }
+
+  &__search-button {
+    @extend .blue-button;
+    border: 2px solid $blue;
+    font-size: 12px;
+    padding: 5px 18px;
+    border-radius: 3px;
+    margin-bottom: -1px;
+  }
+}
+
 .companies-list {
   width: 100%;
   display: flex;
@@ -1298,13 +1331,7 @@ button[disabled]:hover {
   &__buttons {
       text-align: center;
       width: 28%;
-
-      @mixin small-button {
-        font-size: 12px;
-        padding: 4px 17px;
-        border-radius: 3px;
-        text-decoration: none;
-      }
+     
 
       @mixin edit-button {
         display: inline-block;

@@ -4,14 +4,22 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <h1>Wyszukaj firmy:</h1>
+            <h1>Wyszukaj firmy</h1>
 
             <form @submit="submitForm($event)">
-              <input type="search" id="search-id-name-input" v-model.trim="searchValue" autocomplete="off" />
+              <input 
+              class="edit__search"
+              type="search" 
+              id="search-id-name-input" 
+              v-model.trim="searchValue" 
+              autocomplete="off"
+              placeholder="ID lub nazwa firmy" />
+
               <input
                 type="submit"
-                value="Szukaj"               
-              >
+                value="Szukaj"
+                class="edit__search-button"              
+              />
             </form>
 
           </div>
