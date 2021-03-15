@@ -86,7 +86,7 @@
       },
       
       async loadCompany(id) {
-        await this.$store.dispatch('loadCompany', id)
+    /*     await this.$store.dispatch('loadCompany', id)
         .then(() => {
             this.notLoading = true;
             console.log('LOADED')
@@ -94,7 +94,15 @@
         .catch(function (error) {
           console.log(error);
           this.notLoading = false;
-        })
+        }) */
+        try {
+          await this.$store.dispatch('loadCompany', id)
+          this.notLoading = true;
+          console.log('LOADED')
+        } catch(err) {
+          console.log(error);
+          this.notLoading = false;
+        } 
       },
 
     },
