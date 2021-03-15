@@ -1205,3 +1205,20 @@ button[disabled]:hover {
     margin-top: 15px;
   }
 }
+
+.social-icon {
+  fill: $blue-lilac;
+}
+
+.footer {
+  overflow: hidden;
+  margin: 40px 0 0 0;
+  padding: 10px 0;
+  background-color: $midnight-blue;
+  color: #ffffff;
+
+  &__flex-container {
+    display: flex;
+  }
+}
+
