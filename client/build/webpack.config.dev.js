@@ -3,6 +3,7 @@
 const webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 require("babel-polyfill");
 
 
@@ -57,6 +58,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new Dotenv(),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',

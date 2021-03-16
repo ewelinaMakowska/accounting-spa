@@ -17,8 +17,7 @@ if(store.getters.token) {
 
 const instance =
   axios.create({
-    baseURL: 'http://localhost:3306', //change to process.env
-
+    baseURL: `${process.env.PROTOCOL}://${process.env.HOST}:${process.env.PORT}/`,
   })
 
 if(token) {
@@ -26,3 +25,5 @@ if(token) {
 }
 
 export default instance
+
+//ttp://localhost:3306'

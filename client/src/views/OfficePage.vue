@@ -63,6 +63,9 @@
     async mounted() {
       console.log('Mounted')
       let id = this.rememberId();
+      
+      console.log(process.env.HOST)
+      console.log(process.env.PORT)
 
       try {
         await this.loadCompany(id)
