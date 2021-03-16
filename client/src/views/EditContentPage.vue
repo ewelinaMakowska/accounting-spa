@@ -1,17 +1,27 @@
 <template>
-  <div>
-    <section>
+  <div style="position: relative; min-height: 100vh;">
+    <top-bar />
+
+    <section class="find-companies">
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <h1>Wyszukaj firmy:</h1>
+            <h1>Wyszukaj firmy</h1>
 
             <form @submit="submitForm($event)">
-              <input type="search" id="search-id-name-input" v-model.trim="searchValue" autocomplete="off" />
+              <input 
+              class="edit__search"
+              type="search" 
+              id="search-id-name-input" 
+              v-model.trim="searchValue" 
+              autocomplete="off"
+              placeholder="ID lub nazwa firmy" />
+
               <input
                 type="submit"
-                value="Szukaj"               
-              >
+                value="Szukaj"
+                class="edit__search-button"              
+              />
             </form>
 
           </div>
@@ -21,81 +31,53 @@
 
 
 
-    <section v-if="loaded">
+    <section v-if="loaded" id="found-companies" class="found-companies">
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
             <h2>Znalezione firmy:</h2>
-<!-- 
-            <div class="companies-list">
-              <div class="companies-list__company">
+
+              <div class="companies-list__company--header">
                 <div class="companies-list__id">
-                  1
+                  ID
                 </div>
 
                 <div class="companies-list__name">
-                  Nazwa firmy
+                  Nazwa
                 </div>
 
                 <div class="companies-list__location">
-                  Warszawa, mazowieckie
+                  Lokalizacja
                 </div>
 
                 <div class="companies-list__buttons">
-                  <button>Profil</button>
-                  <button>Edytuj</button>
-                  <button>Usuń</button>
+                  
                 </div>
               </div>
 
+              <div class="companies-list">
+                <div v-for="(office, id) in offices" :key="id" class="companies-list__company">
+                  <div class="companies-list__id">
+                    {{office.id}}
+                  </div>
 
-              <div class="companies-list__company">
-                <div class="companies-list__id">
-                  2
+                  <div class="companies-list__name">
+                    {{office.name}}
+                  </div>
+
+                  <div class="companies-list__location">
+                    {{office.City}}
+                  </div>
+
+                  <div class="companies-list__buttons">
+                    <router-link :to="'/office/' + office.id" class="light-button">Profil</router-link>
+
+                    <router-link :to="'/office/' + office.id + '?edit=true#edit-company'" class="light-button">Edytuj</router-link>
+
+                    <button @click="deleteCompany($event)" :id="office.id" class="orange-button">Usuń</button>
+                  </div>
                 </div>
-
-                <div class="companies-list__name">
-                  Nazwa innej firmy
-                </div>
-
-                <div class="companies-list__location">
-                  Kraków, małopolskie
-                </div>
-
-                <div class="companies-list__buttons">
-                  <button>Profil</button>
-                  <button>Edytuj</button>
-                  <button>Usuń</button>
-                </div>
-              </div>
-
-            </div> <!- companies-list --> 
-
-
-            <div class="companies-list">
-
-              <div v-for="(office, id) in offices" :key="id" class="companies-list__company">
-                <div class="companies-list__id">
-                  {{office.id}}
-                </div>
-
-                <div class="companies-list__name">
-                  {{office.name}}
-                </div>
-
-                <div class="companies-list__location">
-                  {{office.City}}
-                </div>
-
-                <div class="companies-list__buttons">
-                  <router-link :to="'/office/' + office.id">Profil</router-link>
-                  <router-link :to="'/office/' + office.id + '?edit=true#edit-company'">Edytuj</router-link>
-                  <button @click="deleteCompany($event)" :id="office.id">Usuń</button>
-                </div>
-              </div>
-
-
-            </div> 
+              </div> 
 
     
                   
@@ -104,149 +86,102 @@
       </div>
     </section>
 
-    <section>
+    <section class="add-company">
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
             <h1>Dodaj firmę </h1>
-            <p>Dodaj nową firmę za pomocą prostego formularza. -></p>
-            <router-link to="add-company">Dodaj</router-link>
+            <p>Dodaj nową firmę za pomocą prostego formularza.</p>
+            <router-link to="add-company" class="add-company-link">
+              Dodaj <i class="material-icons-sharp">chevron_right</i>
+            </router-link>
           </div>
         </div>
       </div>
     </section>
 
+  <footer-component />
   </div>
 </template>
 
 <script>
+  import TopBar from '../components/TopBar.vue'
+  import FooterComponent from '../components/Footer.vue'
 
-export default {
-  data () {
-    return {
-      searchValue: null,
-      loaded: false
-    }
-  }, // data
-  methods: {
-    async deleteCompany($event) {
-      const id = $event.target.id;
-      let companyId = parseInt(id)
-
-      try {
-        await this.$store.dispatch('deleteCompany', companyId);
-      } catch(err) {
-        console.log(err)
+  export default {
+    data () {
+      return {
+        searchValue: null,
+        loaded: false
       }
+    }, // data
+
+    components: {
+      TopBar,
+      FooterComponent
     },
 
-    loadSearchResultsSimple(searchParameters) {
-      return this.$store.dispatch('loadSearchResultsSimple', searchParameters)
-    },
+    methods: {
+      async deleteCompany($event) {
+        const id = $event.target.id;
+        let companyId = parseInt(id)
 
-    async submitForm($event) {
-      $event.preventDefault();
-    
-      var searchParameters = {
-        searchValue: this.searchValue.normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
-        page: 1
-      }
-
-      try {
-          let url = window.location.href.split('/');
-          let path = url[url.length-1].split('?')
-          let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
-          newUrl += `search=${searchParameters.searchValue}&page=1`
-          window.location.href = newUrl; 
-          this.loaded = true;
+        try {
+          await this.$store.dispatch('deleteCompany', companyId);
         } catch(err) {
           console.log(err)
-      } 
+        }
+      },
 
-  
-    }
-  },
-  computed: {
-    offices() {
-      return this.$store.getters.loadedOffices
-    }
-  },
+      loadSearchResultsSimple(searchParameters) {
+        return this.$store.dispatch('loadSearchResultsSimple', searchParameters)
+      },
 
-  async created() {
-  
-    if(!this.$route.query.page || !this.$route.query.search) {
-        console.log('test')
-      } else {
-
-      const searchParameters = {
-        searchValue: this.$route.query.search,
-        page: this.$route.query.page,
+      async submitForm($event) {
+        $event.preventDefault();
       
+        var searchParameters = {
+          searchValue: this.searchValue.normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
+          page: 1
+        }
+
+        try {
+            let url = window.location.href.split('/');
+            let path = url[url.length-1].split('?')
+            let newUrl = url[0] + '//' +url[2] + '/' + path[0] + '?'
+            newUrl += `search=${searchParameters.searchValue}&page=1`
+            window.location.href = newUrl; 
+            this.loaded = true;
+          } catch(err) {
+            console.log(err)
+        } 
+
+    
       }
+    },
+    computed: {
+      offices() {
+        return this.$store.getters.loadedOffices
+      }
+    },
 
-      const companies = await this.loadSearchResultsSimple(searchParameters).then(() => {
-        this.loaded = true;
-      })
-      } 
-   
-  
+    async created() {
+      if(!this.$route.query.page || !this.$route.query.search) {
+          console.log('test')
+        } else {
+          const searchParameters = {
+            searchValue: this.$route.query.search,
+            page: this.$route.query.page, 
+          }
+
+        const companies = await this.loadSearchResultsSimple(searchParameters).then(() => {
+          this.loaded = true;
+        })
+        } 
+    
+    
+    }
+
   }
-
-}
 
 </script>
-
-<style scoped lang="scss">
-  .companies-list {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    
-
-    &__company {
-      border-top: 1px solid grey;
-      border-left: 1px solid grey;
-      border-right: 1px solid grey;
-      margin: 0;
-      padding: 0;
-      margin-top: -2px;
-
-      &:last-child {
-        border-bottom: 1px solid grey;
-      }
-
-      & > div {
-        display: inline-block;
-       border-right: 1px solid grey;
-       padding: 7px 10px 5px 10px;
-
-       &:last-child {
-         border-right: none;
-       }
-      }
-    }
-
-    &__id {
-      width: 5%;
-      text-align: center;
-      }
-    
-
-     &__name {
-       width: 40%;
-      }
-
-    &__location {
-      width: 30%;
-      }
-
-    &__buttons {
-        text-align: center;
-        width: 23%;
-
-      button {
-        display: inline-block;
-      }
-    }
-  }
-</style>
