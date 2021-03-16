@@ -17,7 +17,7 @@ if(store.getters.token) {
 
 const instance =
   axios.create({
-    baseURL: `${process.env.PROTOCOL}://${process.env.HOST}:${process.env.PORT}/`,
+    baseURL: `${process.env.PROTOCOL}://${process.env.HOST}:${process.env.PORT}`,
   })
 
 if(token) {
