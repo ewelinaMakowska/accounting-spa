@@ -3,12 +3,12 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
 //const history = require('connect-history-api-fallback');
+const dotenv = require('dotenv').config();
 const { sequelize } = require('./models')
 const CompaniesController = require('./controllers/CompaniesController')
 const CitiesController = require('./controllers/CitiesController');
 const ContactController = require('./controllers/ContactController');
 const AuthController = require('./controllers/AuthController');
-const { check, checkSchema, body } = require('express-validator');
 
 const AuthControllerPolicy = require('./policies/AuthControllerPolicy');
 const ContactControllerPolicy = require('./policies/ContactControllerPolicy');
