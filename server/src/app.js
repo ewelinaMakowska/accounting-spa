@@ -3,12 +3,12 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
 //const history = require('connect-history-api-fallback');
+const dotenv = require('dotenv').config({path: '../.env'});
 const { sequelize } = require('./models')
 const CompaniesController = require('./controllers/CompaniesController')
 const CitiesController = require('./controllers/CitiesController');
 const ContactController = require('./controllers/ContactController');
 const AuthController = require('./controllers/AuthController');
-const { check, checkSchema, body } = require('express-validator');
 
 const AuthControllerPolicy = require('./policies/AuthControllerPolicy');
 const ContactControllerPolicy = require('./policies/ContactControllerPolicy');
@@ -24,7 +24,7 @@ const checkIfCityExists = require('./middleware/checkIfCityExists');
 const { token } = require('morgan');
 
 const app = express()
-const port = 3306
+const port = process.env.PORT;
 
 app.use(morgan('tiny'))
 app.use(bodyParser.json())
