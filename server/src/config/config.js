@@ -1,28 +1,19 @@
-const bodyParser = require("body-parser");
+const dotenv = require('dotenv').config({path: '../.env'});
 
-module.exports = { //todo: add env variables
-  port: 3306,
+module.exports = { 
+  port: process.env.PORT,
   db: {
-    database: 'accounting_companies',
-    user: 'root',
-    password: '',
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
     options: {
-      dialect: 'mysql',
-      host: 'localhost',
-      operatorsAliases: false
+      dialect: process.env.DB_DIALECT,
+      host: process.env.HOST,
+      operatorsAliases: process.env.DB_OPERATOR_ALIASES
     }
   },
   authentication: {
-    jwtSecret: 'myDevelopmentSuperSecret'
+    jwtSecret: process.env.AUTH_JWT_SECRET
   }
+
 }
-
-
-/* function setDevEnv(app) {
-  process.env.NODE_ENV = 'development';
-  process.env.DB_URL = '';
-  process.env.JWT_SECRET = 'my-secret';
-  app.use(bodyParser.json());
-  app.use(morgan('dev'));
-  app.use(cors());
-} */
