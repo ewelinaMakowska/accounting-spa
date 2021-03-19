@@ -6,6 +6,20 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 require("babel-polyfill");
 const Dotenv = require('dotenv-webpack');
 
+let envPath;
+
+
+if(process.env.NODE_ENV === 'production' || !process.env.NODE_ENV) {
+  envPath = '.env.prod'
+} else if (process.env.NODE_ENV === 'development') {
+  envPath = '.env.dev'
+} else if (process.env.NODE_ENV === 'testing') {
+  envPath = '.env.test'
+} else {
+  envPath = '.env.prod'
+}
+
+
 module.exports = {
   mode: 'development',
  /*  entry: [
@@ -57,7 +71,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new Dotenv(),
+    new Dotenv({path: envPath}),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
@@ -66,4 +80,3 @@ module.exports = {
     })
   ],
 }
-
