@@ -3,7 +3,6 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
 //const history = require('connect-history-api-fallback');
-const dotenv = require('dotenv').config({path: '../.env'});
 const { sequelize } = require('./models')
 const CompaniesController = require('./controllers/CompaniesController')
 const CitiesController = require('./controllers/CitiesController');
@@ -14,7 +13,6 @@ const AuthControllerPolicy = require('./policies/AuthControllerPolicy');
 const ContactControllerPolicy = require('./policies/ContactControllerPolicy');
 const CompaniesControllerPolicy = require('./policies/CompaniesControllerPolicy');
 const CitiesControllerPolicy = require('./policies/CitiesControllerPolicy');
-
 
 
 const isAuth = require('./middleware/is-auth')
@@ -78,6 +76,6 @@ app.put('/updateCompany/:id', isAuth, isAdmin, CompaniesController.updateCompany
 
 sequelize.sync()
 .then(() => {
-  app.listen(port, () => console.log(`Your app is listening on port: ${port}`));
+  app.listen(port, () => console.log(`${process.env.NODE_ENV}, ${process.env.PORT} your app is listening on port: ${port}`));
 })
 //app.get('/', () => { console.log('HEYEYEYEYA') });

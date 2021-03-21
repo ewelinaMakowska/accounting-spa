@@ -1,4 +1,17 @@
-const dotenv = require('dotenv').config({path: '../.env'});
+let envPath;
+
+if(process.env.NODE_ENV === 'production' || !process.env.NODE_ENV) {
+  envPath = '../.env.prod'
+} else if (process.env.NODE_ENV === 'development') {
+  envPath = '../.env.dev'
+} else if (process.env.NODE_ENV === 'testing') {
+  envPath = '../.env.test'
+} else {
+  envPath = '../.env.prod'
+}
+
+const dotenv = require('dotenv').config({path: envPath});
+
 
 module.exports = { 
   port: process.env.PORT,
