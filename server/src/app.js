@@ -8,13 +8,11 @@ const CompaniesController = require('./controllers/CompaniesController')
 const CitiesController = require('./controllers/CitiesController');
 const ContactController = require('./controllers/ContactController');
 const AuthController = require('./controllers/AuthController');
-const { check, checkSchema, body } = require('express-validator');
 
 const AuthControllerPolicy = require('./policies/AuthControllerPolicy');
 const ContactControllerPolicy = require('./policies/ContactControllerPolicy');
 const CompaniesControllerPolicy = require('./policies/CompaniesControllerPolicy');
 const CitiesControllerPolicy = require('./policies/CitiesControllerPolicy');
-
 
 
 const isAuth = require('./middleware/is-auth')
@@ -24,7 +22,7 @@ const checkIfCityExists = require('./middleware/checkIfCityExists');
 const { token } = require('morgan');
 
 const app = express()
-const port = 3306
+const port = process.env.PORT;
 
 app.use(morgan('tiny'))
 app.use(bodyParser.json())
@@ -78,6 +76,6 @@ app.put('/updateCompany/:id', isAuth, isAdmin, CompaniesController.updateCompany
 
 sequelize.sync()
 .then(() => {
-  app.listen(port, () => console.log(`Your app is listening on port: ${port}`));
+  app.listen(port, () => console.log(`${process.env.NODE_ENV}, ${process.env.PORT} your app is listening on port: ${port}`));
 })
 //app.get('/', () => { console.log('HEYEYEYEYA') });

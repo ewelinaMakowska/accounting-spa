@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
-import Home from './views/Home.vue'
 import OfficePage from './views/OfficePage.vue'
 import OfficeCatalogue from './views/OfficeCatalogue.vue'
 import LoginPage from './views/LoginPage.vue'
@@ -23,16 +22,19 @@ import '../assets/scss/app.scss'
 
 const routes = [
   {
+    path: '*',
+    redirect: '/'
+  },
+  {
     path: '/',
-    component: Home
+    redirect: { name: 'office-catalogue' }
   },
   {
     path: '/search',
     name: 'office-catalogue',
-    /*  props: castRouteParams, */
     component: OfficeCatalogue
   },
-   {
+  {
     path: '/office/:id',
     name: 'office-page',
     props: castRouteParams,
@@ -67,10 +69,6 @@ const routes = [
     path: '/add-city',
     name: 'add-city-page',
     component: AddCityPage
-  },
-  {
-    path: '*',
-    redirect: '/'
   }
   // { path: '/search', component: SearchUser, props: (route) => ({ query: route.query.q }) }
 

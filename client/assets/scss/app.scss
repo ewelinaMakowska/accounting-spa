@@ -8,6 +8,14 @@ $primary-text: #444444;
 $secondary-text: rgba(0, 0, 0, 0.54);
 $very-light-grey: #dddddd;
 $subtle-violet: #f1f3ff;
+$transparent-white: rgba(255, 255, 255, 0.9);
+
+@mixin small-button {
+  font-size: 12px;
+  padding: 4px 17px;
+  border-radius: 3px;
+  text-decoration: none;
+}
 
 body {
   background-color: #ffffff;
@@ -50,12 +58,29 @@ button[disabled]:hover {
   margin-top: 35px;
 }
 
+#main-container {
+  &::after {
+    content: '';
+    display: block;
+    height: 120px;
+  }
+}
+
 .visible--block {
   display: block;
 }
 
 .hidden {
   display: none;
+}
+
+input[type=submit] {
+  border: 2px solid $blue;
+}
+
+.mt-minus {
+  vertical-align: middle;
+  margin-top: -35px !important;
 }
 
 //TOP BAR 
@@ -592,11 +617,10 @@ button[disabled]:hover {
   }
 
   &__button {
-    background-color: $blue;
-    color: #ffffff;
+    @extend .blue-button;
+    padding: 4px 18px;
+    border-radius: 3px;
     font-size: 13px;
-    padding: 7px 20px;
-    border-radius: 4px;
     position: absolute;
     bottom: 5%;
     left: 15px;
@@ -930,22 +954,9 @@ button[disabled]:hover {
 }
 
 .contact_us-button {
+  @extend .blue-button;
   margin-top: -20px;
   text-decoration: none;
-  background-color: $blue;
-  border: 2px solid $blue !important;
-  color: #ffffff;
-  border-radius: 3px;
-  padding: 7px 20px;
-  transition: all 0.3s;
-
-  &:focus,
-  &:hover,
-  &:active {
-    border: 2px solid $blue-lilac !important;
-    background-color: $blue-lilac;
-    color: $midnight-blue;
-  }
 }
 
 .sublist--edit {
@@ -1060,6 +1071,7 @@ button[disabled]:hover {
 
 .edit-company-btn {
   margin-top: 15px;
+  width: 176px;
 }
 
 .edit-company-btn--transparent {
@@ -1203,5 +1215,189 @@ button[disabled]:hover {
   &__submit {
     @extend .contact_us-button;
     margin-top: 15px;
+  }
+}
+
+.social-icon {
+  fill: $blue-lilac;
+  transition: all 0.3s;
+
+  &:hover,
+  &:focus {
+    fill: $transparent-white;
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
+  margin: 40px 0 0 0;
+  padding: 10px 0;
+  height: 70px;
+  width: 100vw;
+  background-color: $midnight-blue;
+
+  &__flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 6px;
+  }
+
+  &__link {
+    color: $blue-lilac;
+    text-decoration: none;
+    margin-right: 20px;
+    transition: all 0.3s;
+
+    &:hover,
+    &:focus {
+      color: $transparent-white;
+    }
+  }
+
+  &__social {
+    margin-right: 15px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.found-companies {
+  h2 {
+    margin-top: 50px;
+  }
+}
+
+.edit {
+  &__search {
+    @extend .search__input;
+    border-bottom: 2px solid $blue-lilac;
+    margin-right: 10px;
+
+    &:focus,
+    &:active {
+      border-bottom: 2px solid $blue;
+    }
+  }
+
+  &__search-button {
+    @extend .blue-button;
+    border: 2px solid $blue;
+    font-size: 12px;
+    padding: 5px 18px;
+    border-radius: 3px;
+    margin-bottom: -1px;
+  }
+}
+
+.companies-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.16);
+
+  &__company {
+    border-top: 1px solid $very-light-grey;
+    margin: 0;
+    padding: 0;
+    margin-top: -2px;
+
+    &:first-child {
+      border-top: none;
+    } 
+
+    & > div {
+      display: inline-block;
+      //padding: 7px 10px 5px 10px;
+      //padding: 12px 15px 10px 20px;
+      padding: 17px 20px 15px 25px;
+    }
+  }
+
+  &__id {
+    width: 5%;
+    text-align: center;
+    }
+  
+   &__name {
+     width: 35%;
+    }
+
+  &__location {
+    width: 30%;
+    }
+
+  &__buttons {
+      text-align: center;
+      width: 28%;
+     
+
+      @mixin edit-button {
+        display: inline-block;
+        border-width: 1px;
+      }
+
+      .light-button {
+        @extend .transparent-button;
+        @include small-button;
+        @include edit-button;
+      }
+
+      .orange-button {
+        @extend .orange-button;
+        @include small-button;
+        @include edit-button;
+        margin-left: 10px;
+      }
+  }
+}
+
+.companies-list__company--header {
+  @extend .companies-list__company;
+  color: $secondary-text;
+  border-top: none;
+  font-size: 14px;
+  margin-top: 25px;
+
+  div {
+    text-transform: uppercase;
+
+  }
+}
+
+section.find-companies {
+  margin-bottom: 15px;
+
+  h1 {
+    margin-bottom: 35px;
+  }
+}
+
+
+section.add-company {
+  margin-top: 50px;
+
+  &::after {
+    content: '';
+    display: block;
+    height: 120px;
+  }
+}
+
+.add-company-link {
+  @extend .blue-button;
+  text-decoration: none;
+  margin-top: 30px;
+  display: block;
+  width: fit-content;
+
+  i {
+    font-size: 18px;
+    vertical-align: middle;
   }
 }

@@ -24,11 +24,15 @@
           <div class="basic-data__price">
             <p>Od &nbsp;<span>{{ company.price }}</span> &nbsp;zł/msc</p>
 
-            <a href="#contact-form" class="blue-button contact_us-button">Skontaktuj się z nami</a><br/>
-
+            <a href="#contact-form" v-if="company.email" class="blue-button contact_us-button">
+              Skontaktuj się z nami
+            </a>
+              
+             <br/>
+  
             <button 
             v-if="$store.state.user && ($store.getters.userRole == 'admin')" 
-            class="orange-button edit-company-btn" 
+            :class="[!company.email ? mtMinusClass : '', orangeBtnClass, editCompanyBtnClass]"
             @click="editCompany($event)">
               Edytuj firmę
             </button>
@@ -88,7 +92,10 @@
   export default {
     data() {
       return {
-        admin: 'admin'
+        admin: 'admin',
+        mtMinusClass: 'mt-minus',
+        orangeBtnClass: 'orange-button',
+        editCompanyBtnClass: 'edit-company-btn'
       }
     },
     methods: {
