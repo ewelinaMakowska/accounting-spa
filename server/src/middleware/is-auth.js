@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
   } else {
     try {
       const token = req.get('Authorization').split(' ')[1];
-      const decodedToken = jwt.verify(token, 'myDevelopmentSuperSecret');
+      const decodedToken = jwt.verify(token, process.env.AUTH_JWT_SECRET);
       req.role = decodedToken.role;
       req.email = decodedToken.email;
       next();
