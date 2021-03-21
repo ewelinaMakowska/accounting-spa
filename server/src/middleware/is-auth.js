@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const config = require('../config/config.js')
 
 module.exports = (req, res, next) => {
   if(!req.get('Authorization')) {
@@ -8,7 +9,7 @@ module.exports = (req, res, next) => {
   } else {
     try {
       const token = req.get('Authorization').split(' ')[1];
-      const decodedToken = jwt.verify(token, process.env.AUTH_JWT_SECRET);
+      const decodedToken = jwt.verify(token, config.authentication.jwtSecret);
       req.role = decodedToken.role;
       req.email = decodedToken.email;
       next();
