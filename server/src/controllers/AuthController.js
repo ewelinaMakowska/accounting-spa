@@ -9,7 +9,6 @@ const loginHelper = require('../helpers/loginHelper')
 function jwtRegUser(user) {
   const ONE_WEEK = 60 * 60 * 24 * 7;
   return jwt.sign(user, config.authentication.jwtSecret, { expiresIn: ONE_WEEK }) 
-  //todo: change to process.env.jwt
 }
 
 
