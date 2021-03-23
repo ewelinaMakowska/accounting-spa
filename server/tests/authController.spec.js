@@ -77,7 +77,49 @@ describe('login tests', () => {
     })
   })
 
-  
+
+  test("if validation passes and user password is not valid", (done) => {
+    expressValidator.validationResult.mockImplementation(() => ({
+      isEmpty: jest.fn().mockReturnValue(true),
+      array: jest.fn().mockReturnValue([])
+    }));
+
+    const req = {
+      body: {
+        email: 'example@email.com',
+        password: '_2examplePassword88'
+      }
+    }
+
+    const res = {
+      status: jest.fn(function(code) {
+        return this
+      }),
+      send: jest.fn(function(Object) {
+      })
+    };
+
+    const mockGetUserData = jest
+    .spyOn(loginHelper, "getUserData")
+    .mockImplementation(() => {
+      const user = {}
+      return user;
+    })
+
+    const compareSync = jest
+    .spyOn(bcrypt, "compareSync")
+    .mockImplementation(() => {
+      return false;
+    })
+
+    AuthController.login(req, res)
+    .then(() => {
+      expect(res.status).toHaveBeenCalledWith(403)
+      done()
+    })
+  })
+
+
 
 
 })
