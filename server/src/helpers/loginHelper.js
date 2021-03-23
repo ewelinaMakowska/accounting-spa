@@ -10,7 +10,8 @@ module.exports = {
     const userData = await User.findOne({
       where: {
         email: req.body.email
-      }
+      },
+      raw : true
   })
 
   return userData;

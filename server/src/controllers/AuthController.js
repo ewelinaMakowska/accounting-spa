@@ -66,14 +66,11 @@ module.exports = {
         } else { 
           //SYNC
           let isPasswordValid = bcrypt.compareSync(password, user.password)      
-
-          
-          if(isPasswordValid) {
-            const userJson = user.toJSON();
-
+         
+          if(isPasswordValid) {    
             res.status(200).send({
-              user : userJson,
-              token: jwtRegUser(userJson)
+              user : user,
+              token: jwtRegUser(user)
             }) 
             return
 
