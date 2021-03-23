@@ -1,15 +1,15 @@
 const AuthController = require('../src/controllers/AuthController')
 const bcrypt = require('bcryptjs');
-jest.mock('express-validator');
 const expressValidator = require('express-validator');
 const sequelize = require('sequelize')
 const models = require('../src/models');
+const loginHelper = require('../src/helpers/loginHelper')
 
 
+jest.mock('express-validator');
 
-describe('if validation errors', () => {
+describe('login tests', () => {
   beforeEach(() => {  
-   
   })
 
 
@@ -41,6 +41,43 @@ describe('if validation errors', () => {
       }
     })    
   })
+
+
+  test("if validation passes and user login is not valid", (done) => {
+    expressValidator.validationResult.mockImplementation(() => ({
+      isEmpty: jest.fn().mockReturnValue(true),
+      array: jest.fn().mockReturnValue([])
+    }));
+
+    const req = {
+      body: {
+        email: 'example@email.com',
+        password: '_2examplePassword88'
+      }
+    }
+
+    const res = {
+      status: jest.fn(function(code) {
+        return this
+      }),
+      send: jest.fn(function(Object) {
+      })
+    };
+
+    const mockGetUserData = jest
+    .spyOn(loginHelper, "getUserData")
+    .mockImplementation(() => {
+      return null;
+    })
+
+    AuthController.login(req, res)
+    .then(() => {
+      expect(res.status).toHaveBeenCalledWith(403)
+      done()
+    })
+  })
+
+  
 
 
 })
