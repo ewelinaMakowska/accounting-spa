@@ -2,7 +2,8 @@
 const { User } = require('../models')
 const jwt = require('jsonwebtoken')
 const config = require('../config/config');
-const { validationResult } = require('express-validator');
+//const { validationResult } = require('express-validator');
+const expressValidator = require('express-validator');
 const bcrypt = require('bcryptjs');
 const loginHelper = require('../helpers/loginHelper')
 
@@ -14,7 +15,7 @@ function jwtRegUser(user) {
 
 module.exports = {
    async registerUser(req, res) {
-    const errors = validationResult(req);
+    const errors = expressValidator.validationResult(req);
    
     if(errors.isEmpty()) {
       try  {
@@ -49,12 +50,12 @@ module.exports = {
 
 
   async login(req, res) {
-    console.log(req.body)
-    const errors = validationResult(req); 
+    //console.log(req.body)
+    const errors = expressValidator.validationResult(req)
 
-    for(property in errors) {
+  /*   for(property in errors) {
       console.log(errors[property])
-    }
+    } */
 
     if(errors.isEmpty()){
       try {
@@ -81,9 +82,11 @@ module.exports = {
               user : userJson,
               token: jwtRegUser(userJson)
             }) 
+            return
 
           } else {
             res.status(403).send()
+            return
           }   
         } //else
       
@@ -92,28 +95,19 @@ module.exports = {
         res.status(500).send({
           error: err
         })
+        return err
       } //catch end
 
     } else { //errors is empty else
       res.status(422).send({
         error: errors
       })
+      return errors
     } //errors is empty else end
   }, //login end
 
 
-  async getUserData(req, res) {
-    try {
-      return res.status(200).send({
-        message: 'User data!'
-      })
-    } catch(err) {
-      return res.status(500).send( {
-        error: err
-      })
-    }
 
-  } //getUserData end
  
 
 } //module exports end

@@ -14,7 +14,7 @@ module.exports = {
   })
 
   return userData;
-},
+}
 
  /*  async compareHash(req, user) {
     bcrypt.compare(req.body.password, user.password, (err, res) => {
