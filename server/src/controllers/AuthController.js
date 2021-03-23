@@ -1,16 +1,9 @@
 
 const { User } = require('../models')
-const jwt = require('jsonwebtoken')
-const config = require('../config/config');
-//const { validationResult } = require('express-validator');
 const expressValidator = require('express-validator');
 const bcrypt = require('bcryptjs');
 const loginHelper = require('../helpers/loginHelper')
-
-function jwtRegUser(user) {
-  const ONE_WEEK = 60 * 60 * 24 * 7;
-  return jwt.sign(user, config.authentication.jwtSecret, { expiresIn: ONE_WEEK }) 
-}
+const { jwtRegUser } = require('../helpers/authHelper')
 
 
 module.exports = {
