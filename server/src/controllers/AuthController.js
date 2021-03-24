@@ -19,15 +19,17 @@ module.exports = {
           lastname: req.body.lastName
         }
 
-        const createdUser = await User.create(user);
-        const userJson = createdUser.toJSON();
-
-        res.send({
-          user : userJson,
-          token: jwtRegUser(userJson)
-        }) 
-    
+        User.create(user)
+        .then((resultEntity) => {
+          const userObj = resultEntity.get({plain: true})
+          res.status(201).send({
+            user : userObj,
+            token: jwtRegUser(userObj)
+          })
+         })
+                   
       } catch (err) {
+        console.log(err)
         res.status(400).send({
           error: err
         })

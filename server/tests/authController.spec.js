@@ -183,7 +183,12 @@ describe('login tests', () => {
         done(err)
       }
     })
-  }) 
+  }),
+
+
+  describe('register tests', () => {
+
+  })
 
 
 
