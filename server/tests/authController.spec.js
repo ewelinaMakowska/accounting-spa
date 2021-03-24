@@ -117,6 +117,11 @@ describe('login tests', () => {
     AuthController.login(req, res)
     .then(() => {
       expect(res.status).toHaveBeenCalledWith(403)
+
+      expressValidator.validationResult.mockRestore()
+      mockCompareSync.mockRestore()
+      mockGetUserData.mockRestore()
+      mockCompareSync.mockRestore()
       done()
     })
   })
@@ -141,7 +146,7 @@ describe('login tests', () => {
         return this
       }),
       send: jest.fn(function(Object) {
-        return null
+        return this
       })
     };
 
@@ -165,6 +170,13 @@ describe('login tests', () => {
     .then(() => {
       try {
         expect(res.status).toHaveBeenCalledWith(200)
+        expect(res.status().send).toHaveBeenCalled()
+
+        mockGetUserData.mockRestore()
+        mockCompareSync.mockRestore()
+        res.status().send.mockRestore()
+        res.status.mockRestore()
+
         done()
       } catch(err) {
         console.log(err)
