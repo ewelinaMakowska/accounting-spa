@@ -5,6 +5,8 @@ const sequelize = require('sequelize')
 const models = require('../src/models');
 const loginHelper = require('../src/helpers/loginHelper')
 const authHelper = require('../src/helpers/authHelper');
+/* const AuthControllerPolicy = require('../src/policies/')
+const app  = require("../src/app") */
 
 jest.mock('express-validator');
 
@@ -183,14 +185,56 @@ describe('login tests', () => {
         done(err)
       }
     })
-  }),
-
-
-  describe('register tests', () => {
-
   })
-
-
-
-
 })
+
+
+describe('register tests', () => {
+  test("if validation passes", (done) => {
+    expressValidator.validationResult.mockImplementation(() => ({
+      isEmpty: jest.fn().mockReturnValue(true),
+      array: jest.fn().mockReturnValue([])
+    }));
+
+
+    const req = {
+      body: { 
+        firstName: "Test", 
+        lastName: "Tester", 
+        eMail: "test33@email.com", 
+        password: "super!Pass22",
+        confirmPassword: "super!Pass22"
+      }
+    }
+
+    const res = {
+      status: jest.fn(function(code) {
+        return this
+      }),
+      send: jest.fn(function(Object) {
+        return this
+      })
+    };
+
+    
+    AuthController.registerUser(req, res)
+    .then(() => {
+      try {
+        expect(res.status).toHaveBeenCalledWith(201)
+        expect(res.status().send).toHaveBeenCalled()
+
+        res.status().send.mockRestore()
+        res.status.mockRestore()
+
+        done()
+      } catch(err) {
+        console.log(err)
+        done(err)
+      }
+    })
+  })
+})
+
+
+
+

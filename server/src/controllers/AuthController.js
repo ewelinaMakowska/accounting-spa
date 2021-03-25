@@ -12,12 +12,19 @@ module.exports = {
    
     if(errors.isEmpty()) {
       try  {
+
+        console.log(req.body)
+
         const user = {
           email: req.body.eMail,
           password: req.body.password,
           firstname: req.body.firstName,
           lastname: req.body.lastName
         }
+
+        console.log(user)
+
+
 
         User.create(user)
         .then((resultEntity) => {
