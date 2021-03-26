@@ -20,20 +20,18 @@ module.exports = {
           password: req.body.password,
           firstname: req.body.firstName,
           lastname: req.body.lastName
-        }
+        } 
 
         console.log(user)
 
+        let resultEntity = await User.create(user)
+        const userObj = resultEntity.get({plain: true})
 
-
-        User.create(user)
-        .then((resultEntity) => {
-          const userObj = resultEntity.get({plain: true})
-          res.status(201).send({
-            user : userObj,
-            token: jwtRegUser(userObj)
-          })
-         })
+        return res.status(201).send({
+          user : userObj,
+          token: jwtRegUser(userObj)
+        })
+         
                    
       } catch (err) {
         console.log(err)

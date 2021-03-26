@@ -5,11 +5,25 @@ const sequelize = require('sequelize')
 const models = require('../src/models');
 const loginHelper = require('../src/helpers/loginHelper')
 const authHelper = require('../src/helpers/authHelper');
-/* const AuthControllerPolicy = require('../src/policies/')
-const app  = require("../src/app") */
-
 jest.mock('express-validator');
 
+const db = require('../src/models/index');
+const express = require('express');
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const morgan = require('morgan')
+const app = express()
+app.use(morgan('tiny'))
+app.use(bodyParser.json())
+app.use(cors())
+const { token } = require('morgan');
+app.use((req, res, next) => {
+   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next()
+  })
+
+
+  
 describe('login tests', () => {
   beforeEach(() => {  
   })
@@ -33,11 +47,7 @@ describe('login tests', () => {
     .then(() => {
       try {
         expect(res.status).toHaveBeenCalledWith(422)
-        models.sequelize.sync()
-        .then(() => { models.sequelize.close()})
-        .then(() => {
-          done()
-        })
+        done()
       } catch(err){
         done(err)
       }
@@ -186,10 +196,23 @@ describe('login tests', () => {
       }
     })
   })
-})
+}) 
+
 
 
 describe('register tests', () => {
+  beforeAll(async () => {  
+    await db.sequelize.sync()
+    app.listen(process.env.PORT)
+  })
+
+  afterAll(async () => {
+    await db.sequelize.sync()
+    db.sequelize.close()
+        
+  })
+
+
   test("if validation passes", (done) => {
     expressValidator.validationResult.mockImplementation(() => ({
       isEmpty: jest.fn().mockReturnValue(true),
@@ -201,7 +224,7 @@ describe('register tests', () => {
       body: { 
         firstName: "Test", 
         lastName: "Tester", 
-        eMail: "test33@email.com", 
+        eMail: "test3345678901@email.com", 
         password: "super!Pass22",
         confirmPassword: "super!Pass22"
       }
