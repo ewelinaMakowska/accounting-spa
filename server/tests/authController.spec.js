@@ -23,7 +23,7 @@ app.use((req, res, next) => {
   })
 
 
-  
+
 describe('login tests', () => {
   beforeEach(() => {  
   })
@@ -202,7 +202,7 @@ describe('login tests', () => {
 
 describe('register tests', () => {
   beforeAll(async () => {  
-    await db.sequelize.sync()
+    await db.sequelize.sync({force: true})
     app.listen(process.env.PORT)
   })
 
