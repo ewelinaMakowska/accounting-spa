@@ -1,18 +1,56 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <h1>Dodaj miasto</h1>
-        
-        <form class="form" @submit="addCity($event)">
-          <input type="text" v-model.trim="City.name" /><br/>
-          <input type="text" v-model.trim="City.region" /><br/>
-          <input type="submit" value="Dodaj" />
-        </form>
+  <section>
+      <div class="login__background">
+            <div class="login__wrapper">             
+              <div class="login__box--top">
+                <h1>Dodaj miasto</h1>
+                  <form
+                  novalidate
+                  class="login"
+                  @submit="addCity($event)">
+
+                <div class="login__group">
+                  <label for="form__email">Miasto</label>
+                  <input
+                  v-model.trim="City.name"
+                  name="email"
+                  type="email"
+                  class="login__input"
+                  placeholder="Nazwa miasta"
+                  autocomplete="off"
+                  data-empty='false'
+                  >
+                </div>
+
+                <div class="login__group">
+                  <label for="form__email">Województwo</label>
+                  <input
+                  v-model="City.region"
+                  name="password"
+                  type="text"
+                  class="login__input"
+                  placeholder="Województwo"
+                  data-empty='false'
+                  >
+                </div>
+               
+                <input class="transparent-button"
+                  type="submit"
+                  value="Dodaj"
+                >
+              </form>
+
+            <!-- <div v-if="($v.$anyError && !this.hideErrorMessage) || (this.backendErrors && !this.hideErrorMessage)" id="login__error-message" class="login__error-message">
+                <div class="error-message__triangle"></div>
+                <p>Sprawdź poprawność wpowadzonych danych <br/> i spróbuj ponownie</p>
+              </div> -->
+            </div> 
+                         
+          </div>
+            
 
       </div>
-    </div>
-  </div>
+    </section>
 </template>
 
 
