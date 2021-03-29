@@ -13,8 +13,8 @@
 
 
             <div class="top-bar__right top-bar--mobile-part">
-              <button class="mobile-menu-trigger" id="mobile-menu-trigger">
-                <i class="material-icons-sharp" @click="toggleMobileMenu()">menu</i>
+              <button class="mobile-menu-trigger" id="mobile-menu-trigger" @click="toggleMobileMenu()">
+                <i class="material-icons-sharp">menu</i>
               </button>
 
               <ul v-if="mobileMenu" class="top-bar__list">
