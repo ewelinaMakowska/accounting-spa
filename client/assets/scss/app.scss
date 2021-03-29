@@ -102,6 +102,14 @@ input[type=submit] {
     float: left;
   }
 
+  &--wide-part {
+    display: block;
+  }
+
+  &--mobile-part {
+    display: none;
+  }
+
   &__logo {
     height: 43px;
     display: inline-block;
@@ -1431,8 +1439,22 @@ section.add-company {
       }
     }
 
-    .autocomplete {
-      &__wrapper {
+    .top-bar {
+      &--wide-part {
+        display: none;
+      }
+    
+      &--mobile-part {
+        display: block;
+
+        .top-bar {
+          &__list {
+            li {
+              display: block;
+            }
+            
+          }
+        }
       }
     }
   }
