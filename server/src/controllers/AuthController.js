@@ -12,7 +12,6 @@ module.exports = {
    
     if(errors.isEmpty()) {
       try  {
-
         console.log(req.body)
 
         const user = {

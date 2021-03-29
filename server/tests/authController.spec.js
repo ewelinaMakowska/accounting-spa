@@ -1,10 +1,7 @@
 const AuthController = require('../src/controllers/AuthController')
 const bcrypt = require('bcryptjs');
 const expressValidator = require('express-validator');
-const sequelize = require('sequelize')
-const models = require('../src/models');
 const loginHelper = require('../src/helpers/loginHelper')
-const authHelper = require('../src/helpers/authHelper');
 jest.mock('express-validator');
 
 const db = require('../src/models/index');
@@ -16,7 +13,7 @@ const app = express()
 app.use(morgan('tiny'))
 app.use(bodyParser.json())
 app.use(cors())
-const { token } = require('morgan');
+
 app.use((req, res, next) => {
    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next()
@@ -238,12 +235,44 @@ describe('register tests', () => {
         return this
       })
     };
-
-    
+   
     AuthController.registerUser(req, res)
     .then(() => {
       try {
         expect(res.status).toHaveBeenCalledWith(201)
+        expect(res.status().send).toHaveBeenCalled()
+
+        res.status().send.mockRestore()
+        res.status.mockRestore()
+
+        done()
+      } catch(err) {
+        console.log(err)
+        done(err)
+      }
+    })
+  })
+
+
+  test("if validation errors", (done) => {
+    expressValidator.validationResult.mockImplementation(() => ({
+      isEmpty: jest.fn().mockReturnValue(false),
+      array: jest.fn().mockReturnValue([{err: 'err'}])
+    }));
+
+    const res = {
+      status: jest.fn(function(code) {
+        return this
+      }),
+      send: jest.fn(function(Object) {
+        return this
+      })
+    };
+   
+    AuthController.registerUser({}, res)
+    .then(() => {
+      try {
+        expect(res.status).toHaveBeenCalledWith(422)
         expect(res.status().send).toHaveBeenCalled()
 
         res.status().send.mockRestore()
