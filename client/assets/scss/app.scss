@@ -1401,3 +1401,50 @@ section.add-company {
     vertical-align: middle;
   }
 }
+
+@media (min-width: 0px) and (max-width: 576px) {
+   //catalogue page
+   .thumbs {
+      &__thumb {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+
+    .search-options {
+      display: block; 
+      height: auto;
+    }
+
+    .filters {
+      position: static;
+      margin-top: 10px;
+    }
+
+    .search{
+      &__input {
+        width: 100%;
+      }
+
+      &__input-wrapper {
+        width: 100%;
+      }
+    }
+
+    .autocomplete {
+      &__wrapper {
+      }
+    }
+  }
+    
+
+@media (min-width: 768px) and (max-width: 991px) {
+  //catalogue page
+  .thumbs {
+    &__thumb {
+      width: 48%;
+    }
+  }
+
+  //company page
+}

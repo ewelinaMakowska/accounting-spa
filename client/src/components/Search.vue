@@ -17,7 +17,7 @@
       <i class='material-icons-sharp search__icon' id="search__icon">search</i>
     </div>
     
-    <div class="autocomplete__wrapper" tabindex="0" v-show="(this.searching)">
+    <div class="autocomplete__wrapper" id="autocomplete__wrapper" tabindex="0" v-show="(this.searching)">
       <div class="autocomplete">
         <ul class="autocomplete__list">
           <li
@@ -53,14 +53,16 @@
         searching: 0,
       }
     },
+
     computed: {
       currentPageNumber() {
         return 1
       },
       cities() {
         return this.$store.getters.loadedCities
-      }
+      },
     },
+
     methods: {
       hideSearchIcon() {
         const searchIcon = document.getElementById('search__icon');
@@ -161,7 +163,19 @@
             console.log(error)
           })
         console.log(this.$store.getters.state)
+      },
+
+      setAutocompleteWidth() {
+        const search = document.getElementById('search');
+        const autocomplete = document.getElementById('autocomplete__wrapper');
+        const autocompleteWidth = search.offsetWidth;
+        console.log(autocompleteWidth)
+        autocomplete.style.width = autocompleteWidth + 'px';
       }
+    },
+
+    updated() {
+      this.setAutocompleteWidth();
     }
 
   }
