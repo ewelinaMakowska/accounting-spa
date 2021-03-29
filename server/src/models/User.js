@@ -1,6 +1,6 @@
-
 const Sequelize = require('sequelize');
 const bcrypt = require('bcryptjs');
+//const { try } = require('bluebird');
 
  async function HashPassword(user) {
   const SALT_ROUNDS = 9;
@@ -10,16 +10,31 @@ const bcrypt = require('bcryptjs');
     return;
   }
 
-   bcrypt.genSalt(SALT_ROUNDS, (err, SALT) => {
+/*   bcrypt.genSalt(SALT_ROUNDS, (err, SALT) => {
      bcrypt.hash(user.password, SALT, (err, hash) => {
        user.password = hash
      });
-  }); 
-} 
+  });  */ 
+
+   try {
+    bcrypt.genSalt(SALT_ROUNDS)
+    .then((SALT) => {
+      try {
+        bcrypt.hash(user.password, SALT)
+        .then((hash) => {
+          user.password = hash
+        })
+      } catch(err) {
+        console.log(err)
+      }
+    })
+  } catch(err) {
+    console.log(err)
+  } 
+ }
 
 
 module.exports = (sequelize, DataTypes) => {
-
   const User = sequelize.define('User', {
 
     firstname: {

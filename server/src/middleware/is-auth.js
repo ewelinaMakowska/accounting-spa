@@ -1,20 +1,21 @@
 const jwt = require('jsonwebtoken');
+const config = require('../config/config.js')
 
 module.exports = (req, res, next) => {
-  const token = req.get('Authorization').split(' ')[1];
-  let decodedToken;
-  try {
-    decodedToken = jwt.verify(token, 'myDevelopmentSuperSecret');
-    req.role = decodedToken.role;
-  } catch(err) {
-    err.statusCode = 500;
-    throw err
-  }
-  if(!decodedToken) {
+  if(!req.get('Authorization')) {
     const error = new Error('Not authenticated.');
     error.statusCode = 401;
     throw error;
+  } else {
+    try {
+      const token = req.get('Authorization').split(' ')[1];
+      const decodedToken = jwt.verify(token, config.authentication.jwtSecret);
+      req.role = decodedToken.role;
+      req.email = decodedToken.email;
+      next();
+    } catch(error) {
+      error.statusCode = 500;
+      throw error
+    }
   }
-  req.email = decodedToken.email;
-  next();
 }
