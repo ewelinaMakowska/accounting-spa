@@ -1,5 +1,5 @@
 <template>
-   <div class="top-bar">
+   <div :class="[mobileMenu ? topBarMobileClass : '', topBarClass]">
 
       <div class="container">
         <div class="row">
@@ -12,7 +12,7 @@
             </div>
 
 
-            <div class="top-bar__right top-bar--mobile-part">
+            <div :class="[mobileMenu ? topBarRightMobileClass : '',topBarRightClass, topBarMobilePartClass]">
               <button class="mobile-menu-trigger" id="mobile-menu-trigger" @click="toggleMobileMenu()">
                 <i class="material-icons-sharp">menu</i>
               </button>
@@ -115,7 +115,12 @@ export default {
     return {
       navButtonClass: 'top-bar__link',
       navButtonDecoratedClass: 'top-bar__link--decorated',
-      mobileMenu: false
+      mobileMenu: false,
+      topBarClass: 'top-bar',
+      topBarRightClass: 'top-bar__right',
+      topBarMobileClass: 'top-bar--mobile',
+      topBarRightMobileClass: 'top-bar__right--mobile',
+      topBarMobilePartClass: 'top-bar--mobile-part'
     }
   },
 
