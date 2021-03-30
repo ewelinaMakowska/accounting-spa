@@ -24,12 +24,12 @@
                   <a href="#" :class="[isPathSearch ? navButtonDecoratedClass : '', navButtonClass]" >Księgowi</a>
                 </li>
                 
-                <li v-if="userLoggedIn && (userRole === 'admin')">
+                <li v-if="userLoggedIn && (userRole === 'admin')" id="edit-button-wrapper">
                   <router-link class="top-bar__link edit-page-link" to="/edit-content">Edycja</router-link>
                 </li>
 
 
-                <li v-if="userLoggedIn" class="user-bar">
+                <li v-if="userLoggedIn" class="user-bar" id="user-bar">
                   <span v-if="this.userRole === 'basic'" class="user-bar__icon user-bar__icon--basic"><i class="material-icons-sharp">person</i></span>
 
                   <span v-if="this.userRole === 'admin'" class="user-bar__icon user-bar__icon--admin"><i class="material-icons-sharp">person</i></span>
