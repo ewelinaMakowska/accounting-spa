@@ -1520,6 +1520,21 @@ section.add-company {
     #edit-button-wrapper {
       margin-top: 20px;
     }
+
+    .filters {
+      .triangle {
+        &--sort {
+          left: 35%;
+        }
+      }
+
+      &__bubble {
+        &--sort,
+        &--filters {
+          max-width: 255px;
+        }
+      }
+    }
   }
     
 
