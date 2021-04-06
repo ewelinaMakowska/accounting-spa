@@ -1554,7 +1554,23 @@ section.add-company {
     .contact-form {
       width: 100%;
     }
+
+  //login page
+    .login {
+      width: 100%;
+
+      &__wrapper {
+      width: 340px;
+    }
+
+    &__box {
+      &--top {
+        padding: 0 35px 30px 35px;
+      }
+    }
   }
+
+}
     
 
 @media (min-width: 768px) and (max-width: 991px) {
