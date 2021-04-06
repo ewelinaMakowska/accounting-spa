@@ -1592,6 +1592,68 @@ section.add-company {
     padding: 45px 35px 30px 35px;
   }
 
+  //edit page 
+  .edit {
+    &__search-button {
+        margin-top: 15px;
+    }
+  }
+
+  .companies-list {
+    box-shadow: none;
+
+    &__company {
+      &--header {
+        box-shadow: none;
+        margin-bottom: 0px;
+
+        .companies-list__buttons {
+          display: none !important;
+        }
+      }
+
+      margin-bottom: 15px;
+      margin-top: 15px;
+      box-shadow: 0px 1px 9px 0px rgba(0, 0, 0,  0.16);
+
+
+      div {
+        padding: 10px 13px 8px 18px;
+      }
+    }
+
+    &__name {
+      width: 45%;
+      text-align: center;
+    }
+
+    &__location {
+      width: 40%;
+      text-align: center;
+      vertical-align: middle;
+    }
+  
+  
+    &__buttons {
+      display: flex !important;
+      justify-content: left;
+      width: 100%;
+      border-top: 1px solid #ddd;
+
+
+      .light-button {
+        margin-left: 15px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+
+      .orange-button {
+        margin-left: 75px;
+      }
+    }
+  }
 }
     
 
@@ -1607,4 +1669,30 @@ section.add-company {
   .right-content {
     padding: 45px 35px 30px 35px;
   } 
+
+  //edit-page
+  .companies-list {
+    div {
+      padding: 10px 13px 8px 18px;
+    }
+
+    &__buttons {
+      vertical-align: middle;
+
+      .orange-button {
+        margin-left: 0;
+        margin-top: 15px;
+      }
+
+      .light-button {
+        margin-top: 5px;
+      }
+
+      .orange-button,
+      .light-button {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
 }
