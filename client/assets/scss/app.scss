@@ -1570,6 +1570,28 @@ section.add-company {
     }
   }
 
+  //register page
+  .reg-box {
+    width: 90%;
+    height: auto;
+
+    &__logo {
+      width: 75px;
+    }
+
+    &__left {
+      display: none;
+    }
+
+    &__right {
+      width: 100%;
+    }
+  }
+
+  .right-content {
+    padding: 45px 35px 30px 35px;
+  }
+
 }
     
 
@@ -1581,5 +1603,8 @@ section.add-company {
     }
   }
 
-  //company page
+  //register page
+  .right-content {
+    padding: 45px 35px 30px 35px;
+  } 
 }
