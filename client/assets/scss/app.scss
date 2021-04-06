@@ -1535,6 +1535,25 @@ section.add-company {
         }
       }
     }
+
+    //company page
+    .c-profile__basic-data {
+      display: block;
+
+      .price-wrapper {
+        width: 100%;
+      }
+    }
+
+    .basic-data__description {
+      width: 100%;
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .contact-form {
+      width: 100%;
+    }
   }
     
 
