@@ -102,6 +102,14 @@ input[type=submit] {
     float: left;
   }
 
+  &--wide-part {
+    display: block;
+  }
+
+  &--mobile-part {
+    display: none;
+  }
+
   &__logo {
     height: 43px;
     display: inline-block;
@@ -1399,5 +1407,292 @@ section.add-company {
   i {
     font-size: 18px;
     vertical-align: middle;
+  }
+}
+
+
+@media (min-width: 0px) and (max-width: 767px) {
+   //catalogue page
+   .thumbs {
+      &__thumb {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+
+    .search-options {
+      display: block; 
+      height: auto;
+    }
+
+    .filters {
+      position: static;
+      margin-top: 10px;
+    }
+
+    .search{
+      &__input {
+        width: 100%;
+      }
+
+      &__input-wrapper {
+        width: 100%;
+      }
+    }
+
+    .top-bar {
+      .login-button {
+        margin-top: 15px;
+        display: inline-block;
+        width: fit-content;
+
+        i {
+          display: none;
+        }
+      }
+
+      &--wide-part {
+        display: none;
+      }
+
+      &--mobile {
+        overflow: visible;
+      }
+
+      &__right {
+        &--mobile {
+          top: 50%;
+          transform: translateY(-11%);
+          width: 100vw !important;
+          margin-right: 0 !important;
+          z-index: 1;
+          background: #ffffff;
+          box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.16);
+          padding-top: 60px !important;
+          padding-bottom: 7px;
+          margin-top: -10px;
+        }
+      }
+    
+      &--mobile-part {
+        display: flex;
+        flex-direction: column;
+        width: 50px;
+        margin-right: 10px;
+        align-items: center;
+        padding-top: 40px;
+
+        .top-bar {
+          &__list {
+
+            li {
+              display: block;
+              margin-bottom: 10px;
+            }         
+          }
+        }
+      }
+
+      &__list {
+        padding: 0;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 0;
+      }
+    }
+
+    .mobile-menu-trigger {
+      width: 43px;
+      margin-top: -35px;
+      border: 1px solid $blue;
+      background: none;
+      color: $blue;
+      border-radius: 3px;
+      padding-top: 3px;
+    }
+
+    #user-bar {
+      margin-top: 25px;
+      border-top: 1px solid $very-light-grey;
+      border-bottom: 1px solid $very-light-grey;
+    }
+
+    #edit-button-wrapper {
+      margin-top: 20px;
+    }
+
+    .filters {
+      .triangle {
+        &--sort {
+          left: 35%;
+        }
+      }
+
+      &__bubble {
+        &--sort,
+        &--filters {
+          max-width: 255px;
+        }
+      }
+    }
+
+    //company page
+    .c-profile__basic-data {
+      display: block;
+
+      .price-wrapper {
+        width: 100%;
+      }
+    }
+
+    .basic-data__description {
+      width: 100%;
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .contact-form {
+      width: 100%;
+    }
+
+  //login page
+    .login {
+      width: 100%;
+
+      &__wrapper {
+      width: 340px;
+    }
+
+    &__box {
+      &--top {
+        padding: 0 35px 30px 35px;
+      }
+    }
+  }
+
+  //register page
+  .reg-box {
+    width: 90%;
+    height: auto;
+
+    &__logo {
+      width: 75px;
+    }
+
+    &__left {
+      display: none;
+    }
+
+    &__right {
+      width: 100%;
+    }
+  }
+
+  .right-content {
+    padding: 45px 35px 30px 35px;
+  }
+
+  //edit page 
+  .edit {
+    &__search-button {
+        margin-top: 15px;
+    }
+  }
+
+  .companies-list {
+    box-shadow: none;
+
+    &__company {
+      &--header {
+        box-shadow: none;
+        margin-bottom: 0px;
+
+        .companies-list__buttons {
+          display: none !important;
+        }
+      }
+
+      margin-bottom: 15px;
+      margin-top: 15px;
+      box-shadow: 0px 1px 9px 0px rgba(0, 0, 0,  0.16);
+
+
+      div {
+        padding: 10px 13px 8px 18px;
+      }
+    }
+
+    &__name {
+      width: 45%;
+      text-align: center;
+    }
+
+    &__location {
+      width: 40%;
+      text-align: center;
+      vertical-align: middle;
+    }
+  
+  
+    &__buttons {
+      display: flex !important;
+      justify-content: left;
+      width: 100%;
+      border-top: 1px solid #ddd;
+
+
+      .light-button {
+        margin-left: 15px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+
+      .orange-button {
+        margin-left: 75px;
+      }
+    }
+  }
+}
+    
+
+@media (min-width: 768px) and (max-width: 991px) {
+  //catalogue page
+  .thumbs {
+    &__thumb {
+      width: 48%;
+    }
+  }
+
+  //register page
+  .right-content {
+    padding: 45px 35px 30px 35px;
+  } 
+
+  //edit-page
+  .companies-list {
+    div {
+      padding: 10px 13px 8px 18px;
+    }
+
+    &__buttons {
+      vertical-align: middle;
+
+      .orange-button {
+        margin-left: 0;
+        margin-top: 15px;
+      }
+
+      .light-button {
+        margin-top: 5px;
+      }
+
+      .orange-button,
+      .light-button {
+        display: block;
+        width: 100%;
+      }
+    }
   }
 }
