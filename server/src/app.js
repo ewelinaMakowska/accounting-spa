@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
-//const history = require('connect-history-api-fallback');
 const { sequelize } = require('./models')
 const CompaniesController = require('./controllers/CompaniesController')
 const CitiesController = require('./controllers/CitiesController');
@@ -41,21 +40,13 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => res.send('Hello'))
 
-/* app.use(history({
-  index: '/index.html' 
-})); if uncommented npm install --save connect-history-api-fallback */
 
 app.get('/companies', CompaniesController.get)
 app.get('/companiesLimited', CompaniesController.getLimited)
 app.get('/companiesFiltered', CompaniesController.getFiltered)
 app.get('/companiesFilteredLimited', CompaniesController.getFilteredLimited)
-//app.get('/companiesLimited/?page=:page', CompaniesController.getLimited)
 app.get('/companiesFirst', CompaniesController.getFirstLimited)
-// app.get('/companiesCountAll', CompaniesController.countAll)
-//app.get('/companies/:id', CompaniesController.getOne)
 app.get('/company/:id', CompaniesController.getOne)
-//app.get('/companies/:id', (req, res) => CompaniesController.getOne)
-//app.get('/companies/:id', CompaniesController.getOne)
 app.get('/cities', CitiesController.getCities)
 app.get('/citiesFilteredLimited', CitiesController.getCitiesFilteredLimited)
 app.post('/addCity', CitiesControllerPolicy.add, checkIfCityExists, CitiesController.addCity)
