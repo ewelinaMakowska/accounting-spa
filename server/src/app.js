@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 
 
 
-app.get('/', (req, res) => res.send('HEYEYEYEYA'))
+app.get('/', (req, res) => res.send('Hello'))
 
 /* app.use(history({
   index: '/index.html' 
@@ -77,4 +77,3 @@ sequelize.sync()
 .then(() => {
   app.listen(port, () => console.log(`${process.env.NODE_ENV}, ${process.env.PORT} your app is listening on port: ${port}`));
 })
-//app.get('/', () => { console.log('HEYEYEYEYA') });
