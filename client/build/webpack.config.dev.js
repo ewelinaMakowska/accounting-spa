@@ -81,7 +81,7 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: "client/assets", to: "client/dist" },
+        { from: "assets", to: "dist" },
       ],
     }),
   ],
